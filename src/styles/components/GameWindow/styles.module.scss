@@ -1,0 +1,142 @@
+@import "@/styles/scss_globals.scss";
+
+.game_window{
+    aspect-ratio: 16 / 9;
+    background-color: green;
+    background-image: url("../../../app/assets/background.png");
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &>button{
+        position: absolute;
+        bottom: 30px;
+    }
+
+    #sprite_layer{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        // height: 100%;
+        width: 100%;
+
+        .player{
+            $width: 91px;
+            $height: $width;
+            width: $width;
+            height: $width;
+            display: flex;
+            position: absolute;
+    
+            transform: translate(-100%, -10%);
+    
+            &>p{
+                transform: translateY(-50%);
+            }
+    
+            &::before{
+                content: "";
+                position: absolute;
+                width: calc($width * 2);
+                height: calc($width * 2);
+                top: 0;
+                left: 0;
+
+                background-image: url("../../../app/assets/knight_idle_sheet.png");
+                transform: translate(calc(calc($width / -2) - 10px), calc($width / -2));
+                animation: idleAnim 0.5s steps(6) infinite;
+            }
+        }
+    
+        .enemy{
+            @extend .player;
+            $width: 91px;
+
+    
+            &::before{
+                background-image: url("../../../app/assets/enemy_idle_sheet.png");
+            }
+
+            @for $i from 1 through 10 {
+                &:nth-child(#{$i}) {
+                transform: translate(calc(100%*  #{$i}),-10%);
+                }
+            }
+
+            &:nth-child(n+10) {
+                display: none;
+            }
+
+            // &:nth:child(1){
+            //     transform: translate(100%, -10%);
+            // }
+
+            // &:nth-child(2){
+            //     transform: translate(100%, -10%);
+            // }
+
+            // &:nth-child(3){
+            //     transform: translate(200%,-10%);
+            // }
+
+            // &:nth-child(4){
+            //     transform: translate(300%, -10%);
+            // }
+
+
+        }
+    }
+}
+
+.quiz_window{
+    aspect-ratio: 16 / 9;
+    outline: solid 1px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.attack_button{
+    @include button_s;
+    @include orange;
+    z-index: 999;
+
+    &:disabled{
+        filter: brightness(0.8);
+        &:hover{
+            @include orange;
+            cursor: default
+        }
+    }
+}
+
+.playerAttackAnim{
+    @extend .player;
+    &::before{
+        background-image: url("../../../app/assets/knight_attack_sheet.png") !important;
+        animation: attackAnim 0.3s steps(4) forwards !important;
+    }
+}
+
+.enemyAttackAnim{
+    @extend .enemy;
+    &::before{
+        background-image: url("../../../app/assets/enemy_attack_sheet.png") !important;
+        animation: attackAnim 0.3s steps(4) forwards !important;
+    }
+}
+
+@keyframes idleAnim {
+    0% { background-position: 0 0; }
+    100% { background-position: -1152px 0; }
+}
+
+@keyframes attackAnim {
+    0% { background-position: 0 0; }
+    100% { background-position: -768px 0; }
+}

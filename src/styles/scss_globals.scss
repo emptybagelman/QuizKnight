@@ -1,0 +1,124 @@
+$bg: hsl(245, 80%, 6%);
+$orange: hsl(30, 100%, 45%);
+$orange-shadow: hsl(14, 100%, 39%);
+$blue: hsl(197, 65%, 51%);
+$blue-shadow: hsl(197, 56%, 34%);
+$green: hsl(171, 65%, 40%);
+$green-shadow: hsl(170, 53%, 25%);
+$purple: hsl(300, 60%, 33%);
+$purple-shadow: hsl(300, 95%, 16%);
+$yellow: hsl(0, 56%, 52%);
+$yellow-shadow: hsl(0, 55%, 30%);
+$hover: hsl(49, 100%, 70%);
+$hover-shadow: hsl(46, 85%, 60%);
+$yellowwhite: hsl(42, 37%, 93%);
+$corr: hsl(126, 59%, 50%);
+$corr-shadow: hsl(126, 59%, 23%);
+$incorr: hsl(358, 100%, 50%);
+$incorr-shadow: hsl(358, 100%, 21%);
+
+$h1-xxl: 6em;
+$h1-xl: 4em;
+$h1-lrg: 2.4em;
+$h1-med: 1.6em;
+
+$h2-xl: 2.4em;
+$h2-l: 2em;
+$h2-m: 1.4em;
+$h2-s: 1.2em;
+
+$h3-l: 1.4em;
+$h3-m: 1.2em;
+$h3-s: 1em;
+
+$p-l: 2em;
+$p-m: 1.2em;
+$p-s: 1em;
+$p-xs: 0.8em;
+
+$gap-xs: 0.128em;
+$gap-s: 0.272em;
+$gap-m: 0.618em;
+$gap-l: 1em;
+$gap-xl: 1.618em;
+$gap-xxl: 2.618em;
+
+$padding-xxl: 50px;
+$padding-xl: 25px;
+$padding-l: 15px;
+$padding-m: 10px;
+$padding-s: 5px;
+
+$border-l: 15px;
+$border-m: 10px;
+$border-s: 5px;
+
+$inset-l: inset 0 -15px 0 0;
+$inset-m: inset 0 -10px 0 0;
+$inset-s: inset 0 -5px 0 0;
+
+$fade-transition: 0.2s ease;
+
+
+// BACKGROUND COLOURS
+
+@mixin orange {
+    background-color: $orange;
+    box-shadow: $inset-s $orange-shadow;
+}
+
+@mixin green {
+    background-color: $green;
+    box-shadow: $inset-s $green-shadow;
+}
+
+@mixin blue {
+    background-color: $blue;
+    box-shadow: $inset-s $blue-shadow;
+}
+
+@mixin incorrect {
+    background-color: $incorr;
+    box-shadow: $inset-s $incorr-shadow;
+}
+
+@mixin correct {
+    background-color: $corr;
+    box-shadow: $inset-s $corr-shadow;
+}
+
+@mixin hover {
+    background-color: $hover;
+    box-shadow: $inset-m $hover-shadow;
+}
+
+
+// BUTTONS
+
+@mixin button_s {
+    padding: $padding-l $padding-l;
+    font-size: $p-m;
+
+    border-radius: $border-s;
+
+    transition: $fade-transition;
+
+    &:hover{
+        cursor: pointer;
+
+        color: $bg;
+        background-color: $hover;
+        box-shadow: $inset-s $hover-shadow;
+    }
+}
+
+@mixin button_m {
+    @include button_s();
+    padding: $padding-l $padding-xl;
+}
+
+@mixin button_l {
+    @include button_s();
+    padding: $padding-xl $padding-xxl;
+    box-shadow: $inset-l;
+}

@@ -1,0 +1,59 @@
+@import "@/styles/scss_globals.scss";
+
+.main{
+    width: 100%;
+    height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    #not_found_wrapper{
+        width: 50%;
+
+        h1{
+            margin-bottom: $gap-m;
+        }
+
+        p{
+            margin-bottom: $gap-s;
+        }
+
+        button{
+            @include button_m;
+        }
+    }
+
+    #loading_page{
+        
+    }
+
+    #home_wrapper{
+        width: 65%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img{
+            width: 80%;
+            height: auto;
+            margin-bottom: $gap-xxl;
+        }
+
+        &>p{
+            margin-bottom: $gap-m;
+        }
+
+        &>div{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: $gap-m;
+        }
+    }
+}

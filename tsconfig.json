@@ -36,7 +36,9 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.js",
-    ".next/types/**/*.ts"
-  ],
+    ".next/types/**/*.ts", 
+    "./src/server/db/seed.ts",
+    "./src/server/db/index.ts",
+    "./src/server/db/schema.ts"  ],
   "exclude": ["node_modules"]
 }

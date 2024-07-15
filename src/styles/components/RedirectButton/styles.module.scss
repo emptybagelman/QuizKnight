@@ -1,0 +1,11 @@
+@import "@/styles/scss_globals.scss";
+
+.redirect_button{
+    @include button_l;
+    @include green;
+
+    &:hover{
+        background-color: $hover;
+        box-shadow: $inset-m $hover-shadow;
+    }
+}

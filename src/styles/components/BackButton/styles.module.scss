@@ -1,0 +1,27 @@
+@import "@/styles/scss_globals.scss";
+
+.back_button{
+    @include button_m;
+    @include orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $p-m;
+
+    &>svg{
+        margin-left: $gap-s;
+    }
+
+    &:hover{
+        cursor: pointer;
+        color: $bg;
+        background-color: $hover;
+        box-shadow: $inset-s $hover-shadow;
+
+        svg{
+            &>*{
+                color: $bg;
+            }
+        }
+    }
+}

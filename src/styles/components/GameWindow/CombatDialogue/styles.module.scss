@@ -1,0 +1,32 @@
+@import "@/styles/scss_globals.scss";
+
+.dialogue_wrapper{
+    width: 60%;
+    height: 100px;
+    background-color: $bg;
+    border-radius: $border-s;
+    position: absolute;
+    top: 10px;
+
+    padding: $padding-l $padding-xxl;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text{
+    white-space: nowrap;
+    text-align: center;
+    overflow: hidden;
+    font-size: $p-m;
+}
+
+.dialogue_anim{
+    animation: typewriter 2s steps(32) 1s 1 normal both;
+}
+
+@keyframes typewriter{
+    from{width: 0;}
+    to{width: 30ch;}
+}

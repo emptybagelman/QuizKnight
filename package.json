@@ -9,12 +9,14 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx ./src/server/db/seed.ts",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.1.0",
+    "@neondatabase/serverless": "^0.9.4",
     "@t3-oss/env-nextjs": "^0.10.1",
     "@tanstack/react-query": "^5.39.0",
     "@trpc/client": "next",
@@ -27,8 +29,11 @@
     "postgres": "^3.4.4",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
+    "react-query": "^3.39.3",
+    "scss": "^0.2.4",
     "server-only": "^0.0.1",
     "superjson": "^2.2.1",
+    "tsx": "^4.16.2",
     "zod": "^3.23.3"
   },
   "devDependencies": {
@@ -38,6 +43,7 @@
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.21.4",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.1.3",

@@ -1,0 +1,27 @@
+@import "@/styles/scss_globals.scss";
+
+.nav_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding-s $padding-l;
+
+    #logo_image{
+        width: 100px;
+        height: auto;
+        padding: $padding-m;
+    }
+
+    ul{
+        margin: 0;
+        li{
+            list-style: none;
+            display: flex;
+            gap: $gap-m;
+            a{
+                @include button_m;
+                
+            }
+        }
+    }
+}

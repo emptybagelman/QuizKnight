@@ -1,0 +1,64 @@
+@import "@/styles/scss_globals.scss";
+
+.quiz_display_wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $bg;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2{
+        margin-bottom: $gap-xs;
+        font-size: $h2-xl;
+        font-weight: 300;
+    }
+
+    h3{
+        margin-bottom: $gap-xl;
+        font-size: $h2-m;
+        font-weight: 300;
+    }
+    
+    .answers{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $gap-xl;
+
+        button{
+            @include orange;
+            min-width: 200px;
+            min-height: 125px;
+            font-size: $p-l;
+            padding: $padding-l;
+            border-radius: $border-s;
+            transition: $fade-transition;
+
+            &:hover{
+                @include hover;
+                color: $bg;
+                cursor: pointer;
+            }
+        }
+
+        .correct {
+            @include correct;
+            &:hover{
+                @include correct;
+            }
+        }
+        
+        .incorrect {
+            @include incorrect;
+            &:hover{
+                @include incorrect;
+            }
+        }
+    }
+}

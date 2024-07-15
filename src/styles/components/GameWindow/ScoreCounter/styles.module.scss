@@ -1,0 +1,11 @@
+@import "@/styles/scss_globals.scss";
+
+.score_counter{
+    $gap: 10px;
+    position: absolute;
+    top: $gap;
+    right: $gap;
+    background-color: $bg;
+    border-radius: $border-s;
+    padding: $padding-l $padding-xl;
+}

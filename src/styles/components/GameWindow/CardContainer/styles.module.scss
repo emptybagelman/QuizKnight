@@ -1,0 +1,8 @@
+@import "@/styles/scss_globals.scss";
+
+.card_container{
+    display: flex;
+    justify-content: center;
+    gap: $gap-xl;
+    position: relative;
+}
