@@ -24,8 +24,8 @@ const defaultPlayerState: Player = {
     name: "Player",
     hp: 5,
     maxhp: 5,
-    dmg: 5,
-    armor: 3,
+    dmg: 3,
+    armour: 5,
     resistance: 0,
 }
 
@@ -53,7 +53,7 @@ export default function GameStateProvider({ children }: {children: React.ReactNo
     const [player, setPlayer] = useState<Player>(defaultPlayerState)
     const [loop, setLoop] = useState<number>(0)
     const [score, setScore] = useState<number>(0)
-    const [quizState, setQuizState] = useState<boolean>(true)
+    const [quizState, setQuizState] = useState<boolean>(false)
 
     const [displayQuestionState, setDisplayQuestionState] = useState<boolean>(false)
 

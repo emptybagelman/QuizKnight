@@ -2,11 +2,7 @@
 
 I made this as a remake to my **first** JavaScript project I co-created in 2023. Made with new technologies such as [Next.js](https://nextjs.org/), [Drizzle](https://orm.drizzle.team/), [TypeScript](https://www.typescriptlang.org/) and more.
 
-
-
-
 ## Checklist
-
 
 ### Gameplay loop
 1. load game wave 1
@@ -22,7 +18,9 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [x] repeat for number of correct questions
 
 ### Todos
-- [] make armour finite, only health can recharge per wave
+- [] damage bar
+- [] new logo
+- [x] make armour finite, only health can recharge per wave
 - [] style up the cards
 - [] better screen sizing
 - [] better combat anims

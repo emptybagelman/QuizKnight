@@ -3,7 +3,7 @@ export type Player = {
     hp: number,
     maxhp: number,
     dmg: number,
-    armor: number,
+    armour: number,
     resistance: number,
 }
 
@@ -12,6 +12,7 @@ export type Enemy = {
     name: string,
     hp: number,
     maxhp: number,
+    armour: number,
     dmg: number,
 }
 

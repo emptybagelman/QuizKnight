@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/components/GameWindow/styles.module.scss"
 import CombatDialogue from "../CombatDialogue";
 import { Player, Enemy, DialogueProps } from "@/app/_types/types"
@@ -23,13 +23,15 @@ export default function Combat(){
     const enemyArray: Enemy[] = [...Array.from({length:enemyAmount}).map((x, index) => {
 
         const hp = randomInt((3 + Math.floor(loop*1.2)),2)
-        const dmg = randomInt((20 + Math.floor(loop*1.1)),2)
+        const dmg = randomInt((2 + Math.floor(loop*1.1)),2)
+        const armour = randomInt((1 + Math.floor(loop*1.02)),2)
 
         const en = {
             id: index,
             name: "Goblin",
             hp: hp,
             maxhp: hp,
+            armour: armour,
             dmg: dmg,
         }
 
@@ -73,22 +75,30 @@ export default function Combat(){
 
     function handlePlayerAttack(){
 
-        const newEnemyHp = enemyData[0]?.hp! - player.dmg
+        if(!enemyData[0]) throw new Error("No enemies to kill!")
+
+        const firstEnemy = enemyData[0]
+
+        let overflowDmg = 0;
+        let enemyHp = firstEnemy.hp;
+
+        if(firstEnemy.armour < player.dmg){
+            overflowDmg = Math.abs(firstEnemy.armour - player.dmg)
+            enemyHp = firstEnemy.hp - overflowDmg
+            firstEnemy.hp = enemyHp
+            firstEnemy.armour = 0
+        }else{
+            firstEnemy.armour = firstEnemy.armour - player.dmg
+        }
 
         setEnemyData(
             (prev: Enemy[]) => {
-                const newData = [...prev]
+                const newEnemyData = [...prev]
+                newEnemyData[0] = firstEnemy
+                return newEnemyData
+            })
 
-                newData[0] = {
-                    ...newData[0],
-                    hp: newEnemyHp
-                }
-
-                return newData
-            }
-        )
-
-        if(newEnemyHp <= 0){ // KILL ENEMY DIALOGUE
+        if(enemyHp <= 0){ // KILL ENEMY DIALOGUE
             setCurrentDialogue({
                 enemy: enemyData[0]!,
                 active: true,
@@ -112,7 +122,7 @@ export default function Combat(){
             // WAIT FOR DIALOGUE
             setTimeout(() => {
 
-                if(newEnemyHp <= 0){
+                if(enemyHp <= 0){
                     setEnemyData(
                         (prev: Enemy[]) => {
                             const newArray = [...prev]
@@ -122,7 +132,7 @@ export default function Combat(){
                     )
                 }
 
-                if(enemyData.length <= 1 && newEnemyHp){
+                if(enemyData.length <= 1 && enemyHp <= 0){
                     setCurrentDialogue(emptyDialogue)
                     setButtonState(false)
                     setQuizState(true)
@@ -143,16 +153,29 @@ export default function Combat(){
     }
 
     function handleEnemyAttack() {
-        const enemyDmg = enemyData[0]?.dmg!
+        if(!enemyData[0]) throw new Error("Apparently the player is dead and is still being beaten into the ground...")
+
+        const enemyDmg = enemyData[0].dmg
+        const tempPlayer = player;
+
+        let overflowDmg = 0;
+        let playerHp = tempPlayer.hp;
+
+        if(tempPlayer.armour <= enemyDmg){
+            overflowDmg = Math.abs(tempPlayer.armour - enemyDmg)
+            playerHp = tempPlayer.hp - overflowDmg
+            tempPlayer.hp = playerHp
+            tempPlayer.armour = 0
+        }else{
+            tempPlayer.armour = tempPlayer.armour - enemyDmg
+        }
+
         setEnemyAttack(true)  // RUNS ENEMY ATTACK
         setPlayer((prev: Player) => (
-            {
-                ...prev,
-                hp: prev.hp - enemyDmg
-            }
+            tempPlayer
         ))
 
-        if(player.hp - enemyDmg <= 0){
+        if(tempPlayer.hp - enemyDmg <= 0){
             setCurrentDialogue({
                 enemy: enemyData[0]!,
                 active: true,
@@ -173,7 +196,7 @@ export default function Combat(){
             setEnemyAttack(false)
 
             setTimeout(() => {
-                if(player.hp - enemyDmg <= 0){
+                if(tempPlayer.hp - enemyDmg <= 0){
                     router.push("/scoreboard")
                 }else{
                     setCurrentDialogue(emptyDialogue)
@@ -192,11 +215,18 @@ export default function Combat(){
         handlePlayerAttack()
     }
 
+    const [mounted, setMounted] = useState<boolean>(false)
+
+    useEffect(() => {
+        setMounted(true)
+    },[])
+
+    if(mounted)
     return (
         <div className={styles.game_window}>
             <div id={styles.sprite_layer}>
                 <div className={playerAttack ? styles.playerAttackAnim : styles.player}>
-                    <p>{player.hp} / {player.maxhp}</p>
+                    <p>{player.hp} / {player.maxhp} {!(player.armour <= 0) && ` + ${player.armour}`}</p>
                 </div>
 
                 {
@@ -207,7 +237,7 @@ export default function Combat(){
                             ? styles.enemyAttackAnim
                             : styles.enemy
                             }>
-                            <p>{enemy.hp} / {enemy.maxhp}</p>
+                            <p>{enemy.hp} / {enemy.maxhp} {!(enemy.armour <= 0) && ` + ${enemy.armour}`}</p>
                         </div>
                     ))
                 }
