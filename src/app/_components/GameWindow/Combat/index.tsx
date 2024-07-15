@@ -7,6 +7,7 @@ import { Player, Enemy, DialogueProps } from "@/app/_types/types"
 import { useGame } from "../../GameContext";
 import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
+import HealthBar from "../HealthBar";
 
 export default function Combat(){
     
@@ -23,8 +24,8 @@ export default function Combat(){
     const enemyArray: Enemy[] = [...Array.from({length:enemyAmount}).map((x, index) => {
 
         const hp = randomInt((3 + Math.floor(loop*1.2)),2)
-        const dmg = randomInt((2 + Math.floor(loop*1.1)),2)
-        const armour = randomInt((1 + Math.floor(loop*1.02)),2)
+        const dmg = randomInt((3 + Math.floor(loop*1.1)),2)
+        const armour = randomInt((1 + Math.floor(loop*1.02)),1)
 
         const en = {
             id: index,
@@ -175,7 +176,7 @@ export default function Combat(){
             tempPlayer
         ))
 
-        if(tempPlayer.hp - enemyDmg <= 0){
+        if(playerHp <= 0){
             setCurrentDialogue({
                 enemy: enemyData[0]!,
                 active: true,
@@ -196,7 +197,7 @@ export default function Combat(){
             setEnemyAttack(false)
 
             setTimeout(() => {
-                if(tempPlayer.hp - enemyDmg <= 0){
+                if(playerHp <= 0){
                     router.push("/scoreboard")
                 }else{
                     setCurrentDialogue(emptyDialogue)
@@ -226,7 +227,8 @@ export default function Combat(){
         <div className={styles.game_window}>
             <div id={styles.sprite_layer}>
                 <div className={playerAttack ? styles.playerAttackAnim : styles.player}>
-                    <p>{player.hp} / {player.maxhp} {!(player.armour <= 0) && ` + ${player.armour}`}</p>
+                    {/* <p>{player.hp} / {player.maxhp} {!(player.armour <= 0) && ` + ${player.armour}`}</p> */}
+                    <HealthBar character={player} />
                 </div>
 
                 {
@@ -237,7 +239,7 @@ export default function Combat(){
                             ? styles.enemyAttackAnim
                             : styles.enemy
                             }>
-                            <p>{enemy.hp} / {enemy.maxhp} {!(enemy.armour <= 0) && ` + ${enemy.armour}`}</p>
+                            <HealthBar character={enemy} />
                         </div>
                     ))
                 }

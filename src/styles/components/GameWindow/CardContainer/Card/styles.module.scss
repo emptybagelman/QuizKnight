@@ -68,10 +68,10 @@
 }
 
 .card_wrapper[content="English"]{
-    background-color: $yellow;
+    background-color: $red;
     .difficulty{
-        background-color: $yellow;
-        border-bottom: 2px solid $yellow-shadow;
+        background-color: $red;
+        border-bottom: 2px solid $red-shadow;
     }
 }
 
