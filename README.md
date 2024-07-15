@@ -1,30 +1,14 @@
 # GeoKnight 2.0
 
-## SQL tables
-> just for my own mind
+I made this as a remake to my **first** JavaScript project I co-created in 2023. Made with new technologies such as [Next.js](https://nextjs.org/), [Drizzle](https://orm.drizzle.team/), [TypeScript](https://www.typescriptlang.org/) and more.
 
-**category**
-- id *primary key*
-- category *string*
 
-**question_group**
-- id *primary key*
-- difficulty *string*
-- question *string*
-- answers *array of strings*
-- correct_index *integer*
-- category_id *foreign key references category*
 
-**upgrade**
-- id *primary key*
-- name *string*
-- description *string*
-- affected_stat *string*
-- default_value *integer*
-- consumable *boolean*
 
-## gameplay
+## Checklist
 
+
+### Gameplay loop
 1. load game wave 1
     - [x] evaluate dmg / hp
     - [x] lose -> gameover
@@ -36,3 +20,23 @@
     - [x] pick card
     - [x] update stats
     - [x] repeat for number of correct questions
+
+### Todos
+- [] make armour finite, only health can recharge per wave
+- [] style up the cards
+- [] better screen sizing
+- [] better combat anims
+- [] more enemy types
+- [] adjust scaling
+- [] better backdrop
+    - maybe even play with sprite creation and custom scenes
+    - could even turn into a rougelike dungeon crawler (pipedream)
+- [] make scoreboard work
+    - [] best category
+    - [] worst category
+    - [] most questions answered
+    - [] longest streak
+    - [] levels reached (loop number)
+    - [] username (if not guest)
+    - [] total score
+    - [] enemies defeated
