@@ -1,16 +1,18 @@
 @import "@/styles/scss_globals.scss";
 
 .healthbar_wrapper{
+    $hb_border_r: $border-s 0px;
+    $pp: hsl(358, 100%, 35%);
+    $hb_outline: solid 2px $bg;
     display: flex;
     position: relative;
     top: -35px;
     left: 0;
-    background-color: $bg;
     width: 100%;
     height: 12px;
 
     &>div{
-        height: 12px;
+        height: 15px;
         padding: 5px;
     }
 
@@ -19,13 +21,22 @@
     //     background-color: $red;
     // }
     #hp{
-        width: 100%;
         background-color: $green;
         z-index: 3;
+        border-radius: $hb_border_r;
+    }
+    #maxhp{
+        background-color: $bg-light;
+        outline: $hb_outline;
+        width: 100%;
+        position: absolute;
+        border-radius: $hb_border_r;
     }
     #armour{
+        outline: $hb_outline;
         position: absolute;
-        left: 100%;
+        left: 105%;
         background-color: $blue-shadow;
+        border-radius: $hb_border_r;
     }
 }

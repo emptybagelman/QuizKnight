@@ -1,10 +1,39 @@
-import styles from "@/styles/root/scoreboard/scoreboard.module.scss"
+import { getScoreboard } from "@/server/actions/categoryActions"
+import styles from "@/styles/root/scoreboard/styles.module.scss"
+import { Score } from "../_types/types"
 
-export default function ScoreBoardPage(){
+export default async function ScoreBoardPage(){
+
+    const scoreboardData = await getScoreboard()
 
     return (
-        <div>
+        <>
             <h1>scoreboard</h1>
-        </div>
+            {
+                scoreboardData &&
+                <div className={styles.table_wrapper}>
+                    <table className={styles.table}>
+                        <thead>
+                            <tr id={styles.table_header_group}>
+                                <th>Name</th>
+                                <th>Score</th>
+                                <th>Highest Loop</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                scoreboardData.map((score: Score, index: number) => (
+                                    <tr>
+                                        <td>{score.name}</td>
+                                        <td>{score.score}</td>
+                                        <td>{score.highest_loop}</td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </>
     )
 }

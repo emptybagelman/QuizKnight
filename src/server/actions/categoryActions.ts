@@ -1,6 +1,6 @@
-import { type Upgrade, type Category, type Question, type Card } from "@/app/_types/types";
+import { type Upgrade, type Category, type Card, type newScore } from "@/app/_types/types";
 import db from "@/server/db";
-import { categorySchema, questionSchema, upgradeSchema } from "@/server/db/schema";
+import { categorySchema, questionSchema, scoreSchema, upgradeSchema } from "@/server/db/schema";
 import { asc, eq } from 'drizzle-orm';
 
 export async function getAllCategories(): Promise<(Category | undefined)[]>  {
@@ -45,31 +45,6 @@ export const getRandomThreeCards = async (): Promise<(Card)[]> => {
   return arr;
 }
 
-// export async function getRandomThreeUpgrades(table: string): Promise<(Upgrade)[]> {
-//     const data = await getAllUpgrades()
-
-//   if(!data) throw new Error("Failed to fetch categories");
-
-//   const validUpgrades: Upgrade[] = data.filter((upgrade): upgrade is Upgrade => upgrade !== undefined);
-
-//   const arr: Upgrade[] = [];
-//   const usedIndices: Set<number> = new Set();
-
-//   while (arr.length < 3) {
-//     const randInt: number = Math.floor(Math.random() * validUpgrades.length);
-
-//     if (!usedIndices.has(randInt)) {
-//       const selectedUpgrade = validUpgrades[randInt];
-//       if (selectedUpgrade) {
-//         arr.push(selectedUpgrade);
-//         usedIndices.add(randInt);
-//       }
-//     }
-//   }
-
-//   return arr;
-// }
-
 export async function getRandomUpgrade(): Promise<(Upgrade | undefined)> {
   const data: Upgrade[] = await db.select().from(upgradeSchema).orderBy(asc(upgradeSchema.id))
 
@@ -82,4 +57,13 @@ export async function getCardData() {
   const data = await db.select().from(questionSchema).leftJoin(categorySchema, eq(categorySchema.id,questionSchema.category_id))
 
   return data;
+}
+
+export async function getScoreboard() {
+  const data = await db.select().from(scoreSchema).orderBy(asc(scoreSchema.score))
+  return data;
+}
+
+export async function postScore(score: newScore ) {
+  return db.insert(scoreSchema).values(score).returning();
 }

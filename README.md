@@ -18,7 +18,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [x] repeat for number of correct questions
 
 ### Todos
-- [] damage bar
+- [x] damage bar
 - [] new logo
 - [x] make armour finite, only health can recharge per wave
 - [] style up the cards

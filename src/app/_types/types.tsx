@@ -1,3 +1,5 @@
+import { scoreSchema } from "@/server/db/schema"
+
 export type Player = {
     name: string,
     hp: number,
@@ -63,4 +65,13 @@ export type Card = {
         id: number;
         category: string;
     } | null;
+}
+
+export type newScore = typeof scoreSchema.$inferInsert
+
+export type Score = {
+    id: number,
+    name: string,
+    highest_loop: number,
+    score: number,
 }

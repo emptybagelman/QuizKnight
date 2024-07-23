@@ -30,3 +30,10 @@ export const questionRelations = relations(questionSchema, ({one, many}) => ({
         references: [categorySchema.id]
     } )
 }))
+
+export const scoreSchema = pgTable("score", {
+    id: serial("id").primaryKey(),
+    name: text("name").notNull(),
+    highest_loop: integer("highest_loop").notNull(),
+    score: integer("score").notNull()
+})

@@ -8,10 +8,11 @@ import { useGame } from "../../GameContext";
 import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
 import HealthBar from "../HealthBar";
+import { postScore } from "@/server/actions/categoryActions";
 
 export default function Combat(){
     
-    const {player, setPlayer, loop, setScore, setQuizState} = useGame()
+    const {player, setPlayer, loop, score, setScore, setQuizState} = useGame()
     
     const [playerAttack, setPlayerAttack] = useState<boolean>(false)
     const [enemyAttack, setEnemyAttack] = useState<boolean>(false)
@@ -199,6 +200,7 @@ export default function Combat(){
             setTimeout(() => {
                 if(playerHp <= 0){
                     router.push("/scoreboard")
+                    postScore({ name: "balls", highest_loop: loop, score: score })
                 }else{
                     setCurrentDialogue(emptyDialogue)
                     setButtonState(false) // ENABLE BUTTON
