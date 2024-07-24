@@ -9,6 +9,7 @@ import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
 import HealthBar from "../HealthBar";
 import { postScore } from "@/server/actions/categoryActions";
+import StartScreen from "../../StartScreen";
 
 export default function Combat(){
     
@@ -227,6 +228,11 @@ export default function Combat(){
     if(mounted)
     return (
         <div className={styles.game_window}>
+            {
+                loop == 0
+                ? <StartScreen />
+                : ""
+            }
             <div id={styles.sprite_layer}>
                 <div className={playerAttack ? styles.playerAttackAnim : styles.player}>
                     {/* <p>{player.hp} / {player.maxhp} {!(player.armour <= 0) && ` + ${player.armour}`}</p> */}

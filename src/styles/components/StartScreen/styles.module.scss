@@ -1,0 +1,192 @@
+@import "@/styles/scss_globals.scss";
+
+.start_screen_wrapper{
+    aspect-ratio: 16 / 9;
+    background-color: $bg;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+
+    animation: fadeOut 2s ease forwards;
+    animation-delay: 4s;
+
+    z-index: 9999;
+
+    .screen_container{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+
+        .h1_titlecard{
+            position: relative;
+            $bar_height: 15px;
+            $bar_height_pos: 45%;
+            $curve: cubic-bezier(.40,.64,.44,1);
+
+            animation: flyIn 2s $curve forwards;
+
+            h1{
+                z-index: 5;
+                position: relative;
+                font-size: $h1-xxl;
+                letter-spacing: -0.6rem;
+        
+                // animation: fadeOut 1s ease forwards;
+                animation-delay: 2s;
+
+            }
+
+            .bigbar{
+                height: $bar_height;
+                width: 150%;
+                background-color: $red;
+                background: transparent;
+
+                border-radius: $border-m;
+                position: absolute;
+                top: $bar_height_pos;
+                left: -25%;
+                z-index: 4;
+
+                animation: 0.75s ease barGrow forwards;
+                animation-delay: 1.2s;
+                transform-origin: center;
+
+                
+
+            }
+
+            .h1_streak{
+                height: $bar_height;
+                width: calc(2 * $bar_height);
+                position: absolute;
+                background: transparent;
+                top: $bar_height_pos;
+                border-radius: $border-m;
+
+                z-index: 3;
+            }
+
+            #streak_l {
+                animation: 0.75s ease streakMoveLeft forwards;
+                animation-delay: 1.5s;
+            }
+
+            #streak_r {
+                animation: 0.75s ease streakMoveRight forwards;
+                animation-delay: 1.5s;
+            }
+
+            .h1_dot{
+                height: $bar-height;
+                width: $bar-height;
+                border-radius: $border-m;
+                position: absolute;
+                background-color: transparent;
+                top: $bar_height_pos;
+
+                z-index: 2;
+            }
+
+            #dot_l {
+                animation: 0.75s ease dotLeft forwards;
+                animation-delay: 1.7s;
+            }
+
+            #dot_r {
+                animation: 0.75s ease dotRight forwards;
+                animation-delay: 1.7s;
+            }
+        }
+
+        h3{
+
+            font-size: $h1-l;
+
+        }
+    }
+}
+
+@keyframes fadeOut {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes flyIn {
+    0%{
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes barGrow {
+    0%{
+        transform: scaleX(0);
+        display: flex;
+        background: linear-gradient(90deg, $red-shadow 0%, $red 25%, $red 75%, $red-shadow 100%);
+    }
+    100%{
+        transform: scaleX(1);
+        display: block;
+        background: linear-gradient(90deg, $red-shadow 0%, $red 25%, $red 75%, $red-shadow 100%);
+    }
+}
+
+@keyframes streakMoveLeft {
+    0% {
+        left: 0;
+        background-color: $red-shadow;
+    }
+    100% {
+        left: -35%;
+        background-color: $red-shadow;
+    }
+}
+
+@keyframes streakMoveRight {
+    0% {
+        right: 0;
+        background-color: $red-shadow;
+    }
+    100% {
+        right: -35%;
+        background-color: $red-shadow;
+    }
+}
+
+@keyframes dotLeft {
+    0% {
+        background-color: $red-shadow;
+        left: 0;
+    }
+    100% {
+        background-color: $red-shadow;
+        left: -42%;
+    }
+}
+
+@keyframes dotRight {
+    0% {
+        background-color: $red-shadow;
+        right: 0;
+    }
+    100% {
+        background-color: $red-shadow;
+        right: -42%;
+    }
+}

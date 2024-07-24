@@ -36,6 +36,7 @@
             min-width: 200px;
             min-height: 125px;
             font-size: $p-l;
+            font-family: auto;
             padding: $padding-l;
             border-radius: $border-s;
             transition: $fade-transition;
@@ -62,3 +63,4 @@
         }
     }
 }
+

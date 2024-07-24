@@ -9,11 +9,15 @@
     top: -35px;
     left: 0;
     width: 100%;
-    height: 12px;
+    height: 20px;
 
     &>div{
-        height: 15px;
+        width: 100%;
+        height: 20px;
         padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     // #maxhp{
@@ -22,21 +26,26 @@
     // }
     #hp{
         background-color: $green;
+        box-shadow: $green-shadow inset 0 -3px 0 0;
         z-index: 3;
         border-radius: $hb_border_r;
     }
     #maxhp{
         background-color: $bg-light;
+        box-shadow: $bg inset 0 -3px 0 0;
+
         outline: $hb_outline;
         width: 100%;
         position: absolute;
         border-radius: $hb_border_r;
     }
     #armour{
+        width: 25px;
         outline: $hb_outline;
         position: absolute;
         left: 105%;
-        background-color: $blue-shadow;
+        background-color: $blue;
+        box-shadow: $blue-shadow inset 0 -3px 0 0;
         border-radius: $hb_border_r;
     }
 }

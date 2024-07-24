@@ -68,9 +68,9 @@ export default function QuizDisplay(){
     }
 
     if(questionsAnswered == 3){
-        setQuizState(false)
         setQuestionsAnswered(0)
         setLoop(loop + 1)
+        setQuizState(false)
     }
 
     return (

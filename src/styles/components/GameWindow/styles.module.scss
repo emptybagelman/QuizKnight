@@ -12,6 +12,7 @@
     position: relative;
 
     &>button{
+        font-family: auto;
         position: absolute;
         bottom: 30px;
     }
@@ -60,33 +61,19 @@
                 background-image: url("../../../app/assets/enemy_idle_sheet.png");
             }
 
-            @for $i from 1 through 10 {
+            &:nth-child(2){
+                transform: translate(100%, -10%);
+            }
+
+            @for $i from 3 through 10 {
                 &:nth-child(#{$i}) {
-                transform: translate(calc(100%*  #{$i}),-10%);
+                transform: translate(calc(120%*  calc(#{$i} - 1)),-10%);
                 }
             }
 
             &:nth-child(n+10) {
                 display: none;
             }
-
-            // &:nth:child(1){
-            //     transform: translate(100%, -10%);
-            // }
-
-            // &:nth-child(2){
-            //     transform: translate(100%, -10%);
-            // }
-
-            // &:nth-child(3){
-            //     transform: translate(200%,-10%);
-            // }
-
-            // &:nth-child(4){
-            //     transform: translate(300%, -10%);
-            // }
-
-
         }
     }
 }
@@ -99,6 +86,8 @@
     align-items: center;
     position: relative;
     overflow: hidden;
+    animation: 1.5s ease fadeIn forwards;
+
 }
 
 .attack_button{
@@ -139,4 +128,13 @@
 @keyframes attackAnim {
     0% { background-position: 0 0; }
     100% { background-position: -768px 0; }
+}
+
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }

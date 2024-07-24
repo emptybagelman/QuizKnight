@@ -2,7 +2,13 @@ import "@/styles/globals.scss";
 import Nav from "./_components/nav";
 import ClientProvider from "./_components/QueryClientProvider";
 
-import { GeistSans } from "geist/font/sans";
+import { MedievalSharp } from "next/font/google";
+
+const medievalsharp = MedievalSharp({
+  weight: "400",
+  style: ["normal"],
+  subsets: ["latin"]
+})
 
 // import { TRPCReactProvider } from "@/trpc/react";
 
@@ -20,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>
+      <body className={medievalsharp.className}>
           <ClientProvider>
             <Nav />
             {children}
