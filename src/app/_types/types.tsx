@@ -1,4 +1,4 @@
-import { scoreSchema } from "@/server/db/schema"
+import { type scoreSchema } from "@/server/db/schema"
 
 export type Player = {
     name: string,

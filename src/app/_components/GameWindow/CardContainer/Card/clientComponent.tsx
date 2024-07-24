@@ -1,14 +1,14 @@
 "use client"
 
-import { Card, Upgrade } from "@/app/_types/types"
+import { type Card, type Upgrade } from "@/app/_types/types"
 import styles from "@/styles/components/GameWindow/CardContainer/Card/styles.module.scss"
 import { useGame } from "@/app/_components/GameContext"
-import { QueryObserverResult } from "@tanstack/react-query"
+import { type QueryObserverResult, type RefetchOptions } from "@tanstack/react-query"
 
 export default function CardClientComponent(
     {card, data, refetch}
     :
-    {card: Card, data: Upgrade, refetch: any}){
+    {card: Card, data: Upgrade, refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<Card[], Error>>}){
 
     const { setDisplayQuestionState, setCurrentCard, setCurrentUpgrade } = useGame()
 
@@ -16,7 +16,7 @@ export default function CardClientComponent(
         setCurrentUpgrade(data)
         setCurrentCard(card)
         setDisplayQuestionState(true)
-        refetch()
+        await refetch()
     }
 
     function increaseBonus(){

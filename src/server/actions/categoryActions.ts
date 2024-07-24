@@ -65,5 +65,5 @@ export async function getScoreboard() {
 }
 
 export async function postScore(score: newScore ) {
-  return db.insert(scoreSchema).values(score).returning();
+  await db.insert(scoreSchema).values(score).returning();
 }

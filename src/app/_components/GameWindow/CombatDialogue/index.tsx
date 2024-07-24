@@ -1,5 +1,5 @@
 import styles from "@/styles/components/GameWindow/CombatDialogue/styles.module.scss"
-import { DialogueProps } from "@/app/_types/types";
+import { type DialogueProps } from "@/app/_types/types";
 import { useGame } from "../../GameContext";
 
 export default function CombatDialogue(

@@ -1,14 +1,13 @@
-import { Card } from "@/app/_types/types";
+import { type Card } from "@/app/_types/types";
 import {  getRandomUpgrade } from "@/server/actions/categoryActions";
-import styles from "@/styles/components/GameWindow/CardContainer/Card/styles.module.scss"
-import { QueryObserverResult, useQuery } from "@tanstack/react-query";
+import { type QueryObserverResult, type RefetchOptions, useQuery } from "@tanstack/react-query";
 import CardClientComponent from "./clientComponent";
 
         
 export default function CardComponent(
     {card, refetch}
     :
-    {card: Card, refetch: any}){
+    {card: Card, refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<Card[], Error>>}){
 
     const {data, error} = useQuery({
         queryFn: getRandomUpgrade,

@@ -3,7 +3,7 @@
 import styles from "@/styles/components/GameWindow/QuizDisplay/styles.module.scss"
 import { useGame } from "../../GameContext"
 import { useState } from "react"
-import { Player } from "@/app/_types/types"
+import { type Player } from "@/app/_types/types"
 import { useLoop } from "../QuizLoopContext"
 
 export default function QuizDisplay(){
@@ -43,8 +43,8 @@ export default function QuizDisplay(){
             if(stat === "hp"){
                 setPlayer((prev: Player) => ({
                     ...prev,
-                    hp: prev["maxhp"] + bonus,
-                    maxhp: prev["maxhp"] + bonus
+                    hp: prev.maxhp + bonus,
+                    maxhp: prev.maxhp + bonus
                 }))
             }
             else{

@@ -1,6 +1,6 @@
 import { getScoreboard } from "@/server/actions/categoryActions"
 import styles from "@/styles/root/scoreboard/styles.module.scss"
-import { Score } from "../_types/types"
+import { type Score } from "../_types/types"
 
 export default async function ScoreBoardPage(){
 
@@ -23,7 +23,7 @@ export default async function ScoreBoardPage(){
                         <tbody>
                             {
                                 scoreboardData.map((score: Score, index: number) => (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{score.name}</td>
                                         <td>{score.score}</td>
                                         <td>{score.highest_loop}</td>

@@ -1,7 +1,6 @@
 "use client"
 
 import { useGame } from "../GameContext";
-import StartScreen from "../StartScreen";
 import Combat from "./Combat";
 import Quiz from "./Quiz";
 

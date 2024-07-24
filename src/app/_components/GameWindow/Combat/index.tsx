@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "@/styles/components/GameWindow/styles.module.scss"
 import CombatDialogue from "../CombatDialogue";
-import { Player, Enemy, DialogueProps } from "@/app/_types/types"
+import { type Enemy, type DialogueProps } from "@/app/_types/types"
 import { useGame } from "../../GameContext";
 import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
@@ -52,7 +52,6 @@ export default function Combat(){
 
     const ATTACK_TIMEOUT = 200;
     const DELAY = 3500;
-    const BUTTON_TIMEOUT = 2000;
 
     const emptyDialogue = {
         enemy: enemyData[0],
@@ -103,7 +102,7 @@ export default function Combat(){
 
         if(enemyHp <= 0){ // KILL ENEMY DIALOGUE
             setCurrentDialogue({
-                enemy: enemyData[0]!,
+                enemy: enemyData[0],
                 active: true,
                 index: 3
             })
@@ -112,7 +111,7 @@ export default function Combat(){
 
         else{
             setCurrentDialogue({ // PLAYER ATK DIALOGUE
-                enemy: enemyData[0]!,
+                enemy: enemyData[0],
                 active: true,
                 index: 0
             })
@@ -174,13 +173,11 @@ export default function Combat(){
         }
 
         setEnemyAttack(true)  // RUNS ENEMY ATTACK
-        setPlayer((prev: Player) => (
-            tempPlayer
-        ))
+        setPlayer(tempPlayer)
 
         if(playerHp <= 0){
             setCurrentDialogue({
-                enemy: enemyData[0]!,
+                enemy: enemyData[0],
                 active: true,
                 index: 2,
             })
@@ -189,7 +186,7 @@ export default function Combat(){
 
         else{
             setCurrentDialogue({
-                enemy: enemyData[0]!,
+                enemy: enemyData[0],
                 active: true,
                 index: 1,
             })
@@ -201,12 +198,11 @@ export default function Combat(){
             setTimeout(() => {
                 if(playerHp <= 0){
                     router.push("/scoreboard")
-                    postScore({ name: "balls", highest_loop: loop, score: score })
+                    void postScore({ name: "balls", highest_loop: loop, score: score })
                 }else{
                     setCurrentDialogue(emptyDialogue)
                     setButtonState(false) // ENABLE BUTTON
                 }
-
             },DELAY)
         },ATTACK_TIMEOUT)
 

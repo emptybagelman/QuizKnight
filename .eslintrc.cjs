@@ -14,7 +14,11 @@ const config = {
     "plugin:@typescript-eslint/stylistic-type-checked"
   ],
   "rules": {
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/prefer-optional-chain": "off",
     "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/consistent-generic-constructors": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/consistent-type-imports": [
       "warn",

@@ -24,7 +24,7 @@ export const questionSchema = pgTable("question", {
     category_id: integer("category_id").notNull().references(() => categorySchema.id)
 })
 
-export const questionRelations = relations(questionSchema, ({one, many}) => ({
+export const questionRelations = relations(questionSchema, ({one}) => ({
     questionSchema: one(categorySchema,{
         fields: [questionSchema.category_id],
         references: [categorySchema.id]

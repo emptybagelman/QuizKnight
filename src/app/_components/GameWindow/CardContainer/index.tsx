@@ -4,7 +4,7 @@ import { getRandomThreeCards } from "@/server/actions/categoryActions"
 import { useQuery } from "@tanstack/react-query"
 import { LoadingSpinner } from "../../Icons"
 import CardComponent from "./Card"
-import { Card } from "@/app/_types/types"
+import { type Card } from "@/app/_types/types"
 
 export default function CardContainer(){
 
@@ -21,10 +21,11 @@ export default function CardContainer(){
         return (
             <div className={styles.card_container}>
                 {
-                    data &&
-                    data.map((card: Card, idx: number) => (
+                    data
+                    ? data.map((card: Card, idx: number) => (
                         <CardComponent key={idx} card={card} refetch={refetch}/>
                     ))
+                    : ""
                 }
             </div>
         )

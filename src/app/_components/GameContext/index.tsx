@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, Upgrade, type Player } from "@/app/_types/types"
+import { type Card, type Upgrade, type Player } from "@/app/_types/types"
 import { createContext, useContext, useState } from "react"
 
 type GameState = {
