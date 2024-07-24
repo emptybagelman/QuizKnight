@@ -54,13 +54,13 @@ export default function Combat(){
     const DELAY = 3500;
 
     const emptyDialogue = {
-        enemy: enemyData[0],
+        enemy: enemyData[0]!,
         active: false,
         index: 0,
     }
 
     const activeEmptyDialogue = {
-        enemy: enemyData[0],
+        enemy: enemyData[0]!,
         active: true,
         index: -1,
     }
