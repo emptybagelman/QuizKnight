@@ -51,6 +51,20 @@
     }
 }
 
+@media screen and (max-width: 800px){
+    .card_wrapper {
+        width: 25%;
+        height: 35%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .card_wrapper {
+        height: 25%;
+        width: clamp(200px, 50%, 400px);
+    }
+}
+
 .card_wrapper[content="History"]{
     background-color: $orange;
     .difficulty{

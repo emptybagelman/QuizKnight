@@ -1,11 +1,19 @@
 @import "@/styles/scss_globals.scss";
-
+$gap: 10px;
 .score_counter{
-    $gap: 10px;
     position: absolute;
     top: $gap;
     right: $gap;
     background-color: $bg;
     border-radius: $border-s;
     padding: $padding-l $padding-xl;
+}
+
+@media screen and (max-width: 500px) {
+    .score_counter{
+        top: $gap;
+        right: 10%;
+        z-index: 1;
+    }
+
 }

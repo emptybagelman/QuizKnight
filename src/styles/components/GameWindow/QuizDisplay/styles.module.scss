@@ -24,12 +24,14 @@
         margin-bottom: $gap-xl;
         font-size: $h2-m;
         font-weight: 300;
+        text-align: center;
     }
     
     .answers{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: $gap-xl;
+        transition: 0.5s ease;
 
         button{
             @include orange;
@@ -64,3 +66,39 @@
     }
 }
 
+@media screen and (max-width: 800px) {
+    .quiz_display_wrapper {
+        box-sizing: border-box;
+        padding: $gap-xl;
+        .answers {
+            gap: $gap-m;
+            box-sizing: border-box;
+
+            button {
+                width: 100%;
+                font-size: $p-m;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .quiz_display_wrapper {
+        h2{
+            font-size: $h2-l;
+        }
+        h3{
+            font-size: $h2-s;
+        }
+        .answers {
+            display: flex;
+            flex-direction: column;
+
+            button {
+                height: 100px;
+                min-height: auto;
+                padding: $padding-m;
+            }
+        }
+    }
+}

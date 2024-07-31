@@ -1,7 +1,8 @@
 @import "@/styles/scss_globals.scss";
 
 .game_window{
-    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: $window;
     background-color: green;
     background-image: url("../../../app/assets/background.png");
     background-position: center;
@@ -78,16 +79,20 @@
     }
 }
 
+@media screen and (max-width: 800px) {
+
+}
+
 .quiz_window{
-    aspect-ratio: 16 / 9;
-    outline: solid 1px white;
+    // aspect-ratio: 16 / 9;
+    width: 100%;
+    height: $window;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     overflow: hidden;
     animation: 1.5s ease fadeIn forwards;
-
 }
 
 .attack_button{

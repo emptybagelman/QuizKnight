@@ -1,7 +1,7 @@
 import { type Upgrade, type Category, type Card, type newScore } from "@/app/_types/types";
 import db from "@/server/db";
 import { categorySchema, questionSchema, scoreSchema, upgradeSchema } from "@/server/db/schema";
-import { asc, eq } from 'drizzle-orm';
+import { asc, desc, eq } from 'drizzle-orm';
 
 export async function getAllCategories(): Promise<(Category | undefined)[]>  {
   const data: Category[] = await db.select().from(categorySchema).orderBy(asc(categorySchema.id));
@@ -60,7 +60,7 @@ export async function getCardData() {
 }
 
 export async function getScoreboard() {
-  const data = await db.select().from(scoreSchema).orderBy(asc(scoreSchema.score))
+  const data = await db.select().from(scoreSchema).orderBy(desc(scoreSchema.score))
   return data;
 }
 

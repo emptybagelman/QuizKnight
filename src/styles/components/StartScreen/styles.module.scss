@@ -1,7 +1,8 @@
 @import "@/styles/scss_globals.scss";
 
 .start_screen_wrapper{
-    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: $window;
     background-color: $bg;
     overflow: hidden;
     position: absolute;
@@ -113,6 +114,52 @@
     }
 }
 
+@media screen and (max-width: 800px) {
+    .start_screen_wrapper {
+        .screen_container {
+            .h1_titlecard {
+                $sml_height: 10px;
+                h1{
+                    font-size: $h1-l;
+                    letter-spacing: 0px;
+                }
+
+                .bigbar{
+                    height: $sml_height;
+                }
+
+                .h1_streak{
+                    height: $sml_height;
+                }
+
+                .h1_dot{
+                    height: $sml_height;
+                }
+
+                #streak_l {
+                    animation: 0.75s ease streakMoveLeftSml forwards;
+                    animation-delay: 1.5s;
+                }
+    
+                #streak_r {
+                    animation: 0.75s ease streakMoveRightSml forwards;
+                    animation-delay: 1.5s;
+                }
+
+                #dot_l {
+                    animation: 0.75s ease dotLeftSml forwards;
+                    animation-delay: 1.7s;
+                }
+    
+                #dot_r {
+                    animation: 0.75s ease dotRightSml forwards;
+                    animation-delay: 1.7s;
+                }
+            }
+        }
+    }
+}
+
 @keyframes fadeOut {
     0%{
         opacity: 1;
@@ -188,5 +235,49 @@
     100% {
         background-color: $red-shadow;
         right: -42%;
+    }
+}
+
+@keyframes streakMoveLeftSml {
+    0% {
+        left: 0;
+        background-color: $red-shadow;
+    }
+    100% {
+        left: -45%;
+        background-color: $red-shadow;
+    }
+}
+
+@keyframes streakMoveRightSml {
+    0% {
+        right: 0;
+        background-color: $red-shadow;
+    }
+    100% {
+        right: -45%;
+        background-color: $red-shadow;
+    }
+}
+
+@keyframes dotLeftSml {
+    0% {
+        background-color: $red-shadow;
+        left: 0;
+    }
+    100% {
+        background-color: $red-shadow;
+        left: -57%;
+    }
+}
+
+@keyframes dotRightSml {
+    0% {
+        background-color: $red-shadow;
+        right: 0;
+    }
+    100% {
+        background-color: $red-shadow;
+        right: -57%;
     }
 }
