@@ -22,7 +22,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [] new logo
 - [x] make armour finite, only health can recharge per wave
 - [] style up the cards
-- [] better screen sizing
+- [x] better screen sizing
 - [] better combat anims
 - [] more enemy types
 - [] adjust scaling

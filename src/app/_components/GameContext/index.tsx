@@ -22,8 +22,8 @@ type GameState = {
 
 const defaultPlayerState: Player = {
     name: "Player",
-    hp: 5,
-    maxhp: 5,
+    hp: 10,
+    maxhp: 10,
     dmg: 3,
     armour: 5,
     resistance: 0,

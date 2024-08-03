@@ -4,6 +4,13 @@ import styles from "@/styles/components/GameWindow/HealthBar/styles.module.scss"
 export default function HealthBar({character}: {character: Player | Enemy}){
 
     function handleHpBar(){
+        if((character.hp / character.maxhp) <= 0) {
+            return {
+                "width":"0px",
+                "backgroundColor":"transparent",
+                "boxShadow": "transparent inset 0 0 "
+            }
+        }
         if((character.hp / character.maxhp) < 0.3) {
             return {
                 "backgroundColor":"hsl(358, 100%, 45%)",
@@ -18,11 +25,15 @@ export default function HealthBar({character}: {character: Player | Enemy}){
                 "width":`${(character.hp/character.maxhp)*100}%`
             }
         }
+        else{
+            return {
+                "width":`${(character.hp/character.maxhp)*100}%`
+            }
+        }
     }
 
     return (
         <div className={styles.healthbar_wrapper}>
-            {/* <div id={styles.maxhp}>{character.maxhp}</div> */}
             <div id={styles.hp} style={handleHpBar()}></div>
             <div id={styles.maxhp}></div>
             {

@@ -143,7 +143,13 @@ export default function Combat(){
                 else{
                     setCurrentDialogue(activeEmptyDialogue)
                     setTimeout(() => {
-                        handleEnemyAttack()
+                        if(enemyHp > 0) {
+                            handleEnemyAttack()
+                        }
+                        else{
+                            setButtonState(false)
+                            setCurrentDialogue(emptyDialogue)
+                        }
                     },500)
                 }
                 

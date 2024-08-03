@@ -1,16 +1,20 @@
 @import "@/styles/scss_globals.scss";
 
 .game_window{
-    width: 100%;
-    height: $window;
-    background-color: green;
-    background-image: url("../../../app/assets/background.png");
+
+    width: 1066px;
+    height: 600px;
+    // background-image: url("../../../app/assets/background.png");
+    background-image: url("../../../../public/bg_forest.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
 
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow: hidden;
 
     &>button{
         font-family: auto;
@@ -24,6 +28,7 @@
         justify-content: center;
         // height: 100%;
         width: 100%;
+        $sprite-y-offset: 160%;
 
         .player{
             $width: 91px;
@@ -33,7 +38,7 @@
             display: flex;
             position: absolute;
     
-            transform: translate(-100%, -10%);
+            transform: translate(-100%, $sprite-y-offset);
     
             &>p{
                 transform: translateY(-50%);
@@ -63,12 +68,12 @@
             }
 
             &:nth-child(2){
-                transform: translate(100%, -10%);
+                transform: translate(100%, $sprite-y-offset);
             }
 
             @for $i from 3 through 10 {
                 &:nth-child(#{$i}) {
-                transform: translate(calc(120%*  calc(#{$i} - 1)),-10%);
+                transform: translate(calc(calc(120% + calc(10% * calc(#{$i} - 3)))*  calc(#{$i} - 1)), $sprite-y-offset);
                 }
             }
 
@@ -84,9 +89,8 @@
 }
 
 .quiz_window{
-    // aspect-ratio: 16 / 9;
-    width: 100%;
-    height: $window;
+    width: 1066px;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
