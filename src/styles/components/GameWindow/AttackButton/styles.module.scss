@@ -4,11 +4,6 @@
     @include button_s;
     @include orange;
     z-index: 999;
-    // padding: $padding-l $padding-l;
-    // font-size: $p-m;
-    
-    // border-radius: $border-s;
-    // transition: $fade-transition;
 
     &:hover{
         @include hover;

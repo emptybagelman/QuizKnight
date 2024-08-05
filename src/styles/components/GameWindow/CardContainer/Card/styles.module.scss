@@ -54,14 +54,14 @@
 @media screen and (max-width: 800px){
     .card_wrapper {
         width: 25%;
-        height: 35%;
+        height: 50%;
     }
 }
 
 @media screen and (max-width: 500px) {
     .card_wrapper {
         height: 20%;
-        width: clamp(200px, 300px, 500px);
+        width: clamp(180px, 300px, 500px);
     }
 }
 

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import HealthBar from "../HealthBar";
 import { postScore } from "@/server/actions/categoryActions";
 import StartScreen from "../../StartScreen";
+import Hit from "../Hit";
 
 export default function Combat(){
     
@@ -237,6 +238,11 @@ export default function Combat(){
             }
             <div id={styles.sprite_layer}>
                 <div className={playerAttack ? styles.playerAttackAnim : styles.player}>
+                    {
+                        enemyAttack && enemyData[0]
+                        ? <Hit dmg_value={enemyData[0].dmg}/>
+                        : ""
+                    }
                     {/* <p>{player.hp} / {player.maxhp} {!(player.armour <= 0) && ` + ${player.armour}`}</p> */}
                     <HealthBar character={player} />
                 </div>
@@ -249,6 +255,11 @@ export default function Combat(){
                             ? styles.enemyAttackAnim
                             : styles.enemy
                             }>
+                            {
+                                playerAttack
+                                ? <Hit dmg_value={player.dmg}/>
+                                : ""
+                            }
                             <HealthBar character={enemy} />
                         </div>
                     ))

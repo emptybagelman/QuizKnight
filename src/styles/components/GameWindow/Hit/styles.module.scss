@@ -1,0 +1,54 @@
+@use "sass:math";
+@import "@/styles/scss_globals.scss";
+
+.hit{
+    $r-x: random(200)-100;
+    $r-y: random(10);
+
+    color: firebrick;
+    text-shadow:
+    1px 1px 0 white,
+    -1px 1px 0 white,
+    -1px -1px 0 white,
+    1px -1px 0 white;
+    z-index: 9999;
+    width: 1px;
+    height: 1px;
+    font-size: $p-l;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+    transform: translate(-50%,-50%);
+    animation:  move_x 0.8s linear infinite,
+                bounce 0.8s infinite cubic-bezier(0.7,-1525,0.5,1000),
+                fadeOut 0.6s cubic-bezier(1,.21,.96,.91) forwards;
+
+    @keyframes bounce {
+        to {
+            top: 50.1%;
+        }
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 0;
+          }
+    }
+
+    @keyframes move_x {
+        to {
+            left: calc(50 + $r-x) + 0px;
+        }
+    }
+}

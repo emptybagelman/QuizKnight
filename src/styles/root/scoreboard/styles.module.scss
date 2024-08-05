@@ -6,9 +6,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 
     .table{
-        width: 700px;
+        width: clamp(300px, 100%, 700px);
         // border: solid 1px $bg-light;
 
         thead, tbody{
@@ -19,7 +20,7 @@
                 }
                 td{
                     text-align: center;
-                    width: 33%;
+                    width: 30%;
                     padding: $padding-s;
 
                 }
@@ -30,4 +31,12 @@
 
 .scoreboard_main{
     margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1{
+        margin-top: $gap-l;
+        margin-bottom: $gap-m;
+    }
 }
