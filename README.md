@@ -26,6 +26,10 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [] better combat anims
 - [] more enemy types
 - [] adjust scaling
+- [] sound effects
+- [] visual effects
+    - [] screen shake
+    - [] sprite damage
 - [] better backdrop
     - maybe even play with sprite creation and custom scenes
     - could even turn into a rougelike dungeon crawler (pipedream)
