@@ -11,6 +11,10 @@ import HealthBar from "../HealthBar";
 import { postScore } from "@/server/actions/categoryActions";
 import StartScreen from "../../StartScreen";
 import Hit from "../Hit";
+import useSound from "use-sound";
+import attack_sword from "../../../../../public/sounds/attack_sword.mp3";
+import impact_flesh from "../../../../../public/sounds/impact_flesh.mp3";
+import hover from "../../../../../public/sounds/hover.mp3";
 
 export default function Combat(){
     
@@ -19,6 +23,10 @@ export default function Combat(){
     const [playerAttack, setPlayerAttack] = useState<boolean>(false)
     const [enemyAttack, setEnemyAttack] = useState<boolean>(false)
     const [buttonState, setButtonState] = useState<boolean>(false)
+
+    const [playSwingSound] = useSound(attack_sword,{ volume: 2 })
+    const [playHitSound] = useSound(impact_flesh,{ volume: 2 })
+    const [playHoverSound] = useSound(hover)
 
     const router = useRouter()
 
@@ -78,8 +86,9 @@ export default function Combat(){
 
     function handlePlayerAttack(){
 
-        if(!enemyData[0]) throw new Error("No enemies to kill!")
+        if(!enemyData[0]) throw new Error("No enemies to kill!");
 
+        playSwingSound()
         const firstEnemy = enemyData[0]
 
         let overflowDmg = 0;
@@ -122,6 +131,8 @@ export default function Combat(){
         setTimeout(() => {
             setPlayerAttack(false)
 
+            playHitSound()
+
             // WAIT FOR DIALOGUE
             setTimeout(() => {
 
@@ -162,7 +173,9 @@ export default function Combat(){
     }
 
     function handleEnemyAttack() {
-        if(!enemyData[0]) throw new Error("Apparently the player is dead and is still being beaten into the ground...")
+        if(!enemyData[0]) throw new Error("Apparently the player is dead and is still being beaten into the ground...");
+
+        playSwingSound()
 
         const enemyDmg = enemyData[0].dmg
         const tempPlayer = player;
@@ -201,6 +214,8 @@ export default function Combat(){
 
         setTimeout(() => {
             setEnemyAttack(false)
+
+            playHitSound()
 
             setTimeout(() => {
                 if(playerHp <= 0){
@@ -256,7 +271,7 @@ export default function Combat(){
                             : styles.enemy
                             }>
                             {
-                                playerAttack
+                                playerAttack && enemyData[0]?.id === enemy.id
                                 ? <Hit dmg_value={player.dmg}/>
                                 : ""
                             }
@@ -268,6 +283,7 @@ export default function Combat(){
 
             <button
             onClick={handleClick}
+            onMouseEnter={() => playHoverSound()}
             className={styles.attack_button}
             disabled={buttonState}
             >

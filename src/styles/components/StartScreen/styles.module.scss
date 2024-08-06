@@ -2,13 +2,12 @@
 
 .start_screen_wrapper{
     width: 100%;
-    height: $window;
+    height: 600px;
     background-color: $bg;
     overflow: hidden;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
     pointer-events: none;
 
     animation: fadeOut 2s ease forwards;

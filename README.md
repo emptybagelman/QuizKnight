@@ -27,9 +27,15 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [] more enemy types
 - [] adjust scaling
 - [] sound effects
+    - [x] hit
+    - [] die
+    - [x] button hover
+    - [] music
+        - [] combat
+        - [] quiz
 - [] visual effects
     - [] screen shake
-    - [] sprite damage
+    - [1/2] sprite damage
 - [] better backdrop
     - maybe even play with sprite creation and custom scenes
     - could even turn into a rougelike dungeon crawler (pipedream)
@@ -38,7 +44,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [] worst category
     - [] most questions answered
     - [] longest streak
-    - [] levels reached (loop number)
+    - [x] levels reached (loop number)
     - [] username (if not guest)
-    - [] total score
+    - [x] total score
     - [] enemies defeated

@@ -5,6 +5,10 @@ import { useGame } from "../../GameContext"
 import { useState } from "react"
 import { type Player } from "@/app/_types/types"
 import { useLoop } from "../QuizLoopContext"
+import correct from "../../../../../public/sounds/correct.mp3"
+import wrong from "../../../../../public/sounds/wrong.mp3"
+import hover from "../../../../../public/sounds/hover.mp3"
+import useSound from "use-sound"
 
 export default function QuizDisplay(){
 
@@ -23,6 +27,10 @@ export default function QuizDisplay(){
 
     const [ corrState, setCorrState ] = useState<boolean | null>(null)
 
+    const [playCorrectSound] = useSound(correct)
+    const [playWrongSound] = useSound(wrong)
+    const [playHoverSound] = useSound(hover)
+
 
     function handleAnswer(ans: string){
         if(!currentCard || !currentUpgrade) return new Error ("No card or upgrade provided.")
@@ -31,6 +39,9 @@ export default function QuizDisplay(){
         const ansIndex = question.answers.findIndex(x => x === ans)
 
         if(ansIndex === question.correct_index){
+
+            playCorrectSound()
+
             const stat = currentUpgrade.affected_stat
 
             if(!(stat in player)) return new Error(`Stat ${stat} doesn't exist! (yet)`)
@@ -55,6 +66,9 @@ export default function QuizDisplay(){
             }
         }
         else{
+
+            playWrongSound()
+
             setCorrState(false)
         }
 
@@ -87,6 +101,7 @@ export default function QuizDisplay(){
                             currentCard.question.answers.map((ans, idx) => (
                                 <button
                                 onClick={() => handleAnswer(ans)}
+                                onMouseEnter={() => playHoverSound()}
                                 key={idx}
                                 className={
                                     corrState != null
