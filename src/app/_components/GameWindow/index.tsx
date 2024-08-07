@@ -4,7 +4,7 @@ import { useGame } from "../GameContext";
 import Combat from "./Combat";
 import Quiz from "./Quiz";
 import useSound from "use-sound";
-import into_the_wastes from "../../../../public/sounds/into_the_wastes.mp3"
+import into_the_wastes from "@/sounds/into_the_wastes.mp3"
 
 export default function GameWindow(){
 
