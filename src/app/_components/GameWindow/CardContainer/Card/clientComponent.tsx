@@ -6,7 +6,7 @@ import { useGame } from "@/app/_components/GameContext"
 import { type QueryObserverResult, type RefetchOptions } from "@tanstack/react-query"
 import useSound from "use-sound"
 import hover from "./#/sounds/hover.mp3"
-import select from = "./#/sounds/select.mp3"
+import select from "./#/sounds/select.mp3"
 
 export default function CardClientComponent(
     {card, data, refetch}
