@@ -14,7 +14,7 @@ import Hit from "../Hit";
 import useSound from "use-sound";
 import attack_sword from "../../../../../public/sounds/attack_sword.mp3";
 import impact_flesh from "../../../../../public/sounds/impact_flesh.mp3";
-import hover from "../../../../../public/sounds/hover.mp3";
+import hover from "@/sounds/hover.mp3";
 
 export default function Combat(){
     
