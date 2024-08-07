@@ -4,9 +4,9 @@ import { type Card, type Upgrade } from "@/app/_types/types"
 import styles from "@/styles/components/GameWindow/CardContainer/Card/styles.module.scss"
 import { useGame } from "@/app/_components/GameContext"
 import { type QueryObserverResult, type RefetchOptions } from "@tanstack/react-query"
-import useSound from "use-sound"
 import hover from "#/sounds/hover.mp3"
 import select from "#/sounds/select.mp3"
+import useSound from "use-sound"
 
 export default function CardClientComponent(
     {card, data, refetch}
