@@ -5,9 +5,9 @@ import { useGame } from "../../GameContext"
 import { useState } from "react"
 import { type Player } from "@/app/_types/types"
 import { useLoop } from "../QuizLoopContext"
-import correct from "@/sounds/correct.mp3"
-import wrong from "@/sounds/wrong.mp3"
-import hover from "@/sounds/hover.mp3"
+import correct from "/sounds/correct.mp3"
+import wrong from "/sounds/wrong.mp3"
+import hover from "/sounds/hover.mp3"
 import useSound from "use-sound"
 
 export default function QuizDisplay(){
