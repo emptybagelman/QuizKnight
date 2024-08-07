@@ -25,8 +25,8 @@ export default function Combat(){
     const [buttonState, setButtonState] = useState<boolean>(false)
 
     const [playSwingSound] = useSound(attack_sword,{ volume: 2 })
-    const [playHitSound] = useSound<string | string[]>(impact_flesh,{ volume: 2 })
-    const [playHoverSound] = useSound<string | string[]>(hover)
+    const [playHitSound] = useSound(impact_flesh,{ volume: 2 })
+    const [playHoverSound] = useSound(hover)
 
     const router = useRouter()
 
