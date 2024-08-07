@@ -43,7 +43,12 @@ export default function CardClientComponent(
         <div
             className={styles.card_wrapper}
             content={card.category?.category}
-            onClick={() =>{handleCardClick();playSelectSound()}}
+            onClick={() => {
+                handleCardClick()
+                    .then(() => console.log(""))
+                    .catch(() => new Error("fiddlesticks!"))
+                playSelectSound()
+            }}
             onMouseEnter={() => playHoverSound()}
         >
 

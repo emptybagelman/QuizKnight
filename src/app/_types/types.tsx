@@ -75,3 +75,5 @@ export type Score = {
     highest_loop: number,
     score: number,
 }
+
+export type soundType = string | string[]
