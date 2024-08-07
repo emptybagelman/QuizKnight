@@ -12,9 +12,9 @@ import { postScore } from "@/server/actions/categoryActions";
 import StartScreen from "../../StartScreen";
 import Hit from "../Hit";
 import useSound from "use-sound";
-import attack_sword from "./#/sounds/attack_sword.mp3";
-import impact_flesh from "./#/sounds/impact_flesh.mp3";
-import hover from "./#/sounds/hover.mp3";
+import attack_sword from "#/sounds/attack_sword.mp3";
+import impact_flesh from "#/sounds/impact_flesh.mp3";
+import hover from "#/sounds/hover.mp3";
 
 export default function Combat(){
     
@@ -245,7 +245,12 @@ export default function Combat(){
 
     if(mounted)
     return (
-        <div className={styles.game_window}>
+        <div className={`${styles.game_window} ${
+            playerAttack || enemyAttack
+            ? styles.screen_shake
+            : ""
+
+        }`}>
             {
                 loop == 0
                 ? <StartScreen />

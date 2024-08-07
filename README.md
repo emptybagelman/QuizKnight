@@ -31,10 +31,10 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [] die
     - [x] button hover
     - [] music
-        - [] combat
+        - [x] combat
         - [] quiz
 - [] visual effects
-    - [] screen shake
+    - [x] screen shake
     - [1/2] sprite damage
 - [] better backdrop
     - maybe even play with sprite creation and custom scenes

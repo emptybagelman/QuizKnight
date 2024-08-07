@@ -84,8 +84,15 @@
     }
 }
 
-@media screen and (max-width: 800px) {
+.screen_shake {
+    animation: shake 0.2s forwards;
+}
 
+@keyframes shake {
+    0%{background-position: 0px;}
+    25%{background-position: 10px;}
+    50%{background-position: -10px;}
+    100%{background-position: 0px;}
 }
 
 .quiz_window{
