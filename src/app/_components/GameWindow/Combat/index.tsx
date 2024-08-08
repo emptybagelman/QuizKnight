@@ -34,9 +34,9 @@ export default function Combat(){
 
     const enemyArray: Enemy[] = [...Array.from({length:enemyAmount}).map((x, index) => {
 
-        const hp = randomInt((2 + Math.floor(loop*1.06)),2)
+        const hp = randomInt((2 + Math.floor(loop*1.06)),3)
         const dmg = randomInt((2 + Math.floor(loop*1.04)),1)
-        const armour = randomInt((1 + Math.floor(loop*1.05)),1)
+        const armour = randomInt((1 + Math.floor(loop*1.05)),2)
 
         const en = {
             id: index,
@@ -59,7 +59,7 @@ export default function Combat(){
         index: 0,
     })
 
-    const ATTACK_TIMEOUT = 200;
+    const ATTACK_TIMEOUT = 500;
     const DELAY = 3500;
 
     const emptyDialogue = {
@@ -78,9 +78,9 @@ export default function Combat(){
         return 1 + Math.floor(loop * 0.5)
     }
 
-    function randomInt(hp: number, range: number){
-        const min = hp - range
-        const max = hp + range
+    function randomInt(mid: number, range: number){
+        const min = mid - range
+        const max = mid + range
         return Math.floor(Math.random() * (max-min+1)) + min
       }
 
@@ -88,7 +88,6 @@ export default function Combat(){
 
         if(!enemyData[0]) throw new Error("No enemies to kill!");
 
-        playSwingSound()
         const firstEnemy = enemyData[0]
 
         let overflowDmg = 0;
@@ -128,10 +127,10 @@ export default function Combat(){
         }
 
         // PLAYER ATTACK CYCLE
+        playSwingSound()
+        playHitSound()
         setTimeout(() => {
             setPlayerAttack(false)
-
-            playHitSound()
 
             // WAIT FOR DIALOGUE
             setTimeout(() => {
@@ -175,8 +174,6 @@ export default function Combat(){
     function handleEnemyAttack() {
         if(!enemyData[0]) throw new Error("Apparently the player is dead and is still being beaten into the ground...");
 
-        playSwingSound()
-
         const enemyDmg = enemyData[0].dmg
         const tempPlayer = player;
 
@@ -211,11 +208,10 @@ export default function Combat(){
                 index: 1,
             })
         }
-
+        playSwingSound()
+        playHitSound()
         setTimeout(() => {
-            setEnemyAttack(false)
-
-            playHitSound()
+            setEnemyAttack(false)            
 
             setTimeout(() => {
                 if(playerHp <= 0){
@@ -231,6 +227,8 @@ export default function Combat(){
     }
 
     function handleClick(){
+        if(!enemyData[0]) return;
+
         setButtonState(true) // DISABLES BUTTON DURING COMBAT
         setPlayerAttack(true) // RUNS PLAYER ATTACK
 
@@ -257,7 +255,15 @@ export default function Combat(){
                 : ""
             }
             <div id={styles.sprite_layer}>
-                <div className={playerAttack ? styles.playerAttackAnim : styles.player}>
+                <div className={
+                    playerAttack
+                    ? styles.playerAttackAnim
+                    : enemyAttack && enemyData[0]
+                        ? styles.playerHitAnim
+                        : player.hp <= 0
+                            ? styles.playerDeathAnim
+                            : styles.player
+                    }>
                     {
                         enemyAttack && enemyData[0]
                         ? <Hit dmg_value={enemyData[0].dmg}/>
@@ -270,10 +276,16 @@ export default function Combat(){
                 {
                     enemyData &&
                     enemyData.map((enemy, idx) => (
-                        <div key={idx} className={
+                        <div
+                            key={idx}
+                            className={
                             enemyAttack && enemy.id === enemyData[0]?.id
                             ? styles.enemyAttackAnim
-                            : styles.enemy
+                            : playerAttack && enemy.id === enemyData[0]?.id
+                                ? styles.goblinHitAnim
+                                : enemyData[0] && enemyData[0].hp <= 0 && enemy.id === enemyData[0]?.id
+                                    ? styles.goblinDeathAnim
+                                    : styles.enemy
                             }>
                             {
                                 playerAttack && enemyData[0]?.id === enemy.id

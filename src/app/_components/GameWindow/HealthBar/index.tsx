@@ -6,7 +6,7 @@ export default function HealthBar({character}: {character: Player | Enemy}){
     function handleHpBar(){
         if((character.hp / character.maxhp) <= 0) {
             return {
-                "width":"0px",
+                "width":"0%",
                 "backgroundColor":"transparent",
                 "boxShadow": "transparent inset 0 0 "
             }

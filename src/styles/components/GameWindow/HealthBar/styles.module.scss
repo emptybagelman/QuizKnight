@@ -21,16 +21,12 @@
         justify-content: center;
     }
 
-    // #maxhp{
-    //     position: absolute;
-    //     background-color: $red;
-    // }
     #hp{
         background-color: $green;
         box-shadow: $green-shadow inset 0 -3px 0 0;
         z-index: 3;
         border-radius: $hb_border_r;
-        transition: width 0.7s cubic-bezier(0.215, 0.610, 0.355, 1);
+        transition: 0.7s cubic-bezier(0.215, 0.610, 0.355, 1);
     }
     #maxhp{
         background-color: $bg-light;
