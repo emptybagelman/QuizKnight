@@ -89,10 +89,10 @@
 }
 
 @keyframes shake {
-    0%{background-position: 0px;}
-    25%{background-position: 10px;}
-    50%{background-position: -10px;}
-    100%{background-position: 0px;}
+    0%{background-position: 50% 50%;}
+    25%{background-position: calc(50% + 10px) 50%;}
+    50%{background-position: calc(50% - 10px) 50%;}
+    100%{background-position: 50% 50%;}
 }
 
 .quiz_window{
