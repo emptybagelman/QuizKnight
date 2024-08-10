@@ -17,7 +17,7 @@ type GameState = {
     currentUpgrade: Upgrade | undefined,
     setCurrentUpgrade: React.Dispatch<React.SetStateAction<Upgrade | undefined>>,
     currentCard: Card | undefined,
-    setCurrentCard: React.Dispatch<React.SetStateAction<Card | undefined>>
+    setCurrentCard: React.Dispatch<React.SetStateAction<Card | undefined>>,
 }
 
 const defaultPlayerState: Player = {
@@ -27,6 +27,9 @@ const defaultPlayerState: Player = {
     dmg: 3,
     armour: 5,
     resistance: 0,
+    critical: 2,
+    parry: 5,
+    consumables: []
 }
 
 const GameContext = createContext<GameState>(
@@ -44,7 +47,7 @@ const GameContext = createContext<GameState>(
             currentUpgrade: undefined, 
             setCurrentUpgrade: () => {},
             currentCard: undefined,
-            setCurrentCard: () => {}
+            setCurrentCard: () => {},
         }
 )
 
@@ -76,7 +79,7 @@ export default function GameStateProvider({ children }: {children: React.ReactNo
                 currentUpgrade,
                 setCurrentUpgrade,
                 currentCard,
-                setCurrentCard
+                setCurrentCard,
             }}>
             {children}
         </GameContext.Provider>

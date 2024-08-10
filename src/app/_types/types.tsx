@@ -7,6 +7,9 @@ export type Player = {
     dmg: number,
     armour: number,
     resistance: number,
+    critical: number,
+    parry: number,
+    consumables: Consumable[]
 }
 
 export type Enemy = {
@@ -77,3 +80,10 @@ export type Score = {
 }
 
 export type soundType = string | string[]
+
+export type Consumable = {
+    id: number,
+    name: string,
+    value: number,
+    description: string,
+}

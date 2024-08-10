@@ -3,11 +3,11 @@ import styles from "@/styles/components/GameWindow/ScoreCounter/styles.module.sc
 
 export default function ScoreCounter(){
 
-    const {score, loop} = useGame()
+    const {score} = useGame()
 
     return (
         <div className={styles.score_counter}>
-            {score} {loop}
+            {score}
         </div>
     )
 }

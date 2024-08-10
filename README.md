@@ -26,6 +26,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [x] new basic sprites!
 - [] gameplay!
     - [] consumables
+        - random chance for enemy to drop consumable
         - [] burn over time
         - [] static
             - chance to make enemy freeze

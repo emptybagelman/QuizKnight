@@ -13,8 +13,8 @@ export default function CombatDialogue(
     
         
     const TEXT = [
-        `${player.name} dealt ${player.dmg} damage to ${data.enemy.name}!`,
-        `You took ${data.enemy.dmg} damage from ${data.enemy.name}!`,
+        `${player.name} hit the ${data.enemy.name}!`,
+        `You got hit by the ${data.enemy.name}!`,
         `${player.name} uhh, fainted!`,
         `You defeated ${data.enemy.name}!`
     ]

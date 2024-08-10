@@ -53,8 +53,6 @@ export default function Combat(){
             name = randomEnemy(enemies.slice(0,2))!
         }
 
-
-
         const en = {
             id: index,
             name: name,
@@ -106,7 +104,8 @@ export default function Combat(){
         const min = mid - range
         const max = mid + range
         return Math.floor(Math.random() * (max-min+1)) + min
-      }
+    }
+    
 
     function handlePlayerAttack(){
 
