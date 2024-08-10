@@ -24,14 +24,32 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [] style up the cards
 - [x] better screen sizing
 - [x] new basic sprites!
+- [] gameplay!
+    - [] consumables
+        - [] burn over time
+        - [] static
+            - chance to make enemy freeze
+        - [] hp potion
+        - [] power move potion
+        - [] armour plating
+    - [] enemy differences
+    - [] crit chance
+    - [] block chance
+    - [] upgrades
+        - [] power move
+            - has to recharge over time
+            - out of play for two moves after
+            - may only hold one power move at once
+        - [] two attacks in one round
+        - [] passive hp regen
 - [x] better combat anims
     - [x] get hit
     - [x] hit
     - [x] die
-- [] more enemy types
-    - [] flying eye
-    - [] mushroom
-    - [] skeleton
+- [x] more enemy types
+    - [x] flying eye
+    - [x] mushroom
+    - [x] skeleton
 - [] adjust scaling
 - [] sound effects
     - [x] hit
@@ -44,6 +62,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [] visual effects
     - [x] screen shake
     - [x] sprite damage
+    - [] animate consumables
 - [] better backdrop
     - maybe even play with sprite creation and custom scenes
     - could even turn into a rougelike dungeon crawler (pipedream)

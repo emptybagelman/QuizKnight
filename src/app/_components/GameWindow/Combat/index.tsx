@@ -15,7 +15,7 @@ import useSound from "use-sound";
 import attack_sword from "#/sounds/attack_sword.mp3";
 import impact_flesh from "#/sounds/impact_flesh.mp3";
 import hover from "#/sounds/hover.mp3";
-import { goblin } from "./enemies";
+import { playerAnims, resolveAnimType } from "./sprites";
 
 export default function Combat(){
     
@@ -35,13 +35,29 @@ export default function Combat(){
 
     const enemyArray: Enemy[] = [...Array.from({length:enemyAmount}).map((x, index) => {
 
-        const hp = randomInt((2 + Math.floor(loop*1.09)),3)
+        const hp = randomInt((3 + Math.floor(loop*1.09)),2)
         const dmg = randomInt((2 + Math.floor(loop*1.1)),1)
         const armour = randomInt((1 + Math.floor(loop*1.06)),2)
 
+        let name: string = "Goblin";
+
+        const enemies = ["Goblin","Mushroom", "Skeleton", "Flying Eye"]
+
+        if(loop >= 12) {
+            name = randomEnemy(enemies.slice(0,4))!
+        }
+        else if(loop >= 7) {
+            name = randomEnemy(enemies.slice(0,3))!
+        }
+        else if(loop >= 3){
+            name = randomEnemy(enemies.slice(0,2))!
+        }
+
+
+
         const en = {
             id: index,
-            name: "Goblin",
+            name: name,
             hp: hp,
             maxhp: hp,
             armour: armour,
@@ -73,6 +89,13 @@ export default function Combat(){
         enemy: enemyData[0]!,
         active: true,
         index: -1,
+    }
+
+    function randomEnemy(enemies: string[]) {
+        
+        const randFloat = Math.random() * enemies.length;
+        const randInt = Math.floor(randFloat)
+        return enemies[randInt]
     }
 
     function adjustDifficulty(){
@@ -256,21 +279,12 @@ export default function Combat(){
                 : ""
             }
             <div id={styles.sprite_layer}>
-                <div className={
-                    playerAttack
-                    ? styles.playerAttackAnim
-                    : enemyAttack && enemyData[0]
-                        ? styles.playerHitAnim
-                        : player.hp <= 0
-                            ? styles.playerDeathAnim
-                            : styles.player
-                    }>
+                <div className={player && playerAnims(player, enemyAttack, playerAttack)}>
                     {
                         enemyAttack && enemyData[0]
                         ? <Hit dmg_value={enemyData[0].dmg}/>
                         : ""
                     }
-                    {/* <p>{player.hp} / {player.maxhp} {!(player.armour <= 0) && ` + ${player.armour}`}</p> */}
                     <HealthBar character={player} />
                 </div>
 
@@ -279,20 +293,7 @@ export default function Combat(){
                     enemyData.map((enemy, idx) => (
                         <div
                             key={idx}
-                            className={
-                                enemyData[0] 
-                                ? goblin(enemy, enemyData, enemyAttack, playerAttack)
-                                : ""
-                            // enemyAttack && enemy.id === enemyData[0]?.id
-                            // ? enemyData[0]?.name === "Goblin"
-                            //     ? styles.enemyAttackAnim
-                            //     : playerAttack && enemy.id === enemyData[0]?.id
-                            //         ? styles.goblinHitAnim
-                            //         : enemyData[0] && enemyData[0].hp <= 0 && enemy.id === enemyData[0]?.id
-                            //             ? styles.goblinDeathAnim
-                            //             : styles.enemy
-                            // : ""
-                            }>
+                            className={enemyData[0] && resolveAnimType(enemy, enemyData, enemyAttack, playerAttack)}>
                             {
                                 playerAttack && enemyData[0]?.id === enemy.id
                                 ? <Hit dmg_value={player.dmg}/>

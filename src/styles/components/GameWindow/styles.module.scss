@@ -1,20 +1,18 @@
 @import "@/styles/scss_globals.scss";
 
 .game_window{
-
     width: 1066px;
     height: 600px;
-    // background-image: url("../../../app/assets/background.png");
     background-image: url("../../../../public/bg_forest.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    overflow: hidden;
 
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    // overflow: hidden;
 
     &>button{
         font-family: auto;
@@ -26,76 +24,8 @@
         position: relative;
         display: flex;
         justify-content: center;
-        // height: 100%;
         width: 100%;
         $sprite-y-offset: 22%;
-
-        .player{
-            $width: 140px;
-            $height: $width;
-            width: $width;
-            height: $width;
-            display: flex;
-            position: absolute;
-    
-            transform: translate(-100%, $sprite-y-offset);
-    
-            &>p{
-                transform: translateY(-50%);
-            }
-    
-            &::before{
-                content: "";
-                position: absolute;
-                width: calc($width * 2 + 100px);
-                height: calc($width * 2);
-                top: 0;
-                left: 0;
-
-                background-size: calc(1540px * 3) calc($width * 3);
-                background-image: url("../../../app/assets/knight_idle.png");
-                image-rendering: pixelated;
-                // transform: translate(calc(calc($width / -2) - 10px), calc($width / -2));
-                transform: translate(-40%,-50%);
-                animation: idleAnim_player 1s steps(11) infinite;
-            }
-        }
-    
-        .enemy{
-            @extend .player;
-            $width: 150px;
-            width: $width;
-            height: $width;
-
-
-    
-            &::before{
-                width: calc($width * 2);
-                height: calc($width * 2);
-                background-size: calc(600px * 3) calc($width * 3);
-                background-image: url("../../../app/assets/goblin_idle.png");
-
-                animation: idleAnim_goblin 1s steps(4) infinite;
-                image-rendering: pixelated;
-                transform: translate(0%,-65%) scaleX(-1);
-                
-
-            }
-
-            &:nth-child(2){
-                transform: translate(100%, $sprite-y-offset);
-            }
-
-            @for $i from 3 through 10 {
-                &:nth-child(#{$i}) {
-                transform: translate(calc(calc(120% + calc(10% * calc(#{$i} - 3)))*  calc(#{$i} - 1)), $sprite-y-offset);
-                }
-            }
-
-            &:nth-child(n+10) {
-                display: none;
-            }
-        }
     }
 }
 
@@ -134,101 +64,6 @@
         }
     }
 }
-
-.playerAttackAnim{
-    @extend .player;
-    &::before{
-        background-size: calc(840px * 3) calc(140px * 3) !important;
-        background-image: url("../../../app/assets/knight_attack.png") !important;
-        animation: attackAnim_player 0.2s steps(5) forwards !important;
-    }
-}
-
-.playerHitAnim{
-    @extend .player;
-    &::before{
-        background-size: calc(560px * 3) calc(140px * 3) !important;
-        background-image: url("../../../app/assets/knight_hit.png") !important;
-        animation: hitAnim_player 0.25s steps(4) forwards !important;
-    }
-}
-
-.playerDeathAnim {
-    @extend .player;
-    &::before{
-        background-size: calc(1260px * 3) calc(140px * 3) !important;
-        background-image: url("../../../app/assets/knight_death.png") !important;
-        animation: deathAnim_player 1s steps(8) forwards !important;
-    }
-}
-
-.enemyAttackAnim{
-    @extend .enemy;
-    &::before{
-        background-size: calc(1200px * 3) calc(150px * 3) !important;
-        background-image: url("../../../app/assets/goblin_attack.png") !important;
-        animation: attackAnim_goblin 0.2s steps(8) forwards !important;
-    }
-}
-
-.goblinHitAnim{
-    @extend .enemy;
-    &::before{
-        background-size: calc(600px * 3) calc(150px * 3) !important;
-        background-image: url("../../../app/assets/goblin_hit.png") !important;
-        animation: hitAnim_goblin 0.25s steps(4) forwards !important;
-    }
-}
-
-.goblinDeathAnim {
-    @extend .enemy;
-    &::before{
-        background-size: calc(600px * 3) calc(150px * 3) !important;
-        background-image: url("../../../app/assets/goblin_death.png") !important;
-        animation: deathAnim_goblin 0.4s steps(3) forwards !important;
-    }
-}
-
-@keyframes idleAnim_player {
-    0% { background-position: 0 0; }
-    100% { background-position: calc(-1540px * 3) 0; }
-}
-
-@keyframes attackAnim_player {
-    0% { background-position: 0 0; }
-    100% { background-position: calc(-840px * 3 + 420px) 0; }
-}
-
-@keyframes hitAnim_player {
-    0%{ background-position: 0 0; }
-    100%{ background-position: calc(-560px * 3) 0; }
-}
-
-@keyframes deathAnim_player {
-    0%{ background-position: 0 0; }
-    100%{ background-position: calc(-1260px * 3 + 420px) 0; }
-}
-
-@keyframes idleAnim_goblin {
-    0% { background-position: 0 0; }
-    100% { background-position: calc(-600px * 3) 0; }
-}
-
-@keyframes attackAnim_goblin {
-    0% { background-position: 0 0; }
-    100% { background-position: calc(-1200px * 3) 0; }
-}
-
-@keyframes hitAnim_goblin {
-    0%{ background-position: 0 0; }
-    100%{ background-position: calc(-600px * 3) 0; }
-}
-
-@keyframes deathAnim_goblin {
-    0%{ background-position: 0 0; }
-    100%{ background-position: calc(-600px * 3 + 450px) 0; }
-}
-
 
 @keyframes fadeIn {
     0%{
