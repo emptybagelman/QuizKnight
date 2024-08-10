@@ -23,19 +23,27 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [x] make armour finite, only health can recharge per wave
 - [] style up the cards
 - [x] better screen sizing
-- [] better combat anims
+- [x] new basic sprites!
+- [x] better combat anims
+    - [x] get hit
+    - [x] hit
+    - [x] die
 - [] more enemy types
+    - [] flying eye
+    - [] mushroom
+    - [] skeleton
 - [] adjust scaling
 - [] sound effects
     - [x] hit
     - [] die
     - [x] button hover
-    - [] music
+    - [x] music
+    - [x] combat
         - [x] combat
         - [] quiz
 - [] visual effects
     - [x] screen shake
-    - [1/2] sprite damage
+    - [x] sprite damage
 - [] better backdrop
     - maybe even play with sprite creation and custom scenes
     - could even turn into a rougelike dungeon crawler (pipedream)

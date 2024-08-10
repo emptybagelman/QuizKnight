@@ -15,6 +15,7 @@ import useSound from "use-sound";
 import attack_sword from "#/sounds/attack_sword.mp3";
 import impact_flesh from "#/sounds/impact_flesh.mp3";
 import hover from "#/sounds/hover.mp3";
+import { goblin } from "./enemies";
 
 export default function Combat(){
     
@@ -279,13 +280,18 @@ export default function Combat(){
                         <div
                             key={idx}
                             className={
-                            enemyAttack && enemy.id === enemyData[0]?.id
-                            ? styles.enemyAttackAnim
-                            : playerAttack && enemy.id === enemyData[0]?.id
-                                ? styles.goblinHitAnim
-                                : enemyData[0] && enemyData[0].hp <= 0 && enemy.id === enemyData[0]?.id
-                                    ? styles.goblinDeathAnim
-                                    : styles.enemy
+                                enemyData[0] 
+                                ? goblin(enemy, enemyData, enemyAttack, playerAttack)
+                                : ""
+                            // enemyAttack && enemy.id === enemyData[0]?.id
+                            // ? enemyData[0]?.name === "Goblin"
+                            //     ? styles.enemyAttackAnim
+                            //     : playerAttack && enemy.id === enemyData[0]?.id
+                            //         ? styles.goblinHitAnim
+                            //         : enemyData[0] && enemyData[0].hp <= 0 && enemy.id === enemyData[0]?.id
+                            //             ? styles.goblinDeathAnim
+                            //             : styles.enemy
+                            // : ""
                             }>
                             {
                                 playerAttack && enemyData[0]?.id === enemy.id
