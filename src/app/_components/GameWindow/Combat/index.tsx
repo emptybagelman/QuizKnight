@@ -15,6 +15,7 @@ import useSound from "use-sound";
 import attack_sword from "#/sounds/attack_sword.mp3";
 import impact_flesh from "#/sounds/impact_flesh.mp3";
 import hover from "#/sounds/hover.mp3";
+import block from "#/sounds/block.mp3";
 import { playerAnims, resolveAnimType } from "./sprites";
 
 export default function Combat(){
@@ -28,6 +29,13 @@ export default function Combat(){
     const [playSwingSound] = useSound(attack_sword,{ volume: 2 })
     const [playHitSound] = useSound(impact_flesh,{ volume: 2 })
     const [playHoverSound] = useSound(hover)
+    const [playBlockSound] = useSound(block,{volume:3})
+
+    const critChance = chanceEval(player.critical)
+    const parryChance = chanceEval(player.parry)
+
+    const playerTotalDamage = critChance ? player.dmg*2 : player.dmg
+    const parryBool = parryChance ? true : false
 
     const router = useRouter()
 
@@ -72,6 +80,7 @@ export default function Combat(){
         enemy: enemyData[0]!,
         active: false,
         index: 0,
+        extra: ""
     })
 
     const ATTACK_TIMEOUT = 500;
@@ -105,24 +114,28 @@ export default function Combat(){
         const max = mid + range
         return Math.floor(Math.random() * (max-min+1)) + min
     }
-    
+ 
+    function chanceEval(boolValue: number) {
+        return Math.random() <= boolValue / 100 ? true : false
+    }
 
     function handlePlayerAttack(){
-
         if(!enemyData[0]) throw new Error("No enemies to kill!");
 
         const firstEnemy = enemyData[0]
 
+        // const damage = player.dmg + critDamage()
+
         let overflowDmg = 0;
         let enemyHp = firstEnemy.hp;
 
-        if(firstEnemy.armour < player.dmg){
-            overflowDmg = Math.abs(firstEnemy.armour - player.dmg)
+        if(firstEnemy.armour < playerTotalDamage){
+            overflowDmg = Math.abs(firstEnemy.armour - playerTotalDamage)
             enemyHp = firstEnemy.hp - overflowDmg
             firstEnemy.hp = enemyHp
             firstEnemy.armour = 0
         }else{
-            firstEnemy.armour = firstEnemy.armour - player.dmg
+            firstEnemy.armour = firstEnemy.armour - playerTotalDamage
         }
 
         setEnemyData(
@@ -139,6 +152,13 @@ export default function Combat(){
                 index: 3
             })
             setScore(prev => prev + 100)
+        }
+        else if(critChance){
+            setCurrentDialogue({
+                enemy:enemyData[0],
+                active: true,
+                index: 4
+            })
         }
 
         else{
@@ -203,36 +223,49 @@ export default function Combat(){
         let overflowDmg = 0;
         let playerHp = tempPlayer.hp;
 
-        if(tempPlayer.armour <= enemyDmg){
-            overflowDmg = Math.abs(tempPlayer.armour - enemyDmg)
-            playerHp = tempPlayer.hp - overflowDmg
-            tempPlayer.hp = playerHp
-            tempPlayer.armour = 0
-        }else{
-            tempPlayer.armour = tempPlayer.armour - enemyDmg
+        if(!(parryBool)){ // handles no parry
+            if(tempPlayer.armour <= enemyDmg){
+                overflowDmg = Math.abs(tempPlayer.armour - enemyDmg)
+                playerHp = tempPlayer.hp - overflowDmg
+                tempPlayer.hp = playerHp
+                tempPlayer.armour = 0
+            }else{
+                tempPlayer.armour = tempPlayer.armour - enemyDmg
+            }
+
+            setPlayer(tempPlayer)
+
+            if(playerHp <= 0){
+                setCurrentDialogue({
+                    enemy: enemyData[0],
+                    active: true,
+                    index: 2,
+                })
+    
+            }
+    
+            else{
+                setCurrentDialogue({
+                    enemy: enemyData[0],
+                    active: true,
+                    index: 1,
+                })
+            }
+
+            playHitSound()
+        }
+        else { // sets parry dialogue
+            playBlockSound()
+            setCurrentDialogue({ 
+                enemy: enemyData[0],
+                active: true,
+                index: 5
+            })
         }
 
         setEnemyAttack(true)  // RUNS ENEMY ATTACK
-        setPlayer(tempPlayer)
-
-        if(playerHp <= 0){
-            setCurrentDialogue({
-                enemy: enemyData[0],
-                active: true,
-                index: 2,
-            })
-
-        }
-
-        else{
-            setCurrentDialogue({
-                enemy: enemyData[0],
-                active: true,
-                index: 1,
-            })
-        }
         playSwingSound()
-        playHitSound()
+        
         setTimeout(() => {
             setEnemyAttack(false)            
 
@@ -281,7 +314,7 @@ export default function Combat(){
                 <div className={player && playerAnims(player, enemyAttack, playerAttack)}>
                     {
                         enemyAttack && enemyData[0]
-                        ? <Hit dmg_value={enemyData[0].dmg}/>
+                        ? <Hit dmg_value={enemyData[0].dmg} parryBool={parryBool}/>
                         : ""
                     }
                     <HealthBar character={player} />
@@ -295,7 +328,7 @@ export default function Combat(){
                             className={enemyData[0] && resolveAnimType(enemy, enemyData, enemyAttack, playerAttack)}>
                             {
                                 playerAttack && enemyData[0]?.id === enemy.id
-                                ? <Hit dmg_value={player.dmg}/>
+                                ? <Hit dmg_value={playerTotalDamage}/>
                                 : ""
                             }
                             <HealthBar character={enemy} />

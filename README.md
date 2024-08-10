@@ -34,8 +34,8 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
         - [] power move potion
         - [] armour plating
     - [] enemy differences
-    - [] crit chance
-    - [] block chance
+    - [x] crit chance
+    - [x] block chance
     - [] upgrades
         - [] power move
             - has to recharge over time

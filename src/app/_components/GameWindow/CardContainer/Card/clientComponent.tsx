@@ -45,7 +45,7 @@ export default function CardClientComponent(
             content={card.category?.category}
             onClick={() => {
                 handleCardClick()
-                    .then(() => console.log(""))
+                    .then(() => "")
                     .catch(() => new Error("fiddlesticks!"))
                 playSelectSound()
             }}
@@ -59,7 +59,7 @@ export default function CardClientComponent(
             <h2>{card.category?.category}</h2>
 
             <div className={styles.card_info}>
-                <p className={styles.buff}>{data?.name} +{data?.default_value + increaseBonus()}</p>
+                <p className={styles.buff}>{data?.name} +{data?.default_value + increaseBonus()}{data.name === "Critical Chance" || data.name === "Parry" ? "%" : ""}</p>
                 <p className={styles.buff_desc}>{data?.description}</p>
             </div>
         </div>

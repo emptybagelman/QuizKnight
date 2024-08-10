@@ -25,6 +25,7 @@ export type DialogueProps = {
     enemy: Enemy,
     active: boolean,
     index: number,
+    extra?: string | number
 }
 
 export type TimeoutFunctionProps = {
