@@ -43,9 +43,9 @@ export default function Combat(){
 
     const enemyArray: Enemy[] = [...Array.from({length:enemyAmount}).map((x, index) => {
 
-        const hp = randomInt((3 + Math.floor(loop*1.09)),2)
+        const hp = randomInt((2 + Math.floor(loop*1.09)),2)
         const dmg = randomInt((2 + Math.floor(loop*1.1)),1)
-        const armour = randomInt((1 + Math.floor(loop*1.06)),2)
+        const armour = randomInt((1 + Math.floor(loop*1.06)),1)
 
         let name = "Goblin";
 
