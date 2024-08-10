@@ -39,7 +39,7 @@ export default function Combat(){
         const dmg = randomInt((2 + Math.floor(loop*1.1)),1)
         const armour = randomInt((1 + Math.floor(loop*1.06)),2)
 
-        let name: string = "Goblin";
+        let name = "Goblin";
 
         const enemies = ["Goblin","Mushroom", "Skeleton", "Flying Eye"]
 

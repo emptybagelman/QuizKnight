@@ -1,4 +1,4 @@
-import { Enemy, Player } from "@/app/_types/types";
+import { type Enemy, type Player } from "@/app/_types/types";
 import sprites from "@/styles/components/GameWindow/sprites.module.scss";
 
 export const playerAnims = (player: Player, enemyBool: boolean, playerBool: boolean) => {
