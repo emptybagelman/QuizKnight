@@ -272,7 +272,7 @@ export default function Combat(){
             setTimeout(() => {
                 if(playerHp <= 0){
                     router.push("/scoreboard")
-                    void postScore({ name: "balls", highest_loop: loop, score: score })
+                    postScore({ name: "balls", highest_loop: loop, score: score })
                 }else{
                     setCurrentDialogue(emptyDialogue)
                     setButtonState(false) // ENABLE BUTTON
