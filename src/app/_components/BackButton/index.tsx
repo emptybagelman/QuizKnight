@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import { Return } from "../Icons"
-import styles from "@/styles/components/BackButton/styles.module.scss"
+import styles from "./styles.module.scss"
 
 type BackProps = {
     route?: string

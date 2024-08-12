@@ -1,23 +1,13 @@
 "use client"
 
-import { type Card, type Upgrade, type Player } from "@/app/_types/types"
+import {  type Player, type GameStateProps } from "@/app/_types/types"
 import { createContext, useContext, useState } from "react"
 
 type GameState = {
     player: Player,
     setPlayer: React.Dispatch<React.SetStateAction<Player>>,
-    loop: number,
-    setLoop: React.Dispatch<React.SetStateAction<number>>,
-    score: number,
-    setScore: React.Dispatch<React.SetStateAction<number>>,
-    quizState: boolean,
-    setQuizState: React.Dispatch<React.SetStateAction<boolean>>,
-    displayQuestionState: boolean,
-    setDisplayQuestionState: React.Dispatch<React.SetStateAction<boolean>>,
-    currentUpgrade: Upgrade | undefined,
-    setCurrentUpgrade: React.Dispatch<React.SetStateAction<Upgrade | undefined>>,
-    currentCard: Card | undefined,
-    setCurrentCard: React.Dispatch<React.SetStateAction<Card | undefined>>,
+    gameState: GameStateProps,
+    setGameState: React.Dispatch<React.SetStateAction<GameStateProps>>
 }
 
 const defaultPlayerState: Player = {
@@ -32,54 +22,36 @@ const defaultPlayerState: Player = {
     consumables: []
 }
 
+const defaultGameState: GameStateProps = {
+    loop: 0,
+    score: 0,
+    quizState: false,
+    questionState: false,
+    currentUpgrade: undefined,
+    currentCard: undefined,
+}
+
 const GameContext = createContext<GameState>(
         {
             player: defaultPlayerState,
             setPlayer: () => {},
-            loop: 0,
-            setLoop: () => {},
-            score: 0,
-            setScore: () => {},
-            quizState: false,
-            setQuizState: () => {},
-            displayQuestionState: false,
-            setDisplayQuestionState: () => {},
-            currentUpgrade: undefined, 
-            setCurrentUpgrade: () => {},
-            currentCard: undefined,
-            setCurrentCard: () => {},
+            gameState: defaultGameState,
+            setGameState: () => {}
         }
 )
 
 export default function GameStateProvider({ children }: {children: React.ReactNode} ){
 
     const [player, setPlayer] = useState<Player>(defaultPlayerState)
-    const [loop, setLoop] = useState<number>(0)
-    const [score, setScore] = useState<number>(0)
-    const [quizState, setQuizState] = useState<boolean>(false)
-
-    const [displayQuestionState, setDisplayQuestionState] = useState<boolean>(false)
-
-    const [currentUpgrade, setCurrentUpgrade] = useState<Upgrade | undefined>(undefined)
-    const [currentCard, setCurrentCard] = useState<Card | undefined>(undefined)
+    const [gameState, setGameState] = useState<GameStateProps>(defaultGameState)
 
     return (
         <GameContext.Provider value={
             {
                 player,
                 setPlayer,
-                loop,
-                setLoop,
-                score,
-                setScore,
-                quizState,
-                setQuizState,
-                displayQuestionState,
-                setDisplayQuestionState,
-                currentUpgrade,
-                setCurrentUpgrade,
-                currentCard,
-                setCurrentCard,
+                gameState,
+                setGameState
             }}>
             {children}
         </GameContext.Provider>

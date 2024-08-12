@@ -36,14 +36,14 @@ async function seed(){
             name: "Sharpness",
             description: "Extra Damage",
             affected_stat: "dmg",
-            default_value: 2,
+            default_value: 1,
             consumable: false,
         },
         {
             name: "Vitality",
             description: "Extra Health",
             affected_stat: "hp",
-            default_value: 3,
+            default_value: 1,
             consumable: false,
         },
         {
@@ -507,7 +507,7 @@ async function seed(){
             difficulty: "easy",
             question: "What is 12 divided by 4?",
             answers: ["2", "3", "5", "4"],
-            correct_index: 3,
+            correct_index: 1,
             category_id: Number(categoryIds[1])
         },
         {
@@ -528,7 +528,7 @@ async function seed(){
             difficulty: "easy",
             question: "What is 8 - 3?",
             answers: ["6", "7", "4", "5"],
-            correct_index: 1,
+            correct_index: 3,
             category_id: Number(categoryIds[1])
         },
         {
@@ -541,7 +541,7 @@ async function seed(){
         {
             difficulty: "medium",
             question: "What is the product of the first four prime numbers?",
-            answers: ["30", "60", "120", "24"],
+            answers: ["17", "120", "210", "24"],
             correct_index: 2,
             category_id: Number(categoryIds[1])
         },
@@ -597,22 +597,22 @@ async function seed(){
         {
             difficulty: "hard",
             question: "Solve for x: 5x^2 - 3x - 2 = 0",
-            answers: ["2 and -0.2", "-2 and 0.2", "1 and -1", "-1 and 1"],
+            answers: ["1 and -0.2", "-2 and 0.2", "1 and -1", "-1 and 1"],
             correct_index: 0,
             category_id: Number(categoryIds[1])
         },
         {
             difficulty: "hard",
             question: "What is the derivative of the function f(x) = x^3?",
-            answers: ["3x^2", "2x^2", "3x", "x^2"],
-            correct_index: 0,
+            answers: [ "2x^2", "3x", "3x^2", "x^2"],
+            correct_index: 2,
             category_id: Number(categoryIds[1])
         },
         {
             difficulty: "hard",
             question: "What is the integral of the function f(x) = 2x?",
             answers: ["x^2 + C", "2x^2 + C", "x^2", "2x"],
-            correct_index: 1,
+            correct_index: 0,
             category_id: Number(categoryIds[1])
         },
         {

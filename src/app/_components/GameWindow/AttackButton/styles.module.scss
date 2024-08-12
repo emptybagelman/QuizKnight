@@ -1,0 +1,15 @@
+@import "@/styles/scss_globals.scss";
+
+.attack_button{
+    @include button_s;
+    @include orange;
+    z-index: 999;
+
+    &:disabled{
+        filter: brightness(0.8);
+        &:hover{
+            @include orange;
+            cursor: default
+        }
+    }
+}

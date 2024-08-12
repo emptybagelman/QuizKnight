@@ -1,4 +1,4 @@
-import StartScreen from "../_components/StartScreen"
+import StartScreen from "../_components/GameWindow/StartScreen"
 
 export default function TestGround(){
 

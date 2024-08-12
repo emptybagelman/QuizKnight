@@ -1,15 +1,16 @@
 "use client"
 
 import { useGame } from "../GameContext";
-import Combat from "./Combat";
+import Combat from "./CombatContainer/Combat";
 import Quiz from "./Quiz";
 import useSound from "use-sound";
-import into_the_wastes from "#/sounds/into_the_wastes.mp3";
+import { audio } from "@/app/assets/sounds";
+import CombatStateProvider from "../CombatContext";
 
 export default function GameWindow(){
 
-    const {quizState} = useGame()
-    const [playMusic, { stop }] = useSound(into_the_wastes,{
+    const {gameState} = useGame()
+    const [playMusic, { stop }] = useSound(audio.into_the_wastes,{
         volume: 0.1,
         interrupt: true
     })
@@ -19,9 +20,11 @@ export default function GameWindow(){
         onMouseEnter={() => playMusic()}
         onMouseLeave={() => stop()}
         >
-            {!quizState 
-                ? <Combat />
-                : <Quiz />  
+            {gameState.quizState 
+                ? <Quiz />
+                : <CombatStateProvider>
+                    <Combat /> 
+                </CombatStateProvider>
             }
         </div>
     )

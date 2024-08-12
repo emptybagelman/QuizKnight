@@ -1,9 +1,10 @@
-import styles from "@/styles/components/GameWindow/styles.module.scss"
-import CardContainer from "../CardContainer"
+import styles from "./styles.module.scss"
+import CardContainer from "./CardContainer"
 import Loading from "@/app/play/loading"
 import { Suspense } from "react"
-import QuizDisplay from "../QuizDisplay"
-import LoopStateProvider from "../QuizLoopContext"
+import QuizDisplay from "./QuizDisplay"
+import LoopStateProvider from "./QuizLoopContext"
+import ScoreCounter from "../CombatContainer/ScoreCounter"
 
 export default function Quiz(){
 
@@ -14,6 +15,7 @@ export default function Quiz(){
                     <CardContainer />
                 </Suspense>
                 <QuizDisplay />
+                <ScoreCounter />
             </LoopStateProvider>
         </div>
     )

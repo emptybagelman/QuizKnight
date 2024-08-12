@@ -1,0 +1,20 @@
+.game_window{
+    width: 1066px;
+    height: 600px;
+    background-image: url("../../../../../public/bg_forest.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &>button{
+        font-family: auto;
+        position: absolute;
+        bottom: 30px;
+    }
+}

@@ -21,6 +21,7 @@ const config = {
     "@typescript-eslint/consistent-generic-constructors": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {

@@ -33,6 +33,15 @@ export type TimeoutFunctionProps = {
     func: (() => void)[]
 }
 
+export type GameStateProps = {
+    loop: number,
+    score: number,
+    quizState: boolean,
+    questionState: boolean,
+    currentUpgrade: Upgrade | undefined,
+    currentCard: Card | undefined,
+}
+
 export type Category = {
     id: number,
     category: string

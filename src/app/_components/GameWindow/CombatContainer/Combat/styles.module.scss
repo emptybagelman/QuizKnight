@@ -1,0 +1,42 @@
+@import "@/styles/scss_globals.scss";
+
+.game_window{
+    width: 1066px;
+    height: 600px;
+    background-image: url("../../../../public/bg_forest.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &>button{
+        font-family: auto;
+        position: absolute;
+        bottom: 30px;
+    }
+}
+
+.screen_shake {
+    animation: shake 0.2s forwards;
+}
+
+@keyframes shake {
+    0%{background-position: 50% 50%;}
+    25%{background-position: calc(50% + 10px) 50%;}
+    50%{background-position: calc(50% - 10px) 50%;}
+    100%{background-position: 50% 50%;}
+}
+
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
