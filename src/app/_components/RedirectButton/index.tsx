@@ -1,17 +1,26 @@
+"use client"
+import useAudio from "@/app/_hooks/useVolume"
 import styles from "./styles.module.scss"
 import Link from "next/link"
+import { SetStateAction } from "react"
 
 type RedirectProps = {
-    route?: string
-    text: string
+    route: string,
+    text: string,
 }
 
 export default function RedirectButton({route, text}: RedirectProps){
+
+    const { playHoverSound } = useAudio()
+
     return (
         <>
         {
             route &&
-            <Link className={styles.redirect_button} href={route.toLowerCase()}>
+            <Link
+            onMouseEnter={() => playHoverSound()}
+            className={styles.redirect_button} href={route.toLowerCase()}
+            >
                 {text}
             </Link>
         }

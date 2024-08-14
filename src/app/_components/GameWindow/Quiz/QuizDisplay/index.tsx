@@ -5,8 +5,7 @@ import { useGame } from "../../../GameContext"
 import { useState } from "react"
 import { type GameStateProps, type Player } from "@/app/_types/types"
 import { useLoop } from "../QuizLoopContext"
-import useSound from "use-sound"
-import { audio } from "@/app/assets/sounds"
+import useAudio from "@/app/_hooks/useVolume"
 
 export default function QuizDisplay(){
 
@@ -21,9 +20,7 @@ export default function QuizDisplay(){
 
     const [ corrState, setCorrState ] = useState<boolean | null>(null)
 
-    const [playCorrectSound] = useSound(audio.correct)
-    const [playWrongSound] = useSound(audio.wrong)
-    const [playHoverSound] = useSound(audio.hover)
+    const { playCorrectSound, playHoverSound, playWrongSound } = useAudio()
 
 
     function handleAnswer(ans: string){

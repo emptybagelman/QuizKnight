@@ -8,6 +8,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     #not_found_wrapper{
         width: 50%;
@@ -34,6 +35,9 @@
         // display: flex;
         // flex-direction: column;
         // align-items: center;
+
+        padding: $gap-xl;
+
 
         display: grid;
         align-items: center;
@@ -62,6 +66,22 @@
 
         &>*{
             text-align: center;
+        }
+    }
+}
+
+@media screen and (max-width: 400px){
+    .main{
+        #home_wrapper{
+            a:nth-child(2){
+                font-size: $h1-m;
+                padding: $padding-xl $padding-m;
+            }
+
+            a, button{
+                padding: $padding-l;
+                font-size: $h2-s;
+            }
         }
     }
 }

@@ -8,14 +8,13 @@ import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
 import { postScore } from "@/server/actions/categoryActions";
 import StartScreen from "../StartScreen";
-import useSound from "use-sound";
 import AttackButton from "../../AttackButton";
 import EnemySprite from "../../Characters/Enemy";
-import { audio } from "@/app/assets/sounds"
 import { useCombat } from "../../../CombatContext";
 import CombatContainer from "..";
 import Player from "../../Characters/Player";
 import SpriteContainer from "../SpriteContainer";
+import useAudio from "@/app/_hooks/useVolume";
 
 export default function Combat(){
 
@@ -25,9 +24,7 @@ export default function Combat(){
     const {player, setPlayer, gameState, setGameState} = useGame()
     const {playerAttack,setPlayerAttack,enemyAttack,setEnemyAttack,enemyData,setEnemyData,currentDialogue,setCurrentDialogue, buttonState,setButtonState} = useCombat()
 
-    const [playSwingSound] = useSound(audio.attack_sword,{ volume: 2 })
-    const [playHitSound] = useSound(audio.impact_flesh,{ volume: 2 })
-    const [playBlockSound] = useSound(audio.block,{volume:3})
+    const { playSwingSound, playHitSound, playBlockSound } = useAudio()
 
     const critChance = chanceEval(player.critical)
     const parryChance = chanceEval(player.parry)

@@ -2,7 +2,7 @@ import styles from "@/styles/root/home.module.scss";
 import logo from "@/app/assets/logo.png"
 import Image from "next/image";
 import RedirectButton from "./_components/RedirectButton";
-import SettingsButton from "./_components/Options/button";
+import SettingsButton from "./_components/Settings/MMButton";
 
 export default async function Home() {
 
@@ -20,3 +20,4 @@ export default async function Home() {
     </main>
   );
 }
+

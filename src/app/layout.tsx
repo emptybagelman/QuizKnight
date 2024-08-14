@@ -3,6 +3,8 @@ import Nav from "./_components/nav";
 import ClientProvider from "./_components/QueryClientProvider";
 
 import { MedievalSharp } from "next/font/google";
+import SettingsStateProvider from "./_components/SettingsContext";
+import Music from "./_components/Music";
 
 const medievalsharp = MedievalSharp({
   weight: "400",
@@ -29,7 +31,11 @@ export default function RootLayout({
       <body className={medievalsharp.className}>
           <ClientProvider>
             {/* <Nav /> */}
-            {children}
+            <SettingsStateProvider>
+              <Music>
+                {children}
+              </Music>
+            </SettingsStateProvider>
           </ClientProvider>
       </body>
     </html>

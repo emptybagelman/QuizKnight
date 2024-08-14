@@ -4,8 +4,7 @@ import { type GameStateProps, type Card, type Upgrade } from "@/app/_types/types
 import styles from "./styles.module.scss"
 import { useGame } from "@/app/_components/GameContext"
 import { type QueryObserverResult, type RefetchOptions } from "@tanstack/react-query"
-import useSound from "use-sound"
-import { audio } from "@/app/assets/sounds"
+import useAudio from "@/app/_hooks/useVolume"
 
 export default function CardClientComponent(
     {card, data, refetch}
@@ -14,8 +13,8 @@ export default function CardClientComponent(
 
     const { setGameState } = useGame();
 
-    const [playHoverSound] = useSound(audio.hover)
-    const [playSelectSound] = useSound(audio.select)
+    const { playSelectSound, playHoverSound } = useAudio()
+
 
     async function handleCardClick(){
 

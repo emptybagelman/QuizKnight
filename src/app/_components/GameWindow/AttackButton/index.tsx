@@ -1,6 +1,5 @@
+import useAudio from "@/app/_hooks/useVolume";
 import styles from "./styles.module.scss";
-import useSound from "use-sound";
-import hover from "#/sounds/hover.mp3";
 
 export default function AttackButton(
     {
@@ -11,7 +10,7 @@ export default function AttackButton(
         buttonState: boolean
     }) {
 
-    const [playHoverSound] = useSound(hover)
+    const { playHoverSound } = useAudio()
 
 
     return (
