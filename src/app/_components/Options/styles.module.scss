@@ -1,0 +1,12 @@
+@import "@/styles/scss_globals.scss";
+
+.settings_button {
+    @include button_l;
+    @include green;
+    font-family: $font;
+
+    &:hover{
+        background-color: $hover;
+        box-shadow: $inset-m $hover-shadow;
+    }
+}

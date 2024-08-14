@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={medievalsharp.className}>
           <ClientProvider>
-            <Nav />
+            {/* <Nav /> */}
             {children}
           </ClientProvider>
       </body>

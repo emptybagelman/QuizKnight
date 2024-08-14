@@ -1,4 +1,4 @@
-import styles from "@/styles/components/RedirectButton/styles.module.scss"
+import styles from "./styles.module.scss"
 import Link from "next/link"
 
 type RedirectProps = {

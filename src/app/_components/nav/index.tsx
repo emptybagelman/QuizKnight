@@ -1,4 +1,4 @@
-import styles from "@/styles/components/nav/styles.module.scss"
+import styles from "./styles.module.scss"
 import Image from "next/image"
 import logo from "@/app/assets/logo.png"
 import Link from "next/link"

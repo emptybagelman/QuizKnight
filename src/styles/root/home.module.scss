@@ -3,17 +3,11 @@
 .main{
     width: 100%;
     height: $window;
-    margin-top: 75px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    *{
-        margin: 0;
-        padding: 0;
-    }
 
     #not_found_wrapper{
         width: 50%;
@@ -36,26 +30,38 @@
     }
 
     #home_wrapper{
-        width: 65%;
-        display: flex;
-        flex-direction: column;
+        // width: 65%;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+
+        display: grid;
         align-items: center;
+        justify-content: center;
+        grid-template-columns: repeat(2,1fr);
+        box-sizing: border-box;
+        gap: $gap-l;
+
         img{
-            width: 80%;
+            width: 100%;
+            max-width: 500px;
             height: auto;
             margin-bottom: $gap-xxl;
+            image-rendering: pixelated;
+
+            grid-column: span 2;
+
         }
 
-        &>p{
-            margin-bottom: $gap-m;
+        // play button
+        a:nth-child(2){
+            grid-column: span 2;
+            font-size: $h1-l;
+            font-weight: bolder;
         }
 
-        &>div{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: $gap-m;
+        &>*{
+            text-align: center;
         }
     }
 }
