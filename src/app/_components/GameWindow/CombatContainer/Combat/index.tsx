@@ -15,6 +15,8 @@ import CombatContainer from "..";
 import Player from "../../Characters/Player";
 import SpriteContainer from "../SpriteContainer";
 import useAudio from "@/app/_hooks/useVolume";
+import SettingsWidget from "@/app/_components/Settings/GameSettings";
+import ConsumableContainer from "../../Consumables";
 
 export default function Combat(){
 
@@ -232,7 +234,10 @@ export default function Combat(){
     if(mounted)
     return (
         <CombatContainer>
+            <SettingsWidget />
+
             <StartScreen />
+            <ConsumableContainer />
             <SpriteContainer>
                 <Player parryBool={parryBool}/>
                 {

@@ -5,7 +5,6 @@ import Combat from "./CombatContainer/Combat";
 import Quiz from "./Quiz";
 import CombatStateProvider from "../CombatContext";
 import styles from "./styles.module.scss"
-import SettingsWidget from "../Settings/GameSettings";
 
 export default function GameWindow(){
 
@@ -13,7 +12,6 @@ export default function GameWindow(){
 
     return (
         <div className={styles.game_window}>
-            <SettingsWidget />
             {gameState.quizState 
                 ? <Quiz />
                 : <CombatStateProvider>

@@ -6,3 +6,9 @@
         align-items: center;
     }
 }
+
+@media screen and (max-width: 500px){
+    .game_main{
+        margin-top: 0;
+    }
+}

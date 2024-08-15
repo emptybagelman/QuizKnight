@@ -1,0 +1,35 @@
+@import "@/styles/scss_globals.scss";
+
+.consumable_wrapper{
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+
+    display: flex;
+    gap: $gap-l;
+
+    .item_container {
+        $length: 50px;
+        width: $length;
+        height: $length;
+        outline: solid 1px white;
+        border-radius: $border-s;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: relative;
+
+        .item_amount{
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            min-width: 1rem;
+            padding: 2px 5px;
+            border-radius: $border-s;
+            background-color: $orange;
+            box-shadow: inset 0 -3px 0 0 $orange-shadow;
+        }
+    }
+}

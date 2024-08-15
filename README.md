@@ -37,7 +37,23 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
         - [] hp potion
         - [] power move potion
         - [] armour plating
-    - [] enemy differences
+    - [x] enemy differences
+        - [x] goblin
+            - low hp
+            - low dmg
+            - low armour
+        - [x] mushroom
+            - good hp
+            - good armour
+            - low dmg
+        - [x] skeleton
+            - low hp
+            - good dmg
+            - low armour
+        - [x] flying eye
+            - mid hp
+            - mid dmg
+            - no armour
     - [x] crit chance
     - [x] block chance
     - [] upgrades

@@ -19,7 +19,17 @@ const defaultPlayerState: Player = {
     resistance: 0,
     critical: 2,
     parry: 5,
-    consumables: []
+    consumables: [{
+        id: 1,
+        name: "health pot",
+        value: 2,
+        description: "top up"
+    },{
+        id: 2,
+        name: "bomb",
+        value: 1,
+        description: "boom"
+    }]
 }
 
 const defaultGameState: GameStateProps = {
