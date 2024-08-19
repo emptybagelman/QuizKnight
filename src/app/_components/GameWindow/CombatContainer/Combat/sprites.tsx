@@ -1,7 +1,7 @@
-import { type Enemy, type Player } from "@/app/_types/types";
+import { type Enemy, type PlayerType } from "@/app/_types/types";
 import sprites from "./sprites.module.scss";
 
-export const playerAnims = (player: Player, enemyBool: boolean, playerBool: boolean) => {
+export const playerAnims = (player: PlayerType, enemyBool: boolean, playerBool: boolean) => {
     if(player.hp <= 0) return sprites.playerDeathAnim;
     if(enemyBool) return sprites.playerHitAnim;
     if(playerBool) return sprites.playerAttackAnim;
