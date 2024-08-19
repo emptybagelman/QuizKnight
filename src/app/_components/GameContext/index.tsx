@@ -1,16 +1,16 @@
 "use client"
 
-import {  type Player, type GameStateProps } from "@/app/_types/types"
+import {  type PlayerType, type GameStateProps } from "@/app/_types/types"
 import { createContext, useContext, useState } from "react"
 
 type GameState = {
-    player: Player,
-    setPlayer: React.Dispatch<React.SetStateAction<Player>>,
+    player: PlayerType,
+    setPlayer: React.Dispatch<React.SetStateAction<PlayerType>>,
     gameState: GameStateProps,
     setGameState: React.Dispatch<React.SetStateAction<GameStateProps>>
 }
 
-const defaultPlayerState: Player = {
+const defaultPlayerState: PlayerType = {
     name: "Player",
     hp: 10,
     maxhp: 10,
@@ -19,17 +19,26 @@ const defaultPlayerState: Player = {
     resistance: 0,
     critical: 2,
     parry: 5,
+    looting: 10,
     consumables: [{
-        id: 1,
-        name: "health pot",
-        value: 2,
-        description: "top up"
-    },{
-        id: 2,
-        name: "bomb",
+        id: 0,
+        name: "Health Potion",
         value: 1,
-        description: "boom"
-    }]
+        description: "top up"
+    },
+    {
+        id: 1,
+        name: "Mana Potion",
+        value: 0,
+        description: "power!"
+    },
+    // {
+    //     id: 2,
+    //     name: "Bomb",
+    //     value: 0,
+    //     description: "boom"
+    // },
+]
 }
 
 const defaultGameState: GameStateProps = {
@@ -52,7 +61,7 @@ const GameContext = createContext<GameState>(
 
 export default function GameStateProvider({ children }: {children: React.ReactNode} ){
 
-    const [player, setPlayer] = useState<Player>(defaultPlayerState)
+    const [player, setPlayer] = useState<PlayerType>(defaultPlayerState)
     const [gameState, setGameState] = useState<GameStateProps>(defaultGameState)
 
     return (

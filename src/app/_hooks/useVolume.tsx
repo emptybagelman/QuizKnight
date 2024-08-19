@@ -16,6 +16,7 @@ export default function useAudio() {
     const [playSwingSound] = useSound(audio.attack_sword,{volume: 2 * (volume / 100)})
     const [playHitSound] = useSound(audio.impact_flesh,{volume: 2 * (volume / 100)})
     const [playBlockSound] = useSound(audio.block,{volume: 3 * (volume / 100)})
+    const [playHealSound] = useSound(audio.heal,{volume: 3 * (volume / 100)})
 
     return {
         playIntoTheWastes,
@@ -25,6 +26,7 @@ export default function useAudio() {
         playWrongSound,
         playSwingSound,
         playHitSound,
-        playBlockSound
+        playBlockSound,
+        playHealSound
     }
 }

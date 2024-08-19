@@ -2,7 +2,6 @@
 import useAudio from "@/app/_hooks/useVolume"
 import styles from "./styles.module.scss"
 import Link from "next/link"
-import { SetStateAction } from "react"
 
 type RedirectProps = {
     route: string,

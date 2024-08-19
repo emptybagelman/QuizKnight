@@ -1,5 +1,4 @@
 import "@/styles/globals.scss";
-import Nav from "./_components/nav";
 import ClientProvider from "./_components/QueryClientProvider";
 
 import { MedievalSharp } from "next/font/google";

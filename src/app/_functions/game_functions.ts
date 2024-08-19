@@ -94,3 +94,13 @@ function enemyLoopGen(loop: number) {
 
     return basicRounds[loop]
 }
+
+export function randomItem(){
+    const items = [
+        "Health Potion",
+        "Mana Potion",
+        // "Bomb",
+    ]
+    const item = items[Math.floor(Math.random() * items.length)]
+    return item
+}

@@ -8,6 +8,7 @@ import select from "#/sounds/select.mp3";
 import correct from "#/sounds/correct.mp3"
 import wrong from "#/sounds/wrong.mp3"
 import into_the_wastes from "#/sounds/into_the_wastes.mp3";
+import heal from "#/sounds/heal.mp3"
 
 
 export const audio = {
@@ -19,4 +20,5 @@ export const audio = {
     correct: correct,
     wrong: wrong,
     into_the_wastes: into_the_wastes,
+    heal: heal,
 }

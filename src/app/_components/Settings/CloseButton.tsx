@@ -5,12 +5,17 @@ import useAudio from "@/app/_hooks/useVolume"
 export default function CloseButton(){
 
     const { setOpen } = useSettings()
-    const { playHoverSound } = useAudio()
+    const { playHoverSound, playSelectSound } = useAudio()
+
+    function handleClick() {
+        setOpen(prev => !prev)
+        playSelectSound()
+    }
 
     return (
         <button
             id={styles.close_settings_button}
-            onClick={() => setOpen(prev => !prev)}
+            onClick={handleClick}
             onMouseEnter={() => playHoverSound()}
             >
             Close

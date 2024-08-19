@@ -1,6 +1,6 @@
 import { type scoreSchema } from "@/server/db/schema"
 
-export type Player = {
+export type PlayerType = {
     name: string,
     hp: number,
     maxhp: number,
@@ -9,6 +9,7 @@ export type Player = {
     resistance: number,
     critical: number,
     parry: number,
+    looting: number,
     consumables: Consumable[]
 }
 

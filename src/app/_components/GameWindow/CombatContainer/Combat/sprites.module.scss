@@ -247,3 +247,9 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
     }
 }
+
+.consumable {
+    width: 50px;
+    height: 50px;
+    background-color: $green;
+}

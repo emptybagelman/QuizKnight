@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import CombatDialogue from "../CombatDialogue";
-import { type Enemy, type GameStateProps } from "@/app/_types/types"
+import { type PlayerType, type Enemy, type GameStateProps, type Consumable } from "@/app/_types/types"
 import { useGame } from "../../../GameContext";
 import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
@@ -17,6 +17,7 @@ import SpriteContainer from "../SpriteContainer";
 import useAudio from "@/app/_hooks/useVolume";
 import SettingsWidget from "@/app/_components/Settings/GameSettings";
 import ConsumableContainer from "../../Consumables";
+import { randomItem } from "@/app/_functions/game_functions";
 
 export default function Combat(){
 
@@ -30,6 +31,7 @@ export default function Combat(){
 
     const critChance = chanceEval(player.critical)
     const parryChance = chanceEval(player.parry)
+    const lootChance = chanceEval(player.looting)
 
     const playerTotalDamage = critChance ? player.dmg*2 : player.dmg
     const parryBool = parryChance ? true : false
@@ -46,6 +48,8 @@ export default function Combat(){
         active: true,
         index: -1,
     }
+
+    const [extraDialogue, setExtraDialogue] = useState<string | undefined>(undefined)
  
     function chanceEval(boolValue: number) {
         return Math.random() <= boolValue / 100 ? true : false
@@ -76,11 +80,48 @@ export default function Combat(){
             })
 
         if(enemyHp <= 0){ // KILL ENEMY DIALOGUE
-            setCurrentDialogue({
-                enemy: enemyData[0],
-                active: true,
-                index: 3
+
+            // HANDLE IF ENEMY DROPS LOOT
+            if(lootChance){
+
+                const randItem = randomItem()
+
+                setExtraDialogue(randItem)
+                setPlayer((prev: PlayerType) => {
+                    const updatedConsumables = [...prev.consumables];
+
+                    // get id of Consumable from player.consumables
+                    const itemId = updatedConsumables.filter((item: Consumable) => item.name === randItem)[0]?.id
+
+                    if(!itemId) return prev;
+
+                    // validity check
+                    if(!updatedConsumables[itemId]) return prev;
+
+                    // increment value
+                    updatedConsumables[itemId] = {
+                        ...updatedConsumables[itemId],
+                        value: updatedConsumables[itemId].value + 1
+                    };
+                    return {
+                        ...prev,
+                        consumables: updatedConsumables
+                    }
             })
+
+                setCurrentDialogue({
+                    enemy: enemyData[0],
+                    active: true,
+                    index: 7
+                })
+            }
+            else{
+                setCurrentDialogue({
+                    enemy: enemyData[0],
+                    active: true,
+                    index: 3
+                })
+            }
             setGameState((prev: GameStateProps) => ({
                 ...prev,
                 score: prev.score + 100
@@ -111,7 +152,11 @@ export default function Combat(){
             // WAIT FOR DIALOGUE
             setTimeout(() => {
 
+                // CHECK IF ENEMY DEAD
                 if(enemyHp <= 0){
+                    setCurrentDialogue(activeEmptyDialogue)
+
+                    // SHIFT ENEMYS FORWARD
                     setEnemyData(
                         (prev: Enemy[]) => {
                             const newArray = [...prev]
@@ -215,7 +260,6 @@ export default function Combat(){
                 }
             },DELAY)
         },ATTACK_TIMEOUT)
-
     }
 
     function handleClick(){
@@ -249,7 +293,7 @@ export default function Combat(){
             </SpriteContainer>
 
             <AttackButton handleClick={handleClick} buttonState={buttonState} />
-            <CombatDialogue data={currentDialogue}/>
+            <CombatDialogue data={currentDialogue} extra={extraDialogue}/>
             <ScoreCounter />
         </CombatContainer>
     )

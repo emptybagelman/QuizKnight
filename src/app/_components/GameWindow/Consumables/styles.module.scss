@@ -12,14 +12,27 @@
         $length: 50px;
         width: $length;
         height: $length;
-        outline: solid 1px white;
+        outline: solid 2px rgb(91, 97, 128);
         border-radius: $border-s;
 
         display: flex;
         justify-content: center;
         align-items: center;
-
         position: relative;
+        transition: 0.2s ease;
+        opacity: 0.75;
+
+        &:hover{
+            cursor: pointer;
+            outline: solid 2px white;
+            opacity: 1;
+        }
+
+        &[content="Health Potion"] {
+            background-image: url("../../../assets/health_potion.png");
+            background-size: cover;
+            image-rendering: pixelated;
+        }
 
         .item_amount{
             position: absolute;
