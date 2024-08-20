@@ -3,7 +3,7 @@
 import styles from "./styles.module.scss"
 import { useGame } from "../../../GameContext"
 import { useState } from "react"
-import { type GameStateProps, type Player } from "@/app/_types/types"
+import { type GameStateProps, type PlayerType } from "@/app/_types/types"
 import { useLoop } from "../QuizLoopContext"
 import useAudio from "@/app/_hooks/useVolume"
 
@@ -47,15 +47,15 @@ export default function QuizDisplay(){
             
             setCorrState(true)
             if(stat === "hp"){
-                setPlayer((prev: Player) => ({
+                setPlayer((prev: PlayerType) => ({
                     ...prev,
                     maxhp: prev.maxhp + bonus
                 }))
             }
             else{
-                setPlayer((prev: Player) => ({
+                setPlayer((prev: PlayerType) => ({
                     ...prev,
-                    [stat]: Number(prev[stat as keyof Player]) + bonus
+                    [stat]: Number(prev[stat as keyof PlayerType]) + bonus
                 }))
             }
         }
@@ -68,7 +68,7 @@ export default function QuizDisplay(){
 
         setTimeout(() => {
 
-            setPlayer((prev: Player) => ({
+            setPlayer((prev: PlayerType) => ({
                 ...prev,
                 hp: prev.maxhp,
             }))
