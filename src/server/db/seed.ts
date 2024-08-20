@@ -66,6 +66,13 @@ async function seed(){
             affected_stat: "parry",
             default_value: 1,
             consumable: false
+        },
+        {
+            name: "Looting",
+            description: "Increase your item discovery",
+            affected_stat: "looting",
+            default_value: 1,
+            consumable: false
         }
     ])
 

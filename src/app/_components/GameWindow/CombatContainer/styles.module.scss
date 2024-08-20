@@ -18,3 +18,14 @@
         bottom: 30px;
     }
 }
+
+.screen_shake {
+    animation: shake 0.2s forwards;
+}
+
+@keyframes shake {
+    0%{background-position: 50% 50%;}
+    25%{background-position: calc(50% + 10px) 50%;}
+    50%{background-position: calc(50% - 10px) 50%;}
+    100%{background-position: 50% 50%;}
+}

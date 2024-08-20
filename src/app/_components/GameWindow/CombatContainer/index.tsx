@@ -1,3 +1,5 @@
+"use client"
+
 import { useCombat } from "../../CombatContext";
 import styles from "./styles.module.scss";
 

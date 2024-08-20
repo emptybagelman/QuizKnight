@@ -13,17 +13,17 @@ export function enemyStats(name: string, loop:number) {
             break;
         case "Mushroom":
             hp = randomInt((3 + Math.floor(loop * 0.5)), 2)
-            dmg = randomInt((1 + Math.floor(loop * 0.2)), 1)
+            dmg = randomInt((1 + Math.floor(loop * 0.3)), 1)
             armour = randomInt((2 + Math.floor(loop * 0.6)), 2)
             break;
         case "Skeleton":
             hp = randomInt((2 + Math.floor(loop * 0.3)), 1)
-            dmg = randomInt((3 + Math.floor(loop * 0.8)), 1)
+            dmg = randomInt((3 + Math.floor(loop * 0.65)), 1)
             armour = randomInt((1 + Math.floor(loop * 0.4)), 1)
             break;
         case "Flying Eye":
-            hp = randomInt((3 + Math.floor(loop * 0.7)), 2)
-            dmg = randomInt((2 + Math.floor(loop * 0.5)), 2)
+            hp = randomInt((3 + Math.floor(loop * 0.65)), 2)
+            dmg = randomInt((2 + Math.floor(loop * 0.4)), 2)
             armour = 0
             break;
         default:

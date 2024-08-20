@@ -46,3 +46,16 @@
         }
     }
 }
+
+@media screen and (max-width: 800px) {
+    .consumable_wrapper {
+        left: 10px;
+        top: 75px;
+        flex-direction: column;
+
+        .item_container{
+            width: 35px;
+            height: 35px;
+        }
+    }
+}

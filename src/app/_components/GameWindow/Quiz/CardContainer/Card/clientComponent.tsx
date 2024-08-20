@@ -62,7 +62,7 @@ export default function CardClientComponent(
             <h2>{card.category?.category}</h2>
 
             <div className={styles.card_info}>
-                <p className={styles.buff}>{data?.name} +{data?.default_value + increaseBonus()}{data.name === "Critical Chance" || data.name === "Parry" ? "%" : ""}</p>
+                <p className={styles.buff}>{data?.name} +{data?.default_value + increaseBonus()}{data.name === "Critical Chance" || data.name === "Parry" || data.name === "Looting" ? "%" : ""}</p>
                 <p className={styles.buff_desc}>{data?.description}</p>
             </div>
         </div>

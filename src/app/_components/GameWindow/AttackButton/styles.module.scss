@@ -3,7 +3,7 @@
 .attack_button{
     @include button_s;
     @include orange;
-    z-index: 999;
+    z-index: 9;
 
     &:disabled{
         filter: brightness(0.8);

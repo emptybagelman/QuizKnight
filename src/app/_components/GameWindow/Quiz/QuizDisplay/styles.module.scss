@@ -70,6 +70,7 @@
     .quiz_display_wrapper {
         box-sizing: border-box;
         padding: $gap-xl;
+
         .answers {
             gap: $gap-m;
             box-sizing: border-box;
@@ -84,6 +85,8 @@
 
 @media screen and (max-width: 500px) {
     .quiz_display_wrapper {
+        height: 100%;
+        padding: $gap-xl 0;
         h2{
             font-size: $h2-l;
         }
@@ -93,9 +96,10 @@
         .answers {
             display: flex;
             flex-direction: column;
+            width: 70%;
 
             button {
-                height: 100px;
+                height: 80px;
                 min-height: auto;
                 padding: $padding-m;
             }

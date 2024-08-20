@@ -25,7 +25,7 @@ export default function Combat(){
     const DELAY = 3500;
     
     const {player, setPlayer, gameState, setGameState} = useGame()
-    const {playerAttack,setPlayerAttack,enemyAttack,setEnemyAttack,enemyData,setEnemyData,currentDialogue,setCurrentDialogue, buttonState,setButtonState} = useCombat()
+    const { setPlayerAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
 
     const { playSwingSound, playHitSound, playBlockSound } = useAudio()
 
@@ -33,7 +33,7 @@ export default function Combat(){
     const parryChance = chanceEval(player.parry)
     const lootChance = chanceEval(player.looting)
 
-    const playerTotalDamage = critChance ? player.dmg*2 : player.dmg
+    const playerTotalDamage = critChance ? player.dmg*1.5 : player.dmg
     const parryBool = parryChance ? true : false
     const router = useRouter()
 

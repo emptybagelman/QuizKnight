@@ -1,3 +1,5 @@
+"use client"
+
 import { type Enemy, type PlayerType } from "@/app/_types/types"
 import styles from "./styles.module.scss"
 
@@ -43,5 +45,3 @@ export default function HealthBar({character}: {character: PlayerType | Enemy}){
         </div>
     )
 }
-
-// {"width":`${(character.hp/character.maxhp)*100}%`,"backgroundColor":handleHpBar() }
