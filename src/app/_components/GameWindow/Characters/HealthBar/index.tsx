@@ -1,4 +1,4 @@
-import { type Enemy, type Player } from "@/app/_types/types"
+import { type Enemy, type PlayerType } from "@/app/_types/types"
 import styles from "./styles.module.scss"
 
 export default function HealthBar({character}: {character: Player | Enemy}){

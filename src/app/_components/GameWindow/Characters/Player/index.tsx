@@ -1,3 +1,5 @@
+"use client"
+
 import { useCombat } from "../../../CombatContext"
 import { useGame } from "../../../GameContext"
 import { playerAnims } from "../../CombatContainer/Combat/sprites"

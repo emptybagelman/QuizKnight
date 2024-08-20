@@ -1,3 +1,5 @@
+"use client"
+
 import styles from "./styles.module.scss";
 
 export default function Hit({dmg_value, parryBool}: {dmg_value: number, parryBool?: boolean}) {

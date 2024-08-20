@@ -287,7 +287,7 @@ export default function Combat(){
                 {
                     enemyData &&
                     enemyData.map((enemy, idx) => (
-                        <EnemySprite key={idx} id={idx} enemy={enemy} enemyData={enemyData} enemyAttack={enemyAttack} playerAttack={playerAttack} damage={playerTotalDamage}/>
+                        <EnemySprite key={idx} id={idx} enemy={enemy} damage={playerTotalDamage}/>
                     ))
                 }
             </SpriteContainer>
