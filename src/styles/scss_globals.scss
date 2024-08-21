@@ -65,7 +65,6 @@ $window: calc(100dvh - 75px);
 
 $font:  '__MedievalSharp_ba6bb8', '__MedievalSharp_Fallback_ba6bb8';
 
-
 // BACKGROUND COLOURS
 
 @mixin orange {
@@ -96,6 +95,22 @@ $font:  '__MedievalSharp_ba6bb8', '__MedievalSharp_Fallback_ba6bb8';
 @mixin hover {
     background-color: $hover;
     box-shadow: $inset-m $hover-shadow;
+}
+
+@mixin floatInAnim {
+    opacity: 0;
+    animation: 1s floatIn forwards;
+}
+
+@keyframes floatIn {
+    from{
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to{
+        opacity: 1;
+        transform: none;
+    }
 }
 
 

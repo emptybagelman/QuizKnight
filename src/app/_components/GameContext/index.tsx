@@ -20,6 +20,7 @@ const defaultPlayerState: PlayerType = {
     critical: 2,
     parry: 5,
     looting: 10,
+    agility: 2,
     consumables: [{
         id: 0,
         name: "Health Potion",
@@ -32,12 +33,12 @@ const defaultPlayerState: PlayerType = {
         value: 0,
         description: "power!"
     },
-    // {
-    //     id: 2,
-    //     name: "Bomb",
-    //     value: 0,
-    //     description: "boom"
-    // },
+    {
+        id: 2,
+        name: "Agility Crystal",
+        value: 0,
+        description: "boom"
+    },
 ]
 }
 

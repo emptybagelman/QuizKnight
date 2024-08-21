@@ -1,4 +1,6 @@
 // import { getAllCategories, getRandomThreeCategories } from "@/server/actions/categoryActions"
+
+
 import styles from "./styles.module.scss"
 import { getRandomThreeCards } from "@/server/actions/categoryActions"
 import { useQuery } from "@tanstack/react-query"

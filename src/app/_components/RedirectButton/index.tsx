@@ -18,7 +18,8 @@ export default function RedirectButton({route, text}: RedirectProps){
             route &&
             <Link
             onMouseEnter={() => playHoverSound()}
-            className={styles.redirect_button} href={route.toLowerCase()}
+            className={ styles.redirect_button }
+            href={route.toLowerCase()}
             >
                 {text}
             </Link>

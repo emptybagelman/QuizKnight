@@ -10,6 +10,7 @@ export type PlayerType = {
     critical: number,
     parry: number,
     looting: number,
+    agility: number,
     consumables: Consumable[]
 }
 

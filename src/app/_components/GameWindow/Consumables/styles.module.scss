@@ -34,6 +34,18 @@
             image-rendering: pixelated;
         }
 
+        &[content="Mana Potion"]{
+            background-image: url("../../../assets/mana_potion.png");
+            background-size: cover;
+            image-rendering: pixelated;
+        }
+
+        &[content="Agility Crystal"]{
+            background-image: url("../../../assets/agility_crystal.png");
+            background-size: cover;
+            image-rendering: pixelated;
+        }
+
         .item_amount{
             position: absolute;
             bottom: -10px;

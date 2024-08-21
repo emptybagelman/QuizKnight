@@ -93,7 +93,7 @@ export default function Combat(){
                     // get id of Consumable from player.consumables
                     const itemId = updatedConsumables.filter((item: Consumable) => item.name === randItem)[0]?.id
 
-                    if(!itemId) return prev;
+                    if(itemId === undefined) return prev;
 
                     // validity check
                     if(!updatedConsumables[itemId]) return prev;

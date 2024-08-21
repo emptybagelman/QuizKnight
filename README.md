@@ -34,9 +34,10 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
         - [] burn over time
         - [] static
             - chance to make enemy freeze
-        - [] hp potion
-        - [] power move potion
-        - [] armour plating
+        - [x] hp potion
+        - [] mana (power move) potion
+        - [] temporary agility
+        - [] single use shield
     - [x] enemy differences
         - [x] goblin
             - low hp

@@ -99,6 +99,7 @@ export function randomItem(){
     const items = [
         "Health Potion",
         "Mana Potion",
+        "Agility Crystal"
         // "Bomb",
     ]
     const item = items[Math.floor(Math.random() * items.length)]
