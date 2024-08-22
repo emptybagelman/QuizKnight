@@ -1,0 +1,44 @@
+@import "@/styles/scss_globals.scss";
+
+#logo{
+    font-size: 8rem;
+    position: absolute;
+    top: -120%;
+    left: -10%;
+
+    justify-self: center;
+    max-width: 500px;
+    height: auto;
+    image-rendering: pixelated;
+
+    grid-column: span 2;
+    animation-duration: 1.5s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    line-height: 100px;
+    letter-spacing: -10px;
+
+    #quiz {
+        @include floatInAnim;
+        display: flex;
+        align-items: flex-end;
+        #logo_img{
+
+            width: 150px;
+            height: 150px;
+            background-image: url("../../assets/logoimg.png");
+            background-size: cover;
+            image-rendering: pixelated;
+
+        }
+    }
+
+    #knight{
+        @include floatInAnim;
+        margin-left: $gap-m;
+        animation-delay: 0.2s;
+    }
+}

@@ -32,7 +32,7 @@
 
     #home_wrapper{
         padding: $gap-xl;
-        // $load_anim: floatIn forwards;
+        position: relative;
 
         display: grid;
         align-items: center;
@@ -41,22 +41,10 @@
         box-sizing: border-box;
         gap: $gap-l;
 
-        img, a:nth-child(2), a:nth-child(3), &>button {
+        a:nth-child(2), a:nth-child(3), &>button {
             @include floatInAnim;
         }
 
-        img{
-            width: 80%;
-            justify-self: center;
-            max-width: 500px;
-            height: auto;
-            margin-bottom: $gap-xxl;
-            image-rendering: pixelated;
-
-            grid-column: span 2;
-
-            animation-duration: 1.5s;
-        }
 
         // play button
         a:nth-child(2){
