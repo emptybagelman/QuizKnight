@@ -1,13 +1,14 @@
 @import "@/styles/scss_globals.scss";
 
 #logo{
-    font-size: 8rem;
-    position: absolute;
-    top: -120%;
-    left: -10%;
+    font-size: 7rem;
+    margin-bottom: $gap-s;
+    // position: absolute;
+    // top: -120%;
 
     justify-self: center;
     max-width: 500px;
+    width: 90%;
     height: auto;
     image-rendering: pixelated;
 
@@ -25,6 +26,7 @@
         @include floatInAnim;
         display: flex;
         align-items: flex-end;
+        align-self: flex-start;
         #logo_img{
 
             width: 150px;
@@ -38,7 +40,34 @@
 
     #knight{
         @include floatInAnim;
-        margin-left: $gap-m;
+        align-self: flex-end;
         animation-delay: 0.2s;
+    }
+}
+
+// @media screen and (max-width: 800px) {
+//     #logo {
+//         font-size: 6rem;
+//         #quiz {
+//             #logo_img {
+//                 width: 125px;
+//                 height: 125px;
+//             }
+//         }
+//     }
+// }
+    
+@media screen and (max-width: 400px) {
+    #logo {
+        transform: translateX(-10px);
+        font-size: 5rem;
+        line-height: 65px;
+        #quiz {
+            
+            #logo_img {
+                width: 100px;
+                height: 100px;
+            }
+        }
     }
 }
