@@ -10,7 +10,7 @@ export default function VolumeSlider(){
     }
 
     return (
-        <div id={styles.volume_slider_wrapper}>
+        <div className={styles.widget_wrapper}>
             <p>Volume</p>
             <input 
                 type="range" 

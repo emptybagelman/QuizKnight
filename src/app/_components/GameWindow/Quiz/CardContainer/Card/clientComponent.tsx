@@ -31,11 +31,11 @@ export default function CardClientComponent(
     function increaseBonus(){
         switch (card.question.difficulty) {
             case "easy":
-                return 0
-            case "medium":
-                return 1
-            case "hard":
                 return 2
+            case "medium":
+                return 6
+            case "hard":
+                return 9
             default:
                 return 0;
         }
@@ -62,7 +62,7 @@ export default function CardClientComponent(
             <h2>{card.category?.category}</h2>
 
             <div className={styles.card_info}>
-                <p className={styles.buff}>{data?.name} +{data?.default_value + increaseBonus()}{data.name === "Critical Chance" || data.name === "Parry" || data.name === "Looting" ? "%" : ""}</p>
+                <p className={styles.buff}>{data?.name} +{data?.default_value + increaseBonus()}%</p>
                 <p className={styles.buff_desc}>{data?.description}</p>
             </div>
         </div>

@@ -49,13 +49,13 @@ export default function QuizDisplay(){
             if(stat === "hp"){
                 setPlayer((prev: PlayerType) => ({
                     ...prev,
-                    maxhp: prev.maxhp + bonus
+                    maxhp: prev.maxhp + (prev.maxhp * (bonus / 100))
                 }))
             }
             else{
                 setPlayer((prev: PlayerType) => ({
                     ...prev,
-                    [stat]: Number(prev[stat as keyof PlayerType]) + bonus
+                    [stat]: Number(prev[stat as keyof PlayerType]) + (Number(prev[stat as keyof PlayerType]) * (bonus / 100))
                 }))
             }
         }

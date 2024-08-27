@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CombatDialogue from "../CombatDialogue";
 import { type PlayerType, type Enemy, type GameStateProps, type Consumable } from "@/app/_types/types"
 import { useGame } from "../../../GameContext";
@@ -18,23 +18,30 @@ import useAudio from "@/app/_hooks/useVolume";
 import SettingsWidget from "@/app/_components/Settings/GameSettings";
 import ConsumableContainer from "../../Consumables";
 import { randomItem } from "@/app/_functions/game_functions";
+import HealthBar from "../../Characters/HealthBar";
+import Hit from "../../Characters/Hit";
 
 export default function Combat(){
 
     const ATTACK_TIMEOUT = 500;
     const DELAY = 3500;
     
-    const {player, setPlayer, gameState, setGameState} = useGame()
-    const { setPlayerAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
+    const { player, setPlayer, gameState, setGameState} = useGame()
+    const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
 
     const { playSwingSound, playHitSound, playBlockSound } = useAudio()
 
-    const critChance = chanceEval(player.critical)
-    const parryChance = chanceEval(player.parry)
-    const lootChance = chanceEval(player.looting)
+    const [ parry, setParry ] = useState<boolean>(false)
 
-    const playerTotalDamage = critChance ? player.dmg*1.5 : player.dmg
-    const parryBool = parryChance ? true : false
+    useEffect(() => {
+        const chance = Math.random() < player.parry / 100 ? true : false
+        setParry(chance)
+    },[ enemyAttack == true ])
+
+    const critChance = useMemo(() => chanceEval(player.critical), [playerAttack])
+    const lootChance = useMemo(() => chanceEval(player.looting), [playerAttack])
+
+    const playerTotalDamage = critChance ? player.dmg * 1.5 : player.dmg
     const router = useRouter()
 
     const emptyDialogue = {
@@ -204,7 +211,7 @@ export default function Combat(){
         let overflowDmg = 0;
         let playerHp = tempPlayer.hp;
 
-        if(!(parryBool)){ // handles no parry
+        if(!(parry)){ // handles no parry
             if(tempPlayer.armour <= enemyDmg){
                 overflowDmg = Math.abs(tempPlayer.armour - enemyDmg)
                 playerHp = tempPlayer.hp - overflowDmg
@@ -283,11 +290,18 @@ export default function Combat(){
             <StartScreen />
             <ConsumableContainer />
             <SpriteContainer>
-                <Player parryBool={parryBool}/>
+                <Player>
+                {
+                    enemyAttack 
+                    ? <Hit dmg={enemyData[0]!.dmg} parry={parry}/>
+                    : ""
+                }
+                    <HealthBar character={player} />
+                </Player>
                 {
                     enemyData &&
                     enemyData.map((enemy, idx) => (
-                        <EnemySprite key={idx} id={idx} enemy={enemy} damage={playerTotalDamage}/>
+                        <EnemySprite key={idx} id={idx} enemy={enemy} />
                     ))
                 }
             </SpriteContainer>

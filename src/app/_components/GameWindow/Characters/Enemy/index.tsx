@@ -5,19 +5,18 @@ import { resolveAnimType } from "../../CombatContainer/Combat/sprites"
 import HealthBar from "../HealthBar"
 import Hit from "../Hit"
 import { useCombat } from "@/app/_components/CombatContext"
+import { useGame } from "@/app/_components/GameContext"
 
 export default function EnemySprite(
     {
         id,
         enemy,
-        damage,
-
     }:{
         id: number,
         enemy: Enemy,
-        damage: number,
     }) {
 
+        const { player } = useGame()
         const { enemyData, playerAttack, enemyAttack } = useCombat()
 
     return (
@@ -26,7 +25,7 @@ export default function EnemySprite(
             className={enemyData[0] && resolveAnimType(enemy, enemyData, enemyAttack, playerAttack)}>
             {
                 playerAttack && enemyData[0]?.id === enemy.id
-                ? <Hit dmg_value={damage}/>
+                ? <Hit dmg={player.dmg} parry={false}/>
                 : ""
             }
             <HealthBar character={enemy} />

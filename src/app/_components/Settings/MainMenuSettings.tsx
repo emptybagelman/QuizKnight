@@ -1,5 +1,6 @@
 import { useSettings } from "../SettingsContext"
 import CloseButton from "./CloseButton"
+import DamageNumberCheckbox from "./Options/DamageNumbers"
 import VolumeSlider from "./Options/VolumeSlider"
 import styles from "./styles.module.scss"
 import useAudio from "@/app/_hooks/useVolume"
@@ -20,7 +21,7 @@ export default function MainMenuSettings() {
                 <a href="/" onClick={handleClick}>Home</a>
                 <CloseButton />
                 <VolumeSlider />
-
+                <DamageNumberCheckbox />
             </div>
         </div>
     )

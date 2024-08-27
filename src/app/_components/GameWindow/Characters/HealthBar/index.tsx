@@ -2,8 +2,11 @@
 
 import { type Enemy, type PlayerType } from "@/app/_types/types"
 import styles from "./styles.module.scss"
+import { useSettings } from "@/app/_components/SettingsContext"
 
 export default function HealthBar({character}: {character: PlayerType | Enemy}){
+
+    const { damageNumbers } = useSettings()
 
     function handleHpBar(){
         if((character.hp / character.maxhp) <= 0) {
@@ -40,7 +43,7 @@ export default function HealthBar({character}: {character: PlayerType | Enemy}){
             <div id={styles.maxhp}></div>
             {
                 character.armour > 0 &&
-                <div id={styles.armour}>{character.armour}</div>
+                <div id={styles.armour}>{damageNumbers ? Math.floor(character.armour) : character.armour}</div>
             }
         </div>
     )

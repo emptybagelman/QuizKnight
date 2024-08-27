@@ -1,14 +1,52 @@
 @import "@/styles/scss_globals.scss";
 
-#volume_slider_wrapper {
+.widget_wrapper {
     display: flex;
+    align-items: center;
+
+    grid-column: span 2;
+    justify-self: center;
 
     &>*{
         font-size: $p-m;
         margin: $padding-m;
     }
 
+    .checkbox {
+        $dim: 25px;
+        position: relative;
+        width: $dim;
+        height: $dim;
+        background-color: $bg-translucent;
+        border: 1px solid $orange-shadow;
+        appearance: none;
+        -webkit-appearance: none;
+        border-radius: $border-s;
+
+        &::before{
+            content: "";
+            width: $dim;
+            height: $dim;
+            color: red;
+        }
+
+        &:hover{
+            cursor: pointer;
+            background-color: $hover;
+            box-shadow: $inset-xs $hover-shadow;
+            border: 1px solid $hover;
+        }
+
+        &:checked {
+            background-color: $orange;
+            box-shadow: $inset-xs $orange-shadow;
+            transform: scale(0.8);
+        }
+
+    }
+
     .volume_range {
+        appearance: none;
         -webkit-appearance: none;
         background: transparent;
         cursor: pointer;
@@ -44,5 +82,13 @@
                 background-color: $hover;
             }
         }
+    }
+}
+
+#damage_number_wrapper {
+    display: flex;
+    &>*{
+        font-size: $p-m;
+        margin: $padding-m;
     }
 }

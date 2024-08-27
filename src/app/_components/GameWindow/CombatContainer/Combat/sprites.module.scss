@@ -18,6 +18,18 @@ $playerSpriteH: calc($playerSpriteW * 3);
         transform: translateY(-50%);
     }
 
+    &::after{
+        content: "";
+        width: 70%;
+        height: 10px;
+        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.1) 70%);
+        border-radius: 50%;
+        position: absolute;
+        bottom: 25px; 
+        left: 10px;
+        animation: shadow_bobble 0.5s steps(3) alternate infinite;
+    }
+
     &::before{
         content: "";
         position: absolute;
@@ -58,6 +70,12 @@ $playerSpriteH: calc($playerSpriteW * 3);
         animation: deathAnim_player 1s steps(8) forwards !important;
     }
 }
+
+@keyframes shadow_bobble {
+    from{transform: translateY(0px);}
+    to{transform: translateY(2px);}
+}
+
 @keyframes idleAnim_player {
     0% { background-position: 0 0; }
     100% { background-position: calc(-1540px * 3) 0; }
@@ -86,6 +104,13 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
     @extend .player;
     width: $goblinSpriteW;
     height: $goblinSpriteW;
+
+    &::after {
+        left: 30px;
+        bottom: 38px;
+        width: 65%;
+        animation: shadow_bobble 0.5s steps(4) alternate infinite;
+    }
 
     &::before{
         width: $goblinDim;
@@ -156,6 +181,10 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 
 .mushroom {
     @extend .goblin;
+    &::after{
+        width: 50%;
+        left: 40px;
+    }
     &::before {
         background-image: url("../../../../assets/mushroom_idle.png") !important;
     }
