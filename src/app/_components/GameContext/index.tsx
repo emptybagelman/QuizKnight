@@ -20,24 +20,30 @@ const defaultPlayerState: PlayerType = {
     critical: 2,
     parry: 5,
     looting: 10,
-    agility: 2,
+    agility: 0,
+    skills: [{
+        id: 0,
+        name: "Power Move",
+        type: "damage",
+        charge: 0,
+    }],
     consumables: [{
         id: 0,
         name: "Health Potion",
         value: 1,
-        description: "top up"
+        description: "Fills your HP to full."
     },
     {
         id: 1,
         name: "Mana Potion",
         value: 0,
-        description: "power!"
+        description: "Charge your power move to the max!"
     },
     {
         id: 2,
         name: "Agility Crystal",
         value: 0,
-        description: "boom"
+        description: "Dodge the enemy's next attack."
     },
 ]
 }

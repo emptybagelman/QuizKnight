@@ -1,5 +1,7 @@
 @import "@/styles/scss_globals.scss";
 
+
+
 .dialogue_wrapper{
     width: 60%;
     height: 100px;
@@ -16,17 +18,7 @@
 
     z-index: 10;
 }
-
-.text{
-    white-space: nowrap;
-    text-align: center;
-    overflow: hidden;
-    font-size: $p-m;
-}
-
-.dialogue_anim{
-    animation: typewriter 2s steps(32) 1s 1 normal both;
-}
+  
 
 @media screen and (max-width: 500px)  {
     .dialogue_wrapper{
@@ -35,9 +27,4 @@
     .text{
         font-size: $p-s;
     }
-}
-
-@keyframes typewriter{
-    from{width: 0;}
-    to{width: 30ch;}
 }

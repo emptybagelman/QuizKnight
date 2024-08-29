@@ -17,6 +17,9 @@ export default function useAudio() {
     const [playHitSound] = useSound(audio.impact_flesh,{volume: 2 * (volume / 100)})
     const [playBlockSound] = useSound(audio.block,{volume: 3 * (volume / 100)})
     const [playHealSound] = useSound(audio.heal,{volume: 3 * (volume / 100)})
+    const [playEvadeSound] = useSound(audio.evade,{volume:  1 * (volume / 100)})
+    const [playAgilitySound] = useSound(audio.agility,{volume:  1 * (volume / 100)})
+    const [playPowerMoveSound] = useSound(audio.power_move,{volume:  1 * (volume / 100)})
 
     return {
         playIntoTheWastes,
@@ -27,6 +30,9 @@ export default function useAudio() {
         playSwingSound,
         playHitSound,
         playBlockSound,
-        playHealSound
+        playHealSound,
+        playEvadeSound,
+        playAgilitySound,
+        playPowerMoveSound
     }
 }

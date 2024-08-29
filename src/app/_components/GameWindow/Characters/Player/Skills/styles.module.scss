@@ -1,0 +1,36 @@
+@import "@/styles/scss_globals.scss";
+
+.power_move_wrapper {
+    $border_r: 0px 0px $border-s $border-s;
+    $outline: solid 2px $bg;
+
+    height: 5px;
+    width: calc(100% - 8px);
+    position: absolute;
+    top: -25px;
+    background-color: $bg-light;
+
+    transform: translateX(-15px);
+    border-radius: $border_r;
+
+    outline: $outline;
+
+    .charge{
+        background-color: $blue;
+        box-shadow: $blue-shadow inset 0 -2px 0 0;
+        height: 100%;
+        width: 100%;
+        transition: width 0.2s ease-out;
+    }
+}
+
+@keyframes glow {
+    30%{
+        background-color: $blue;
+        box-shadow: $blue-shadow inset 0 -2px 0 0;
+    }
+    100%{
+        background-color: $hover;
+        box-shadow: $hover-shadow inset 0 -2px 0 0;
+    }
+}

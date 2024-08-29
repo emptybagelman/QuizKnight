@@ -28,6 +28,10 @@
                 bounce 2s infinite cubic-bezier(0.7,-1525,0.5,1000),
                 fadeOut 1s cubic-bezier(1,.21,.96,.91) forwards;
 
+    background-image: url("../../../../../app/assets/shield.png");
+    background-size: 0;
+    
+
     @keyframes bounce {
         to {
             top: 50.1%;

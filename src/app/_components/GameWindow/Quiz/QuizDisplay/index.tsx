@@ -90,8 +90,6 @@ export default function QuizDisplay(){
             loop: prev.loop + 1,
             quizState: false
         }))
-        // setLoop(loop + 1)
-        // setQuizState(false)
     }
 
     return (

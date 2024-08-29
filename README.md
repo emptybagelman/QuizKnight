@@ -26,6 +26,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [x] new basic sprites!
 - [] settings
     - [x] volume slider
+    - [x] damage number rounded toggle
     - [] animation toggle
     - [] difficulty mode
 - [] gameplay!
@@ -36,8 +37,8 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
             - chance to make enemy freeze
         - [x] hp potion
         - [] mana (power move) potion
-        - [] temporary agility
-        - [] single use shield
+        - [x] agility crystal - dodge next attack
+        - [] single use shield ?? 
     - [x] enemy differences
         - [x] goblin
             - low hp
@@ -59,7 +60,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [x] block chance
     - [] upgrades
         - [] power move
-            - has to recharge over time
+            - [x] has to recharge +10 per kill
             - out of play for two moves after
             - may only hold one power move at once
         - [] two attacks in one round
@@ -80,7 +81,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [x] music
     - [x] combat
         - [x] combat
-        - [] quiz
+        - [x] quiz
 - [] visual effects
     - [x] screen shake
     - [x] sprite damage

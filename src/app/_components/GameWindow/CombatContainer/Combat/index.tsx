@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import CombatDialogue from "../CombatDialogue";
-import { type PlayerType, type Enemy, type GameStateProps, type Consumable } from "@/app/_types/types"
+import { type PlayerType, type Enemy, type GameStateProps, type Consumable, Skill } from "@/app/_types/types"
 import { useGame } from "../../../GameContext";
 import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
@@ -20,6 +20,7 @@ import ConsumableContainer from "../../Consumables";
 import { randomItem } from "@/app/_functions/game_functions";
 import HealthBar from "../../Characters/HealthBar";
 import Hit from "../../Characters/Hit";
+import Skills from "../../Characters/Player/Skills";
 
 export default function Combat(){
 
@@ -29,14 +30,14 @@ export default function Combat(){
     const { player, setPlayer, gameState, setGameState} = useGame()
     const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
 
-    const { playSwingSound, playHitSound, playBlockSound } = useAudio()
+    const { playSwingSound, playHitSound, playBlockSound, playEvadeSound } = useAudio()
 
     const [ parry, setParry ] = useState<boolean>(false)
 
     useEffect(() => {
         const chance = Math.random() < player.parry / 100 ? true : false
         setParry(chance)
-    },[ enemyAttack == true ])
+    },[ enemyAttack == true, player.parry ])
 
     const critChance = useMemo(() => chanceEval(player.critical), [playerAttack])
     const lootChance = useMemo(() => chanceEval(player.looting), [playerAttack])
@@ -105,6 +106,10 @@ export default function Combat(){
                     // validity check
                     if(!updatedConsumables[itemId]) return prev;
 
+                    if(itemId === 2) {
+                        if(updatedConsumables[itemId].value >= 1) return prev;
+                    }
+
                     // increment value
                     updatedConsumables[itemId] = {
                         ...updatedConsumables[itemId],
@@ -163,6 +168,36 @@ export default function Combat(){
                 if(enemyHp <= 0){
                     setCurrentDialogue(activeEmptyDialogue)
 
+
+                    // ADD +10 CHARGE ON KILL 
+                    
+                    setPlayer((prev: PlayerType) => {
+                        if(!prev.skills) return {
+                            ...prev
+                        };
+
+                        const updatedSkills = [...prev.skills] as Skill[]
+                        const charge = updatedSkills[0]?.charge
+
+                        if(!(typeof charge == "number")) return {
+                            ...prev
+                        }
+
+                        if(charge >= 100) return {
+                            ...prev
+                        }
+                        
+                        updatedSkills[0] = {
+                            ...updatedSkills[0]!,
+                            charge: charge + 10
+                        }
+
+                        return {
+                            ...prev,
+                            skills: updatedSkills
+                        }
+                    })
+
                     // SHIFT ENEMYS FORWARD
                     setEnemyData(
                         (prev: Enemy[]) => {
@@ -211,7 +246,7 @@ export default function Combat(){
         let overflowDmg = 0;
         let playerHp = tempPlayer.hp;
 
-        if(!(parry)){ // handles no parry
+        if(!(parry || tempPlayer.agility == 1)){ // handles no parry
             if(tempPlayer.armour <= enemyDmg){
                 overflowDmg = Math.abs(tempPlayer.armour - enemyDmg)
                 playerHp = tempPlayer.hp - overflowDmg
@@ -242,7 +277,17 @@ export default function Combat(){
 
             playHitSound()
         }
-        else { // sets parry dialogue
+
+        else if(tempPlayer.agility == 1){
+            playEvadeSound()
+            setCurrentDialogue({
+                enemy: enemyData[0],
+                active: true,
+                index: 8
+            })
+        }
+
+        else if(parry){ // sets parry dialogue
             playBlockSound()
             setCurrentDialogue({ 
                 enemy: enemyData[0],
@@ -250,12 +295,20 @@ export default function Combat(){
                 index: 5
             })
         }
+        
 
         setEnemyAttack(true)  // RUNS ENEMY ATTACK
         playSwingSound()
         
         setTimeout(() => {
-            setEnemyAttack(false)            
+            setEnemyAttack(false)       
+            
+            if(player.agility == 1){
+                setPlayer((prev: PlayerType) => ({
+                    ...prev,
+                    agility: 0
+                }))
+            }
 
             setTimeout(() => {
                 if(playerHp <= 0){
@@ -288,14 +341,15 @@ export default function Combat(){
             <SettingsWidget />
 
             <StartScreen />
-            <ConsumableContainer />
+            <ConsumableContainer buttonState={buttonState}/>
             <SpriteContainer>
                 <Player>
                 {
-                    enemyAttack 
+                    enemyAttack
                     ? <Hit dmg={enemyData[0]!.dmg} parry={parry}/>
                     : ""
                 }
+                    <Skills />
                     <HealthBar character={player} />
                 </Player>
                 {

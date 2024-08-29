@@ -12,7 +12,7 @@ $playerSpriteH: calc($playerSpriteW * 3);
     display: flex;
     position: absolute;
 
-    transform: translate(-75%, $sprite-y-offset);
+    transform: translate(-50%, $sprite-y-offset);
 
     &>p{
         transform: translateY(-50%);
@@ -71,6 +71,15 @@ $playerSpriteH: calc($playerSpriteW * 3);
     }
 }
 
+.playerEvadeAnim {
+    @extend .player;
+    &::before{
+        background-size: calc(560px * 3) $playerSpriteH !important;
+        background-image: url("../../../../assets/knight_evade.png") !important;
+        animation: evadeAnim_player 0.5s steps(4) forwards !important;
+    }
+}
+
 @keyframes shadow_bobble {
     from{transform: translateY(0px);}
     to{transform: translateY(2px);}
@@ -91,6 +100,10 @@ $playerSpriteH: calc($playerSpriteW * 3);
 @keyframes deathAnim_player {
     0%{ background-position: 0 0; }
     100%{ background-position: calc(-1260px * 3 + 420px) 0; }
+}
+@keyframes evadeAnim_player {
+    0%{ background-position: 0 0; }
+    100%{ background-position: calc(-560px * 3) 0; }
 }
 
 
@@ -120,7 +133,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 
         animation: idleAnim_enemy 1s steps(4) infinite;
         image-rendering: pixelated;
-        transform: translate(0%,-65%) scaleX(-1);
+        transform: translate(-10%,-65%) scaleX(-1);
         
     }
 

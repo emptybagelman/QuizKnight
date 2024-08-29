@@ -11,7 +11,15 @@ export type PlayerType = {
     parry: number,
     looting: number,
     agility: number,
+    skills: Skill[] | [],
     consumables: Consumable[]
+}
+
+export type Skill = {
+    id: number,
+    name: string,
+    type: string,
+    charge?: number,
 }
 
 export type Enemy = {

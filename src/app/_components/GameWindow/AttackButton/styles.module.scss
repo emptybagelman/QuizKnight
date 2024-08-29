@@ -4,6 +4,7 @@
     @include button_s;
     @include orange;
     z-index: 9;
+    font-family: $font !important;
 
     &:disabled{
         filter: brightness(0.8);

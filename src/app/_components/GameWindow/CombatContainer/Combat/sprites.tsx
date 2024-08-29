@@ -3,6 +3,7 @@ import sprites from "./sprites.module.scss";
 
 export const playerAnims = (player: PlayerType, enemyBool: boolean, playerBool: boolean) => {
     if(player.hp <= 0) return sprites.playerDeathAnim;
+    if(player.agility && enemyBool) return sprites.playerEvadeAnim;
     if(enemyBool) return sprites.playerHitAnim;
     if(playerBool) return sprites.playerAttackAnim;
     return sprites.player;
