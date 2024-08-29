@@ -31,11 +31,11 @@ export default function CardClientComponent(
     function increaseBonus(){
         switch (card.question.difficulty) {
             case "easy":
-                return 4
-            case "medium":
                 return 9
+            case "medium":
+                return 24
             case "hard":
-                return 14
+                return 49
             default:
                 return 0;
         }
