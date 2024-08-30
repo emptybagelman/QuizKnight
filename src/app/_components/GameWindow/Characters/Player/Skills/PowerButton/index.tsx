@@ -25,8 +25,8 @@ export default function PowerButton({buttonState}:{buttonState: boolean}){
             enemies.push(enemyData[1]!)
         }
 
-        for(let i=0;i<enemies.length;i++){
-            enemies[i]!.hp /= 2 
+        for(let enemy of enemies){
+            enemy!.hp /= 2 
         }
 
         
