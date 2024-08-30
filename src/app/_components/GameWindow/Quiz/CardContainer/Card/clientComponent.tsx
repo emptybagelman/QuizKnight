@@ -35,7 +35,7 @@ export default function CardClientComponent(
             case "medium":
                 return 9
             case "hard":
-                return 14
+                return 24
             default:
                 return 0;
         }
