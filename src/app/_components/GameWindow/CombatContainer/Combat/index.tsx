@@ -21,6 +21,7 @@ import { randomItem } from "@/app/_functions/game_functions";
 import HealthBar from "../../Characters/HealthBar";
 import Hit from "../../Characters/Hit";
 import Skills from "../../Characters/Player/Skills";
+import PowerButton from "../../Characters/Player/Skills/PowerButton";
 
 export default function Combat(){
 
@@ -361,6 +362,7 @@ export default function Combat(){
             </SpriteContainer>
 
             <AttackButton handleClick={handleClick} buttonState={buttonState} />
+            <PowerButton buttonState={buttonState}/>
             <CombatDialogue data={currentDialogue} extra={extraDialogue}/>
             <ScoreCounter />
         </CombatContainer>

@@ -34,3 +34,31 @@
         box-shadow: $hover-shadow inset 0 -2px 0 0;
     }
 }
+
+#power_button{
+    @include button_s;
+
+    background-color: $red;
+    box-shadow: $inset-s $red-shadow;
+    outline: solid 1px $yellowwhite;
+    padding: $padding-m $padding-xl;
+    color: $yellowwhite;
+    font-family: $font;
+    bottom: 100px !important;
+    animation: oscillate 0.5s alternate infinite;
+
+    &:disabled{
+        display: none;
+        filter: brightness(0.8);
+        &:hover{
+            @include orange;
+            cursor: default
+        }
+    }
+}
+
+@keyframes oscillate {
+    to{
+        outline: solid 4px $yellowwhite;
+    }
+}
