@@ -26,7 +26,7 @@ export default function PowerButton({buttonState}:{buttonState: boolean}){
         }
 
         for(const enemy of enemies){
-            enemy!.hp /= 2 
+            enemy.hp /= 2 
         }
 
         
