@@ -10,7 +10,7 @@ import { type Enemy } from "@/app/_types/types"
 
 export default function PowerButton({buttonState}:{buttonState: boolean}){
 
-    const { player } = useGame()
+    const { player, setPlayer } = useGame()
     const { enemyData, setEnemyData } = useCombat()
 
     function handleClick(){
