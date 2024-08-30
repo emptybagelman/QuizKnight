@@ -6,7 +6,7 @@
 import { useGame } from "@/app/_components/GameContext"
 import styles from "../styles.module.scss"
 import { useCombat } from "@/app/_components/CombatContext"
-import { type Enemy, type PlayerType } from "@/app/_types/types"
+import { type Enemy, type PlayerType, type Skill } from "@/app/_types/types"
 
 export default function PowerButton({buttonState}:{buttonState: boolean}){
 
