@@ -37,7 +37,30 @@ export default function PowerButton({buttonState}:{buttonState: boolean}){
             return e[0]
         })
 
-        console.log(newEnemyData);
+        setPlayer((prev: PlayerType) => {
+                        if(!prev.skills) return {
+                            ...prev
+                        };
+
+                        const updatedSkills = [...prev.skills] as Skill[]
+                        const charge = updatedSkills[0]?.charge
+
+                        if(!(typeof charge == "number")) return {
+                            ...prev
+                        }
+
+                       
+                        
+                        updatedSkills[0] = {
+                            ...updatedSkills[0]!,
+                            charge: 0
+                        }
+
+                        return {
+                            ...prev,
+                            skills: updatedSkills
+                        }
+                    })
 
         setEnemyData(() => (newEnemyData))
 
