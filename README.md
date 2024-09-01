@@ -24,6 +24,11 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [] style up the cards
 - [x] better screen sizing
 - [x] new basic sprites!
+- [] Hooks - to reduce state setting muddiness
+    - [x] player
+    - [] enemy
+    - [] game
+
 - [] settings
     - [x] volume slider
     - [x] damage number rounded toggle

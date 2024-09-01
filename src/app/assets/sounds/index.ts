@@ -12,6 +12,8 @@ import heal from "#/sounds/heal.mp3";
 import evade from "#/sounds/evade.mp3";
 import agility_buff from "#/sounds/agility_buff.mp3";
 import power_move from "#/sounds/power_move.mp3";
+import powermove from "#/sounds/powermove.mp3";
+import charge from "#/sounds/charge.mp3";
 
 export const audio = {
     attack_sword: attack_sword,
@@ -25,5 +27,7 @@ export const audio = {
     heal: heal,
     evade: evade,
     agility: agility_buff,
-    power_move: power_move
+    power_move: power_move,
+    powermove: powermove,
+    charge: charge
 }

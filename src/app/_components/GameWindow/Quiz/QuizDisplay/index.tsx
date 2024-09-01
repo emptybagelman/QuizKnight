@@ -6,6 +6,7 @@ import { useState } from "react"
 import { type GameStateProps, type PlayerType } from "@/app/_types/types"
 import { useLoop } from "../QuizLoopContext"
 import useAudio from "@/app/_hooks/useVolume"
+import usePlayer from "@/app/_hooks/usePlayer"
 
 export default function QuizDisplay(){
 
@@ -15,6 +16,8 @@ export default function QuizDisplay(){
         gameState,
         setGameState,
         } = useGame()
+
+    const { updatePlayerStat, setMaxHp } = usePlayer()
 
     const { questionsAnswered, setQuestionsAnswered } = useLoop()
 
@@ -42,38 +45,22 @@ export default function QuizDisplay(){
             if(!(stat in player)) return new Error(`Stat ${stat} doesn't exist! (yet)`)
 
             let bonus: number = gameState.currentUpgrade.default_value;
-if(question.difficulty === "easy") bonus = 5
-            if(question.difficulty === "medium") bonus = 10;
+            if(question.difficulty === "easy") bonus = 5
+            else if(question.difficulty === "medium") bonus = 10;
             else if(question.difficulty === "hard") bonus = 25;
             
             setCorrState(true)
-            if(stat === "hp"){
-                setPlayer((prev: PlayerType) => ({
-                    ...prev,
-                    maxhp: prev.maxhp + (prev.maxhp * (bonus / 100))
-                }))
-            }
-            else{
-                setPlayer((prev: PlayerType) => ({
-                    ...prev,
-                    [stat]: Number(prev[stat as keyof PlayerType]) + (Number(prev[stat as keyof PlayerType]) * (bonus / 100))
-                }))
-            }
+            updatePlayerStat(stat,1,bonus)
         }
         else{
 
             playWrongSound()
-
             setCorrState(false)
         }
 
         setTimeout(() => {
 
-            setPlayer((prev: PlayerType) => ({
-                ...prev,
-                hp: prev.maxhp,
-            }))
-            // setDisplayQuestionState(false)
+            setMaxHp()
             setGameState((prev: GameStateProps) => ({
                 ...prev,
                 questionState: false

@@ -21,7 +21,8 @@ export default function CombatDialogue(
         `You blocked the ${data.enemy.name}'s attack!`, // 5
         `The ${data.enemy.name} blocked your attack!`, // 6
         `The ${data.enemy.name} died and dropped a ${extra}.`, // 7
-        `${data.enemy.name} missed!` // 8
+        `${data.enemy.name} missed!`, // 8
+        `You just blasted everywhere!` // 9
     ]
 
     if(data.active == false) return;

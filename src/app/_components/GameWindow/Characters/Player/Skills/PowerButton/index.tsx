@@ -6,63 +6,66 @@
 import { useGame } from "@/app/_components/GameContext"
 import styles from "../styles.module.scss"
 import { useCombat } from "@/app/_components/CombatContext"
-import { type Enemy, type PlayerType, type Skill } from "@/app/_types/types"
+import { type Enemy } from "@/app/_types/types"
+import usePlayer from "@/app/_hooks/usePlayer"
+import useAudio from "@/app/_hooks/useVolume"
 
 export default function PowerButton({buttonState}:{buttonState: boolean}){
 
-    const { player, setPlayer } = useGame()
-    const { enemyData, setEnemyData } = useCombat()
+    const { player } = useGame()
+    const { enemyData, setEnemyData, setPlayerAttack } = useCombat()
+    const { setCurrentDialogue } = useCombat()
+    const { updateSkills } = usePlayer()
+    const { playChargeSound, playPowerMoveSound } = useAudio()
 
     function handleClick(){
         if(buttonState) return;
         const enemies: Enemy[] = []
 
-        enemies.push(enemyData[0]!)
+        playChargeSound()
+        setPlayerAttack(true)
+        setTimeout(() => {
+            playPowerMoveSound()
+            setPlayerAttack(false)
 
-        if(enemyData.length > 2) {
-            enemies.push(enemyData[1]!,enemyData[2]!)
-        }
-        if(enemyData.length > 1) {
-            enemies.push(enemyData[1]!)
-        }
+            setCurrentDialogue({
+                enemy:enemyData[0]!,
+                active: true,
+                index: 9
+            })
 
-        for(const enemy of enemies){
-            enemy.hp /= 2 
-        }
+            enemies.push(enemyData[0]!)
 
-        
-        const newEnemyData: any = enemyData.map((enemy: Enemy, idx: number) => {
-            if(enemyData.indexOf(enemy) > 2) return enemy;
-            const e = enemies.filter((en) => en.id == enemy.id)
-            return e[0]
-        })
+            if(enemyData.length > 2) {
+                enemies.push(enemyData[1]!,enemyData[2]!)
+            }
+            if(enemyData.length > 1) {
+                enemies.push(enemyData[1]!)
+            }
 
-        setPlayer((prev: PlayerType) => {
-                        if(!prev.skills) return {
-                            ...prev
-                        };
+            for(const enemy of enemies){
+                enemy.hp /= 2 
+            }
 
-                        const updatedSkills = [...prev.skills] as Skill[]
-                        const charge = updatedSkills[0]?.charge
+            
+            const newEnemyData: any = enemyData.map((enemy: Enemy, idx: number) => {
+                if(enemyData.indexOf(enemy) > 2) return enemy;
+                const e = enemies.filter((en) => en.id == enemy.id)
+                return e[0]
+            })
 
-                        if(!(typeof charge == "number")) return {
-                            ...prev
-                        }
+            updateSkills(0, 0, true)
 
-                       
-                        
-                        updatedSkills[0] = {
-                            ...updatedSkills[0]!,
-                            charge: 0
-                        }
+            setEnemyData(() => (newEnemyData))
 
-                        return {
-                            ...prev,
-                            skills: updatedSkills
-                        }
-                    })
-
-        setEnemyData(() => (newEnemyData))
+            setTimeout(() => {
+                setCurrentDialogue({
+                    enemy: enemyData[0]!,
+                    active: false,
+                    index: -1,
+                })
+            }, 3000);
+        }, 200);
 
     }
 

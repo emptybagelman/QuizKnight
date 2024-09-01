@@ -22,6 +22,7 @@ import HealthBar from "../../Characters/HealthBar";
 import Hit from "../../Characters/Hit";
 import Skills from "../../Characters/Player/Skills";
 import PowerButton from "../../Characters/Player/Skills/PowerButton";
+import usePlayer from "@/app/_hooks/usePlayer";
 
 export default function Combat(){
 
@@ -30,7 +31,7 @@ export default function Combat(){
     
     const { player, setPlayer, gameState, setGameState} = useGame()
     const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
-
+    const { updateSkills, updateLoot } = usePlayer()
     const { playSwingSound, playHitSound, playBlockSound, playEvadeSound } = useAudio()
 
     const [ parry, setParry ] = useState<boolean>(false)
@@ -92,35 +93,9 @@ export default function Combat(){
 
             // HANDLE IF ENEMY DROPS LOOT
             if(lootChance){
-
                 const randItem = randomItem()
-
                 setExtraDialogue(randItem)
-                setPlayer((prev: PlayerType) => {
-                    const updatedConsumables = [...prev.consumables];
-
-                    // get id of Consumable from player.consumables
-                    const itemId = updatedConsumables.filter((item: Consumable) => item.name === randItem)[0]?.id
-
-                    if(itemId === undefined) return prev;
-
-                    // validity check
-                    if(!updatedConsumables[itemId]) return prev;
-
-                    if(itemId === 2) {
-                        if(updatedConsumables[itemId].value >= 1) return prev;
-                    }
-
-                    // increment value
-                    updatedConsumables[itemId] = {
-                        ...updatedConsumables[itemId],
-                        value: updatedConsumables[itemId].value + 1
-                    };
-                    return {
-                        ...prev,
-                        consumables: updatedConsumables
-                    }
-            })
+                updateLoot(randItem, 1)
 
                 setCurrentDialogue({
                     enemy: enemyData[0],
@@ -171,33 +146,7 @@ export default function Combat(){
 
 
                     // ADD +10 CHARGE ON KILL 
-                    
-                    setPlayer((prev: PlayerType) => {
-                        if(!prev.skills) return {
-                            ...prev
-                        };
-
-                        const updatedSkills = [...prev.skills] as Skill[]
-                        const charge = updatedSkills[0]?.charge
-
-                        if(!(typeof charge == "number")) return {
-                            ...prev
-                        }
-
-                        if(charge >= 100) return {
-                            ...prev
-                        }
-                        
-                        updatedSkills[0] = {
-                            ...updatedSkills[0]!,
-                            charge: charge + 10
-                        }
-
-                        return {
-                            ...prev,
-                            skills: updatedSkills
-                        }
-                    })
+                    updateSkills(0, 10, false)
 
                     // SHIFT ENEMYS FORWARD
                     setEnemyData(

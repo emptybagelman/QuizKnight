@@ -4,6 +4,7 @@ import { type PlayerType, type Consumable, Skill } from "@/app/_types/types"
 import { useGame } from "../../GameContext"
 import styles from "./styles.module.scss"
 import useAudio from "@/app/_hooks/useVolume"
+import usePlayer from "@/app/_hooks/usePlayer"
 
 export default function ConsumableContainer({buttonState}:{buttonState: boolean}){
 
@@ -37,7 +38,7 @@ function ConsumableItem(
     }) {
 
         const { player, setPlayer } = useGame()
-        const { playWrongSound, playHealSound, playPowerMoveSound, playAgilitySound } = useAudio()
+        const { playWrongSound, playHealSound, playManaSound, playAgilitySound } = useAudio()
 
         function handleClick(){
 
@@ -62,7 +63,7 @@ function ConsumableItem(
                     return;
                 };
 
-                playPowerMoveSound()
+                playManaSound()
 
                 setPlayer((prev: PlayerType) => {
                     
@@ -105,6 +106,7 @@ function ConsumableItem(
                 }))
             }
 
+            // updateLoot(item.name, -1)
             setPlayer((prev: PlayerType) => {
 
                 if(!prev.consumables) return {

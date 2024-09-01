@@ -19,7 +19,9 @@ export default function useAudio() {
     const [playHealSound] = useSound(audio.heal,{volume: 3 * (volume / 100)})
     const [playEvadeSound] = useSound(audio.evade,{volume:  1 * (volume / 100)})
     const [playAgilitySound] = useSound(audio.agility,{volume:  1 * (volume / 100)})
-    const [playPowerMoveSound] = useSound(audio.power_move,{volume:  1 * (volume / 100)})
+    const [playManaSound] = useSound(audio.power_move,{volume:  1 * (volume / 100)})
+    const [playPowerMoveSound] = useSound(audio.powermove,{volume:  1 * (volume / 100)})
+    const [playChargeSound] = useSound(audio.charge,{volume:  0.2 * (volume / 100)})
 
     return {
         playIntoTheWastes,
@@ -33,6 +35,8 @@ export default function useAudio() {
         playHealSound,
         playEvadeSound,
         playAgilitySound,
-        playPowerMoveSound
+        playManaSound,
+        playPowerMoveSound,
+        playChargeSound
     }
 }
