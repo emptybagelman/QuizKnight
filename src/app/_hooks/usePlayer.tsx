@@ -45,9 +45,6 @@ export default function usePlayer(){
             // validity check
             if(!updatedConsumables[itemId]) return prev;
 
-            if(itemId === 2) {
-                if(updatedConsumables[itemId].value >= 1) return prev;
-            }
 
             // increment / decrement value
             updatedConsumables[itemId] = {
