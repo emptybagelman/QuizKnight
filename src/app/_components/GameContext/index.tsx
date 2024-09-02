@@ -19,7 +19,7 @@ const defaultPlayerState: PlayerType = {
     resistance: 0,
     critical: 2,
     parry: 5,
-    looting: 10,
+    looting: 100,
     agility: 0,
     skills: [{
         id: 0,
