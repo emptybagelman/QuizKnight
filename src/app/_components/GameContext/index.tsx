@@ -25,7 +25,7 @@ const defaultPlayerState: PlayerType = {
         id: 0,
         name: "Power Move",
         type: "damage",
-        charge: 100,
+        charge: 0,
     }],
     consumables: [{
         id: 0,
@@ -36,7 +36,7 @@ const defaultPlayerState: PlayerType = {
     {
         id: 1,
         name: "Mana Potion",
-        value: 1,
+        value: 0,
         description: "Charge your power move to the max!"
     },
     {
