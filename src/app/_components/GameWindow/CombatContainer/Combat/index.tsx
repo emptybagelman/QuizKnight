@@ -169,7 +169,8 @@ export default function Combat(){
         else{
             setCurrentDialogue(activeEmptyDialogue)
             setTimeout(() => {
-                if(enemyData[0]?.hp! <= 0){
+                if(!enemyData[0]?.hp) throw new Error("beans!")
+                else if(enemyData[0]?.hp <= 0){
                     setButtonState(false)
                     setCurrentDialogue(emptyDialogue)
                 }
