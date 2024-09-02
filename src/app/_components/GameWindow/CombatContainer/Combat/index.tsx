@@ -179,7 +179,7 @@ setCurrentDialogue(emptyDialogue)
                 ...prev,
                 quizState: true 
             }))
-})
+}
 },[enemyData])
 
     function handleEnemyKill(enemy: Enemy){
