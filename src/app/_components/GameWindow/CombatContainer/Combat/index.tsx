@@ -172,7 +172,7 @@ export default function Combat(){
     }
 
 useEffect(() => {
-if(enemyData.length <=0{
+if(enemyData.length <=0){
 setCurrentDialogue(emptyDialogue)
             setButtonState(false)
             setGameState((prev: GameStateProps) => ({
