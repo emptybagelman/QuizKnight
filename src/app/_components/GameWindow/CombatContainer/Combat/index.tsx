@@ -150,13 +150,13 @@ export default function Combat(){
                 // ADD +10 CHARGE ON KILL 
                 updateSkills(0, 10, false)
                 handleEnemyKill(firstEnemy)
-                moveToQuiz()
+                moveToQuiz(enemyHp)
             },DELAY)
 
         },ATTACK_TIMEOUT)
     }
 
-    function moveToQuiz(){
+    function moveToQuiz(enemyHp: number){
             setCurrentDialogue(activeEmptyDialogue)
             setTimeout(() => {
                
