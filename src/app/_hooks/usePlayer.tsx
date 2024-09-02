@@ -78,7 +78,7 @@ export default function usePlayer(){
             
             updatedSkills[skillID] = {
                 ...updatedSkills[skillID]!,
-                charge: updatedSkills[skillID].charge! + increment
+                charge: charge + increment
             }
 
             return {
