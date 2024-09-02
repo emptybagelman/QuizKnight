@@ -157,20 +157,10 @@ export default function Combat(){
     }
 
     function moveToQuiz(){
-        if(enemyData.length < 1){
-            setCurrentDialogue(emptyDialogue)
-            setButtonState(false)
-            setGameState((prev: GameStateProps) => ({
-                ...prev,
-                quizState: true 
-            }))
-        }
-
-        else{
             setCurrentDialogue(activeEmptyDialogue)
             setTimeout(() => {
-                if(!enemyData[0]?.hp) throw new Error("beans!")
-                else if(enemyData[0]?.hp <= 0){
+               
+                else if(enemyHp <= 0){
                     setButtonState(false)
                     setCurrentDialogue(emptyDialogue)
                 }
@@ -178,8 +168,19 @@ export default function Combat(){
                     handleEnemyAttack()
                 }
             },500)
-        }
+        
     }
+
+useEffect(() => {
+if(enemyData.length <=0{
+setCurrentDialogue(emptyDialogue)
+            setButtonState(false)
+            setGameState((prev: GameStateProps) => ({
+                ...prev,
+                quizState: true 
+            }))
+})
+},[enemyData])
 
     function handleEnemyKill(enemy: Enemy){
         if(enemy.hp <= 0){
