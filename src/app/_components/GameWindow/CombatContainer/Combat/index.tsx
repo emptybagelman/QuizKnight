@@ -313,7 +313,7 @@ export default function Combat(){
                     }
                 }
                 // moveToQuiz()
-                // setEnemyData(newEnemyArray)
+                setEnemyData(newEnemyArray)
             }, DELAY);
         }
         
