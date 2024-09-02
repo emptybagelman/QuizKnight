@@ -306,9 +306,9 @@ export default function Combat(){
         if(mounted){
             setTimeout(() => {
 
-                let newEnemyArray = [...enemyData]
+                const newEnemyArray = [...enemyData]
                 for(const enemy of enemyData){
-                    let index = newEnemyArray.indexOf(enemy)
+                    const index = newEnemyArray.indexOf(enemy)
                     if(enemy.hp <= 0){
                         newEnemyArray.splice(index,1)
                     }
