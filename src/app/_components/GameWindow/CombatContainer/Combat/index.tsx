@@ -23,6 +23,7 @@ import Hit from "../../Characters/Hit";
 import Skills from "../../Characters/Player/Skills";
 import PowerButton from "../../Characters/Player/Skills/PowerButton";
 import usePlayer from "@/app/_hooks/usePlayer";
+import { Elsie_Swash_Caps } from "next/font/google";
 
 export default function Combat(){
 
@@ -104,6 +105,7 @@ export default function Combat(){
                 })
             }
             else{
+                // DEFAULT KILL DIALOGUE
                 setCurrentDialogue({
                     enemy: enemyData[0],
                     active: true,
@@ -141,50 +143,57 @@ export default function Combat(){
             setTimeout(() => {
 
                 // CHECK IF ENEMY DEAD
-                if(enemyHp <= 0){
-                    setCurrentDialogue(activeEmptyDialogue)
 
+                // EMPTY DIALOGUE BETWEEN MESSAGES
+                setCurrentDialogue(activeEmptyDialogue)
 
-                    // ADD +10 CHARGE ON KILL 
-                    updateSkills(0, 10, false)
-
-                    // SHIFT ENEMYS FORWARD
-                    setEnemyData(
-                        (prev: Enemy[]) => {
-                            const newArray = [...prev]
-                            newArray.shift()
-                            return newArray
-                        }
-                    )
-                }
-
-                if(enemyData.length <= 1 && enemyHp <= 0){
-                    setCurrentDialogue(emptyDialogue)
-                    setButtonState(false)
-                    setGameState((prev: GameStateProps) => ({
-                        ...prev,
-                        quizState: true 
-                    }))
-                }
-
-                else{
-                    setCurrentDialogue(activeEmptyDialogue)
-                    setTimeout(() => {
-                        if(enemyHp > 0) {
-                            handleEnemyAttack()
-                        }
-                        else{
-                            setButtonState(false)
-                            setCurrentDialogue(emptyDialogue)
-                        }
-                    },500)
-                }
-                
-                
-
+                // ADD +10 CHARGE ON KILL 
+                updateSkills(0, 10, false)
+                handleEnemyKill(firstEnemy)
+                moveToQuiz()
             },DELAY)
 
         },ATTACK_TIMEOUT)
+    }
+
+    function moveToQuiz(){
+        if(enemyData.length < 1){
+            setCurrentDialogue(emptyDialogue)
+            setButtonState(false)
+            setGameState((prev: GameStateProps) => ({
+                ...prev,
+                quizState: true 
+            }))
+        }
+
+        else{
+            setCurrentDialogue(activeEmptyDialogue)
+            setTimeout(() => {
+                if(enemyData[0]?.hp! <= 0){
+                    setButtonState(false)
+                    setCurrentDialogue(emptyDialogue)
+                }
+                else {
+                    handleEnemyAttack()
+                }
+            },500)
+        }
+    }
+
+    function handleEnemyKill(enemy: Enemy){
+        if(enemy.hp <= 0){
+            // SHIFT ENEMYS FORWARD
+            setEnemyData(
+                (prev: Enemy[]) => {
+
+                    const id = prev.indexOf(enemy)
+
+                    const newArray = [...prev]
+                    newArray.splice(id,1)
+                    return newArray
+                }
+            )
+        }
     }
 
     function handleEnemyAttack() {
@@ -194,21 +203,28 @@ export default function Combat(){
         const tempPlayer = player;
 
         let overflowDmg = 0;
-        let playerHp = tempPlayer.hp;
+        // let playerHp = tempPlayer.hp;
 
-        if(!(parry || tempPlayer.agility == 1)){ // handles no parry
-            if(tempPlayer.armour <= enemyDmg){
-                overflowDmg = Math.abs(tempPlayer.armour - enemyDmg)
-                playerHp = tempPlayer.hp - overflowDmg
-                tempPlayer.hp = playerHp
-                tempPlayer.armour = 0
+        let newHp = player.hp;
+        let newArmour = player.armour;
+
+        if(!(parry || player.agility == 1)){ // handles no parry
+            if(player.armour <= enemyDmg){
+                overflowDmg = Math.abs(player.armour - enemyDmg)
+                // playerHp = tempPlayer.hp - overflowDmg
+                newHp -= overflowDmg
+                newArmour = 0
             }else{
-                tempPlayer.armour = tempPlayer.armour - enemyDmg
+                newArmour -= enemyDmg
             }
 
-            setPlayer(tempPlayer)
+            setPlayer((prev: PlayerType) => ({
+                ...prev,
+                hp: newHp,
+                armour: newArmour
+            }))
 
-            if(playerHp <= 0){
+            if(newHp <= 0){
                 setCurrentDialogue({
                     enemy: enemyData[0],
                     active: true,
@@ -261,7 +277,7 @@ export default function Combat(){
             }
 
             setTimeout(() => {
-                if(playerHp <= 0){
+                if(newHp <= 0){
                     router.push("/scoreboard")
                     void postScore({ name: "balls", highest_loop: gameState.loop, score: gameState.score })
                 }else{
@@ -284,6 +300,26 @@ export default function Combat(){
     useEffect(() => {
         setMounted(true)
     },[])
+
+    useEffect(() => {
+        if(mounted){
+            setTimeout(() => {
+
+                let newEnemyArray = [...enemyData]
+                for(const enemy of enemyData){
+                    let index = newEnemyArray.indexOf(enemy)
+                    if(enemy.hp <= 0){
+                        newEnemyArray.splice(index,1)
+                    }
+                }
+                // moveToQuiz()
+                // setEnemyData(newEnemyArray)
+            }, DELAY);
+        }
+        
+    },[ player.skills[0]?.charge === 0 ])
+
+
 
     if(mounted)
     return (
@@ -310,7 +346,11 @@ export default function Combat(){
                 }
             </SpriteContainer>
 
-            <AttackButton handleClick={handleClick} buttonState={buttonState} />
+            {
+                !buttonState ? 
+                <AttackButton handleClick={handleClick} buttonState={buttonState} />
+                : ""
+            }
             <PowerButton buttonState={buttonState}/>
             <CombatDialogue data={currentDialogue} extra={extraDialogue}/>
             <ScoreCounter />

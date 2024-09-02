@@ -1,11 +1,13 @@
 @import "@/styles/scss_globals.scss";
 
 .consumable_wrapper{
-    position: absolute;
-    left: 30px;
-    bottom: 30px;
+    grid-area: consumable;
+    margin: 10px;
+    justify-self: center;
+    align-self: flex-start;
 
     display: flex;
+    flex-direction: column;
     gap: $gap-l;
     transition: filter 0.1s ease-in-out;
 

@@ -15,10 +15,9 @@ const goblinAnims = (goblin: Enemy, arr: Enemy[], enemyBool: boolean, playerBool
     if(!arr) return "";
     if(!first) return "";
 
-    if(!(first.id === goblin.id)) return sprites.goblin;
-    if(first.hp <= 0 && goblin.id === first.id) return sprites.goblinDeathAnim;
+    if(goblin.hp <= 0) return sprites.goblinDeathAnim;
     if(playerBool && goblin.id === first.id) return sprites.goblinHitAnim;
-    if(enemyBool) return sprites.goblinAttackAnim; 
+    if(enemyBool && goblin.id === first.id) return sprites.goblinAttackAnim; 
     return sprites.goblin;
 }
 
@@ -28,10 +27,9 @@ export const mushroomAnims = (mushroom: Enemy, arr: Enemy[], enemyBool: boolean,
     if(!arr) return "";
     if(!first) return "";
 
-    if(!(first.id === mushroom.id)) return sprites.mushroom;
-    if(first.hp <= 0 && mushroom.id === first.id) return sprites.mushroomDeathAnim;
+    if(mushroom.hp <= 0) return sprites.mushroomDeathAnim;
     if(playerBool && mushroom.id === first.id) return sprites.mushroomHitAnim;
-    if(enemyBool) return sprites.mushroomAttackAnim; 
+    if(enemyBool && mushroom.id === first.id) return sprites.mushroomAttackAnim; 
     return sprites.mushroom;
 }
 
@@ -41,10 +39,9 @@ export const skeletonAnims = (skeleton: Enemy, arr: Enemy[], enemyBool: boolean,
     if(!arr) return "";
     if(!first) return "";
 
-    if(!(first.id === skeleton.id)) return sprites.skeleton;
-    if(first.hp <= 0 && skeleton.id === first.id) return sprites.skeletonDeathAnim;
+    if(skeleton.hp <= 0) return sprites.skeletonDeathAnim;
     if(playerBool && skeleton.id === first.id) return sprites.skeletonHitAnim;
-    if(enemyBool) return sprites.skeletonAttackAnim; 
+    if(enemyBool && skeleton.id === first.id) return sprites.skeletonAttackAnim; 
     return sprites.skeleton;
 }
 
@@ -54,10 +51,9 @@ export const eyeAnims = (eye: Enemy, arr: Enemy[], enemyBool: boolean, playerBoo
     if(!arr) return "";
     if(!first) return "";
 
-    if(!(first.id === eye.id)) return sprites.eye;
-    if(first.hp <= 0 && eye.id === first.id) return sprites.eyeDeathAnim;
+    if(eye.hp <= 0) return sprites.eyeDeathAnim;
     if(playerBool && eye.id === first.id) return sprites.eyeHitAnim;
-    if(enemyBool) return sprites.eyeAttackAnim; 
+    if(enemyBool && eye.id === first.id) return sprites.eyeAttackAnim; 
     return sprites.eye;
 }
 

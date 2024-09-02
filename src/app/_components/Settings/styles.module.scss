@@ -52,9 +52,9 @@
 }
 
 .settings_icon{
-    position: absolute;
-    top: 0;
-    left: 0;
+
+    grid-area: settings;
+
     margin: 10px;
     z-index: 50;
     background-color: $bg;

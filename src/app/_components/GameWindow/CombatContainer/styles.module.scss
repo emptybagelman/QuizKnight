@@ -1,4 +1,4 @@
-.game_window{
+.combat_window{
     width: 1066px;
     height: 600px;
     background-image: url("../../../../../public/bg_forest.png");
@@ -6,17 +6,21 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
     position: relative;
 
-    &>button{
-        font-family: auto;
-        position: absolute;
-        bottom: 30px;
-    }
+    display: grid;
+    grid-template-rows: 75px repeat(5,1fr) 75px;
+    grid-template-columns: 75px repeat(5,1fr) 75px;
+    grid-template-areas: 
+        " settings  .   .    .  .   .    score "
+        " consumable  .   .    power    .   .   . "
+        " consumable  .   .    .    .   .   . "
+        " consumable  .   .    .    .   .   . "
+        " .  .   .    sprites    .    .   . "
+        " .  .   .    attack    .    .   . "
+        " .  .   .    .    .    .   . ";
+
 }
 
 .screen_shake {
@@ -29,3 +33,4 @@
     50%{background-position: calc(50% - 10px) 50%;}
     100%{background-position: 50% 50%;}
 }
+

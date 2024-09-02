@@ -21,10 +21,12 @@
     }
 
     h3{
+        margin: 0 25px $gap-xl 25px;
         margin-bottom: $gap-xl;
         font-size: $h2-m;
         font-weight: 300;
         text-align: center;
+
     }
     
     .answers{
@@ -37,7 +39,7 @@
             @include orange;
             min-width: 200px;
             min-height: 125px;
-            font-size: $p-l;
+            font-size: $p-m;
             font-family: $font;
             padding: $padding-l;
             border-radius: $border-s;

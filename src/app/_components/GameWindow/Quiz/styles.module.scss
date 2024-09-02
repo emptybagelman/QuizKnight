@@ -1,9 +1,15 @@
 .quiz_window{
     width: 1066px;
     height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+    display: grid;
+    grid-template-columns: 75px 1fr 75px;
+    grid-template-rows: 75px 1fr;
+
+    grid-template-areas: 
+    " settings  .   score "
+    " .  cards   . ";
+
     position: relative;
     overflow: hidden;
     animation: 1.5s ease fadeIn forwards;

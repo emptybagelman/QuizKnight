@@ -22,7 +22,9 @@ export default function EnemySprite(
     return (
         <div
             key={id}
-            className={enemyData[0] && resolveAnimType(enemy, enemyData, enemyAttack, playerAttack)}>
+            className={resolveAnimType(enemy, enemyData, enemyAttack, playerAttack)}
+            
+            >
             {
                 playerAttack && enemyData[0]?.id === enemy.id
                 ? <Hit dmg={player.dmg} parry={false}/>

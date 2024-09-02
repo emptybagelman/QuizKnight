@@ -38,13 +38,15 @@
 #power_button{
     @include button_s;
 
+    grid-area: power;
+
+    margin: 15px 25px;
+
     background-color: $red;
     box-shadow: $inset-s $red-shadow;
     outline: solid 1px $yellowwhite;
-    padding: $padding-m $padding-xl;
     color: $yellowwhite;
     font-family: $font;
-    bottom: 100px !important;
     animation: oscillate 0.5s alternate infinite;
 
     &:disabled{

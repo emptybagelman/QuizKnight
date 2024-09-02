@@ -1,12 +1,19 @@
 @import "@/styles/scss_globals.scss";
 $gap: 10px;
 .score_counter{
-    position: absolute;
-    top: $gap;
-    right: $gap;
+
+    grid-area: score;
+    
+    z-index: 50;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: $bg;
     border-radius: $border-s;
     padding: $padding-l $padding-xl;
+    margin: 10px;
 }
 
 @media screen and (max-width: 500px) {

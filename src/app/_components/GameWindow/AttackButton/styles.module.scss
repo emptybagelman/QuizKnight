@@ -6,6 +6,9 @@
     z-index: 9;
     font-family: $font !important;
 
+    grid-area: attack;
+    margin: 15px 25px;
+
     &:disabled{
         filter: brightness(0.8);
         &:hover{

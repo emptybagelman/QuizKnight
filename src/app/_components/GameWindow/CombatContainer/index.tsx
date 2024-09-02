@@ -8,7 +8,7 @@ export default function CombatContainer({children}:{children: React.ReactNode}){
     const { playerAttack, enemyAttack } = useCombat()
 
     return (
-        <div className={`${styles.game_window} ${
+        <div className={`${styles.combat_window} ${
             playerAttack || enemyAttack
             ? styles.screen_shake
             : ""

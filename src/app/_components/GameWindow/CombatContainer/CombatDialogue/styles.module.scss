@@ -3,12 +3,20 @@
 
 
 .dialogue_wrapper{
-    width: 60%;
-    height: 100px;
+    width: 100%;
+    min-width: 250px;
+    max-width: 600px;
+    // height: 100px;
     background-color: $bg;
     border-radius: $border-s;
-    position: absolute;
-    bottom: 25px;
+
+    grid-area: 6 / 2 / 8 / 7;
+
+    justify-self: center;
+
+    margin: 15px 25px;
+    // position: absolute;
+    // bottom: 25px;
 
     padding: $padding-l $padding-xxl;
 

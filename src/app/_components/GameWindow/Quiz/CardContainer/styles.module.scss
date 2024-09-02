@@ -1,6 +1,9 @@
 @import "@/styles/scss_globals.scss";
 
 .card_container{
+
+    grid-area: cards;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +19,7 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     .card_container {
         flex-direction: column;
         gap: 2%;
