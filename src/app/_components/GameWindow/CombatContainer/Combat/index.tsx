@@ -160,7 +160,7 @@ export default function Combat(){
             setCurrentDialogue(activeEmptyDialogue)
             setTimeout(() => {
                
-                else if(enemyHp <= 0){
+                if(enemyHp <= 0){
                     setButtonState(false)
                     setCurrentDialogue(emptyDialogue)
                 }
