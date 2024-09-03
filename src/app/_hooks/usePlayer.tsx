@@ -3,7 +3,7 @@
 import { useGame } from "../_components/GameContext"
 import { type Consumable, type Skill, type PlayerType } from "../_types/types"
 
-type Increment = 1 | -1
+// type Increment = 1 | -1
 
 export default function usePlayer(){
 
@@ -16,7 +16,7 @@ export default function usePlayer(){
         }))
     }
 
-    function updatePlayerStat(stat: string, increment: Increment, extra?: number | string ){
+    function updatePlayerStat(stat: string, increment: number, extra?: number | string ){
         if(typeof extra == "number"){
             if(stat === "hp"){
                 setPlayer((prev: PlayerType) => ({
@@ -45,7 +45,7 @@ export default function usePlayer(){
         }
     }
 
-    function updateLoot(item: string, increment: Increment){
+    function updateLoot(item: string, increment: number){
         setPlayer((prev: PlayerType) => {
             const updatedConsumables = [...prev.consumables];
 
@@ -62,6 +62,32 @@ export default function usePlayer(){
             updatedConsumables[itemId] = {
                 ...updatedConsumables[itemId],
                 value: updatedConsumables[itemId].value + increment
+            };
+            return {
+                ...prev,
+                consumables: updatedConsumables
+            }
+        })
+    }
+
+    function updateLootCharge(item: string, increment: number){
+        setPlayer((prev: PlayerType) => {
+            const updatedConsumables = [...prev.consumables];
+
+            // get id of Consumable from player.consumables
+            const itemId = updatedConsumables.filter((i: Consumable) => i.name === item)[0]?.id
+
+            if(itemId === undefined) return prev;
+
+            // validity check
+            if(!updatedConsumables[itemId]) return prev;
+
+            // if(!updatedConsumables[itemId].charge) return prev;
+
+            // increment / decrement value
+            updatedConsumables[itemId] = {
+                ...updatedConsumables[itemId],
+                charge: updatedConsumables[itemId].charge! + increment
             };
             return {
                 ...prev,
@@ -104,7 +130,8 @@ export default function usePlayer(){
         updatePlayerStat,
         setMaxHp,
         updateSkills,
-        updateLoot
+        updateLoot,
+        updateLootCharge
     }
 
 }

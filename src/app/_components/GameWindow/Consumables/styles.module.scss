@@ -49,6 +49,12 @@
             image-rendering: pixelated;
         }
 
+        &[content="Firebomb"]{
+            background-image: url("../../../assets/firebomb.png");
+            background-size: cover;
+            image-rendering: pixelated;
+        }
+
         .item_amount{
             position: absolute;
             bottom: -10px;
@@ -58,6 +64,25 @@
             border-radius: $border-s;
             background-color: $orange;
             box-shadow: inset 0 -3px 0 0 $orange-shadow;
+            z-index: 2;
+        }
+
+        .charge_counter{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba($bg, 0.5);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: $p-l;
+
+            z-index: 1;
+
+
         }
     }
 }

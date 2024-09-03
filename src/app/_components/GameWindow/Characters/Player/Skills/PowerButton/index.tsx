@@ -44,7 +44,7 @@ export default function PowerButton({buttonState}:{buttonState: boolean}){
             }
 
             for(const enemy of enemies){
-                enemy.hp -= player.dmg*3
+                enemy.hp -= player.dmg*2
                 enemy.armour = 0
             }
 

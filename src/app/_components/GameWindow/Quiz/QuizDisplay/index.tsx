@@ -102,6 +102,7 @@ export default function QuizDisplay(){
                                         : styles.incorrect
                                     : ""
                                 }
+                                style={{pointerEvents: corrState == true || corrState == false ? "none" : "auto"}}
                                 >
                                     {ans}
                                 </button>

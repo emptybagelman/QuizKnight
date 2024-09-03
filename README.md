@@ -41,7 +41,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
         - [] static
             - chance to make enemy freeze
         - [x] hp potion
-        - [] mana (power move) potion
+        - [x] mana (power move) potion
         - [x] agility crystal - dodge next attack
         - [] single use shield ?? 
     - [x] enemy differences
@@ -64,10 +64,9 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [x] crit chance
     - [x] block chance
     - [] upgrades
-        - [] power move
+        - [x] power move
             - [x] has to recharge +10 per kill
-            - out of play for two moves after
-            - may only hold one power move at once
+            - [] may only hold one power move at once
         - [] two attacks in one round
         - [] passive hp regen
 - [x] better combat anims

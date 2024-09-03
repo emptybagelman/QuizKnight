@@ -1,0 +1,21 @@
+@import "@/styles/scss_globals.scss";
+
+.flame{
+    $dim: 140px;
+    background-image: url("../../../../../assets/flame.png");
+    background-size: calc($dim * 8) $dim;
+    image-rendering: pixelated;
+    width: $dim;
+    height: $dim;
+
+    position: absolute;
+    bottom: 50px;
+    left: -40px;
+
+    animation: flame 1.5s steps(7) infinite ;
+}
+
+@keyframes flame {
+    0% { background-position: 0 0; }
+    100% { background-position: calc(-980px * 3) 0; }
+}

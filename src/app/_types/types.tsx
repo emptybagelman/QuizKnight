@@ -107,4 +107,7 @@ export type Consumable = {
     name: string,
     value: number,
     description: string,
+    charge?: number,
 }
+
+export type Background = "shake" | "power_shake" | "default" 

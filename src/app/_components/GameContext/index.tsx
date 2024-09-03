@@ -14,7 +14,7 @@ const defaultPlayerState: PlayerType = {
     name: "Player",
     hp: 10,
     maxhp: 10,
-    dmg: 0,
+    dmg: 3,
     armour: 5,
     maxarmour: 5,
     resistance: 0,
@@ -26,27 +26,35 @@ const defaultPlayerState: PlayerType = {
         id: 0,
         name: "Power Move",
         type: "damage",
-        charge: 100,
+        charge: 0,
     }],
-    consumables: [{
-        id: 0,
-        name: "Health Potion",
-        value: 1,
-        description: "Fills your HP to full."
-    },
-    {
-        id: 1,
-        name: "Mana Potion",
-        value: 0,
-        description: "Charge your power move to the max!"
-    },
-    {
-        id: 2,
-        name: "Agility Crystal",
-        value: 0,
-        description: "Dodge the enemy's next attack."
-    },
-]
+    consumables: [
+        {
+            id: 0,
+            name: "Health Potion",
+            value: 1,
+            description: "Fills your HP to full."
+        },
+        {
+            id: 1,
+            name: "Mana Potion",
+            value: 0,
+            description: "Charge your power move to the max!"
+        },
+        {
+            id: 2,
+            name: "Agility Crystal",
+            value: 0,
+            description: "Dodge the enemy's next attack."
+        },
+        {
+            id: 3,
+            name: "Firebomb",
+            value: 0,
+            description: "Burns enemies over time.",
+            charge: 0,
+        }
+    ]
 }
 
 const defaultGameState: GameStateProps = {

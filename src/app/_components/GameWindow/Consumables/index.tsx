@@ -4,6 +4,7 @@ import { type PlayerType, type Consumable, type Skill } from "@/app/_types/types
 import { useGame } from "../../GameContext"
 import styles from "./styles.module.scss"
 import useAudio from "@/app/_hooks/useVolume"
+import usePlayer from "@/app/_hooks/usePlayer"
 
 export default function ConsumableContainer({buttonState}:{buttonState: boolean}){
 
@@ -37,7 +38,8 @@ function ConsumableItem(
     }) {
 
         const { player, setPlayer } = useGame()
-        const { playWrongSound, playHealSound, playManaSound, playAgilitySound } = useAudio()
+        const { playWrongSound, playHealSound, playManaSound, playAgilitySound, playFirebombSound } = useAudio()
+        const { updateLootCharge } = usePlayer()
 
         function handleClick(){
 
@@ -104,35 +106,27 @@ function ConsumableItem(
                     agility: 1
                 }))
             }
-
-            // updateLoot(item.name, -1)
-            setPlayer((prev: PlayerType) => {
-
-                if(!prev.consumables) return {
-                    ...prev
-                };
-
-                const updatedConsumables = [...prev.consumables] as Consumable[]
-
-                updatedConsumables[item.id] = {
-                    ...updatedConsumables[item.id]!,
-                    value: item.value - 1
+            if(item.name === "Firebomb"){
+                const charge = player.consumables[item.id]?.charge
+                if(charge == 0) {
+                    playFirebombSound()
+                    updateLootCharge(item.name, 10)
                 }
-
-                const newPlayer = {
-                    ...prev,
-                    hp: hp,
-                    consumables: updatedConsumables
+                else{
+                    playWrongSound()
                 }
-
-                return newPlayer
-            })
+            }
         }
 
 
     return (
         <div content={item.name} className={styles.item_container} onClick={handleClick}>
             <p className={styles.item_amount}>{item.value}</p>
+            {
+                item.charge
+                ? <p className={styles.charge_counter}>{item.charge}</p>
+                : ""
+            }
         </div>
     )
 }

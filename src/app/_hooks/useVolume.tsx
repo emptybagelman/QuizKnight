@@ -22,6 +22,7 @@ export default function useAudio() {
     const [playManaSound] = useSound(audio.power_move,{volume:  1 * (volume / 100)})
     const [playPowerMoveSound] = useSound(audio.powermove,{volume:  1 * (volume / 100)})
     const [playChargeSound] = useSound(audio.charge,{volume:  0.2 * (volume / 100)})
+    const [playFirebombSound] = useSound(audio.firebomb,{volume:  1 * (volume / 100)})
 
     return {
         playIntoTheWastes,
@@ -37,6 +38,7 @@ export default function useAudio() {
         playAgilitySound,
         playManaSound,
         playPowerMoveSound,
-        playChargeSound
+        playChargeSound,
+        playFirebombSound
     }
 }
