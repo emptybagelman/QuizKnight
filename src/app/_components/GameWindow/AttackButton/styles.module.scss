@@ -8,6 +8,7 @@
 
     grid-area: attack;
     margin: 15px 25px;
+    max-width: 250px;
 
     &:disabled{
         filter: brightness(0.8);
