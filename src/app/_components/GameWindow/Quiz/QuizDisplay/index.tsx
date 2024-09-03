@@ -3,7 +3,7 @@
 import styles from "./styles.module.scss"
 import { useGame } from "../../../GameContext"
 import { useState } from "react"
-import { type GameStateProps, type PlayerType } from "@/app/_types/types"
+import { type GameStateProps } from "@/app/_types/types"
 import { useLoop } from "../QuizLoopContext"
 import useAudio from "@/app/_hooks/useVolume"
 import usePlayer from "@/app/_hooks/usePlayer"
@@ -12,7 +12,6 @@ export default function QuizDisplay(){
 
     const {
         player,
-        setPlayer,
         gameState,
         setGameState,
         } = useGame()

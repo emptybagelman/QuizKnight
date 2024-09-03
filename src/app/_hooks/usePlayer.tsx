@@ -24,6 +24,18 @@ export default function usePlayer(){
                     maxhp: prev.maxhp + (prev.maxhp * (extra ? (extra / 100) : 1))
                 }))
             }
+            if(stat === "armour"){
+                setPlayer((prev: PlayerType) => {
+
+                    const bonusArmour = (prev.maxarmour * (extra ? (extra / 100) : 1))
+
+                    return {
+                        ...prev,
+                        armour: bonusArmour,
+                        maxarmour: prev.maxarmour + bonusArmour
+                    }
+            })
+            }
             else{
                 setPlayer((prev: PlayerType) => ({
                     ...prev,

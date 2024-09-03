@@ -1,10 +1,9 @@
 "use client"
 
-import { type PlayerType, type Consumable, Skill } from "@/app/_types/types"
+import { type PlayerType, type Consumable, type Skill } from "@/app/_types/types"
 import { useGame } from "../../GameContext"
 import styles from "./styles.module.scss"
 import useAudio from "@/app/_hooks/useVolume"
-import usePlayer from "@/app/_hooks/usePlayer"
 
 export default function ConsumableContainer({buttonState}:{buttonState: boolean}){
 

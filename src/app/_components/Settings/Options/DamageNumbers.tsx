@@ -5,7 +5,7 @@ export default function DamageNumberCheckbox(){
 
     const { damageNumbers, setDamageNumbers } = useSettings()
 
-    function handleDamage(e: React.ChangeEvent<HTMLInputElement>){
+    function handleDamage(){
         setDamageNumbers(prev => !prev)
     }
 

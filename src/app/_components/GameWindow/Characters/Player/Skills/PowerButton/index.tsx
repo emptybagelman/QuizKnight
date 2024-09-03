@@ -49,7 +49,7 @@ export default function PowerButton({buttonState}:{buttonState: boolean}){
             }
 
             
-            const newEnemyData: any = enemyData.map((enemy: Enemy, idx: number) => {
+            const newEnemyData: any = enemyData.map((enemy: Enemy) => {
                 if(enemyData.indexOf(enemy) > 2) return enemy;
                 const e = enemies.filter((en) => en.id == enemy.id)
                 return e[0]

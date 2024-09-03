@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import CombatDialogue from "../CombatDialogue";
-import { type PlayerType, type Enemy, type GameStateProps, type Consumable, Skill } from "@/app/_types/types"
+import { type PlayerType, type Enemy, type GameStateProps } from "@/app/_types/types"
 import { useGame } from "../../../GameContext";
 import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
@@ -23,30 +23,20 @@ import Hit from "../../Characters/Hit";
 import Skills from "../../Characters/Player/Skills";
 import PowerButton from "../../Characters/Player/Skills/PowerButton";
 import usePlayer from "@/app/_hooks/usePlayer";
-import { Elsie_Swash_Caps } from "next/font/google";
+import sprites from "./sprites.module.scss"
 
 export default function Combat(){
-
-    const ATTACK_TIMEOUT = 500;
-    const DELAY = 3500;
     
+    // CONTEXTS AND HOOKS
     const { player, setPlayer, gameState, setGameState} = useGame()
     const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
     const { updateSkills, updateLoot } = usePlayer()
     const { playSwingSound, playHitSound, playBlockSound, playEvadeSound } = useAudio()
-
-    const [ parry, setParry ] = useState<boolean>(false)
-
-    useEffect(() => {
-        const chance = Math.random() < player.parry / 100 ? true : false
-        setParry(chance)
-    },[ enemyAttack == true, player.parry ])
-
-    const critChance = useMemo(() => chanceEval(player.critical), [playerAttack])
-    const lootChance = useMemo(() => chanceEval(player.looting), [playerAttack])
-
-    const playerTotalDamage = critChance ? player.dmg * 1.5 : player.dmg
     const router = useRouter()
+
+    // CONSTANTS & VARIABLES
+    const ATTACK_TIMEOUT = 500;
+    const DELAY = 3500;
 
     const emptyDialogue = {
         enemy: enemyData[0]!,
@@ -60,8 +50,22 @@ export default function Combat(){
         index: -1,
     }
 
+    const chargeIsZero = useMemo(() => {player.skills[0]?.charge === 0},[player])
+
+    const critChance = useMemo(() => chanceEval(player.critical), [playerAttack == true])
+    const lootChance = useMemo(() => chanceEval(player.looting), [playerAttack == true])
+    // const parryChance = useMemo(() => chanceEval(player.parry), [playerAttack == false])
+
+    const playerTotalDamage = useMemo(() => critChance ? player.dmg * 1.5 : player.dmg, [critChance])
+
+    // STATES
+    const [mounted, setMounted] = useState<boolean>(false)
+    const [ parry, setParry ] = useState<boolean>(false)
     const [extraDialogue, setExtraDialogue] = useState<string | undefined>(undefined)
  
+
+    // FUNCTIONS
+
     function chanceEval(boolValue: number) {
         return Math.random() <= boolValue / 100 ? true : false
     }
@@ -171,17 +175,6 @@ export default function Combat(){
         
     }
 
-useEffect(() => {
-if(enemyData.length <=0){
-setCurrentDialogue(emptyDialogue)
-            setButtonState(false)
-            setGameState((prev: GameStateProps) => ({
-                ...prev,
-                quizState: true 
-            }))
-}
-},[enemyData])
-
     function handleEnemyKill(enemy: Enemy){
         if(enemy.hp <= 0){
             // SHIFT ENEMYS FORWARD
@@ -205,15 +198,16 @@ setCurrentDialogue(emptyDialogue)
         const tempPlayer = player;
 
         let overflowDmg = 0;
-        // let playerHp = tempPlayer.hp;
 
         let newHp = player.hp;
         let newArmour = player.armour;
 
-        if(!(parry || player.agility == 1)){ // handles no parry
+        const parryChance = Math.random() < player.parry / 100 ? true : false
+        setParry(parryChance)
+
+        if(!(parryChance || player.agility == 1)){ // handles no parry
             if(player.armour <= enemyDmg){
                 overflowDmg = Math.abs(player.armour - enemyDmg)
-                // playerHp = tempPlayer.hp - overflowDmg
                 newHp -= overflowDmg
                 newArmour = 0
             }else{
@@ -255,7 +249,7 @@ setCurrentDialogue(emptyDialogue)
             })
         }
 
-        else if(parry){ // sets parry dialogue
+        else if(parryChance){ // sets parry dialogue
             playBlockSound()
             setCurrentDialogue({ 
                 enemy: enemyData[0],
@@ -270,7 +264,7 @@ setCurrentDialogue(emptyDialogue)
         
         setTimeout(() => {
             setEnemyAttack(false)       
-            
+            setParry(false)
             if(player.agility == 1){
                 setPlayer((prev: PlayerType) => ({
                     ...prev,
@@ -297,12 +291,14 @@ setCurrentDialogue(emptyDialogue)
         handlePlayerAttack()
     }
 
-    const [mounted, setMounted] = useState<boolean>(false)
+    // USE EFFECTS
 
+    // WAITS FOR GAME TO LOAD
     useEffect(() => {
         setMounted(true)
     },[])
 
+    // UPDATE ENEMIES ON POWER MOVE USAGE
     useEffect(() => {
         if(mounted){
             setTimeout(() => {
@@ -319,7 +315,19 @@ setCurrentDialogue(emptyDialogue)
             }, DELAY);
         }
         
-    },[ player.skills[0]?.charge === 0 ])
+    },[ chargeIsZero ])
+
+    // MOVE TO QUIZ MODE
+    useEffect(() => {
+        if(enemyData.length <=0){
+        setCurrentDialogue(emptyDialogue)
+            setButtonState(false)
+            setGameState((prev: GameStateProps) => ({
+                ...prev,
+                quizState: true 
+            }))
+        }
+    },[ enemyData ])
 
 
 
@@ -333,8 +341,13 @@ setCurrentDialogue(emptyDialogue)
             <SpriteContainer>
                 <Player>
                 {
-                    enemyAttack
-                    ? <Hit dmg={enemyData[0]!.dmg} parry={parry}/>
+                    enemyAttack && !parry
+                    ? <Hit dmg={enemyData[0]!.dmg}/>
+                    : ""
+                }
+                {
+                    parry
+                    ? <div id={sprites.shield}></div>
                     : ""
                 }
                     <Skills />

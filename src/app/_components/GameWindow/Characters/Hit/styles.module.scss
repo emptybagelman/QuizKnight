@@ -26,11 +26,7 @@
     transform: translate(-50%,-50%);
     animation:  move_x 1.5s linear infinite,
                 bounce 2s infinite cubic-bezier(0.7,-1525,0.5,1000),
-                fadeOut 1s cubic-bezier(1,.21,.96,.91) forwards;
-
-    background-image: url("../../../../../app/assets/shield.png");
-    background-size: 0;
-    
+                fadeOut 1s cubic-bezier(1,.21,.96,.91) forwards;    
 
     @keyframes bounce {
         to {
@@ -55,11 +51,4 @@
             left: calc(50 + $r-x) + 0px;
         }
     }
-}
-
-.block {
-    @extend .hit;
-    background-image: url("../../../../../app/assets/shield.png");
-    width: 48px;
-    height: 48px;
 }

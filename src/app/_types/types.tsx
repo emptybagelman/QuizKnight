@@ -6,6 +6,7 @@ export type PlayerType = {
     maxhp: number,
     dmg: number,
     armour: number,
+    maxarmour: number,
     resistance: number,
     critical: number,
     parry: number,
