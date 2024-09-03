@@ -11,15 +11,15 @@
 
     display: grid;
     grid-template-rows: 75px repeat(5,1fr) 75px;
-    grid-template-columns: 75px repeat(5,1fr) 75px;
+    grid-template-columns: 75px 1fr 75px;
     grid-template-areas: 
-        " settings  .   .    .  .   .    score "
-        " consumable  .   .    power    .   .   . "
-        " consumable  .   .    .    .   .   . "
-        " consumable  .   .    .    .   .   . "
-        " .  .   .    sprites    .    .   . "
-        " .  .   .    attack    .    .   . "
-        " .  .   .    .    .    .   . ";
+        " settings  .    score "
+        " consumable    power    . "
+        " consumable  .   . "
+        " consumable  .   .  "
+        " .    sprites    . "
+        " .    attack   . "
+        " .  .   .    . ";
 
 }
 
