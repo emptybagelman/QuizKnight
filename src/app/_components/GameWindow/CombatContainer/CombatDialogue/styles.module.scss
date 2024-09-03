@@ -4,13 +4,13 @@
 
 .dialogue_wrapper{
     width: 100%;
-    min-width: 250px;
+    min-width: 150px;
     max-width: 600px;
     // height: 100px;
     background-color: $bg;
     border-radius: $border-s;
 
-    grid-area: 6 / 2 / 7 / 2;
+    grid-area: 6 / 2 / 8 / 2;
 
     justify-self: center;
 
