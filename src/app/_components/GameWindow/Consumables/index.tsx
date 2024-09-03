@@ -39,7 +39,7 @@ function ConsumableItem(
 
         const { player, setPlayer } = useGame()
         const { playWrongSound, playHealSound, playManaSound, playAgilitySound, playFirebombSound } = useAudio()
-        const { updateLootCharge } = usePlayer()
+        const { updateLootCharge, updateLoot } = usePlayer()
 
         function handleClick(){
 
@@ -120,6 +120,7 @@ function ConsumableItem(
                     playWrongSound()
                 }
             }
+updateLoot(item.name,-1)
         }
 
 
