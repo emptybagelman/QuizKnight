@@ -8,7 +8,7 @@ export default function Flame(){
     const { player } = useGame()
 
     return (
-        <div className={`${player.consumables[3]?.charge! > 0 ? styles.flame : ""}`}>
+        <div className={`${player.consumables[3]?.charge && player.consumables[3]?.charge > 0 ? styles.flame : ""}`}>
 
         </div>
     )
