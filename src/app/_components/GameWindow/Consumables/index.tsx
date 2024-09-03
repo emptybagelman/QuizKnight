@@ -54,6 +54,10 @@ function ConsumableItem(
                 };
 
                 playHealSound()
+                setPlayer(prev: PlayerType) => ({
+   ...prev,
+   hp: hp
+}))
             }
 
             if(item.name === "Mana Potion"){
