@@ -27,13 +27,13 @@ export function enemyStats(name: string, loop:number) {
             armour = 0
             break;
         case "Toad":
-            hp = randomInt((2 + Math.floor(loop * 0.4)), 2)
+            hp = randomInt((5 + Math.floor(loop * 0.4)), 2)
             dmg = randomInt((2 + Math.floor(loop * 0.4)), 2)
             armour = 0
         default:
-            hp = randomInt((1 + Math.floor(loop * 0.5)), 1)
-            dmg = randomInt((1 + Math.floor(loop * 0.5)), 1)
-            armour = randomInt((1 + Math.floor(loop * 0.5)), 1)
+            hp = randomInt((2 + Math.floor(loop * 0.5)), 1)
+            dmg = randomInt((2 + Math.floor(loop * 0.5)), 1)
+            armour = 0
             break;
     }
 

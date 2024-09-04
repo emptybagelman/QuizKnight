@@ -209,6 +209,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         background-size: calc(600px * 3) $goblinSpriteH !important;
         background-image: url("../../../../assets/goblin_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
+        filter: saturate(0.5) brightness(0.6)  !important;
     }
 }
 @keyframes idleAnim_enemy {
@@ -260,6 +261,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         background-size: calc(600px * 3) $goblinSpriteH !important;
         background-image: url("../../../../assets/mushroom_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
+        filter: saturate(0.5) brightness(0.6)  !important;
     }
 }
 
@@ -291,6 +293,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         background-size: calc(600px * 3) $goblinSpriteH !important;
         background-image: url("../../../../assets/skeleton_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
+        filter: saturate(0.5) brightness(0.6)  !important;
     }
 }
 
@@ -323,6 +326,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         background-size: calc(600px * 3) $goblinSpriteH !important;
         background-image: url("../../../../assets/eye_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
+        filter: saturate(0.5) brightness(0.6)  !important;
     }
 }
 
@@ -335,7 +339,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         background-size: calc(320px * 3) calc(64px * 3) !important;
         background-image: url("../../../../assets/toad_idle.png") !important;
         transform: translate(-15px, -25%) scaleX(-1) !important;
-        animation: toad_idle 0.5s steps(4) infinite alternate !important;
+        animation: toad_idle 1s steps(4) infinite  !important;
         transition: filter 0.5s ease;
     }
 }
