@@ -19,7 +19,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 
 ### Todos
 - [x] damage bar
-- [] new logo
+- [x] new logo
 - [x] make armour finite, only health can recharge per wave
 - [] style up the cards
 - [x] better screen sizing
@@ -37,7 +37,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 - [] gameplay!
     - [] consumables
         - random chance for enemy to drop consumable
-        - [] burn over time
+        - [x] burn over time
         - [] static
             - chance to make enemy freeze
         - [x] hp potion

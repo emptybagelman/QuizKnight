@@ -9,7 +9,6 @@ export default function Flame(){
 
     return (
         <div className={`${player.consumables[3]?.charge && player.consumables[3]?.charge > 0 ? styles.flame : ""}`}>
-
         </div>
     )
 }

@@ -1,7 +1,7 @@
 @import "@/styles/scss_globals.scss";
 
 .flame{
-    $dim: 140px;
+    $dim: 100px;
     background-image: url("../../../../../assets/flame.png");
     background-size: calc($dim * 8) $dim;
     image-rendering: pixelated;
@@ -9,13 +9,13 @@
     height: $dim;
 
     position: absolute;
-    bottom: 50px;
-    left: -40px;
-
-    animation: flame 1.5s steps(7) infinite ;
+    bottom: 45px;
+    left: -10px;
+    filter: brightness(1.2);
+    animation: flame 1.5s steps(8) infinite ;
 }
 
 @keyframes flame {
     0% { background-position: 0 0; }
-    100% { background-position: calc(-980px * 3) 0; }
+    100% { background-position: calc(-800px * 3) 0; }
 }

@@ -63,7 +63,7 @@ export default function Combat(){
     const [ parry, setParry ] = useState<boolean>(false)
     const [extraDialogue, setExtraDialogue] = useState<string | undefined>(undefined)
     const [background, setBackground] = useState<Background>("default")
-
+    const [powerState, setPowerState] = useState<boolean>(false)
  
 
     // FUNCTIONS
@@ -152,7 +152,7 @@ export default function Combat(){
             setTimeout(() => {
                 setCurrentDialogue(activeEmptyDialogue)
                 const firebomb = player.consumables[3]
-                if(firebomb?.charge === 0){
+                if(firebomb?.charge === 0 || enemyHp <= 0){
                     // CHECK IF ENEMY DEAD
 
                     // EMPTY DIALOGUE BETWEEN MESSAGES
@@ -163,7 +163,7 @@ export default function Combat(){
                     moveToQuiz(enemyHp)
                 }
                 // HANDLE BURNING FROM FIREBOMB
-                else if(firebomb && firebomb.charge! > 0){
+                else if(firebomb && firebomb.charge! > 0 && enemyHp > 0){
                     setTimeout(() => {
                         if(!firebomb) throw new Error("What did you do ?")
                         setCurrentDialogue({
@@ -345,7 +345,7 @@ export default function Combat(){
 
     // UPDATE ENEMIES ON POWER MOVE USAGE
     useEffect(() => {
-        if(mounted){
+        if(powerState){
             setBackground("power_shake")
 
             setTimeout(() => {
@@ -364,12 +364,14 @@ export default function Combat(){
                         quizState: true 
                     }))
                 }
+                setPowerState(false)
+                setBackground("default")
 
                 setEnemyData(newEnemyArray)
             }, DELAY);
         }
         
-    },[ chargeIsZero ])
+    },[ powerState ])
 
     // MOVE TO QUIZ MODE
     useEffect(() => {
@@ -420,7 +422,7 @@ export default function Combat(){
                 <AttackButton handleClick={handleClick} buttonState={buttonState} />
                 : ""
             }
-            <PowerButton buttonState={buttonState}/>
+            <PowerButton buttonState={buttonState} setPowerState={setPowerState} />
             <CombatDialogue data={currentDialogue} extra={extraDialogue}/>
             <ScoreCounter />
         </CombatContainer>

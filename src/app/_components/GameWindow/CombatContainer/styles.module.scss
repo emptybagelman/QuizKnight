@@ -41,7 +41,7 @@
 }
 
 @keyframes power_shake {
-    0%{background-position: 50% 50%;filter: brightness(1.1);}
+    0%{background-position: 50% 50%;filter: brightness(1.2);}
     25%{background-position: calc(50% + 20px) 50%;}
     50%{background-position: calc(50% - 20px) 50%;}
     100%{background-position: 50% 50%;}

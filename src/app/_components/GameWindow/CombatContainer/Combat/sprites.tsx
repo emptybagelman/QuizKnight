@@ -57,9 +57,22 @@ export const eyeAnims = (eye: Enemy, arr: Enemy[], enemyBool: boolean, playerBoo
     return sprites.eye;
 }
 
+export const toadAnims = (toad: Enemy, arr: Enemy[], enemyBool: boolean, playerBool: boolean) => {
+    const first = arr[0];
+    
+    if(!arr) return "";
+    if(!first) return "";
+
+    if(toad.hp <= 0) return sprites.toadDeathAnim;
+    if(playerBool && toad.id === first.id) return sprites.toadHitAnim;
+    if(enemyBool && toad.id === first.id) return sprites.toadAttackAnim; 
+    return sprites.toad;
+}
+
 export const resolveAnimType = (enemy: Enemy, arr: Enemy[], enemyBool: boolean, playerBool: boolean) => {
     if(enemy.name === "Goblin") return goblinAnims(enemy, arr, enemyBool, playerBool)
     if(enemy.name === "Mushroom") return mushroomAnims(enemy, arr, enemyBool, playerBool)
     if(enemy.name === "Skeleton") return skeletonAnims(enemy, arr, enemyBool, playerBool)
     if(enemy.name === "Flying Eye") return eyeAnims(enemy, arr, enemyBool, playerBool)
+    if(enemy.name === "Toad") return toadAnims(enemy, arr, enemyBool, playerBool)
 }

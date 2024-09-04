@@ -10,7 +10,7 @@ import { type Enemy } from "@/app/_types/types"
 import usePlayer from "@/app/_hooks/usePlayer"
 import useAudio from "@/app/_hooks/useVolume"
 
-export default function PowerButton({buttonState}:{buttonState: boolean}){
+export default function PowerButton({buttonState, setPowerState}:{buttonState: boolean, setPowerState: React.Dispatch<React.SetStateAction<boolean>>}){
 
     const { player } = useGame()
     const { enemyData, setEnemyData, setPlayerAttack } = useCombat()
@@ -21,7 +21,7 @@ export default function PowerButton({buttonState}:{buttonState: boolean}){
     function handleClick(){
         if(buttonState) return;
         const enemies: Enemy[] = []
-
+        setPowerState(true)
         playChargeSound()
         setPlayerAttack(true)
         setTimeout(() => {

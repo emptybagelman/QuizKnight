@@ -67,6 +67,8 @@ $playerSpriteH: calc($playerSpriteW * 3);
 
     &::before{
         content: "";
+        filter: contrast(1.1) brightness(0.9);
+
         position: absolute;
         width: calc($playerDim + 100px);
         height: $playerDim;
@@ -322,6 +324,57 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         background-image: url("../../../../assets/eye_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
     }
+}
+
+.toad {
+    @extend .goblin;
+    &::before{
+        overflow: auto;
+        width: 150px;
+        height: 150px;
+        background-size: calc(320px * 3) calc(64px * 3) !important;
+        background-image: url("../../../../assets/toad_idle.png") !important;
+        transform: translate(-15px, -25%) scaleX(-1) !important;
+        animation: toad_idle 0.5s steps(4) infinite alternate !important;
+        transition: filter 0.5s ease;
+    }
+}
+
+.toadAttackAnim {
+    @extend .toad;
+    &::before{
+        background-size: calc(240px * 3) calc(64px * 3) !important;
+        background-image: url("../../../../assets/toad_attack.png") !important;
+        transform: translate(-15px, -25%) scaleX(-1) !important;
+
+        animation: toad_attackAnim 0.3s steps(3) infinite alternate !important;
+    }
+}
+
+.toadHitAnim {
+    @extend .toad;
+    &::before{
+        background-image: url("../../../../assets/toad_hit.png") !important;
+    }
+}
+
+.toadDeathAnim {
+    @extend .toad;
+    &::before{
+        background-image: url("../../../../assets/toad_hit.png") !important;
+        animation: toad_idle 1s steps(4) forwards !important;
+        filter: saturate(0.5) brightness(0.6)  !important;
+    }
+}
+
+@keyframes toad_idle {
+    0% { background-position: -30px -50px; }
+    100% { background-position: calc(-320px  * 3 - 30px) -50px; }
+}
+
+@keyframes toad_attackAnim {
+    0% { background-position: -30px -50px; }
+    100% { background-position: calc(-240px  * 3 - 30px) -50px; }
 }
 
 .consumable {

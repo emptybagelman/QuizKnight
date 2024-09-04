@@ -58,7 +58,7 @@ const defaultPlayerState: PlayerType = {
 }
 
 const defaultGameState: GameStateProps = {
-    loop: 0,
+    loop: 1,
     score: 0,
     quizState: false,
     questionState: false,

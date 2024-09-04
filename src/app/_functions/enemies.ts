@@ -9,27 +9,31 @@ export function enemyStats(name: string, loop:number) {
         case "Goblin":
             hp = randomInt((1 + Math.floor(loop * 0.6)), 1)
             dmg = randomInt((1 + Math.floor(loop * 0.4)), 1)
-            armour = randomInt((1 + Math.floor(loop * 0.25)), 1)
+            armour = randomInt((0 + Math.floor(loop * 0.25)), 1)
             break;
         case "Mushroom":
             hp = randomInt((3 + Math.floor(loop * 0.5)), 2)
             dmg = randomInt((1 + Math.floor(loop * 0.3)), 1)
-            armour = randomInt((2 + Math.floor(loop * 0.6)), 2)
+            armour = randomInt((1 + Math.floor(loop * 0.4)), 1)
             break;
         case "Skeleton":
-            hp = randomInt((2 + Math.floor(loop * 0.3)), 1)
+            hp = randomInt((2 + Math.floor(loop * 0.5)), 1)
             dmg = randomInt((3 + Math.floor(loop * 0.65)), 1)
-            armour = randomInt((1 + Math.floor(loop * 0.4)), 1)
+            armour = randomInt((1 + Math.floor(loop * 0.5)), 1)
             break;
         case "Flying Eye":
             hp = randomInt((3 + Math.floor(loop * 0.65)), 2)
             dmg = randomInt((2 + Math.floor(loop * 0.4)), 2)
             armour = 0
             break;
+        case "Toad":
+            hp = randomInt((2 + Math.floor(loop * 0.4)), 2)
+            dmg = randomInt((2 + Math.floor(loop * 0.4)), 2)
+            armour = 0
         default:
-            hp = randomInt((2 + Math.floor(loop * 0.6)), 1)
-            dmg = randomInt((2 + Math.floor(loop * 0.4)), 1)
-            armour = randomInt((1 + Math.floor(loop * 0.25)), 1)
+            hp = randomInt((1 + Math.floor(loop * 0.5)), 1)
+            dmg = randomInt((1 + Math.floor(loop * 0.5)), 1)
+            armour = randomInt((1 + Math.floor(loop * 0.5)), 1)
             break;
     }
 

@@ -22,7 +22,7 @@ export function adjustDifficulty(loop: number){
 
 export default function generateEnemies(loop: number) {
 
-    if(loop > 12){
+    if(loop > 13){
 
         const amount = adjustDifficulty(loop)
 
@@ -36,7 +36,7 @@ export default function generateEnemies(loop: number) {
                 hp = 1
             }
 
-            const enemies = ["Goblin","Mushroom","Skeleton","Flying Eye"]
+            const enemies = ["Goblin","Mushroom","Skeleton","Flying Eye", "Toad"]
             const name = randomEnemy(enemies)
 
             const en = {
@@ -78,18 +78,19 @@ export default function generateEnemies(loop: number) {
 function enemyLoopGen(loop: number) {
     const basicRounds: {[key:number]: string[]} = {
         0: ["Goblin"],
-        1: ["Goblin","Goblin"],
+        1: ["Toad","Goblin"],
         2: ["Mushroom","Goblin"],
         3: ["Mushroom","Goblin","Mushroom"],
         4: ["Goblin","Goblin","Mushroom"],
         5: ["Mushroom","Mushroom","Mushroom"],
-        6: ["Skeleton","Mushroom","Goblin"],
-        7: ["Skeleton","Skeleton","Skeleton"],
-        8: ["Flying Eye","Skeleton"],
+        6: ["Toad","Mushroom","Goblin"],
+        7: ["Toad","Toad","Toad"],
+        8: ["Toad","Flying Eye"],
         9: ["Goblin","Flying Eye","Mushroom"],
         10: ["Skeleton","Flying Eye","Flying Eye"],
         11: ["Flying Eye","Flying Eye","Goblin","Goblin"],
-        12: ["Flying Eye","Mushroom","Skeleton","Skeleton"]
+        12: ["Flying Eye","Mushroom","Toad","Toad"],
+        13: ["Toad", "Skeleton", "Mushroom", "Goblin"]
     }
 
     return basicRounds[loop]
