@@ -77,17 +77,17 @@ export default function generateEnemies(loop: number) {
 
 function enemyLoopGen(loop: number) {
     const basicRounds: {[key:number]: string[]} = {
-        0: ["Goblin"],
-        1: ["Toad","Goblin"],
+        0: ["Goblin", "Goblin"],
+        1: ["Goblin","Goblin", "Goblin"],
         2: ["Mushroom","Goblin"],
         3: ["Mushroom","Goblin","Mushroom"],
-        4: ["Goblin","Goblin","Mushroom"],
+        4: ["Goblin","Toad","Mushroom"],
         5: ["Mushroom","Mushroom","Mushroom"],
         6: ["Toad","Mushroom","Goblin"],
-        7: ["Toad","Toad","Toad"],
-        8: ["Toad","Flying Eye"],
+        7: ["Toad","Goblin","Mushroom","Toad","Goblin"],
+        8: ["Toad","Flying Eye","Flying Eye"],
         9: ["Goblin","Flying Eye","Mushroom"],
-        10: ["Skeleton","Flying Eye","Flying Eye"],
+        10: ["Skeleton","Flying Eye","Flying Eye", "Mushroom"],
         11: ["Flying Eye","Flying Eye","Goblin","Goblin"],
         12: ["Flying Eye","Mushroom","Toad","Toad"],
         13: ["Toad", "Skeleton", "Mushroom", "Goblin"]
