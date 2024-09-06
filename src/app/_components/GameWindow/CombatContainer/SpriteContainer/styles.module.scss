@@ -1,10 +1,16 @@
+@import "@/styles/scss_globals.scss";
+
+
 #sprite_layer{
     grid-area: sprites;
     position: relative;
-    justify-content: center;
-    width: 100%;
+    width: auto;
     display: grid;
-    grid-template-columns: 150px 150px 50px 150px 150px;
-    align-items: flex-end;
+    grid-template-columns: repeat(3,140px) minmax(50px, 1fr) repeat(3,140px) ;
+    gap: $gap-l;
     justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 25px;
+    transform: translateY(12px);
+    justify-self: center;
 }

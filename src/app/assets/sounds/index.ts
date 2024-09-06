@@ -15,6 +15,7 @@ import power_move from "#/sounds/power_move.mp3";
 import powermove from "#/sounds/powermove.mp3";
 import charge from "#/sounds/charge.mp3";
 import firebomb from "#/sounds/firebomb.mp3";
+import hit_impact from "#/sounds/hit_impact.mp3";
 
 export const audio = {
     attack_sword: attack_sword,
@@ -31,5 +32,6 @@ export const audio = {
     power_move: power_move,
     powermove: powermove,
     charge: charge,
-    firebomb: firebomb
+    firebomb: firebomb,
+    hit_impact: hit_impact
 }

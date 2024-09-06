@@ -1,7 +1,7 @@
 "use client"
 
 import styles from "./styles.module.scss";
-import { Background } from "@/app/_types/types";
+import { type Background } from "@/app/_types/types";
 
 export default function CombatContainer({children, background}:{children: React.ReactNode, background: Background}){
 

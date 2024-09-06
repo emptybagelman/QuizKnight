@@ -45,7 +45,7 @@ $playerSpriteH: calc($playerSpriteW * 3);
     width: $playerSpriteW;
     height: $playerSpriteW;
     display: flex;
-    grid-column: 2;
+    grid-column: 3;
 
     position: relative;
 
@@ -175,11 +175,11 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 
     @for $i from 2 through 5 {
         &:nth-child(#{$i}) {
-            grid-column: calc($i + 2);
+            grid-column: calc($i + 3);
         }
     }
 
-    &:nth-child(n+10) {
+    &:nth-child(n+5) {
         display: none;
     }
 }
@@ -334,7 +334,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         height: 150px;
         background-size: calc(320px * 3) calc(64px * 3) !important;
         background-image: url("../../../../assets/toad_idle.png") !important;
-        transform: translate(-15px, -25%) scaleX(-1) !important;
+        transform: translate(-15px, 0) scaleX(-1) !important;
         animation: toad_idle 1s steps(4) infinite  !important;
         transition: filter 0.5s ease;
     }

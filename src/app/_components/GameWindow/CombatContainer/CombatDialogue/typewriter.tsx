@@ -12,8 +12,9 @@ export default function Typewriter({text}:{text:string | undefined}){
         return (
             <TypeWriterEffect 
                 textStyle={{
-                    fontFamily: "__MedievalSharp_ba6bb8', '__MedievalSharp_Fallback_ba6bb8",
-                    fontSize: "1rem",
+                    fontFamily: "'VT323', monospace",
+                    letterSpacing: "1.6px",
+                    fontSize: "1em",
                     fontWeight: "normal",
                     textAlign: "center" 
                 }}

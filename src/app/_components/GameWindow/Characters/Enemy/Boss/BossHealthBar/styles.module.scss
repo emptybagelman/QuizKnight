@@ -1,30 +1,38 @@
 @import "@/styles/scss_globals.scss";
 
-.healthbar_wrapper{
-    $hb_border_r: $border-s 0px;
+.boss_healthbar_wrapper{
+    $hb_border_r: $border-l 0px;
     $pp: hsl(358, 100%, 35%);
     $hb_outline: solid 2px $bg;
     display: flex;
-    position: relative;
-    // top: -50px;
-    left: 0;
-    width: 75%;
+    top: 0px;
+    // left: 50%;
+    // transform: translateX(-50%);
     height: 20px;
-    transform: translateY(-25px);
 
-    &>div{
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: 25px 15px;
+    align-self: center;
+
+    &>div, &>h1{
         width: 100%;
-        height: 20px;
+        height: 50px;
         padding: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
+        align-self: center;
+        justify-self: center;
     }
 
     #hp{
+        position: absolute;
+        
         width: 100%;
         background-color: $green;
-        box-shadow: $green-shadow inset 0 -3px 0 0;
+        box-shadow: $green-shadow inset 0 -5px 0 0;
         z-index: 3;
         border-radius: $hb_border_r;
         transition: 0.7s cubic-bezier(0.215, 0.610, 0.355, 1);
@@ -46,7 +54,15 @@
         background-color: $blue;
         box-shadow: $blue-shadow inset 0 -3px 0 0;
         border-radius: $hb_border_r;
+    }
+
+    #bossname{
+        position: absolute;
+        z-index: 5;
+        // top: 50%;
+        white-space: nowrap;
+        font-size: $h1-m;
         font-family: $font-pixel;
-        font-size: $p-m;
+        letter-spacing: 1.6px;
     }
 }

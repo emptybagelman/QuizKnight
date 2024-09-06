@@ -1,3 +1,5 @@
+"use client"
+
 import { type Card } from "@/app/_types/types";
 import {  getRandomUpgrade } from "@/server/actions/categoryActions";
 import { type QueryObserverResult, type RefetchOptions, useQuery } from "@tanstack/react-query";

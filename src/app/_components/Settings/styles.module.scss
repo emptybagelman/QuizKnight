@@ -3,7 +3,7 @@
 .settings_button {
     @include button_l;
     @include green;
-    font-family: $font;
+    font-family: $font-pixel;
 
     &:hover{
         background-color: $hover;
@@ -41,7 +41,7 @@
             align-self: flex-end;
             margin: $gap-l;
             text-align: center;
-            font-family: $font;
+            font-family: $font-pixel;
         
             &:hover{
                 cursor: pointer;

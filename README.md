@@ -35,6 +35,9 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [] animation toggle
     - [] difficulty mode
 - [] gameplay!
+    - [] convert current powering system to stat point system
+        - [x] quiz display overlays combat
+        - [] once completed, stat screen appears, player can allocate points to level up
     - [] consumables
         - random chance for enemy to drop consumable
         - [x] burn over time
@@ -61,6 +64,11 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
             - mid hp
             - mid dmg
             - no armour
+        - BOSS
+            - [x] Demon Slime
+                - [x] all anims
+                - [x] activates ability
+                - [x] special sounds
     - [x] crit chance
     - [x] block chance
     - [] upgrades

@@ -16,9 +16,9 @@ export default function QuizDisplay(){
         setGameState,
         } = useGame()
 
-    const { updatePlayerStat, setMaxHp } = usePlayer()
+    const { updatePlayerStat } = usePlayer()
 
-    const { questionsAnswered, setQuestionsAnswered } = useLoop()
+    const { setQuestionsAnswered } = useLoop()
 
     const [ corrState, setCorrState ] = useState<boolean | null>(null)
 
@@ -58,59 +58,44 @@ export default function QuizDisplay(){
         }
 
         setTimeout(() => {
-
-            setMaxHp()
+            setCorrState(null)
+            setQuestionsAnswered((prev: number) => prev + 1)
             setGameState((prev: GameStateProps) => ({
                 ...prev,
                 questionState: false
             }))
-            setCorrState(null)
-            setQuestionsAnswered((prev: number) => prev + 1)
-
+            
         }, 1000);
     }
 
-    if(questionsAnswered == 3){
-        setQuestionsAnswered(0)
-        setGameState((prev: GameStateProps) => ({
-            ...prev,
-            loop: prev.loop + 1,
-            quizState: false
-        }))
-    }
-
+    if(gameState.questionState)
     return (
-        <>
-            {
-                gameState.questionState &&
-                <div className={styles.quiz_display_wrapper}>
-                    <h2>{gameState.currentCard?.category?.category}</h2>
-                    <h3>{gameState.currentCard?.question.question}</h3>
+        <div className={styles.quiz_display_wrapper}>
+            <h2>{gameState.currentCard?.category?.category}</h2>
+            <h3>{gameState.currentCard?.question.question}</h3>
 
-                    <div className={styles.answers}>
-                        {
-                            gameState.currentCard &&
-                            gameState.currentCard.question.answers.map((ans, idx) => (
-                                <button
-                                onClick={() => handleAnswer(ans)}
-                                onMouseEnter={() => playHoverSound()}
-                                key={idx}
-                                className={
-                                    corrState != null
-                                    ? corrState
-                                        ? styles.correct
-                                        : styles.incorrect
-                                    : ""
-                                }
-                                style={{pointerEvents: corrState == true || corrState == false ? "none" : "auto"}}
-                                >
-                                    {ans}
-                                </button>
-                            ))
+            <div className={styles.answers}>
+                {
+                    gameState.currentCard &&
+                    gameState.currentCard.question.answers.map((ans, idx) => (
+                        <button
+                        onClick={() => handleAnswer(ans)}
+                        onMouseEnter={() => playHoverSound()}
+                        key={idx}
+                        className={
+                            corrState != null
+                            ? corrState
+                                ? styles.correct
+                                : styles.incorrect
+                            : ""
                         }
-                    </div>
-                </div>
-            }
-        </>
+                        style={{pointerEvents: corrState == true || corrState == false ? "none" : "auto"}}
+                        >
+                            {ans}
+                        </button>
+                    ))
+                }
+            </div>
+        </div>
     )
 }

@@ -16,6 +16,9 @@
     padding: $padding-l $padding-m;
     transition: $fade-transition;
 
+    font-family: $font-pixel;
+    letter-spacing: 1.6px;
+
     &:hover{
         scale: 1.02;
         cursor: pointer;
@@ -24,6 +27,7 @@
     h2{
         font-weight: 300;
         z-index: 10;
+        font-size: $h2-l;
     }
 
     .difficulty{
@@ -44,23 +48,23 @@
         text-align: center;
 
         .buff{
-            font-size: $p-s;
+            font-size: $p-m;
             text-align: center;
         }
 
         .buff_desc{
-            font-size: $p-xs;
+            font-size: $p-s;
             opacity: 0.8;
         }
     }
 }
 
-@media screen and (max-width: 800px){
-    .card_wrapper {
-        width: 30%;
-        height: 60%;
-    }
-}
+// @media screen and (max-width: 800px){
+//     .card_wrapper {
+//         width: 30%;
+//         height: 60%;
+//     }
+// }
 
 @media screen and (max-width: 600px) {
     .card_wrapper {

@@ -21,6 +21,7 @@ export type Skill = {
     name: string,
     type: string,
     charge?: number,
+    active: boolean
 }
 
 export type Enemy = {

@@ -9,10 +9,11 @@
     height: $dim;
 
     position: absolute;
-    bottom: 45px;
-    left: -10px;
+    bottom: 0px;
+    left: 20px;
     filter: brightness(1.2);
     animation: flame 1.5s steps(8) infinite ;
+    z-index: 1;
 }
 
 @keyframes flame {

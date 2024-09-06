@@ -1,6 +1,6 @@
 "use client"
 
-import { Enemy } from "@/app/_types/types";
+import { type Enemy } from "@/app/_types/types";
 import styles from "./styles.module.scss";
 import { useGame } from "@/app/_components/GameContext";
 import { useCombat } from "@/app/_components/CombatContext";
@@ -17,22 +17,24 @@ export default function Boss({
 
     return (
         <div
-        className={styles.slimeBoss}>
+            className={slimeBossAnims(enemy, enemyData, enemyAttack, playerAttack)}>
             {
                 playerAttack && enemyData[0]?.id === enemy.id
                 ? <Hit dmg={player.dmg} />
                 : ""
             }
-            <BossHealthbar />
         </div>
     )
 }
 
-function BossHealthbar(){
+const slimeBossAnims = (slimeBoss: Enemy, arr: Enemy[], enemyBool: boolean, playerBool: boolean) => {
+    const first = arr[0];
+    
+    if(!arr) return "";
+    if(!first) return "";
 
-    return (
-        <div className={styles.bossbar}>
-
-        </div>
-    )
+    if(slimeBoss.hp <= 0) return styles.slimeBossDeath;
+    if(playerBool && slimeBoss.id === first.id) return styles.slimeBossHit;
+    if(enemyBool && slimeBoss.id === first.id) return styles.slimeBossAttack; 
+    return styles.slimeBoss;
 }

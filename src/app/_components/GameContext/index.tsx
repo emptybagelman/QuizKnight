@@ -27,6 +27,7 @@ const defaultPlayerState: PlayerType = {
         name: "Power Move",
         type: "damage",
         charge: 0,
+        active: false
     }],
     consumables: [
         {
@@ -58,7 +59,7 @@ const defaultPlayerState: PlayerType = {
 }
 
 const defaultGameState: GameStateProps = {
-    loop: 3,
+    loop: 0,
     score: 0,
     quizState: false,
     questionState: false,

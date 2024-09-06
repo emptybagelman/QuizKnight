@@ -11,7 +11,7 @@ export default function CombatDialogue(
         {data: DialogueProps | undefined, extra: string | undefined}
     ){
 
-    if(!data) return;
+    if(!data || !data.enemy) return;
     const TEXT = [
         `You hit the ${data.enemy.name}.`, // 0
         `You got hit by the ${data.enemy.name}.`, // 1

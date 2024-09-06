@@ -9,6 +9,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    
 
     #not_found_wrapper{
         width: 50%;
@@ -24,10 +25,6 @@
         button{
             @include button_m;
         }
-    }
-
-    #loading_page{
-        
     }
 
     #home_wrapper{

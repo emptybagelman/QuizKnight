@@ -63,7 +63,7 @@ function ConsumableItem(
             if(item.name === "Mana Potion"){
                 const mana = player.skills[0]?.charge
 
-                if(mana == 100) {
+                if(mana == 100 || !player.skills[0]?.active) {
                     playWrongSound()
                     return;
                 };

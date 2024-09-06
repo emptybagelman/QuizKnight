@@ -65,6 +65,7 @@ $fade-transition: 0.2s ease;
 $window: calc(100dvh - 75px);
 
 $font:  '__MedievalSharp_ba6bb8', '__MedievalSharp_Fallback_ba6bb8';
+$font-pixel: "VT323", monospace;
 
 // BACKGROUND COLOURS
 
@@ -99,6 +100,7 @@ $font:  '__MedievalSharp_ba6bb8', '__MedievalSharp_Fallback_ba6bb8';
 }
 
 @mixin floatInAnim {
+    transform: translateY(100000px);
     opacity: 0;
     animation: 1s floatIn forwards;
 }
@@ -114,12 +116,19 @@ $font:  '__MedievalSharp_ba6bb8', '__MedievalSharp_Fallback_ba6bb8';
     }
 }
 
+@mixin pixel {
+    font-family: $font-pixel;
+    letter-spacing: 1.6px;
+}
 
 // BUTTONS
 
 @mixin button_s {
     padding: $padding-l $padding-l;
-    font-size: $p-m;
+    font-size: $p-l;
+    font-family: $font-pixel;
+    letter-spacing: 1.6px;
+
 
     border-radius: $border-s;
 
@@ -137,6 +146,7 @@ $font:  '__MedievalSharp_ba6bb8', '__MedievalSharp_Fallback_ba6bb8';
 @mixin button_m {
     @include button_s();
     padding: $padding-l $padding-xl;
+
 }
 
 @mixin button_l {

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import CombatDialogue from "../CombatDialogue";
-import { type PlayerType, type Enemy, type GameStateProps, Background } from "@/app/_types/types"
+import { type PlayerType, type Enemy, type GameStateProps, type Background } from "@/app/_types/types"
 import { useGame } from "../../../GameContext";
 import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
@@ -17,7 +17,7 @@ import SpriteContainer from "../SpriteContainer";
 import useAudio from "@/app/_hooks/useVolume";
 import SettingsWidget from "@/app/_components/Settings/GameSettings";
 import ConsumableContainer from "../../Consumables";
-import { randomItem } from "@/app/_functions/game_functions";
+import generateEnemies, { randomItem } from "@/app/_functions/game_functions";
 import HealthBar from "../../Characters/HealthBar";
 import Hit from "../../Characters/Hit";
 import Skills from "../../Characters/Player/Skills";
@@ -25,20 +25,24 @@ import PowerButton from "../../Characters/Player/Skills/PowerButton";
 import usePlayer from "@/app/_hooks/usePlayer";
 import sprites from "./sprites.module.scss"
 import Boss from "../../Characters/Enemy/Boss";
+import { BossHealthBar } from "../../Characters/Enemy/Boss/BossHealthBar";
+import Quiz from "../../Quiz";
 
 export default function Combat(){
     
     // CONTEXTS AND HOOKS
     const { player, setPlayer, gameState, setGameState} = useGame()
     const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
-    const { updateSkills, updateLoot, updateLootCharge } = usePlayer()
-    const { playSwingSound, playHitSound, playBlockSound, playEvadeSound, playFirebombSound } = useAudio()
+    const { toggleSkills, updateSkills, updateLoot, updateLootCharge } = usePlayer()
+    const { playHitImpactSound, playSwingSound, playHitSound, playBlockSound, playEvadeSound, playFirebombSound } = useAudio()
     const router = useRouter()
 
     // CONSTANTS & VARIABLES
     const ATTACK_TIMEOUT = 500;
     const DELAY = 3500;
     const BURN_DMG = 2;
+    const isBoss = enemyData[0]?.name === "Demon Slime"
+
 
     const emptyDialogue = {
         enemy: enemyData[0]!,
@@ -51,8 +55,6 @@ export default function Combat(){
         active: true,
         index: -1,
     }
-
-    const chargeIsZero = player.skills[0]?.charge === 0
 
     const critChance = useMemo(() => chanceEval(player.critical), [playerAttack == true])
     const lootChance = useMemo(() => chanceEval(player.looting), [playerAttack == true])
@@ -159,7 +161,9 @@ export default function Combat(){
                     // EMPTY DIALOGUE BETWEEN MESSAGES
 
                     // ADD +10 CHARGE ON KILL 
-                    updateSkills(0, 10, false)
+                    if(player.skills[0]?.active){
+                        updateSkills(0, 10, false)
+                    }
                     handleEnemyKill(firstEnemy)
                     moveToQuiz(enemyHp)
                 }
@@ -186,8 +190,12 @@ export default function Combat(){
                         updateLootCharge(firebomb.name,-1)
                         if(firebomb.charge! - 1 == 0){
                             updateLoot(firebomb.name, -1)
-                        } 
+                        }
 
+                        if(player.skills[0]?.active){
+                            updateSkills(0, 10, false)
+                        }
+                        
                         setTimeout(() => {
                             setCurrentDialogue(activeEmptyDialogue)
                             handleEnemyKill(firstEnemy)
@@ -209,6 +217,7 @@ export default function Combat(){
                 if(enemyHp <= 0){
                     setButtonState(false)
                     setCurrentDialogue(emptyDialogue)
+                    
                 }
                 else {
                     handleEnemyAttack()
@@ -236,8 +245,6 @@ export default function Combat(){
     function handleEnemyAttack() {
         if(!enemyData[0]) throw new Error("Apparently the player is dead and is still being beaten into the ground...");
         
-        setBackground("shake")
-
         const enemyDmg = enemyData[0].dmg
         const tempPlayer = player;
 
@@ -245,6 +252,16 @@ export default function Combat(){
 
         let newHp = player.hp;
         let newArmour = player.armour;
+
+        if(isBoss) {
+            setTimeout(() => {
+                setBackground("power_shake")
+                
+            }, ATTACK_TIMEOUT * 1.4);
+        }
+        else{
+            setBackground("shake")
+        }
 
         const parryChance = Math.random() < player.parry / 100 ? true : false
         setParry(parryChance)
@@ -258,30 +275,31 @@ export default function Combat(){
                 newArmour -= enemyDmg
             }
 
-            setPlayer((prev: PlayerType) => ({
-                ...prev,
-                hp: newHp,
-                armour: newArmour
-            }))
+            setTimeout(() => {
+                setPlayer((prev: PlayerType) => ({
+                    ...prev,
+                    hp: newHp,
+                    armour: newArmour
+                }))
 
-            if(newHp <= 0){
-                setCurrentDialogue({
-                    enemy: enemyData[0],
-                    active: true,
-                    index: 2,
-                })
-    
-            }
-    
-            else{
-                setCurrentDialogue({
-                    enemy: enemyData[0],
-                    active: true,
-                    index: 1,
-                })
-            }
+                if(newHp <= 0){
+                    setCurrentDialogue({
+                        enemy: enemyData[0]!,
+                        active: true,
+                        index: 2,
+                    })
+        
+                }
+        
+                else{
+                    setCurrentDialogue({
+                        enemy: enemyData[0]!,
+                        active: true,
+                        index: 1,
+                    })
+                }
 
-            playHitSound()
+            }, isBoss ? ATTACK_TIMEOUT * 1.4 : 0);
         }
 
         else if(tempPlayer.agility == 1){
@@ -301,11 +319,22 @@ export default function Combat(){
                 index: 5
             })
         }
-        
 
         setEnemyAttack(true)  // RUNS ENEMY ATTACK
-        playSwingSound()
+
+        // HIT SOUND
+        if(isBoss){
+            playHitImpactSound()
+        }
+        else{
+            playHitSound()
+        }
+
+        setTimeout(() => {
+            playSwingSound()
         
+        }, isBoss ? ATTACK_TIMEOUT * 1.2 : 0);
+            
         setTimeout(() => {
             setEnemyAttack(false)       
             setParry(false)
@@ -326,8 +355,8 @@ export default function Combat(){
                     setCurrentDialogue(emptyDialogue)
                     setButtonState(false) // ENABLE BUTTON
                 }
-            },DELAY)
-        },ATTACK_TIMEOUT)
+            }, DELAY)
+        }, isBoss ? ATTACK_TIMEOUT * 3 : ATTACK_TIMEOUT)
     }
 
     function handleClick(){
@@ -377,37 +406,47 @@ export default function Combat(){
     // MOVE TO QUIZ MODE
     useEffect(() => {
         if(enemyData.length <=0){
+            if(gameState.loop === 15){
+                toggleSkills(0,true)
+            }
             setCurrentDialogue(emptyDialogue)
             setButtonState(true)
             setGameState((prev: GameStateProps) => ({
                 ...prev,
-                quizState: true 
+                quizState: true,
             }))
         }
     },[ enemyData ])
 
+    useEffect(() => {
+        setEnemyData(generateEnemies(gameState.loop))
+    }, [gameState.loop])
 
 
     if(mounted)
     return (
         <CombatContainer background={background}>
             <SettingsWidget />
-
+            {
+                isBoss && <BossHealthBar boss={enemyData[0]!} />
+            }
             <StartScreen />
             <ConsumableContainer buttonState={buttonState}/>
             <SpriteContainer>
                 <Player>
-                {
-                    enemyAttack && !parry
-                    ? <Hit dmg={enemyData[0]!.dmg}/>
-                    : ""
-                }
-                {
-                    parry
-                    ? <div id={sprites.shield}></div>
-                    : ""
-                }
-                    <Skills />
+                    {
+                        enemyAttack && !parry
+                        ? <Hit dmg={enemyData[0]!.dmg}/>
+                        : ""
+                    }
+                    {
+                        parry
+                        ? <div id={sprites.shield}></div>
+                        : ""
+                    }
+                    {
+                        player.skills[0]?.active && <Skills />
+                    }
                     <HealthBar character={player} />
                 </Player>
                 {
@@ -430,6 +469,12 @@ export default function Combat(){
             <PowerButton buttonState={buttonState} setPowerState={setPowerState} />
             <CombatDialogue data={currentDialogue} extra={extraDialogue}/>
             <ScoreCounter />
+
+            {
+                gameState.quizState || gameState.questionState 
+                ? <Quiz />
+                : ""
+            }
         </CombatContainer>
     )
 }

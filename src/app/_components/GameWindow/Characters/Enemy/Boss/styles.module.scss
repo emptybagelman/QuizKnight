@@ -3,31 +3,36 @@ $scale: 3;
 $width: 288px;
 $height: 160px;
 
+$neg: -1;
 
 $width-idle: 1728px; 
+$width-attack: 4320px;
+$width-hit: 1440px;
+$width-death: 6336px;
+$width-walk: 3456px;
 
-
-$idle-w: calc($width-idle * $scale);
 $main-h: calc($height * $scale);
+$idle-w: calc($width-idle * $scale);
+$attack-w: calc($width-attack * $scale);
+$hit-w: calc($width-hit * $scale);
+$death-w: calc($width-death * $scale);
+$walk-w: calc($width-walk * $scale);
 
-$offset: calc(calc(288px / 4) * $scale);
+$offset: calc($width * $scale);
 
 .slimeBoss {
-    
-    bottom: 0;
-    right: 0;
-    width: $width;
+    width: 160px;
     height: $height;
-    // width: calc($width * $scale);
-    // height: calc($height * $scale);
-    // background-color: red;
-    outline: solid 1px red;
+    position: relative;
+    grid-column: 4;
 
+    display: flex;
 
     &::before{
         content: "";
         position: absolute;
         bottom: 0;
+        left: -160%;
         width: $idle-w;
         height: $main-h;
 
@@ -38,25 +43,78 @@ $offset: calc(calc(288px / 4) * $scale);
         background-position: 0 0;
 
         animation: bossIdle 1s steps(5) infinite;
+    }
+}
 
-        transform: translateX(0)
+@media screen and (max-width: 500px) {
+    .slimeBoss {
+        &::before {
+            left: -200%;
+        }
     }
 }
 
 .slimeBossAttack {
     @extend .slimeBoss;
 
-    &::before{        
-        animation: bossAttack 2s steps(15) infinite !important;
+    &::before{
+        background-size: $attack-w $main-h !important;
+        background-image: url("../../../../../assets/demon_slime_attack.png") !important;
+        animation: bossAttack 1s steps(14) forwards !important;
+    }
+}
+
+.slimeBossHit {
+    @extend .slimeBoss;
+
+    &::before{
+        background-size: $hit-w $main-h !important; 
+        background-image: url("../../../../../assets/demon_slime_hit.png") !important;
+        animation: bossHit 1s steps(4) forwards !important;
+    }
+}
+
+.slimeBossDeath {
+    @extend .slimeBoss;
+
+    &::before{
+        background-size: $death-w $main-h !important; 
+        background-image: url("../../../../../assets/demon_slime_death.png") !important;
+        animation: bossDeath 3s steps(21) forwards !important;
+    }
+}
+
+.slimeBossWalk {
+    @extend .slimeBoss;
+
+    &::before{
+        background-size: $walk-w $main-h !important; 
+        background-image: url("../../../../../assets/demon_slime_walk.png") !important;
+        animation: bossWalk 1.5s steps(11) infinite !important;
     }
 }
 
 @keyframes bossIdle {
-    0%{background-position: 0 0;}
-    100%{background-position: 0 0;}
+    0%{background-position: 0 ;}
+    100%{background-position: calc($idle-w * $neg + $offset)  0;}
 }
 
-// @keyframes bossAttack {
-//     0%{background-position: calc($base-pos-x + $offset) calc($base-pos-y * $atk-offset);}
-//     100%{background-position: calc(calc($base-pos-x * calc(7 + calc(6 * 14))) + $offset) calc($base-pos-y * $atk-offset);}
-// }
+@keyframes bossAttack {
+    0%{background-position: 0 ;}
+    100%{background-position: calc($attack-w * $neg + $offset)  0;}
+}
+
+@keyframes bossHit {
+    0%{background-position: 0 ;}
+    100%{background-position: calc($hit-w * $neg + $offset)  0;}
+}
+
+@keyframes bossDeath {
+    0%{background-position: 0 ;}
+    100%{background-position: calc($death-w * $neg + $offset)  0;}
+}
+
+@keyframes bossWalk {
+    0%{background-position: 0 ;}
+    100%{background-position: calc($walk-w * $neg + $offset)  0;}
+}

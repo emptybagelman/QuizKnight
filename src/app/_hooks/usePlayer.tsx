@@ -126,12 +126,34 @@ export default function usePlayer(){
         })
     }
 
+    function toggleSkills(id: number, newBool: boolean){
+        setPlayer((prev: PlayerType) => {
+            if(!prev.skills) return {
+                ...prev
+            }
+
+            const updatedSkills = [...prev.skills] as Skill[]
+
+            if(!updatedSkills[id]) return {
+                ...prev
+            }
+
+            updatedSkills[id].active = newBool
+
+            return {
+                ...prev,
+                skills: updatedSkills
+            }
+        })
+    }
+
     return {
         updatePlayerStat,
         setMaxHp,
         updateSkills,
         updateLoot,
-        updateLootCharge
+        updateLootCharge,
+        toggleSkills
     }
 
 }

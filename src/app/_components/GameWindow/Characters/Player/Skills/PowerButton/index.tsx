@@ -16,7 +16,7 @@ export default function PowerButton({buttonState, setPowerState}:{buttonState: b
     const { enemyData, setEnemyData, setPlayerAttack } = useCombat()
     const { setCurrentDialogue } = useCombat()
     const { updateSkills } = usePlayer()
-    const { playChargeSound, playPowerMoveSound } = useAudio()
+    const { playChargeSound, playPowerMoveSound, playHitImpactSound } = useAudio()
 
     function handleClick(){
         if(buttonState) return;
@@ -26,6 +26,7 @@ export default function PowerButton({buttonState, setPowerState}:{buttonState: b
         setPlayerAttack(true)
         setTimeout(() => {
             playPowerMoveSound()
+            playHitImpactSound()
             setPlayerAttack(false)
 
             setCurrentDialogue({
