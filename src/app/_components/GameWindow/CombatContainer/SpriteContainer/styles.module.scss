@@ -1,7 +1,10 @@
 #sprite_layer{
     grid-area: sprites;
     position: relative;
-    display: flex;
     justify-content: center;
     width: 100%;
+    display: grid;
+    grid-template-columns: 150px 150px 50px 150px 150px;
+    align-items: flex-end;
+    justify-content: center;
 }

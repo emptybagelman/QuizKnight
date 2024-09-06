@@ -22,7 +22,7 @@ export function adjustDifficulty(loop: number){
 
 export default function generateEnemies(loop: number) {
 
-    if(loop > 13){
+    if(loop > 15){
 
         const amount = adjustDifficulty(loop)
 
@@ -90,7 +90,9 @@ function enemyLoopGen(loop: number) {
         10: ["Skeleton","Flying Eye","Flying Eye", "Mushroom"],
         11: ["Flying Eye","Flying Eye","Goblin","Goblin"],
         12: ["Flying Eye","Mushroom","Toad","Toad"],
-        13: ["Toad", "Skeleton", "Mushroom", "Goblin"]
+        13: ["Toad", "Skeleton", "Mushroom", "Goblin"],
+        14: ["Skeleton", "Skeleton", "Mushroom", "Toad"],
+        15: ["Demon Slime"]
     }
 
     return basicRounds[loop]

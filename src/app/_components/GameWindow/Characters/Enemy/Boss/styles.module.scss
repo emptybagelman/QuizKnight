@@ -1,0 +1,62 @@
+@import "@/styles/scss_globals.scss";
+$scale: 3;
+$width: 288px;
+$height: 160px;
+
+
+$width-idle: 1728px; 
+
+
+$idle-w: calc($width-idle * $scale);
+$main-h: calc($height * $scale);
+
+$offset: calc(calc(288px / 4) * $scale);
+
+.slimeBoss {
+    
+    bottom: 0;
+    right: 0;
+    width: $width;
+    height: $height;
+    // width: calc($width * $scale);
+    // height: calc($height * $scale);
+    // background-color: red;
+    outline: solid 1px red;
+
+
+    &::before{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: $idle-w;
+        height: $main-h;
+
+        image-rendering: pixelated;
+        background-image: url("../../../../../assets/demon_slime_idle.png");
+        background-size: $idle-w $main-h;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+
+        animation: bossIdle 1s steps(5) infinite;
+
+        transform: translateX(0)
+    }
+}
+
+.slimeBossAttack {
+    @extend .slimeBoss;
+
+    &::before{        
+        animation: bossAttack 2s steps(15) infinite !important;
+    }
+}
+
+@keyframes bossIdle {
+    0%{background-position: 0 0;}
+    100%{background-position: 0 0;}
+}
+
+// @keyframes bossAttack {
+//     0%{background-position: calc($base-pos-x + $offset) calc($base-pos-y * $atk-offset);}
+//     100%{background-position: calc(calc($base-pos-x * calc(7 + calc(6 * 14))) + $offset) calc($base-pos-y * $atk-offset);}
+// }

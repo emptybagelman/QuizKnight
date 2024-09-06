@@ -30,6 +30,7 @@ export function enemyStats(name: string, loop:number) {
             hp = randomInt((5 + Math.floor(loop * 0.4)), 2)
             dmg = randomInt((2 + Math.floor(loop * 0.4)), 2)
             armour = 0
+            break;
         default:
             hp = randomInt((2 + Math.floor(loop * 0.5)), 1)
             dmg = randomInt((2 + Math.floor(loop * 0.5)), 1)

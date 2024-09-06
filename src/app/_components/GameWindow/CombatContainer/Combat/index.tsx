@@ -24,6 +24,7 @@ import Skills from "../../Characters/Player/Skills";
 import PowerButton from "../../Characters/Player/Skills/PowerButton";
 import usePlayer from "@/app/_hooks/usePlayer";
 import sprites from "./sprites.module.scss"
+import Boss from "../../Characters/Enemy/Boss";
 
 export default function Combat(){
     
@@ -412,7 +413,11 @@ export default function Combat(){
                 {
                     enemyData &&
                     enemyData.map((enemy, idx) => (
-                        <EnemySprite key={idx} id={idx} enemy={enemy} />
+                        
+                            !(gameState.loop == 15)
+                            ? <EnemySprite key={idx} id={idx} enemy={enemy} />
+                            : <Boss  key={idx} enemy={enemy}/>
+                        
                     ))
                 }
             </SpriteContainer>

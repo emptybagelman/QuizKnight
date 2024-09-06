@@ -45,9 +45,9 @@ $playerSpriteH: calc($playerSpriteW * 3);
     width: $playerSpriteW;
     height: $playerSpriteW;
     display: flex;
-    position: absolute;
+    grid-column: 2;
 
-    transform: translate(-50%, $sprite-y-offset);
+    position: relative;
 
     &>p{
         transform: translateY(-50%);
@@ -60,8 +60,8 @@ $playerSpriteH: calc($playerSpriteW * 3);
         background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.1) 70%);
         border-radius: 50%;
         position: absolute;
-        bottom: 25px; 
-        left: 10px;
+        bottom: -2px; 
+        left: 20%;
         animation: shadow_bobble 0.5s steps(3) alternate infinite;
     }
 
@@ -72,13 +72,13 @@ $playerSpriteH: calc($playerSpriteW * 3);
         position: absolute;
         width: calc($playerDim + 100px);
         height: $playerDim;
-        top: 0;
+        bottom: 0;
         left: 0;
 
         background-size: $playerSpriteSheetW $playerSpriteH;
         background-image: url("../../../../assets/knight_idle.png");
         image-rendering: pixelated;
-        transform: translate(-40%,-50%);
+        transform: translate(-35%, 10%);
         animation: idleAnim_player 1s steps(11) infinite;
     }
 }
@@ -155,8 +155,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
     height: $goblinSpriteW;
 
     &::after {
-        left: -10px;
-        bottom: 38px;
+        // left: -10px;
         width: 65%;
         animation: shadow_bobble 0.5s steps(4) alternate infinite;
     }
@@ -169,17 +168,14 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 
         animation: idleAnim_enemy 1s steps(4) infinite;
         image-rendering: pixelated;
-        transform: translate(-10%,-65%) scaleX(-1);
+        transform: translate(-0%,-1%) scaleX(-1);
         
     }
 
-    &:nth-child(2){
-        transform: translate(75%, $sprite-y-offset);
-    }
 
-    @for $i from 3 through 10 {
+    @for $i from 2 through 5 {
         &:nth-child(#{$i}) {
-        transform: translate(calc(calc(90% + calc(5% * calc(#{$i} - 3)))*  calc(#{$i} - 1)), $sprite-y-offset);
+            grid-column: calc($i + 2);
         }
     }
 
@@ -231,10 +227,10 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 
 .mushroom {
     @extend .goblin;
-    &::after{
-        width: 50%;
-        left: 10px;
-    }
+    // &::after{
+    //     width: 50%;
+    //     left: 10px;
+    // }
     &::before {
         background-image: url("../../../../assets/mushroom_idle.png") !important;
     }
