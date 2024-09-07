@@ -6,6 +6,8 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
+
+    image-rendering: pixelated;
     
     position: relative;
 
@@ -27,6 +29,25 @@
 
 .screen_shake {
     animation: shake 0.2s forwards;
+}
+
+.dark_forest{
+    @extend .combat_window;
+    background-image: url("../../../../../public/bg_forest.png");
+}
+
+.morning_forest{
+    @extend .combat_window;
+    background-image: url("../../../assets/morning_forest.png");
+    background-repeat: repeat;
+    background-size: contain;
+}
+
+@media screen and (max-width: 600px){
+    .morning_forest{
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
 
 @keyframes shake {
