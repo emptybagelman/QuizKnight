@@ -59,17 +59,23 @@
     }
 }
 
-// @media screen and (max-width: 800px){
-//     .card_wrapper {
-//         width: 30%;
-//         height: 60%;
-//     }
-// }
+
 
 @media screen and (max-width: 600px) {
     .card_wrapper {
-        height: 25%;
-        width: clamp(250px, 100%, 400px);
+        height: 20%;
+        width: clamp(200px, 90%, 350px);
+        h2{
+            font-size: $h2-m;
+        }
+        .card_info{
+            .buff{
+                font-size: $p-s;
+            }
+            .buff_desc{
+                font-size: $p-xs;
+            }
+        }
     }
 }
 

@@ -44,7 +44,10 @@
             box-shadow: $inset-xs $orange-shadow;
             transform: scale(0.8);
         }
+    }
 
+    .tally{
+        display: none;
     }
 
     .volume_range {

@@ -21,3 +21,9 @@
         }
     }
 }
+
+@media screen and (max-width: 500px){
+    .attack_button{
+        font-size: $p-m;
+    }
+}

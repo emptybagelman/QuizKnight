@@ -15,8 +15,6 @@
     justify-self: center;
 
     margin: 15px 25px;
-    // position: absolute;
-    // bottom: 25px;
 
     padding: $padding-l $padding-xxl;
 
@@ -31,5 +29,9 @@
 @media screen and (max-width: 500px)  {
     .text{
         font-size: $p-m;
+    }
+
+    .dialogue_wrapper{
+        padding: $padding-m $padding-l;
     }
 }

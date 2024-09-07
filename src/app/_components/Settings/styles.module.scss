@@ -25,27 +25,56 @@
     backdrop-filter: blur(10);
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 
-    .settings{
-        display: grid;
-        grid-template-columns: repeat(2,minmax(150px,250px));
-        align-items: flex-start;
-        flex-direction: column;
-        overflow: hidden;
+    // .settings{
+    //     display: flex;
+    //     align-items: flex-start;
+    //     flex-direction: column;
+    //     width: 100%;
+
+
         
-        a, #close_settings_button{
-            @include button-m;
-            @include orange;
-            align-self: flex-end;
-            margin: $gap-l;
-            text-align: center;
-            font-family: $font-pixel;
-        
-            &:hover{
-                cursor: pointer;
-                box-shadow: $inset-m $hover-shadow;
+        .buttons{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+            grid-column: span 2;
+
+            a, #close_settings_button{
+                @include button-m;
+                @include orange;
+                align-self: flex-end;
+                margin: $gap-l;
+                text-align: center;
+                font-family: $font-pixel;
+            
+                &:hover{
+                    cursor: pointer;
+                    box-shadow: $inset-m $hover-shadow;
+                }
+            }
+        }
+    // }
+}
+
+@media screen and (max-width: 500px) {
+    .main_menu_wrapper{
+
+        div:not(.buttons){
+            align-self: center;
+            width: 50%;
+            justify-content: space-between;
+        }
+
+        .buttons{
+            justify-content: space-between;
+            a, #close_settings_button{
+                font-size: $p-m;
+                margin: $gap-l $gap-l;
             }
         }
     }

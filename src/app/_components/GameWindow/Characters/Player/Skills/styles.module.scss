@@ -47,7 +47,8 @@
     box-shadow: $inset-s $red-shadow;
     outline: solid 1px $yellowwhite;
     color: $yellowwhite;
-    font-family: $font;
+    font-family: $font-pixel;
+    font-size: $p-l;
     animation: oscillate 0.5s alternate infinite;
 
     &:disabled{
@@ -63,5 +64,11 @@
 @keyframes oscillate {
     to{
         outline: solid 4px $yellowwhite;
+    }
+}
+
+@media screen and (max-width: 500px){
+    #power_button{
+        font-size: $p-m;
     }
 }

@@ -21,7 +21,7 @@ export default function VolumeSlider(){
                 onChange={handleVolume}
             />
 
-            <p>{volume}</p>
+            <p className={styles.tally}>{volume}</p>
         </div>
     )
 }

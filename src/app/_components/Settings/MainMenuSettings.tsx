@@ -17,12 +17,14 @@ export default function MainMenuSettings() {
 
     return (
         <div className={styles.main_menu_wrapper}>
-            <div className={styles.settings}>
-                <a href="/" onClick={handleClick}>Home</a>
-                <CloseButton />
+            {/* <div className={styles.settings}> */}
+                <div className={styles.buttons}>
+                    <a href="/" onClick={handleClick}>Home</a>
+                    <CloseButton />
+                </div>
                 <VolumeSlider />
                 <DamageNumberCheckbox />
-            </div>
+            {/* </div> */}
         </div>
     )
 }
