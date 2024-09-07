@@ -10,7 +10,7 @@ export default function CombatContainer({children, background}:{children: React.
 
     return (
         <div className={`${
-            gameState.loop > 15
+            gameState.loop <= 15
             ? styles.morning_forest
             : styles.dark_forest
         } ${

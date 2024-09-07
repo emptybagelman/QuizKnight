@@ -41,6 +41,7 @@
     background-image: url("../../../assets/morning_forest.png");
     background-repeat: repeat;
     background-size: contain;
+    filter: brightness(1.05);
 }
 
 @media screen and (max-width: 600px){
