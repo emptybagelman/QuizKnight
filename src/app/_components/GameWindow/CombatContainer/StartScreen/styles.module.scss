@@ -26,7 +26,7 @@
         .h1_titlecard{
             position: relative;
             $bar_height: 15px;
-            $bar_height_pos: 45%;
+            $bar_height_pos: 50%;
             $curve: cubic-bezier(.40,.64,.44,1);
 
             animation: flyIn 2s $curve forwards;
@@ -35,7 +35,6 @@
                 z-index: 5;
                 position: relative;
                 font-size: $h1-xxl;
-                letter-spacing: -0.6rem;
         
                 // animation: fadeOut 1s ease forwards;
                 animation-delay: 2s;
@@ -48,7 +47,7 @@
                 background-color: $red;
                 background: transparent;
 
-                border-radius: $border-m;
+                // border-radius: $border-m;
                 position: absolute;
                 top: $bar_height_pos;
                 left: -25%;
@@ -57,18 +56,15 @@
                 animation: 0.75s ease barGrow forwards;
                 animation-delay: 1.2s;
                 transform-origin: center;
-
-                
-
             }
 
             .h1_streak{
-                height: $bar_height;
+                height: calc($bar-height * 0.90);
                 width: calc(2 * $bar_height);
                 position: absolute;
                 background: transparent;
                 top: $bar_height_pos;
-                border-radius: $border-m;
+                // border-radius: $border-m;
 
                 z-index: 3;
             }
@@ -84,9 +80,9 @@
             }
 
             .h1_dot{
-                height: $bar-height;
+                height: calc($bar-height * 0.75);
                 width: $bar-height;
-                border-radius: $border-m;
+                // border-radius: $border-m;
                 position: absolute;
                 background-color: transparent;
                 top: $bar_height_pos;
@@ -117,7 +113,7 @@
     .start_screen_wrapper {
         .screen_container {
             .h1_titlecard {
-                $sml_height: 10px;
+                $sml_height: 8px;
                 h1{
                     font-size: $h1-l;
                     letter-spacing: 0px;
@@ -128,11 +124,11 @@
                 }
 
                 .h1_streak{
-                    height: $sml_height;
+                    height: calc($sml_height * 0.9);
                 }
 
                 .h1_dot{
-                    height: $sml_height;
+                    height: calc($sml_height * 0.75);
                 }
 
                 #streak_l {
@@ -243,7 +239,7 @@
         background-color: $red-shadow;
     }
     100% {
-        left: -45%;
+        left: -48%;
         background-color: $red-shadow;
     }
 }
@@ -254,7 +250,7 @@
         background-color: $red-shadow;
     }
     100% {
-        right: -45%;
+        right: -48%;
         background-color: $red-shadow;
     }
 }
@@ -266,7 +262,7 @@
     }
     100% {
         background-color: $red-shadow;
-        left: -57%;
+        left: -62%;
     }
 }
 
@@ -277,6 +273,6 @@
     }
     100% {
         background-color: $red-shadow;
-        right: -57%;
+        right: -62%;
     }
 }

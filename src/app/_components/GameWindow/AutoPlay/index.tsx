@@ -18,7 +18,6 @@ export default function AutoPlay(){
 
     return (
         <button
-            content={String(gameState.autoPlay)}
             className={styles.autoplay_button}
             onClick={handleClick}
             >

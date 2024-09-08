@@ -2,7 +2,7 @@
 
 #logo{
     font-size: 7rem;
-    font-family: $font;
+    font-family: $font-pixel;
     margin-bottom: $gap-s;
 
     justify-self: center;
@@ -19,7 +19,7 @@
     align-items: flex-start;
 
     line-height: 100px;
-    letter-spacing: -10px;
+    letter-spacing: -2px;
 
     #quiz {
         @include floatInAnim;
@@ -49,7 +49,6 @@
         transform: translateX(-10px);
         font-size: 5rem;
         line-height: 65px;
-        letter-spacing: -7px;
         #quiz {
             
             #logo_img {
