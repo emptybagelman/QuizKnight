@@ -65,6 +65,7 @@ const defaultGameState: GameStateProps = {
     questionState: false,
     currentUpgrade: undefined,
     currentCard: undefined,
+    autoPlay: false,
 }
 
 const GameContext = createContext<GameState>(

@@ -1,0 +1,39 @@
+@import "@/styles/scss_globals.scss";
+
+.autoplay_button{
+    background-color: transparent;
+    font-family: $font-pixel;
+    letter-spacing: 1.6px;
+
+    grid-area: autoplay;
+    align-self: flex-start;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: brightness(0.8);
+    transition: $fade-transition;
+
+    &:hover{
+        cursor: pointer;
+        filter: brightness(1);
+
+    }
+
+    &:disabled{
+        filter: brightness(0.8);
+        &:hover{
+            @include orange;
+            cursor: default
+        }
+    }
+    &[content="true"]{
+        filter: brightness(0.5);
+    }
+}
+
+@media screen and (max-width:800px) {
+    .autoplay_button{
+
+    }
+}

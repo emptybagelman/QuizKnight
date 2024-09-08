@@ -27,6 +27,7 @@ import sprites from "./sprites.module.scss"
 import Boss from "../../Characters/Enemy/Boss";
 import { BossHealthBar } from "../../Characters/Enemy/Boss/BossHealthBar";
 import Quiz from "../../Quiz";
+import AutoPlay from "../../AutoPlay";
 
 export default function Combat(){
     
@@ -67,6 +68,7 @@ export default function Combat(){
     const [extraDialogue, setExtraDialogue] = useState<string | undefined>(undefined)
     const [background, setBackground] = useState<Background>("default")
     const [powerState, setPowerState] = useState<boolean>(false)
+    const [inCombat, setInCombat] = useState<boolean>(false)
  
 
     // FUNCTIONS
@@ -217,6 +219,7 @@ export default function Combat(){
                 if(enemyHp <= 0){
                     setButtonState(false)
                     setCurrentDialogue(emptyDialogue)
+                    setInCombat(false)
                     
                 }
                 else {
@@ -349,9 +352,11 @@ export default function Combat(){
 
             setTimeout(() => {
                 if(newHp <= 0){
+                    setInCombat(false)
                     router.push("/scoreboard")
                     void postScore({ name: "balls", highest_loop: gameState.loop, score: gameState.score })
                 }else{
+                    setInCombat(false)
                     setCurrentDialogue(emptyDialogue)
                     setButtonState(false) // ENABLE BUTTON
                 }
@@ -364,6 +369,8 @@ export default function Combat(){
         setButtonState(true) // DISABLES BUTTON DURING COMBAT
         setPlayerAttack(true) // RUNS PLAYER ATTACK
         handlePlayerAttack()
+        setInCombat(true)
+
     }
 
     // USE EFFECTS
@@ -423,6 +430,14 @@ export default function Combat(){
     }, [gameState.loop])
 
 
+    useEffect(() => {
+        if(gameState.autoPlay == true && !inCombat ){
+            setTimeout(() => {
+                handleClick()
+            }, 500);
+        }
+    },[gameState.autoPlay, inCombat, enemyData])
+
     if(mounted)
     return (
         <CombatContainer background={background}>
@@ -462,13 +477,14 @@ export default function Combat(){
             </SpriteContainer>
 
             {
-                !buttonState ? 
-                <AttackButton handleClick={handleClick} buttonState={buttonState} />
-                : ""
+                !buttonState && <AttackButton handleClick={handleClick} buttonState={buttonState} />
             }
             <PowerButton buttonState={buttonState} setPowerState={setPowerState} />
             <CombatDialogue data={currentDialogue} extra={extraDialogue}/>
             <ScoreCounter />
+
+            <AutoPlay />
+
 
             {
                 gameState.quizState || gameState.questionState 

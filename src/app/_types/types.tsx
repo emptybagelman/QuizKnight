@@ -52,6 +52,7 @@ export type GameStateProps = {
     questionState: boolean,
     currentUpgrade: Upgrade | undefined,
     currentCard: Card | undefined,
+    autoPlay: boolean,
 }
 
 export type Category = {

@@ -8,17 +8,18 @@
     overflow: hidden;
 
     image-rendering: pixelated;
-    
     position: relative;
+
+    box-sizing: border-box;
 
     display: grid;
     grid-template-rows: 75px repeat(5,1fr) 75px;
     grid-template-columns: 75px 1fr 75px;
     grid-template-areas: 
         " settings  .    score "
-        " consumable    power    . "
-        " consumable  .   . "
-        " consumable  .   .  "
+        " autoplay    power    consumable "
+        " .  .   consumable "
+        " .  .   consumable  "
         " sprites    sprites    sprites "
         " .    attack   . "
         " .  attack    . ";

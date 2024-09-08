@@ -69,3 +69,20 @@ export function LoadingSpinner(){
     </svg>
     )
 }
+
+export function PlayIcon(){
+    return (
+        <svg className="feather feather-play" fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+    )
+}
+
+export function PauseIcon(){
+    return (
+        <svg className="feather feather-pause" fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <rect height="16" width="4" x="6" y="4"/>
+            <rect height="16" width="4" x="14" y="4"/>
+        </svg>
+    )
+}

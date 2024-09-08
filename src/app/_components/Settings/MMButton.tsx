@@ -8,7 +8,7 @@ import useAudio from "@/app/_hooks/useVolume"
 export default function SettingsButton(){
 
     const { open, setOpen } = useSettings()
-    const { playHoverSound, playSelectSound } = useAudio()
+    const { playSelectSound } = useAudio()
 
     function handleClick() {
         setOpen(prev => !prev)
@@ -19,7 +19,6 @@ export default function SettingsButton(){
         <>
             <button
                 className={styles.settings_button}
-                onMouseEnter={() => playHoverSound()}
                 onClick={handleClick}
             >
                 Settings

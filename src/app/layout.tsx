@@ -1,11 +1,16 @@
 import "@/styles/globals.scss";
 import ClientProvider from "./_components/QueryClientProvider";
 
-import { MedievalSharp } from "next/font/google";
+import { MedievalSharp, VT323 } from "next/font/google";
 import SettingsStateProvider from "./_components/SettingsContext";
-import Music from "./_components/Music";
 
 const medievalsharp = MedievalSharp({
+  weight: "400",
+  style: ["normal"],
+  subsets: ["latin"]
+})
+
+const pixel = VT323({
   weight: "400",
   style: ["normal"],
   subsets: ["latin"]
@@ -27,13 +32,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={medievalsharp.className}>
+      <body className={`${medievalsharp.className} ${pixel.className}`}>
           <ClientProvider>
             {/* <Nav /> */}
             <SettingsStateProvider>
-              <Music>
                 {children}
-              </Music>
             </SettingsStateProvider>
           </ClientProvider>
       </body>

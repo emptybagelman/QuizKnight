@@ -10,10 +10,22 @@ $gap: 10px;
     justify-content: center;
     align-items: center;
 
+    justify-self: flex-end;
+    align-self: center;
+    margin: 10px;
+
     background-color: $bg;
     border-radius: $border-s;
-    padding: $padding-l $padding-xl;
-    margin: 10px;
+    padding: $padding-m $padding-l;
+}
+
+@media screen and (max-width: 800px) {
+    .score_counter{
+        top: $gap;
+        z-index: 15;
+        padding: $padding-l $padding-l;
+
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -21,5 +33,4 @@ $gap: 10px;
         top: $gap;
         z-index: 15;
     }
-
 }
