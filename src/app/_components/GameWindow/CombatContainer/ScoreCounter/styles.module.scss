@@ -16,14 +16,16 @@ $gap: 10px;
 
     background-color: $bg;
     border-radius: $border-s;
-    padding: $padding-m $padding-l;
+    padding: $padding-l $padding-xl;
+
+    font-size: $p-m;
 }
 
 @media screen and (max-width: 800px) {
     .score_counter{
         top: $gap;
         z-index: 15;
-        padding: $padding-l $padding-l;
+        padding: $padding-m $padding-l;
 
     }
 }

@@ -2,8 +2,8 @@
 
 .consumable_wrapper{
     grid-area: consumable;
-    margin: 10px;
-    justify-self: center;
+    margin: 15px;
+    justify-self: flex-end;
     align-self: flex-start;
 
     display: flex;
@@ -92,6 +92,8 @@
         left: 10px;
         top: 75px;
         flex-direction: column;
+        margin: 10px 12px;
+
 
         .item_container{
             width: 35px;
