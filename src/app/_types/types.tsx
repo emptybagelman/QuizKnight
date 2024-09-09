@@ -10,7 +10,7 @@ export type PlayerType = {
     resistance: number,
     critical: number,
     parry: number,
-    looting: number,
+    looting: number
     agility: number,
     skills: Skill[] | [],
     consumables: Consumable[]
@@ -40,6 +40,11 @@ export type DialogueProps = {
     extra?: string | number
 }
 
+export type StatType = {
+    string: string,
+    name: string
+}
+
 export type TimeoutFunctionProps = {
     delay: number,
     func: (() => void)[]
@@ -50,9 +55,11 @@ export type GameStateProps = {
     score: number,
     quizState: boolean,
     questionState: boolean,
+    statsState: boolean,
     currentUpgrade: Upgrade | undefined,
     currentCard: Card | undefined,
     autoPlay: boolean,
+    statToken: number,
 }
 
 export type Category = {

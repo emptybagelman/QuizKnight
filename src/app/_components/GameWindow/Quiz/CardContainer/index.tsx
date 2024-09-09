@@ -29,8 +29,8 @@ export default function CardContainer(){
             setQuestionsAnswered(0)
             setGameState((prev: GameStateProps) => ({
                 ...prev,
-                loop: prev.loop + 1,
-                quizState: false,
+                // quizState: false,
+                statsState: true
             }))
         }
     },[questionsAnswered])
@@ -40,7 +40,7 @@ export default function CardContainer(){
     
     if(data){
         return (
-            <div className={styles.card_container} style={gameState.questionState ? {display: "none"} : {}}>
+            <div className={styles.card_container} style={gameState.questionState || gameState.statsState ? {display: "none"} : {}}>
                 {
                     data
                     ? data.map((card: Card, idx: number) => (

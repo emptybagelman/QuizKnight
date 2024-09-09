@@ -370,7 +370,7 @@ export default function Combat(){
         setPlayerAttack(true) // RUNS PLAYER ATTACK
         handlePlayerAttack()
         setInCombat(true)
-
+        
     }
 
     // USE EFFECTS

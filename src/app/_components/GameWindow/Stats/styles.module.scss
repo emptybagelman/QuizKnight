@@ -1,0 +1,79 @@
+@import "@/styles/scss_globals.scss";
+
+.stats_container_wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 11;
+
+    h1{
+        font-size: $h1-xl;
+    }
+
+    .token_wrapper{
+        display: flex;
+        font-size: $p-l;
+
+        p:first-child{
+            margin-right: 15px;
+        }
+    }
+
+    .stats_container{
+        height: 100%;
+        width: 100%;
+        max-width: 400px;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: column;
+        margin: 15px;
+
+
+        .confirm{
+            @include orange;
+            @include button-s;
+            align-self: flex-end;
+            font-size: $p-m;
+        }
+
+        .stat{
+            display: grid;
+            grid-template-columns: 1fr repeat(3,50px);
+            align-items: center;
+
+            margin-bottom: 15px;
+            font-size: $p-l;
+
+
+        
+            .name{
+                margin-right: 15px;
+            }
+
+            .inc, .value{
+                @include blue;
+                padding: $padding-s $padding-m;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: $fade-transition;
+            }
+
+            .inc{
+                &:hover{
+                    @include hover;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

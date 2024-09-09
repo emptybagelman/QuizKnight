@@ -28,18 +28,18 @@ export default function CardClientComponent(
         await refetch()
     }
 
-    function increaseBonus(){
-        switch (card.question.difficulty) {
-            case "easy":
-                return 4
-            case "medium":
-                return 9
-            case "hard":
-                return 24
-            default:
-                return 0;
-        }
-    }
+    // function increaseBonus(){
+    //     switch (card.question.difficulty) {
+    //         case "easy":
+    //             return 4
+    //         case "medium":
+    //             return 9
+    //         case "hard":
+    //             return 24
+    //         default:
+    //             return 0;
+    //     }
+    // }
 
     return (
         <>
@@ -55,16 +55,15 @@ export default function CardClientComponent(
             onMouseEnter={() => playHoverSound()}
         >
 
+            <h2>{card.category?.category}</h2>
             <div className={styles.difficulty}>
                 {card.question.difficulty}
             </div>
 
-            <h2>{card.category?.category}</h2>
-
-            <div className={styles.card_info}>
+            {/* <div className={styles.card_info}>
                 <p className={styles.buff}>{data?.name} +{data?.default_value + increaseBonus()}%</p>
                 <p className={styles.buff_desc}>{data?.description}</p>
-            </div>
+            </div> */}
         </div>
         </>
     )

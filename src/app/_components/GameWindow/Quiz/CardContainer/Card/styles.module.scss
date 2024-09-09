@@ -31,13 +31,8 @@
     }
 
     .difficulty{
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        background-color: auto;
         padding: $padding-s $padding-l;
-        border-radius: $border-s;
-        transform: rotateZ(5deg);
+        font-size: $p-m;
     }
 
     .card_info{
