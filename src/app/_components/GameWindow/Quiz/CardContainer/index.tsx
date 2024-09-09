@@ -40,7 +40,7 @@ export default function CardContainer(){
     
     if(data){
         return (
-            <div className={styles.card_container} style={gameState.questionState || gameState.statsState ? {display: "none"} : {}}>
+            <div className={styles.card_container} style={gameState.questionState || gameState.statsState || gameState.powerState ? {display: "none"} : {}}>
                 {
                     data
                     ? data.map((card: Card, idx: number) => (

@@ -7,7 +7,8 @@ import { Suspense } from "react"
 import QuizDisplay from "./QuizDisplay"
 import LoopStateProvider from "./QuizLoopContext"
 import { useGame } from "../../GameContext"
-import Stats from "../Stats"
+import Stats from "./Stats"
+import PowerGift from "./PowerGift"
 
 export default function Quiz(){
 
@@ -26,12 +27,16 @@ export default function Quiz(){
                     <QuizDisplay />
                 }
                 {
-                    gameState.quizState  &&
+                    (gameState.powerState && gameState.loop == 15) &&
+                    <PowerGift />
+                }
+                {
+                    (gameState.quizState && !(gameState.loop == 15))  &&
                     <Suspense fallback={ <Loading /> }>
                         <CardContainer />
                     </Suspense>
-                    
                 }
+                
                 {/* <ScoreCounter /> */}
             </LoopStateProvider>
         </div>

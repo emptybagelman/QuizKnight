@@ -26,43 +26,45 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;       
-        .buttons{
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            grid-column: span 2;
-            font-size: $p-m;
+    align-items: center;
+    
+    div:not(.buttons){
+        align-self: center;
+        width: clamp(150px, 100%, 300px);
+        justify-content: space-between;
+    }
 
-            #home_button, #close_settings_button{
-                @include button-m;
-                @include orange;
-                align-self: flex-end;
-                margin: $gap-l;
-                text-align: center;
-                &:hover{
-                    cursor: pointer;
-                    box-shadow: $inset-m $hover-shadow;
-                }
+    .buttons{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        grid-column: span 2;
+        font-size: $p-s;
+        padding: $padding-m $padding-l;
+
+
+        #home_button, #close_settings_button{
+            @include button-m;
+            @include orange;
+            align-self: flex-end;
+            margin: $gap-l;
+            text-align: center;
+            &:hover{
+                cursor: pointer;
+                box-shadow: $inset-m $hover-shadow;
             }
         }
+    }
     // }
 }
 
 @media screen and (max-width: 500px) {
     .main_menu_wrapper{
-
-        div:not(.buttons){
-            align-self: center;
-            width: clamp(150px, 100%, 300px);
-            justify-content: space-between;
-        }
-
         .buttons{
             justify-content: space-between;
             #home_button, #close_settings_button{
-                font-size: $p-m;
-                margin: $gap-l $gap-l;
+                font-size: $p-s;
+                margin: $gap-l;
             }
         }
     }

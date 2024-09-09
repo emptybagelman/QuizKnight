@@ -24,10 +24,11 @@ const defaultPlayerState: PlayerType = {
     agility: 0,
     skills: [{
         id: 0,
-        name: "Power Move",
+        name: "Piercing Blade",
         type: "damage",
         charge: 0,
-        active: false
+        active: false,
+        description: "Hit multiple enemies at once."
     }],
     consumables: [
         {
@@ -51,7 +52,7 @@ const defaultPlayerState: PlayerType = {
         {
             id: 3,
             name: "Firebomb",
-            value: 1,
+            value: 0,
             description: "Burns enemies over time.",
             charge: 0,
         }
@@ -64,10 +65,11 @@ const defaultGameState: GameStateProps = {
     quizState: false,
     questionState: false,
     statsState: false,
+    powerState: false,
     currentUpgrade: undefined,
     currentCard: undefined,
     autoPlay: false,
-    statToken: 2
+    statToken: 0,
 }
 
 const GameContext = createContext<GameState>(

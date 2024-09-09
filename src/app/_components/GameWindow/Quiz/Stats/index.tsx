@@ -1,10 +1,10 @@
 "use client"
 
-import { GameStateProps, StatType, type PlayerType } from "@/app/_types/types";
-import { useGame } from "../../GameContext";
+import { type GameStateProps, type StatType, type PlayerType } from "@/app/_types/types";
+import { useGame } from "../../../GameContext";
 import styles from "./styles.module.scss";
 import { useState } from "react";
-import { TemplateContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import useAudio from "@/app/_hooks/useVolume";
 
 const statsArray: StatType[] = [
     {string: "Max Health",name:"maxhp"},
@@ -20,26 +20,26 @@ export default function Stats(){
     const { gameState, player, setPlayer, setGameState } = useGame()
     const [tempPlayer, setTempPlayer] = useState<PlayerType>(player)
     const [ tempTokens, setTempTokens ] = useState<number>(gameState.statToken)
+    const { playSelectSound } = useAudio()
 
     function handleClick(){
-        // if(tempTokens == 0){
-            setPlayer(() => ({
-                ...tempPlayer,
-                hp: tempPlayer.maxhp,
-                maxhp: tempPlayer.maxhp,
-                armour: tempPlayer.armour,
-                maxarmour: tempPlayer.armour + tempPlayer.maxarmour
-            }))
+        playSelectSound()
+        setPlayer(() => ({
+            ...tempPlayer,
+            hp: tempPlayer.maxhp,
+            maxhp: tempPlayer.maxhp,
+            armour: tempPlayer.armour,
+            maxarmour: tempPlayer.armour + tempPlayer.maxarmour
+        }))
 
-            setGameState((prev: GameStateProps) => ({
-                ...prev,
-                statsState: false,
-                quizState: false,
-                statToken: tempTokens,
-                loop: prev.loop + 1
-
-            }))
-        // }
+        setGameState((prev: GameStateProps) => ({
+            ...prev,
+            statsState: false,
+            questionState: false,
+            powerState: true,
+            statToken: tempTokens,
+            loop: prev.loop + 1
+        }))
     }
 
     return (
@@ -92,6 +92,7 @@ function StatRow(
     }){
 
         const { player } = useGame()
+        const { playWrongSound, playSelectSound } = useAudio()
 
         function handleClick(inc: 1 | -1){
             const key = stat.name
@@ -100,16 +101,16 @@ function StatRow(
 
             if(!(typeof value == "number")) return ;
             if(!(typeof statValue == "number")) return;
-            if(value + inc < statValue) return;
 
             const newTokenVal = tempTokens + (inc * -1)
 
-            if(newTokenVal <= 0 && inc == -1) return;
-            if(newTokenVal < 0) return;
+            if((newTokenVal <= 0 && inc == -1) || (newTokenVal < 0) || (value + inc < statValue)){
+                playWrongSound()
+                return;
+            }
+
+            playSelectSound()
             setTempTokens(newTokenVal)
-
-
-
             setTempPlayer((prev: PlayerType) => ({
                 ...prev,
                 [key]: value + inc 

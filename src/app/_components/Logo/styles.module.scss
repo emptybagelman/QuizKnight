@@ -5,7 +5,7 @@
     margin-bottom: $gap-s;
 
     justify-self: center;
-    max-width: 500px;
+    max-width: 300px;
     width: 90%;
     height: auto;
     image-rendering: pixelated;
@@ -43,7 +43,7 @@
     }
 }
     
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     #logo {
         transform: translateX(-10px);
         font-size: 5rem;

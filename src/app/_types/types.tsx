@@ -21,7 +21,8 @@ export type Skill = {
     name: string,
     type: string,
     charge?: number,
-    active: boolean
+    active: boolean,
+    description: string,
 }
 
 export type Enemy = {
@@ -56,6 +57,7 @@ export type GameStateProps = {
     quizState: boolean,
     questionState: boolean,
     statsState: boolean,
+    powerState: boolean,
     currentUpgrade: Upgrade | undefined,
     currentCard: Card | undefined,
     autoPlay: boolean,

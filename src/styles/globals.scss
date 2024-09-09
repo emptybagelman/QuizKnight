@@ -5,6 +5,8 @@ body {
   margin: 0;
   background-color: $bg;
   font-size: 16px;
+  user-select: none;
+
 }
 
 a {

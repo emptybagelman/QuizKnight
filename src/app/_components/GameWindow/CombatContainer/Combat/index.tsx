@@ -423,14 +423,20 @@ export default function Combat(){
     useEffect(() => {
         if(enemyData.length <=0){
             if(gameState.loop === 15){
-                toggleSkills(0,true)
+                setGameState((prev: GameStateProps) => ({
+                    ...prev,
+                    quizState: true,
+                    powerState: true,
+                }))
+            }else{
+                setGameState((prev: GameStateProps) => ({
+                    ...prev,
+                    quizState: true,
+                }))
             }
             setCurrentDialogue(emptyDialogue)
             setButtonState(true)
-            setGameState((prev: GameStateProps) => ({
-                ...prev,
-                quizState: true,
-            }))
+            
         }
     },[ enemyData ])
 

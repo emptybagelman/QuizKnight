@@ -79,17 +79,12 @@
     }
 }
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 500px){
     .main{
         #home_wrapper{
-            a:nth-child(2){
-                font-size: $h1-m;
-                padding: $padding-xl $padding-m;
-            }
-
-            a{
-                padding: $padding-l;
-                font-size: $h2-s;
+            &>a{
+                padding: $padding-l !important;
+                font-size: $h2-s !important;
             }
         }
     }

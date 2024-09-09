@@ -17,9 +17,9 @@
     grid-template-columns: 75px 1fr 75px;
     grid-template-areas: 
         " settings  .    score "
-        " autoplay    power    consumable "
-        " .  .   consumable "
-        " .  .   consumable  "
+        " autoplay    power    . "
+        " consumable  .   . "
+        " consumable  .   .  "
         " sprites    sprites    sprites "
         " .    attack   . "
         " .  attack    . ";
