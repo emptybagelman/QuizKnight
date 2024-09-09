@@ -25,7 +25,7 @@ export default function Stats(){
         // if(tempTokens == 0){
             setPlayer((prev: PlayerType) => ({
                 ...tempPlayer,
-                hp: tempPlayer.maxHp,
+                hp: tempPlayer.maxhp,
                 maxhp: tempPlayer.maxhp,
                 armour: tempPlayer.armour,
                 maxarmour: tempPlayer.armour + tempPlayer.maxarmour
