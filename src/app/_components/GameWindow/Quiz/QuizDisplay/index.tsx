@@ -43,15 +43,15 @@ export default function QuizDisplay(){
 
             // if(!(stat in player)) return new Error(`Stat ${stat} doesn't exist! (yet)`)
 
-            // let bonus: number = gameState.currentUpgrade.default_value;
-            // if(question.difficulty === "easy") bonus = 5
-            // else if(question.difficulty === "medium") bonus = 10;
-            // else if(question.difficulty === "hard") bonus = 25;
+             let bonus: number = gameState.currentUpgrade.default_value;
+             if(question.difficulty === "easy") bonus = 0
+             else if(question.difficulty === "medium") bonus = 1;
+             else if(question.difficulty === "hard") bonus = 2;
             
             setCorrState(true)
             setGameState((prev: GameStateProps) => ({
                 ...prev,
-                statToken: prev.statToken + 1
+                statToken: prev.statToken + 1 + bonus
             }))
             // updatePlayerStat(stat,1,bonus)
         }
