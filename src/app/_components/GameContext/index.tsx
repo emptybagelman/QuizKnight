@@ -51,7 +51,7 @@ const defaultPlayerState: PlayerType = {
         {
             id: 3,
             name: "Firebomb",
-            value: 0,
+            value: 1,
             description: "Burns enemies over time.",
             charge: 0,
         }

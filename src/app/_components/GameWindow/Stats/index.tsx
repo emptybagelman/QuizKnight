@@ -23,13 +23,12 @@ export default function Stats(){
 
     function handleClick(){
         // if(tempTokens == 0){
-            setPlayer((prev: PlayerType) => ({
+            setPlayer(() => ({
                 ...tempPlayer,
                 hp: tempPlayer.maxhp,
                 maxhp: tempPlayer.maxhp,
                 armour: tempPlayer.armour,
                 maxarmour: tempPlayer.armour + tempPlayer.maxarmour
-
             }))
 
             setGameState((prev: GameStateProps) => ({
@@ -58,9 +57,9 @@ export default function Stats(){
                         }
                     })
                 }
-                <button className={styles.confirm} onClick={handleClick}>
+                <a className={styles.confirm} onClick={handleClick}>
                     CONFIRM
-                </button>
+                </a>
             </div>
         </div>
     )

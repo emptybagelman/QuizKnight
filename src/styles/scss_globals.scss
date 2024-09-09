@@ -65,7 +65,7 @@ $fade-transition: 0.2s ease;
 $window: calc(100dvh - 75px);
 
 $font:  '__MedievalSharp_ba6bb8', '__MedievalSharp_Fallback_ba6bb8';
-$font-pixel: "VT323", monospace;
+$font-pixel: auto;
 
 // BACKGROUND COLOURS
 
@@ -116,17 +116,11 @@ $font-pixel: "VT323", monospace;
     }
 }
 
-@mixin pixel {
-    font-family: $font-pixel;
-    letter-spacing: 1.6px;
-}
-
 // BUTTONS
 
 @mixin button_s {
     padding: $padding-l $padding-l;
     font-size: $p-l;
-    font-family: $font-pixel;
     letter-spacing: 1.6px;
 
 

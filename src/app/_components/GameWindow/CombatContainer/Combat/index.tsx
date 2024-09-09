@@ -173,13 +173,22 @@ export default function Combat(){
                 else if(firebomb && firebomb.charge! > 0 && enemyHp > 0){
                     setTimeout(() => {
                         if(!firebomb) throw new Error("What did you do ?")
-                        setCurrentDialogue({
-                            enemy: enemyData[0]!,
-                            active: true,
-                            index: 10
-                        })
+                        
     
                         enemyHp -= BURN_DMG
+                        if(enemyHp <= 0){
+                            setCurrentDialogue({
+                                enemy: enemyData[0]!,
+                                active: true,
+                                index: 11
+                            })
+                        }else{
+                            setCurrentDialogue({
+                                enemy: enemyData[0]!,
+                                active: true,
+                                index: 10
+                            })
+                        }
     
                         // ENEMY TAKE FIRE DMG
                         playFirebombSound()

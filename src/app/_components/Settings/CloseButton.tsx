@@ -13,12 +13,12 @@ export default function CloseButton(){
     }
 
     return (
-        <button
+        <a
             id={styles.close_settings_button}
             onClick={handleClick}
             onMouseEnter={() => playHoverSound()}
             >
             Close
-        </button>
+        </a>
     )
 }

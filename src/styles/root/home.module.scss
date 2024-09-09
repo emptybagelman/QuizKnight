@@ -22,7 +22,7 @@
             margin-bottom: $gap-s;
         }
 
-        button{
+        a{
             @include button_m;
         }
     }
@@ -38,28 +38,28 @@
         box-sizing: border-box;
         gap: $gap-l;
 
-        a:nth-child(2), a:nth-child(3), &>button {
+        &>a:nth-child(2), &>a:nth-child(3), &>a:nth-child(4) {
             @include floatInAnim;
         }
 
 
         // play button
-        a:nth-child(2){
+        &>a:nth-child(2), &>a:nth-child(4){
             opacity: 0;
             grid-column: span 2;
             font-size: $h1-l;
-            font-weight: bolder;
 
             animation-delay: 0.5s;
 
         }
 
-        a:nth-child(3) {
+        &>a:nth-child(3) {
             animation-delay: 0.75s;
         }
 
-        &>button {
+        &>a:nth-child(4) {
             animation-delay: 0.9s;
+            grid-column: 2;
         }
 
         &>*{
@@ -87,7 +87,7 @@
                 padding: $padding-xl $padding-m;
             }
 
-            a, button{
+            a{
                 padding: $padding-l;
                 font-size: $h2-s;
             }

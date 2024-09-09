@@ -5,7 +5,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 90%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -13,6 +13,8 @@
     align-items: center;
 
     z-index: 11;
+
+    padding: $padding-m $padding-xl;
 
     h1{
         font-size: $h1-xl;
@@ -28,7 +30,6 @@
     }
 
     .stats_container{
-        height: 100%;
         width: 100%;
         max-width: 400px;
         box-sizing: border-box;
@@ -74,6 +75,38 @@
                     cursor: pointer;
                 }
             }
+        }
+    }
+}
+
+@media screen and (max-width:800px){
+    .stats_container_wrapper{
+        h1{
+            font-size: $h1-l;
+        }
+        .token_wrapper{
+            font-size: $p-m;
+        }
+
+        .stats_container{
+            width: clamp(200px, 50% , 400px);
+
+            .confirm{
+                font-size: $p-s;
+                padding: $padding-m;
+            }
+
+            .stat{
+                grid-template-columns: 1fr repeat(3,25px);
+
+                font-size: $p-m;
+                .inc, .value{
+                    padding: $padding-s;
+                    margin: 0;
+                }
+            }
+
+            
         }
     }
 }

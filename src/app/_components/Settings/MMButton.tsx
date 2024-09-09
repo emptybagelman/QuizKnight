@@ -17,12 +17,12 @@ export default function SettingsButton(){
 
     return (
         <>
-            <button
+            <a
                 className={styles.settings_button}
                 onClick={handleClick}
             >
                 Settings
-            </button>
+            </a>
             {
                 open &&
                 <MainMenuSettings />

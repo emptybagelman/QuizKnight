@@ -81,7 +81,7 @@ export default function QuizDisplay(){
                 {
                     gameState.currentCard &&
                     gameState.currentCard.question.answers.map((ans, idx) => (
-                        <button
+                        <a
                         onClick={() => handleAnswer(ans)}
                         onMouseEnter={() => playHoverSound()}
                         key={idx}
@@ -95,7 +95,7 @@ export default function QuizDisplay(){
                         style={{pointerEvents: corrState == true || corrState == false ? "none" : "auto"}}
                         >
                             {ans}
-                        </button>
+                        </a>
                     ))
                 }
             </div>

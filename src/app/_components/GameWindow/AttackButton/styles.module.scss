@@ -4,13 +4,11 @@
     @include button_s;
     @include orange;
     z-index: 9;
-    font-family: $font-pixel;
     letter-spacing: 1.6px;
 
     grid-area: attack;
     justify-self:center;
     align-self: center;
-    // margin: 15px 25px;
     max-width: 250px;
 
     &:disabled{

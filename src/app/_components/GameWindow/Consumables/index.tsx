@@ -21,7 +21,7 @@ export default function ConsumableContainer({buttonState}:{buttonState: boolean}
         >
             {
                 player.consumables.map((item: Consumable,index: number) => (
-                        item.value ?
+                        item.value || (item.charge != undefined && item.charge > 0 ) ?
                         <ConsumableItem key={item.name + index} item={item} />
                         : ""
                     ))
@@ -120,13 +120,16 @@ function ConsumableItem(
                     playWrongSound()
                 }
             }
-updateLoot(item.name,-1)
+            updateLoot(item.name,-1)
         }
 
 
     return (
         <div content={item.name} className={styles.item_container} onClick={handleClick}>
-            <p className={styles.item_amount}>{item.value}</p>
+            {
+                item.value > 0 && 
+                <p className={styles.item_amount}>{item.value}</p>
+            }
             {
                 item.charge
                 ? <p className={styles.charge_counter}>{item.charge}</p>

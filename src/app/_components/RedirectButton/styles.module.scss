@@ -3,8 +3,7 @@
 .redirect_button{
     @include button_l;
     @include green;
-
-    
+    font-size: $h1-l;
 
     &:hover{
         background-color: $hover;

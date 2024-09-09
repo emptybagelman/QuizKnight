@@ -1,7 +1,6 @@
 @import "@/styles/scss_globals.scss";
 
 .quiz_display_wrapper{
-    @include pixel;
     position: absolute;
     top: 0;
     left: 0;
@@ -17,7 +16,6 @@
     h2{
         margin-bottom: $gap-xs;
         font-size: $h2-xl;
-        font-weight: 300;
         
     }
 
@@ -25,7 +23,6 @@
         margin: 0 25px $gap-xl 25px;
         margin-bottom: $gap-xl;
         font-size: $h2-m;
-        font-weight: 300;
         text-align: center;
 
     }
@@ -36,16 +33,21 @@
         gap: $gap-xl;
         transition: 0.5s ease;
 
-        button{
+        a{
             @include orange;
-            @include pixel;
             min-width: 150px;
             min-height: 100px;
             font-size: $p-l;
+            text-align: center;
+
             
             padding: $padding-s $padding-l ;
             border-radius: $border-s;
             transition: $fade-transition;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             &:hover{
                 @include hover;
@@ -79,7 +81,7 @@
             gap: $gap-m;
             box-sizing: border-box;
 
-            button {
+            a {
                 width: 100%;
                 font-size: $p-m;
             }
@@ -95,19 +97,21 @@
             font-size: $h2-l;
         }
         h3{
-            font-size: $h2-s;
+            font-size: $h3-s;
         }
         .answers {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 70%;
+            
 
-            button {
+            a {
                 max-height: 150px;
                 min-height: 75px;
                 width: 100%;
-                padding: $padding-m ;
+                padding: $padding-s ;
+                font-size: $p-xs;
             }
         }
     }

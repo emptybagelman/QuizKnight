@@ -19,7 +19,7 @@ export default function MainMenuSettings() {
         <div className={styles.main_menu_wrapper}>
             {/* <div className={styles.settings}> */}
                 <div className={styles.buttons}>
-                    <a href="/" onClick={handleClick}>Home</a>
+                    <a id={styles.home_button} href="/" onClick={handleClick}>Home</a>
                     <CloseButton />
                 </div>
                 <VolumeSlider />

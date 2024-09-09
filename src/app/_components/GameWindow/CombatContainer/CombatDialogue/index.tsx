@@ -23,7 +23,8 @@ export default function CombatDialogue(
         `The ${data.enemy.name} died and dropped a ${extra}.`, // 7
         `${data.enemy.name} missed!`, // 8
         `You just blasted everywhere!`, // 9
-        `${data.enemy.name} is burning.` // 10
+        `${data.enemy.name} is burning.`, // 10
+        `You fried the ${data.enemy.name}!`, // 11
     ]
 
     if(data.active == false) return;

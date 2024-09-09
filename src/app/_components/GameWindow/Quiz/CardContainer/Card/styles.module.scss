@@ -16,7 +16,6 @@
     padding: $padding-l $padding-m;
     transition: $fade-transition;
 
-    font-family: $font-pixel;
     letter-spacing: 1.6px;
 
     &:hover{
@@ -25,7 +24,6 @@
     }
 
     h2{
-        font-weight: 300;
         z-index: 10;
         font-size: $h2-l;
     }
@@ -56,20 +54,15 @@
 
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .card_wrapper {
         height: 20%;
         width: clamp(200px, 90%, 350px);
         h2{
-            font-size: $h2-m;
+            font-size: $h2-s;
         }
-        .card_info{
-            .buff{
-                font-size: $p-s;
-            }
-            .buff_desc{
-                font-size: $p-xs;
-            }
+        .difficulty{
+            font-size: $p-s;
         }
     }
 }

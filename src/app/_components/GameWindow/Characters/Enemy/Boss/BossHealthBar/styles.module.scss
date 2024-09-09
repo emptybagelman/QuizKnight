@@ -6,8 +6,6 @@
     $hb_outline: solid 2px $bg;
     display: flex;
     top: 0px;
-    // left: 50%;
-    // transform: translateX(-50%);
     height: 20px;
 
     position: relative;
@@ -62,7 +60,6 @@
         // top: 50%;
         white-space: nowrap;
         font-size: $h1-m;
-        font-family: $font-pixel;
         letter-spacing: 1.6px;
     }
 }

@@ -12,10 +12,8 @@ export default function Typewriter({text}:{text:string | undefined}){
         return (
             <TypeWriterEffect 
                 textStyle={{
-                    fontFamily: "'VT323', monospace",
                     letterSpacing: "1.6px",
                     fontSize: "1em",
-                    fontWeight: "normal",
                     textAlign: "center" 
                 }}
                 startDelay={0}
