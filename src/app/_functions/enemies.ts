@@ -7,8 +7,8 @@ export function enemyStats(name: string, loop:number) {
 
     switch (name){
         case "Goblin":
-            hp = randomInt((2 + Math.floor(loop * 0.8)), 1)
-            dmg = randomInt((2 + Math.floor(loop * 0.7)), 1)
+            hp = randomInt((3 + Math.floor(loop * 0.8)), 1)
+            dmg = randomInt((3 + Math.floor(loop * 0.7)), 1)
             armour = randomInt((0 + Math.floor(loop * 0.2)), 1)
             break;
         case "Mushroom":
