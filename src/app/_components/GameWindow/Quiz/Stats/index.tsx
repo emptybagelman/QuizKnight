@@ -36,7 +36,7 @@ export default function Stats(){
             ...prev,
             statsState: false,
             questionState: false,
-            powerState: true,
+            quizState: false,
             statToken: tempTokens,
             loop: prev.loop + 1
         }))
