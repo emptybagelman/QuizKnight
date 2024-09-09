@@ -33,7 +33,9 @@ export default function Stats(){
                 ...prev,
                 statsState: false,
                 quizState: false,
-                statToken: tempTokens
+                statToken: tempTokens,
+                loop: prev.loop + 1
+
             }))
         // }
     }
