@@ -32,7 +32,7 @@ export function enemyStats(name: string, loop:number) {
             armour = 0
             break;
         case "Demon Slime":
-            hp = 100
+            hp = 150
             dmg = 10
             armour = 0
             break;
