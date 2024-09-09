@@ -7,38 +7,38 @@ export function enemyStats(name: string, loop:number) {
 
     switch (name){
         case "Goblin":
-            hp = randomInt((1 + Math.floor(loop * 0.6)), 1)
-            dmg = randomInt((1 + Math.floor(loop * 0.4)), 1)
-            armour = randomInt((0 + Math.floor(loop * 0.15)), 1)
+            hp = randomInt((2 + Math.floor(loop * 0.8)), 1)
+            dmg = randomInt((2 + Math.floor(loop * 0.7)), 1)
+            armour = randomInt((0 + Math.floor(loop * 0.2)), 1)
             break;
         case "Mushroom":
-            hp = randomInt((3 + Math.floor(loop * 0.5)), 2)
-            dmg = randomInt((1 + Math.floor(loop * 0.3)), 1)
-            armour = randomInt((1 + Math.floor(loop * 0.325)), 1)
+            hp = randomInt((3 + Math.floor(loop * 1)), 2)
+            dmg = randomInt((1 + Math.floor(loop * 0.5)), 2)
+            armour = randomInt((1 + Math.floor(loop * 0.3)), 1)
             break;
         case "Skeleton":
-            hp = randomInt((2 + Math.floor(loop * 0.5)), 1)
-            dmg = randomInt((3 + Math.floor(loop * 0.65)), 1)
-            armour = randomInt((1 + Math.floor(loop * 0.25)), 1)
+            hp = randomInt((2 + Math.floor(loop * 0.6)), 1)
+            dmg = randomInt((3 + Math.floor(loop * 0.8)), 1)
+            armour = randomInt((1 + Math.floor(loop * 0.2)), 1)
             break;
         case "Flying Eye":
-            hp = randomInt((3 + Math.floor(loop * 0.65)), 2)
-            dmg = randomInt((2 + Math.floor(loop * 0.4)), 2)
+            hp = randomInt((3 + Math.floor(loop * 0.7)), 2)
+            dmg = randomInt((2 + Math.floor(loop * 0.7)), 1)
             armour = 0
             break;
         case "Toad":
-            hp = randomInt((4 + Math.floor(loop * 0.5)), 2)
-            dmg = randomInt((2 + Math.floor(loop * 0.4)), 1)
+            hp = randomInt((4 + Math.floor(loop * 0.9)), 2)
+            dmg = randomInt((2 + Math.floor(loop * 0.75)), 1)
             armour = 0
             break;
         case "Demon Slime":
-            hp = 50
-            dmg = 8
+            hp = 100
+            dmg = 10
             armour = 0
             break;
         default:
-            hp = randomInt((2 + Math.floor(loop * 0.5)), 1)
-            dmg = randomInt((2 + Math.floor(loop * 0.5)), 1)
+            hp = randomInt((2 + Math.floor(loop * 1)), 1)
+            dmg = randomInt((2 + Math.floor(loop * 1)), 1)
             armour = 0
             break;
     }
