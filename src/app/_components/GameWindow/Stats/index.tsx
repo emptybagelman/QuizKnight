@@ -26,7 +26,9 @@ export default function Stats(){
             setPlayer((prev: PlayerType) => ({
                 ...tempPlayer,
                 maxhp: tempPlayer.maxhp,
-                maxarmour: tempPlayer.armour
+                armour: tempPlayer.armour,
+                maxarmour: tempPlayer.armour + tempPlayer.maxarmour
+
             }))
 
             setGameState((prev: GameStateProps) => ({
