@@ -160,20 +160,9 @@ export default function Combat(){
             setTimeout(() => {
                 setCurrentDialogue(activeEmptyDialogue)
                 const firebomb = player.consumables.filter((x) => x.name == "Firebomb")[0]
-                if(firebomb?.charge === 0 || !firebomb){
-                    // CHECK IF ENEMY DEAD
-
-                    // EMPTY DIALOGUE BETWEEN MESSAGES
-
-                    // ADD +10 CHARGE ON KILL 
-                    if(player.skills[0]?.active){
-                        updateSkills(0, 10, false)
-                    }
-                    handleEnemyKill(firstEnemy)
-                    moveToQuiz(enemyHp)
-                }
+                
                 // HANDLE BURNING FROM FIREBOMB
-                else if(firebomb && firebomb.charge! > 0 && enemyHp > 0){
+                if(firebomb && firebomb.charge! > 0 && enemyHp > 0){
                     setTimeout(() => {
                         if(!firebomb) throw new Error("What did you do ?")
                         
@@ -218,7 +207,18 @@ export default function Combat(){
                         }, DELAY);
 
                     }, ATTACK_TIMEOUT);
+else{
+                    // CHECK IF ENEMY DEAD
 
+                    // EMPTY DIALOGUE BETWEEN MESSAGES
+
+                    // ADD +10 CHARGE ON KILL 
+                    if(player.skills[0]?.active){
+                        updateSkills(0, 10, false)
+                    }
+                    handleEnemyKill(firstEnemy)
+                    moveToQuiz(enemyHp)
+                }
                 }
             },DELAY)
 
