@@ -1,7 +1,7 @@
 "use client"
 
 import { useSettings } from "../_components/SettingsContext"
-import { audio } from "../assets/sounds"
+import { audio } from "../../../public/sounds"
 import useSound from "use-sound"
 
 export default function useAudio() {

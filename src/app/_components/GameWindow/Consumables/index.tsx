@@ -5,45 +5,63 @@ import { useGame } from "../../GameContext"
 import styles from "./styles.module.scss"
 import useAudio from "@/app/_hooks/useVolume"
 import usePlayer from "@/app/_hooks/usePlayer"
+import { useState } from "react"
+import useGameFunctions from "@/app/_hooks/useGameFunctions"
+import { getItemIndex } from "@/app/_functions/game_functions"
+
+const BAG_MINIMUM = 3
 
 export default function ConsumableContainer({buttonState}:{buttonState: boolean}){
 
     const { player } = useGame()
 
+    const [bagOpen, setBagOpen] = useState<boolean>(false)
+
+    function handleBagClick(){
+        setBagOpen(prev => !prev)
+    }
+
     return (
-        <div
-            className={styles.consumable_wrapper}
+        <a
+            className={player.consumables.length >= BAG_MINIMUM ? styles.bag_wrapper : styles.consumable_wrapper}
             style={buttonState ? 
                 {
                     pointerEvents: "none",
                     filter: "brightness(0.5)"
                 } : {}}
+                onClick={handleBagClick}
         >
             {
                 player.consumables.map((item: Consumable,index: number) => (
-                        item.value || (item.charge != undefined && item.charge > 0 ) ?
-                        <ConsumableItem key={item.name + index} item={item} />
+                        item.value > 0 || (item.charge != undefined && item.charge > 0 ) ?
+                        <ConsumableItem key={item.name + index} item={item} bagOpen={bagOpen} setBagOpen={setBagOpen} />
                         : ""
                     ))
             }
-        </div>
+        </a>
     )
 }
 
 function ConsumableItem(
     {
-        item
+        item,
+        bagOpen,
+        setBagOpen
     }:{
         item: Consumable,
+        bagOpen: boolean,
+        setBagOpen: React.Dispatch<React.SetStateAction<boolean>>
     }) {
 
         const { player, setPlayer } = useGame()
         const { playWrongSound, playHealSound, playManaSound, playAgilitySound, playFirebombSound } = useAudio()
-        const { updateLootCharge, updateLoot } = usePlayer()
+        const { updateLootCharge } = usePlayer()
+        const { removeConsumable } = useGameFunctions()
 
         function handleClick(){
 
             let hp = player.hp
+            const itemIndex = getItemIndex(item, player)
 
             if(item.name === "Health Potion"){
                 hp = player.maxhp
@@ -111,27 +129,41 @@ function ConsumableItem(
                 }))
             }
             if(item.name === "Firebomb"){
-                const charge = player.consumables[item.id]?.charge
+                const charge = player.consumables[itemIndex]?.charge
                 if(charge == 0) {
                     playFirebombSound()
-                    updateLootCharge(item.name, 10)
+                    updateLootCharge(item, 10)
+                    return;
                 }
                 else{
                     playWrongSound()
                 }
             }
-            updateLoot(item.name,-1)
+            setBagOpen(false)
+            // updateLoot(item.name,-1)
+            removeConsumable(item.name)
         }
 
 
     return (
-        <div content={item.name} className={styles.item_container} onClick={handleClick}>
+        <div 
+            content={item.name}
+            className={styles.item_container}
+            onClick={handleClick}
+            style={
+                bagOpen && player.consumables.length >= BAG_MINIMUM
+                ? {
+                    transform:`translateX(calc(60px * ${getItemIndex(item, player) + 1}))`,
+                    opacity:"1",
+                    pointerEvents:"auto"
+                }: {}}
+        >
             {
                 item.value > 0 && 
                 <p className={styles.item_amount}>{item.value}</p>
             }
             {
-                item.charge
+                item.charge && item.charge > 0
                 ? <p className={styles.charge_counter}>{item.charge}</p>
                 : ""
             }

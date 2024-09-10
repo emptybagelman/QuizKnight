@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/consistent-indexed-object-style */
 
-import { type Enemy } from "../_types/types"
+import { type Consumable, type ConsumableNames, type PlayerType, type Enemy } from "../_types/types"
 import { enemyStats } from "./enemies";
 
 function randomEnemy(enemies: string[]) {
@@ -99,7 +99,7 @@ function enemyLoopGen(loop: number) {
 }
 
 export function randomItem(){
-    const items = [
+    const items: ConsumableNames[] = [
         "Health Potion",
         "Mana Potion",
         "Agility Crystal",
@@ -108,4 +108,8 @@ export function randomItem(){
     ]
     const item = items[Math.floor(Math.random() * items.length)]
     return item!
+}
+
+export function getItemIndex(item: Consumable, player: PlayerType){
+    return player.consumables.indexOf(item)
 }

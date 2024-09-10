@@ -1,7 +1,7 @@
 "use client"
 
 
-import { audio } from "@/app/assets/sounds"
+import { audio } from "public/sounds"
 import useSound from "use-sound"
 import { useSettings } from "../SettingsContext"
 import styles from "./styles.module.scss"

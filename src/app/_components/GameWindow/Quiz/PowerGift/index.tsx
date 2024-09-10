@@ -9,18 +9,20 @@ import usePlayer from "@/app/_hooks/usePlayer"
 export default function PowerGift(){
 
     const { player, setGameState } = useGame()
-    const { toggleSkills } = usePlayer()
+    const { toggleSkills, setMaxHp } = usePlayer()
     const { playHoverSound, playCorrectSound } = useAudio()
 
     function handleClick(){
         playCorrectSound()
         toggleSkills(0,true)
+        setMaxHp()
         setGameState((prev: GameStateProps) => ({
             ...prev,
             quizState: false,
             powerState: false,
             loop: prev.loop + 1
         }))
+
     }
 
     return (

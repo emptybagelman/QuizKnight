@@ -1,13 +1,14 @@
 "use client"
 
 import { useGame } from "../_components/GameContext"
-import { type Consumable, type Skill, type PlayerType } from "../_types/types"
+import { getItemIndex } from "../_functions/game_functions"
+import { type Consumable, type Skill, type PlayerType, ConsumableNames } from "../_types/types"
 
 // type Increment = 1 | -1
 
 export default function usePlayer(){
 
-    const { setPlayer } = useGame()
+    const { player,setPlayer } = useGame()
 
     function setMaxHp(){
         setPlayer((prev: PlayerType) => ({
@@ -57,7 +58,6 @@ export default function usePlayer(){
             // validity check
             if(!updatedConsumables[itemId]) return prev;
 
-
             // increment / decrement value
             updatedConsumables[itemId] = {
                 ...updatedConsumables[itemId],
@@ -70,24 +70,24 @@ export default function usePlayer(){
         })
     }
 
-    function updateLootCharge(item: string, increment: number){
+    function updateLootCharge(item: Consumable, increment: number){
         setPlayer((prev: PlayerType) => {
             const updatedConsumables = [...prev.consumables];
 
             // get id of Consumable from player.consumables
-            const itemId = updatedConsumables.filter((i: Consumable) => i.name === item)[0]?.id
-
-            if(itemId === undefined) return prev;
+            // const itemId = updatedConsumables.filter((i: Consumable) => i.name === item)[0]?.id
+            const itemIndex = getItemIndex(item, player)
+            if(itemIndex === undefined) return prev;
 
             // validity check
-            if(!updatedConsumables[itemId]) return prev;
+            if(!updatedConsumables[itemIndex]) return prev;
 
             // if(!updatedConsumables[itemId].charge) return prev;
 
             // increment / decrement value
-            updatedConsumables[itemId] = {
-                ...updatedConsumables[itemId],
-                charge: updatedConsumables[itemId].charge! + increment
+            updatedConsumables[itemIndex] = {
+                ...updatedConsumables[itemIndex],
+                charge: updatedConsumables[itemIndex].charge! + increment
             };
             return {
                 ...prev,

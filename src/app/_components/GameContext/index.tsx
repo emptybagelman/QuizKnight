@@ -20,7 +20,7 @@ const defaultPlayerState: PlayerType = {
     resistance: 0,
     critical: 2,
     parry: 5,
-    looting: 5,
+    looting: 100,
     agility: 0,
     skills: [{
         id: 0,
@@ -36,31 +36,12 @@ const defaultPlayerState: PlayerType = {
             name: "Health Potion",
             value: 1,
             description: "Fills your HP to full."
-        },
-        {
-            id: 1,
-            name: "Mana Potion",
-            value: 0,
-            description: "Charge your power move to the max!"
-        },
-        {
-            id: 2,
-            name: "Agility Crystal",
-            value: 0,
-            description: "Dodge the enemy's next attack."
-        },
-        {
-            id: 3,
-            name: "Firebomb",
-            value: 0,
-            description: "Burns enemies over time.",
-            charge: 0,
         }
     ]
 }
 
 const defaultGameState: GameStateProps = {
-    loop: 0,
+    loop: 1,
     score: 0,
     quizState: false,
     questionState: false,

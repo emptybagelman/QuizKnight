@@ -46,6 +46,9 @@ export type StatType = {
     name: string
 }
 
+export type ConsumableNames = "Health Potion" | "Mana Potion" | "Agility Crystal" | "Firebomb"
+
+
 export type TimeoutFunctionProps = {
     delay: number,
     func: (() => void)[]
@@ -115,7 +118,7 @@ export type soundType = string | string[]
 
 export type Consumable = {
     id: number,
-    name: string,
+    name: ConsumableNames,
     value: number,
     description: string,
     charge?: number,

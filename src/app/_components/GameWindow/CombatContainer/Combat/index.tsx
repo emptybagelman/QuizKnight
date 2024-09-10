@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import CombatDialogue from "../CombatDialogue";
-import { type PlayerType, type Enemy, type GameStateProps, type Background } from "@/app/_types/types"
+import { type PlayerType, type Enemy, type GameStateProps, type Background, type ConsumableNames } from "@/app/_types/types"
 import { useGame } from "../../../GameContext";
 import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
@@ -17,7 +17,7 @@ import SpriteContainer from "../SpriteContainer";
 import useAudio from "@/app/_hooks/useVolume";
 import SettingsWidget from "@/app/_components/Settings/GameSettings";
 import ConsumableContainer from "../../Consumables";
-import generateEnemies, { randomItem } from "@/app/_functions/game_functions";
+import generateEnemies, { getItemIndex, randomItem } from "@/app/_functions/game_functions";
 import HealthBar from "../../Characters/HealthBar";
 import Hit from "../../Characters/Hit";
 import Skills from "../../Characters/Player/Skills";
@@ -28,13 +28,15 @@ import Boss from "../../Characters/Enemy/Boss";
 import { BossHealthBar } from "../../Characters/Enemy/Boss/BossHealthBar";
 import Quiz from "../../Quiz";
 import AutoPlay from "../../AutoPlay";
+import useGameFunctions from "@/app/_hooks/useGameFunctions";
 
 export default function Combat(){
     
     // CONTEXTS AND HOOKS
     const { player, setPlayer, gameState, setGameState} = useGame()
+    const { addConsumable, removeConsumable } = useGameFunctions()
     const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
-    const { toggleSkills, updateSkills, updateLoot, updateLootCharge } = usePlayer()
+    const { updateSkills, updateLoot, updateLootCharge } = usePlayer()
     const { playHitImpactSound, playSwingSound, playHitSound, playBlockSound, playEvadeSound, playFirebombSound } = useAudio()
     const router = useRouter()
 
@@ -107,9 +109,10 @@ export default function Combat(){
 
             // HANDLE IF ENEMY DROPS LOOT
             if(lootChance){
-                const randItem = randomItem()
+                const randItem: ConsumableNames = randomItem()
                 setExtraDialogue(randItem)
-                updateLoot(randItem, 1)
+                addConsumable(randItem)
+                // updateLoot(randItem, 1)
 
                 setCurrentDialogue({
                     enemy: enemyData[0],
@@ -156,7 +159,7 @@ export default function Combat(){
             // WAIT FOR DIALOGUE
             setTimeout(() => {
                 setCurrentDialogue(activeEmptyDialogue)
-                const firebomb = player.consumables[3]
+                const firebomb = player.consumables.filter((x) => x.name == "Firebomb")[0]
                 if(firebomb?.charge === 0 || enemyHp <= 0){
                     // CHECK IF ENEMY DEAD
 
@@ -198,9 +201,10 @@ export default function Combat(){
                             return newEnemyData
                         })
     
-                        updateLootCharge(firebomb.name,-1)
+                        updateLootCharge(firebomb,-1)
                         if(firebomb.charge! - 1 == 0){
-                            updateLoot(firebomb.name, -1)
+                            // updateLoot(firebomb.name, -1)
+                            removeConsumable(firebomb.name)
                         }
 
                         if(player.skills[0]?.active){
