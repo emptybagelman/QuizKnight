@@ -160,7 +160,7 @@ export default function Combat(){
             setTimeout(() => {
                 setCurrentDialogue(activeEmptyDialogue)
                 const firebomb = player.consumables.filter((x) => x.name == "Firebomb")[0]
-                if(firebomb?.charge === 0 || enemyHp <= 0){
+                if(firebomb?.charge === 0 || !firebomb){
                     // CHECK IF ENEMY DEAD
 
                     // EMPTY DIALOGUE BETWEEN MESSAGES
