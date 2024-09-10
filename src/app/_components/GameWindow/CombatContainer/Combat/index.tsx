@@ -207,7 +207,7 @@ export default function Combat(){
                         }, DELAY);
 
                     }, ATTACK_TIMEOUT);
-else{
+}else{
                     // CHECK IF ENEMY DEAD
 
                     // EMPTY DIALOGUE BETWEEN MESSAGES
@@ -219,7 +219,7 @@ else{
                     handleEnemyKill(firstEnemy)
                     moveToQuiz(enemyHp)
                 }
-                }
+                
             },DELAY)
 
         },ATTACK_TIMEOUT)
