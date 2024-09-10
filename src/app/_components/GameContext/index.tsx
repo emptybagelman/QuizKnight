@@ -18,9 +18,9 @@ const defaultPlayerState: PlayerType = {
     armour: 5,
     maxarmour: 5,
     resistance: 0,
-    critical: 2,
-    parry: 5,
-    looting: 100,
+    critical: 0,
+    parry: 0,
+    looting: 0,
     agility: 0,
     skills: [{
         id: 0,
@@ -41,7 +41,7 @@ const defaultPlayerState: PlayerType = {
 }
 
 const defaultGameState: GameStateProps = {
-    loop: 1,
+    loop: 0,
     score: 0,
     quizState: false,
     questionState: false,
