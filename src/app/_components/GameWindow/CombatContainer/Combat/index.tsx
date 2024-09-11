@@ -191,10 +191,10 @@ export default function Combat(){
                         })
     
                         updateLootCharge(firebomb,-1)
-                        if(firebomb.charge! - 1 == 0){
-                            // updateLoot(firebomb.name, -1)
-                            removeConsumable(firebomb.name)
-                        }
+                        // if(firebomb.charge! - 1 == 0){
+                        //     // updateLoot(firebomb.name, -1)
+                        //     removeConsumable(firebomb.name)
+                        // }
 
                         if(player.skills[0]?.active){
                             updateSkills(0, 10, false)

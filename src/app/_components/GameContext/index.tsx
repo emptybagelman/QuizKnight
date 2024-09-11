@@ -36,12 +36,12 @@ const defaultPlayerState: PlayerType = {
             name: "Health Potion",
             value: 1,
             description: "Fills your HP to full."
-        }
+        },
     ]
 }
 
 const defaultGameState: GameStateProps = {
-    loop: 0,
+    loop: 1,
     score: 0,
     quizState: false,
     questionState: false,

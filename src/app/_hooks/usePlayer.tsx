@@ -74,15 +74,11 @@ export default function usePlayer(){
         setPlayer((prev: PlayerType) => {
             const updatedConsumables = [...prev.consumables];
 
-            // get id of Consumable from player.consumables
-            // const itemId = updatedConsumables.filter((i: Consumable) => i.name === item)[0]?.id
             const itemIndex = getItemIndex(item, player)
             if(itemIndex === undefined) return prev;
 
             // validity check
             if(!updatedConsumables[itemIndex]) return prev;
-
-            // if(!updatedConsumables[itemId].charge) return prev;
 
             // increment / decrement value
             updatedConsumables[itemIndex] = {

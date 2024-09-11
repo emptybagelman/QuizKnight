@@ -9,7 +9,7 @@ import { useState } from "react"
 import useGameFunctions from "@/app/_hooks/useGameFunctions"
 import { getItemIndex } from "@/app/_functions/game_functions"
 
-const BAG_MINIMUM = 3
+const BAG_MINIMUM = 2
 
 export default function ConsumableContainer({buttonState}:{buttonState: boolean}){
 
@@ -134,7 +134,6 @@ function ConsumableItem(
                 if(charge == 0) {
                     playFirebombSound()
                     updateLootCharge(item, 10)
-                    return;
                 }
                 else{
                     playWrongSound()
@@ -142,7 +141,7 @@ function ConsumableItem(
             }
             setBagOpen(false)
             // updateLoot(item.name,-1)
-            removeConsumable(item.name)
+            removeConsumable(item.name, false)
         }
 
 

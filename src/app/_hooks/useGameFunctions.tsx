@@ -2,6 +2,7 @@
 
 import { useGame } from "../_components/GameContext"
 import { type PlayerType, type Consumable, type ConsumableNames } from "../_types/types"
+import { useEffect } from "react"
 
 const consumables: Consumable[] = [
     {
@@ -75,13 +76,12 @@ export default function useGameFunctions(){
         }
     }
 
-    function removeConsumable(name: ConsumableNames){
+    function removeConsumable(name: ConsumableNames, destroy: boolean){
         const item: Consumable = player.consumables.filter((x) => x.name === name)[0]!
-
         const consumables = [...player.consumables]
 
-        if(item.value == 1) {
-
+        // pop from consumable array
+        if(item.value <= 1 && destroy) {
             const updatedConsumables = consumables.filter((x) => x.id != item.id )
 
             setPlayer((prev: PlayerType) => ({
@@ -89,17 +89,19 @@ export default function useGameFunctions(){
                 consumables: [...updatedConsumables]
             }))
         }
+
+        // decrease consumable value
         else{
             setPlayer((prev: PlayerType) => {
                 const updatedConsumables = [...prev.consumables];
-                const itemIndex = updatedConsumables.indexOf(item)
+                const itemIndex = updatedConsumables.map(x => x.name).indexOf(item.name)
 
                 // validity check
                 if(!item) return prev;
                 if(itemIndex === undefined) return prev;
                 if(!updatedConsumables[itemIndex]) return prev;
     
-                // increment / decrement value
+
                 updatedConsumables[itemIndex] = {
                     ...updatedConsumables[itemIndex],
                     value: updatedConsumables[itemIndex].value - 1
@@ -112,6 +114,19 @@ export default function useGameFunctions(){
             })
         }
     }
+
+    useEffect(() => {
+        function watchConsumableCharge(){
+            const itemsWithCharge = [...player.consumables].filter((item: Consumable) => typeof item.charge === "number")
+            
+            for(const item of itemsWithCharge ){
+                if(item.charge && item.charge <= 0 && item.value < 1){
+                    removeConsumable(item.name, true)
+                }
+            }
+        }
+        watchConsumableCharge()
+    },[ player.consumables ])
 
     return {
         addConsumable,
