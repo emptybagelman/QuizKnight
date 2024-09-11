@@ -1,8 +1,9 @@
 "use client"
 
 import { useGame } from "../_components/GameContext"
-import { type PlayerType, type Consumable, type ConsumableNames } from "../_types/types"
+import { type PlayerType, type Consumable, type ConsumableNames, type CharacterNames } from "../_types/types"
 import { useEffect } from "react"
+import useAudio from "./useVolume"
 
 const consumables: Consumable[] = [
     {
@@ -35,6 +36,40 @@ const consumables: Consumable[] = [
 export default function useGameFunctions(){
 
     const { player, setPlayer } = useGame()
+    const { playPlayerHitSound, playGoblinHitSound, playMushroomHitSound, playSkeletonHitSound, playBossDeathSound } = useAudio()
+
+    function getHitSound(name: CharacterNames){
+        switch(name){
+            case "Player":
+                playPlayerHitSound()
+                break;
+            case "Goblin":
+                playGoblinHitSound()
+                break;
+            case "Mushroom":
+                playMushroomHitSound()
+                break;
+            case "Skeleton":
+                playSkeletonHitSound()
+                break;
+            default:
+                playMushroomHitSound()
+                break;
+        }
+    }
+
+    function getDeathSound(name: CharacterNames){
+        switch(name){
+            case "Player":
+                playPlayerHitSound()
+                break;
+            case "Demon Slime":
+                playBossDeathSound()
+                break;
+            default:
+                break;
+        }
+    }
 
     function addConsumable(name: ConsumableNames){
         const item: Consumable = player.consumables.filter((x) => x.name === name)[0]!
@@ -130,6 +165,8 @@ export default function useGameFunctions(){
 
     return {
         addConsumable,
-        removeConsumable
+        removeConsumable,
+        getHitSound,
+        getDeathSound
     }
 }

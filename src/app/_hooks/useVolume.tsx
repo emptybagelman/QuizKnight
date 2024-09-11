@@ -24,6 +24,11 @@ export default function useAudio() {
     const [playChargeSound] = useSound(audio.charge,{volume:  0.2 * (volume / 100)})
     const [playFirebombSound] = useSound(audio.firebomb,{volume:  1 * (volume / 100)})
     const [playHitImpactSound] = useSound(audio.hit_impact,{volume: 2 * (volume / 100)})
+    const [playPlayerHitSound] = useSound(audio.player_hit,{volume:  1 * (volume / 100)})
+    const [playGoblinHitSound] = useSound(audio.goblin_hit,{volume:  1 * (volume / 100)})
+    const [playMushroomHitSound] = useSound(audio.mushroom_hit,{volume:  1 * (volume / 100)})
+    const [playSkeletonHitSound] = useSound(audio.skeleton_hit,{volume:  1 * (volume / 100)})
+    const [playBossDeathSound] = useSound(audio.boss_death,{volume:  1 * (volume / 100)})
 
     return {
         playIntoTheWastes,
@@ -41,6 +46,11 @@ export default function useAudio() {
         playPowerMoveSound,
         playChargeSound,
         playFirebombSound,
-        playHitImpactSound
+        playHitImpactSound,
+        playPlayerHitSound,
+        playGoblinHitSound,
+        playMushroomHitSound,
+        playSkeletonHitSound,
+        playBossDeathSound
     }
 }

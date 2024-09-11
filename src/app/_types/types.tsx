@@ -46,6 +46,8 @@ export type StatType = {
     name: string
 }
 
+export type CharacterNames = "Player" | "Goblin" | "Mushroom" | "Skeleton" | "Flying Eye" | "Toad" | "Demon Slime" | string
+
 export type ConsumableNames = "Health Potion" | "Mana Potion" | "Agility Crystal" | "Firebomb"
 
 

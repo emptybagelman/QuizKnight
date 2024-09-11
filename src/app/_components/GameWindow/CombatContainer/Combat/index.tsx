@@ -17,7 +17,7 @@ import SpriteContainer from "../SpriteContainer";
 import useAudio from "@/app/_hooks/useVolume";
 import SettingsWidget from "@/app/_components/Settings/GameSettings";
 import ConsumableContainer from "../../Consumables";
-import generateEnemies, { getItemIndex, randomItem } from "@/app/_functions/game_functions";
+import generateEnemies, { randomItem } from "@/app/_functions/game_functions";
 import HealthBar from "../../Characters/HealthBar";
 import Hit from "../../Characters/Hit";
 import Skills from "../../Characters/Player/Skills";
@@ -35,10 +35,10 @@ export default function Combat(){
     
     // CONTEXTS AND HOOKS
     const { player, setPlayer, gameState, setGameState} = useGame()
-    const { addConsumable, removeConsumable } = useGameFunctions()
+    const { addConsumable, getHitSound, getDeathSound } = useGameFunctions()
     const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
-    const { updateSkills, updateLoot, updateLootCharge } = usePlayer()
-    const { playHitImpactSound, playSwingSound, playHitSound, playBlockSound, playEvadeSound, playFirebombSound } = useAudio()
+    const { updateSkills, updateLootCharge } = usePlayer()
+    const { playHitImpactSound, playSwingSound, playHitSound, playBlockSound, playEvadeSound, playFirebombSound, playPlayerHitSound } = useAudio()
     const router = useRouter()
 
     // CONSTANTS & VARIABLES
@@ -107,6 +107,7 @@ export default function Combat(){
             })
 
         if(enemyHp <= 0){ // KILL ENEMY DIALOGUE
+            getDeathSound(enemyData[0]?.name)
 
             // HANDLE IF ENEMY DROPS LOOT
             if(lootChance){
@@ -153,6 +154,7 @@ export default function Combat(){
         // PLAYER ATTACK CYCLE
         playSwingSound()
         playHitSound()
+        getHitSound(firstEnemy.name)
         setTimeout(() => {
             setPlayerAttack(false)
             setBackground("default")
@@ -208,7 +210,7 @@ export default function Combat(){
                         }, DELAY);
 
                     }, ATTACK_TIMEOUT);
-}else{
+                }else{
                     // CHECK IF ENEMY DEAD
 
                     // EMPTY DIALOGUE BETWEEN MESSAGES
@@ -234,7 +236,6 @@ export default function Combat(){
                     setButtonState(false)
                     setCurrentDialogue(emptyDialogue)
                     setInCombat(false)
-                    
                 }
                 else {
                     handleEnemyAttack()
@@ -349,7 +350,7 @@ export default function Combat(){
 
         setTimeout(() => {
             playSwingSound()
-        
+            getHitSound("Player")
         }, isBoss ? ATTACK_TIMEOUT * 1.2 : 0);
             
         setTimeout(() => {

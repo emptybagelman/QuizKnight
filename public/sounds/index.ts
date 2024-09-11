@@ -16,6 +16,11 @@ import powermove from "public/sounds/powermove.mp3";
 import charge from "public/sounds/charge.mp3";
 import firebomb from "public/sounds/firebomb.mp3";
 import hit_impact from "public/sounds/hit_impact.mp3";
+import player_hit from "public/sounds/player_hit.mp3";
+import goblin_hit from "public/sounds/goblin_hit.mp3";
+import mushroom_hit from "public/sounds/mushroom_hit.mp3";
+import skeleton_hit from "public/sounds/skeleton_hit.mp3";
+import boss_death from "public/sounds/boss_death.mp3";
 
 export const audio = {
     attack_sword: attack_sword,
@@ -33,5 +38,10 @@ export const audio = {
     powermove: powermove,
     charge: charge,
     firebomb: firebomb,
-    hit_impact: hit_impact
+    hit_impact: hit_impact,
+    player_hit: player_hit,
+    goblin_hit: goblin_hit,
+    mushroom_hit: mushroom_hit,
+    skeleton_hit: skeleton_hit,
+    boss_death: boss_death,
 }
