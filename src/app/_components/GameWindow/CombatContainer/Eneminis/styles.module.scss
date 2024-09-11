@@ -1,0 +1,33 @@
+@import "@/styles/scss_globals.scss";
+
+.eneminis_wrapper{
+    grid-area: eneminis;
+    // width: 100px;
+    position: absolute;
+    right: 0;
+    height: 22px;
+    display: flex;
+    align-self: center;
+
+    #remaining{
+        font-size: $p-m;
+        margin-right: 5px;
+    }
+
+    .enemy_head{
+        position: relative;
+        background-size: cover;
+        width: 22px;
+        height: 22px;
+        transform: scaleX(-1);
+        margin-right: 5px;
+        .mini_hp_bar{
+            position: absolute;
+            top: -2px;
+            left: 0;
+            height: 2px;
+            background-color: $green;
+            transition: 0.7s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+    }
+}

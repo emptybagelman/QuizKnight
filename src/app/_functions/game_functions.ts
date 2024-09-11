@@ -113,3 +113,32 @@ export function randomItem(){
 export function getItemIndex(item: Consumable, player: PlayerType){
     return player.consumables.indexOf(item)
 }
+
+export function handleHpBar(character: PlayerType | Enemy){
+    if((character.hp / character.maxhp) <= 0) {
+        return {
+            "width":"0%",
+            "backgroundColor":"transparent",
+            "boxShadow": "transparent inset 0 0 "
+        }
+    }
+    if((character.hp / character.maxhp) < 0.3) {
+        return {
+            "backgroundColor":"hsl(358, 100%, 45%)",
+            "boxShadow": "hsl(358, 100%, 21%) inset 0 -3px 0 0",
+            "width":`${(character.hp/character.maxhp)*100}%`
+        }
+    }
+    else if((character.hp / character.maxhp) < 0.6) {
+        return {
+            "backgroundColor":"hsl(30, 100%, 45%)",
+            "boxShadow": "hsl(14, 100%, 39%) inset 0 -3px 0 0",
+            "width":`${(character.hp/character.maxhp)*100}%`
+        }
+    }
+    else{
+        return {
+            "width":`${(character.hp/character.maxhp)*100}%`
+        }
+    }
+}

@@ -29,6 +29,7 @@ import { BossHealthBar } from "../../Characters/Enemy/Boss/BossHealthBar";
 import Quiz from "../../Quiz";
 import AutoPlay from "../../AutoPlay";
 import useGameFunctions from "@/app/_hooks/useGameFunctions";
+import Eneminis from "../Eneminis";
 
 export default function Combat(){
     
@@ -466,6 +467,7 @@ export default function Combat(){
             }
             <StartScreen />
             <ConsumableContainer buttonState={buttonState}/>
+            <Eneminis />
             <SpriteContainer>
                 <Player>
                     {

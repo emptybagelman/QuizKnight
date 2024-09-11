@@ -35,11 +35,14 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [] animation toggle
     - [] difficulty mode
 - [] gameplay!
-    - [] convert current powering system to stat point system
+    - [x] convert current powering system to stat point system
         - [x] quiz display overlays combat
-        - [] once completed, stat screen appears, player can allocate points to level up
+        - [x] once completed, stat screen appears, player can allocate points to level up
+    - [] mini enemy icons
+        - shows how many enemies in array & hp
     - [] consumables
-        - random chance for enemy to drop consumable
+        - [x] convert into single icon when holding multiple items
+        - [x] random chance for enemy to drop consumable
         - [x] burn over time
         - [] static
             - chance to make enemy freeze

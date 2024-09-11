@@ -13,10 +13,10 @@
     box-sizing: border-box;
 
     display: grid;
-    grid-template-rows: 75px repeat(5,1fr) 75px;
+    grid-template-rows: 75px 0.5fr 1.5fr repeat(3,1fr) 75px;
     grid-template-columns: 75px 1fr 75px;
     grid-template-areas: 
-        " settings  .    score "
+        " settings  eneminis    score "
         " autoplay    power    . "
         " consumable  .   . "
         " consumable  .   .  "
@@ -46,9 +46,15 @@
 }
 
 @media screen and (max-width: 600px){
+
+    .combat_window{
+        grid-template-columns: 50px 1fr 50px;
+
+    }
     .morning_forest{
         background-repeat: no-repeat;
         background-size: cover;
+
     }
 }
 
