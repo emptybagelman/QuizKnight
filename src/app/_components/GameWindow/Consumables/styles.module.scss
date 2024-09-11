@@ -93,6 +93,7 @@ $length: 50px;
     @extend .consumable_wrapper;
     flex-direction: row;
     justify-self: flex-start;
+    align-self: flex-start;
     position: relative;
     background-image: url("../../../assets/pouch.png");
     background-size: cover;
@@ -145,5 +146,9 @@ $length: 50px;
             width: 35px;
             height: 35px;
         }
+    }
+    .bag_wrapper{
+        width: 35px;
+        height: 35px;
     }
 }
