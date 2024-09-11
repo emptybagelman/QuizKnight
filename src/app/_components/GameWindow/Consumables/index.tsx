@@ -18,8 +18,9 @@ export default function ConsumableContainer({buttonState}:{buttonState: boolean}
     const [bagOpen, setBagOpen] = useState<boolean>(false)
 
     function handleBagClick(){
+        if(player.consumables.length >= BAG_MINIMUM){
         setBagOpen(prev => !prev)
-    }
+    }}
 
     return (
         <a
