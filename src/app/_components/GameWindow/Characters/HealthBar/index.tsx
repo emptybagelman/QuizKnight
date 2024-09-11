@@ -10,7 +10,7 @@ export default function HealthBar({character}: {character: PlayerType | Enemy}){
     const { damageNumbers } = useSettings()
 
     return (
-        <div className={styles.healthbar_wrapper}>
+        <div className={styles.healthbar_wrapper} content={character.name}>
             <div id={styles.hp} style={handleHpBar(character)}></div>
             <div id={styles.maxhp}></div>
             {

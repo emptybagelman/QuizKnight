@@ -9,7 +9,7 @@ import { useState } from "react"
 import useGameFunctions from "@/app/_hooks/useGameFunctions"
 import { getItemIndex } from "@/app/_functions/game_functions"
 
-const BAG_MINIMUM = 2
+const BAG_MINIMUM = 3
 
 export default function ConsumableContainer({buttonState}:{buttonState: boolean}){
 

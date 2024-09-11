@@ -14,7 +14,7 @@ export function enemyStats(name: string, loop:number) {
         case "Mushroom":
             hp = randomInt((3 + Math.floor(loop * 0.8)), 2)
             dmg = randomInt((1 + Math.floor(loop * 0.5)), 1)
-            armour = randomInt((1 + Math.floor(loop * 0.3)), 1)
+            armour = 0
             break;
         case "Skeleton":
             hp = randomInt((2 + Math.floor(loop * 0.55)), 1)

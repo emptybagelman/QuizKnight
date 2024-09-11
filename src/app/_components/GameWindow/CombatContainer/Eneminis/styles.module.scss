@@ -11,7 +11,7 @@
 
     #remaining{
         font-size: $p-m;
-        margin-right: 5px;
+        margin-right: 15px;
     }
 
     .enemy_head{
@@ -29,5 +29,16 @@
             background-color: $green;
             transition: 0.7s cubic-bezier(0.215, 0.610, 0.355, 1);
         }
+    }
+}
+
+
+
+@media screen and (min-width: 800px){
+    .eneminis_wrapper{
+        &[content="obscure"]{
+            display: none;
+        }
+
     }
 }

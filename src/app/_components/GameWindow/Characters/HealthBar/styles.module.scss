@@ -8,9 +8,14 @@
     position: relative;
     // top: -50px;
     left: 0;
-    width: 75%;
+    width: 100%;
     height: 20px;
     transform: translateY(-25px);
+    margin: 10px;
+
+    &[content="Player"]{
+        transform: translateY(-35px);
+    }
 
     &>div{
         width: 100%;
@@ -42,10 +47,11 @@
         width: 25px;
         outline: $hb_outline;
         position: absolute;
-        left: 105%;
+        right: 0;
         background-color: $blue;
         box-shadow: $blue-shadow inset 0 -3px 0 0;
-        border-radius: $hb_border_r;
+        border-radius: 0 0 5px 0;
         font-size: $p-m;
+        z-index: 5;
     }
 }
