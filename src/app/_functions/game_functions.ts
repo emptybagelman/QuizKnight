@@ -2,6 +2,7 @@
 
 import { type Consumable, type ConsumableNames, type PlayerType, type Enemy } from "../_types/types"
 import { enemyStats } from "./enemies";
+import { CONSTANTS } from "./CONSTANTS";
 
 function randomEnemy(enemies: string[]) {
         
@@ -22,11 +23,11 @@ export function adjustDifficulty(loop: number){
 
 export default function generateEnemies(loop: number) {
 
-    if(loop > 15){
+    if(loop > CONSTANTS.MAX_SET_ROUND){
 
         const amount = adjustDifficulty(loop)
 
-        const enemyArray: Enemy[] = [...Array.from({length:amount}).map((x, index) => {
+        const enemyArray: Enemy[] = [...Array.from({length:randomInt(amount,4)}).map((x, index) => {
 
             let hp = randomInt((2 + Math.floor(loop*1.09)),2)
             const dmg = randomInt((2 + Math.floor(loop*0.8)),1)
@@ -85,14 +86,14 @@ function enemyLoopGen(loop: number) {
         5: ["Mushroom","Goblin","Goblin"],
         6: ["Toad","Mushroom","Goblin"],
         7: ["Toad","Goblin","Mushroom","Toad","Goblin"],
-        8: ["Toad","Flying Eye","Flying Eye"],
-        9: ["Goblin","Flying Eye","Mushroom"],
-        10: ["Skeleton","Flying Eye","Flying Eye", "Mushroom"],
-        11: ["Flying Eye","Flying Eye","Goblin","Goblin"],
-        12: ["Flying Eye","Mushroom","Toad","Toad"],
-        13: ["Toad", "Skeleton", "Mushroom", "Goblin"],
-        14: ["Skeleton", "Skeleton", "Mushroom", "Toad"],
-        15: ["Demon Slime"]
+        8: ["Toad","Goblin","Goblin", "Goblin"],
+        9: ["Mushroom","Goblin","Toad","Mushroom","Goblin",],
+        10: ["Demon Slime"],
+        11: ["Skeleton","Flying Eye","Flying Eye", "Mushroom"],
+        12: ["Flying Eye","Flying Eye","Goblin","Goblin"],
+        13: ["Flying Eye","Mushroom","Toad","Toad"],
+        14: ["Toad", "Skeleton", "Mushroom", "Goblin"],
+        15: ["Skeleton", "Skeleton", "Mushroom", "Toad"],
     }
 
     return basicRounds[loop]

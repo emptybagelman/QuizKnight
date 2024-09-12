@@ -25,6 +25,8 @@ export default function CombatDialogue(
         `You just blasted everywhere!`, // 9
         `${data.enemy.name} is burning.`, // 10
         `You fried the ${data.enemy.name}!`, // 11
+        `The fire doesn't affect the ${data.enemy.name}.`, // 12
+        `${data.enemy.name} extinguished the fire!`, // 13
     ]
 
     if(data.active == false) return;

@@ -1,0 +1,8 @@
+export const CONSTANTS = {
+    BOSS_ROUND: 10,
+    BURN_DMG: 10,
+    DELAY: 3500,
+    ATTACK_TIMEOUT: 500,
+    MAX_SET_ROUND: 15,
+    HEADCOUNT: 3,
+}

@@ -9,8 +9,7 @@ import skeleton_head from "#/skeleton_head.png"
 import flying_eye_head from "#/flying_eye_head.png"
 import toad_head from "#/toad_head.png"
 import { handleHpBar } from "@/app/_functions/game_functions"
-
-const HEADCOUNT = 3
+import { CONSTANTS } from "@/app/_functions/CONSTANTS"
 
 export default function Eneminis(){
     const { enemyData } = useCombat()
@@ -33,9 +32,9 @@ export default function Eneminis(){
     }
 
     return (
-        <div className={styles.eneminis_wrapper} content={`${enemyData.length <= HEADCOUNT ? "obscure" : "show"}`}>
+        <div className={styles.eneminis_wrapper} content={`${enemyData.length <= CONSTANTS.HEADCOUNT ? "obscure" : "show"}`}>
             {
-                enemyData && enemyData.slice(0,HEADCOUNT).map((enemy, idx) => (
+                enemyData && enemyData.slice(0,CONSTANTS.HEADCOUNT).map((enemy, idx) => (
                     <div
                         key={"mini"+idx}
                         className={styles.enemy_head}
@@ -50,8 +49,8 @@ export default function Eneminis(){
                 ))
             }
             <p id={styles.remaining}>
-                { enemyData.length > HEADCOUNT &&
-                    "+"+enemyData.slice(HEADCOUNT,enemyData.length).length
+                { enemyData.length > CONSTANTS.HEADCOUNT &&
+                    "+"+enemyData.slice(CONSTANTS.HEADCOUNT,enemyData.length).length
                 }
             </p>
         </div>

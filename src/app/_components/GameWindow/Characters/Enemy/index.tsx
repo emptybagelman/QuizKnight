@@ -17,13 +17,13 @@ export default function EnemySprite(
         enemy: Enemy,
     }) {
 
-        const { player } = useGame()
+        const { player, gameState } = useGame()
         const { enemyData, playerAttack, enemyAttack } = useCombat()
 
     return (
         <div
             key={id}
-            className={resolveAnimType(enemy, enemyData, enemyAttack, playerAttack)}
+            className={`${resolveAnimType(enemy, enemyData, enemyAttack, playerAttack)} ${gameState.loop > 15 ? "darken" : ""}`}
             >
             {
                 playerAttack && enemyData[0]?.id === enemy.id

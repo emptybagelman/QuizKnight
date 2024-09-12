@@ -37,6 +37,13 @@ const defaultPlayerState: PlayerType = {
             value: 1,
             description: "Fills your HP to full."
         },
+        // {
+        //     id: 3,
+        //     name: "Firebomb",
+        //     value: 1,
+        //     description: "Fills your HP to full.",
+        //     charge: 10,
+        // },
     ]
 }
 

@@ -65,6 +65,8 @@ $playerSpriteH: calc($playerSpriteW * 3);
         animation: shadow_bobble 0.5s steps(3) alternate infinite;
     }
 
+
+
     &::before{
         content: "";
         filter: contrast(1.1) brightness(0.9);
@@ -80,6 +82,7 @@ $playerSpriteH: calc($playerSpriteW * 3);
         image-rendering: pixelated;
         transform: translate(-35%, 10%);
         animation: idleAnim_player 1s steps(11) infinite;
+
     }
 }
 .playerAttackAnim{
@@ -169,7 +172,6 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         animation: idleAnim_enemy 1s steps(4) infinite;
         image-rendering: pixelated;
         transform: translate(-0%,-1%) scaleX(-1);
-        
     }
 
 
@@ -334,7 +336,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         height: 150px;
         background-size: calc(320px * 3) calc(64px * 3) !important;
         background-image: url("../../../../assets/toad_idle.png") !important;
-        transform: translate(-15px, 0) scaleX(-1) !important;
+        transform: translate(10px, 0) scaleX(-1) !important;
         animation: toad_idle 1s steps(4) infinite  !important;
         transition: filter 0.5s ease;
     }
@@ -345,7 +347,7 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
     &::before{
         background-size: calc(240px * 3) calc(64px * 3) !important;
         background-image: url("../../../../assets/toad_attack.png") !important;
-        transform: translate(-15px, -25%) scaleX(-1) !important;
+        transform: translate(10px, 0) scaleX(-1) !important;
 
         animation: toad_attackAnim 0.3s steps(3) infinite alternate !important;
     }

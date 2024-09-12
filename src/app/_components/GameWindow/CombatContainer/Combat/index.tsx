@@ -17,7 +17,7 @@ import SpriteContainer from "../SpriteContainer";
 import useAudio from "@/app/_hooks/useVolume";
 import SettingsWidget from "@/app/_components/Settings/GameSettings";
 import ConsumableContainer from "../../Consumables";
-import generateEnemies, { randomItem } from "@/app/_functions/game_functions";
+import generateEnemies, { getItemIndex, randomItem } from "@/app/_functions/game_functions";
 import HealthBar from "../../Characters/HealthBar";
 import Hit from "../../Characters/Hit";
 import Skills from "../../Characters/Player/Skills";
@@ -30,6 +30,7 @@ import Quiz from "../../Quiz";
 import AutoPlay from "../../AutoPlay";
 import useGameFunctions from "@/app/_hooks/useGameFunctions";
 import Eneminis from "../Eneminis";
+import { CONSTANTS } from "@/app/_functions/CONSTANTS"
 
 export default function Combat(){
     
@@ -42,9 +43,6 @@ export default function Combat(){
     const router = useRouter()
 
     // CONSTANTS & VARIABLES
-    const ATTACK_TIMEOUT = 500;
-    const DELAY = 3500;
-    const BURN_DMG = 2;
     const isBoss = enemyData[0]?.name === "Demon Slime"
 
 
@@ -170,7 +168,7 @@ export default function Combat(){
                         if(!firebomb) throw new Error("What did you do ?")
                         
     
-                        enemyHp -= BURN_DMG
+                        enemyHp -= CONSTANTS.BURN_DMG
                         if(enemyHp <= 0){
                             setCurrentDialogue({
                                 enemy: enemyData[0]!,
@@ -178,28 +176,36 @@ export default function Combat(){
                                 index: 11
                             })
                         }else{
-                            setCurrentDialogue({
-                                enemy: enemyData[0]!,
-                                active: true,
-                                index: 10
-                            })
+                            if(isBoss && firstEnemy.name === "Demon Slime"){
+                                setCurrentDialogue({
+                                    enemy: enemyData[0]!,
+                                    active: true,
+                                    index: 12
+                                })
+                            }
+                            else{
+                                setCurrentDialogue({
+                                    enemy: enemyData[0]!,
+                                    active: true,
+                                    index: 10
+                                })
+                            }
+                            
                         }
     
                         // ENEMY TAKE FIRE DMG
                         playFirebombSound()
-                        setEnemyData((prev: Enemy[]) => {
-                            const newEnemyData = [...prev]
-                            newEnemyData[0]!.hp = enemyHp
-                            return newEnemyData
-                        })
+                        if(firstEnemy.name != "Demon Slime"){
+                            setEnemyData((prev: Enemy[]) => {
+                                const newEnemyData = [...prev]
+                                newEnemyData[0]!.hp = enemyHp
+                                return newEnemyData
+                            })
+                        }
     
                         updateLootCharge(firebomb,-1)
-                        // if(firebomb.charge! - 1 == 0){
-                        //     // updateLoot(firebomb.name, -1)
-                        //     removeConsumable(firebomb.name)
-                        // }
 
-                        if(player.skills[0]?.active){
+                        if(player.skills[0]?.active && enemyHp <= 0){
                             updateSkills(0, 10, false)
                         }
                         
@@ -207,9 +213,9 @@ export default function Combat(){
                             setCurrentDialogue(activeEmptyDialogue)
                             handleEnemyKill(firstEnemy)
                             moveToQuiz(enemyHp)
-                        }, DELAY);
+                        }, CONSTANTS.DELAY);
 
-                    }, ATTACK_TIMEOUT);
+                    }, CONSTANTS.ATTACK_TIMEOUT);
                 }else{
                     // CHECK IF ENEMY DEAD
 
@@ -223,9 +229,9 @@ export default function Combat(){
                     moveToQuiz(enemyHp)
                 }
                 
-            },DELAY)
+            },CONSTANTS.DELAY)
 
-        },ATTACK_TIMEOUT)
+        },CONSTANTS.ATTACK_TIMEOUT)
     }
 
     function moveToQuiz(enemyHp: number){
@@ -275,7 +281,7 @@ export default function Combat(){
             setTimeout(() => {
                 setBackground("power_shake")
                 
-            }, ATTACK_TIMEOUT * 1.4);
+            }, CONSTANTS.ATTACK_TIMEOUT * 1.4);
         }
         else{
             setBackground("shake")
@@ -317,7 +323,7 @@ export default function Combat(){
                     })
                 }
 
-            }, isBoss ? ATTACK_TIMEOUT * 1.4 : 0);
+            }, isBoss ? CONSTANTS.ATTACK_TIMEOUT * 1.4 : 0);
         }
 
         else if(tempPlayer.agility == 1){
@@ -351,7 +357,7 @@ export default function Combat(){
         setTimeout(() => {
             playSwingSound()
             getHitSound("Player")
-        }, isBoss ? ATTACK_TIMEOUT * 1.2 : 0);
+        }, isBoss ? CONSTANTS.ATTACK_TIMEOUT * 1.2 : 0);
             
         setTimeout(() => {
             setEnemyAttack(false)       
@@ -375,8 +381,8 @@ export default function Combat(){
                     setCurrentDialogue(emptyDialogue)
                     setButtonState(false) // ENABLE BUTTON
                 }
-            }, DELAY)
-        }, isBoss ? ATTACK_TIMEOUT * 3 : ATTACK_TIMEOUT)
+            }, CONSTANTS.DELAY)
+        }, isBoss ? CONSTANTS.ATTACK_TIMEOUT * 3 : CONSTANTS.ATTACK_TIMEOUT)
     }
 
     function handleClick(){
@@ -395,11 +401,45 @@ export default function Combat(){
         setMounted(true)
     },[])
 
+    useEffect(() => {
+
+        function extinguishFire(){
+            const firebomb = player.consumables.filter((x) => x.name == "Firebomb")[0]
+            if(mounted && firebomb){
+
+                const firebombIdx = getItemIndex(firebomb, player)
+                setCurrentDialogue({
+                    enemy: enemyData[0]!,
+                    active: true,
+                    index: 13
+                })
+
+                setTimeout(() => {
+                    setPlayer((prev: PlayerType) => {
+                        const updatedConsumables = [...prev.consumables]
+                        updatedConsumables[firebombIdx] = {
+                            ...firebomb,
+                            charge: 0
+                        }
+    
+                        return {
+                            ...prev,
+                            consumables: updatedConsumables
+                        }
+                    })
+
+                    setCurrentDialogue(emptyDialogue)
+                }, CONSTANTS.DELAY);
+            }
+        }
+
+        extinguishFire()
+    },[mounted])
+
     // UPDATE ENEMIES ON POWER MOVE USAGE
     useEffect(() => {
         if(powerState){
             setBackground("power_shake")
-
             setTimeout(() => {
 
                 const newEnemyArray = [...enemyData]
@@ -420,7 +460,7 @@ export default function Combat(){
                 setBackground("default")
 
                 setEnemyData(newEnemyArray)
-            }, DELAY);
+            }, CONSTANTS.DELAY);
         }
         
     },[ powerState ])
@@ -428,7 +468,7 @@ export default function Combat(){
     // MOVE TO QUIZ MODE
     useEffect(() => {
         if(enemyData.length <=0){
-            if(gameState.loop === 15){
+            if(gameState.loop === CONSTANTS.BOSS_ROUND){
                 setGameState((prev: GameStateProps) => ({
                     ...prev,
                     quizState: true,
@@ -490,7 +530,7 @@ export default function Combat(){
                     enemyData &&
                     enemyData.map((enemy, idx) => (
                         
-                            !(gameState.loop == 15)
+                            !(gameState.loop == CONSTANTS.BOSS_ROUND)
                             ? <EnemySprite key={idx} id={idx} enemy={enemy} />
                             : <Boss  key={idx} enemy={enemy}/>
                         

@@ -10,7 +10,7 @@ export default function useAudio() {
 
     function extraProps(vol?: number){
         return {
-            volume: (vol || 1)  * (volume / 100),
+            volume: (vol ?? 1)  * (volume / 100),
             soundEnabled: !mute
         }
 
@@ -37,6 +37,7 @@ export default function useAudio() {
     const [playMushroomHitSound] = useSound(audio.mushroom_hit,extraProps())
     const [playSkeletonHitSound] = useSound(audio.skeleton_hit,extraProps())
     const [playBossDeathSound] = useSound(audio.boss_death,extraProps())
+    const [playExtinguishSound] = useSound(audio.extinguish, extraProps())
 
     return {
         playIntoTheWastes,
@@ -59,6 +60,7 @@ export default function useAudio() {
         playGoblinHitSound,
         playMushroomHitSound,
         playSkeletonHitSound,
-        playBossDeathSound
+        playBossDeathSound,
+        playExtinguishSound
     }
 }

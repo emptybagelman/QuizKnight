@@ -1,6 +1,5 @@
 @import "@/styles/scss_globals.scss";
 
-
 #sprite_layer{
     grid-area: sprites;
     position: relative;
@@ -13,4 +12,11 @@
     margin-bottom: 25px;
     transform: translateY(12px);
     justify-self: center;
+
+    &>div[class*=" darken"]{
+        &::before{
+            filter: brightness(0.7) saturate(0.9) contrast(1.1);
+        }
+    }
 }
+

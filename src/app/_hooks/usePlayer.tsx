@@ -2,7 +2,7 @@
 
 import { useGame } from "../_components/GameContext"
 import { getItemIndex } from "../_functions/game_functions"
-import { type Consumable, type Skill, type PlayerType, ConsumableNames } from "../_types/types"
+import { type Consumable, type Skill, type PlayerType } from "../_types/types"
 
 // type Increment = 1 | -1
 

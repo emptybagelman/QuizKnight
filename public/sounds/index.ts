@@ -21,6 +21,7 @@ import goblin_hit from "public/sounds/goblin_hit.mp3";
 import mushroom_hit from "public/sounds/mushroom_hit.mp3";
 import skeleton_hit from "public/sounds/skeleton_hit.mp3";
 import boss_death from "public/sounds/boss_death.mp3";
+import extinguish from "public/sounds/extinguish.mp3";
 
 export const audio = {
     attack_sword: attack_sword,
@@ -44,4 +45,5 @@ export const audio = {
     mushroom_hit: mushroom_hit,
     skeleton_hit: skeleton_hit,
     boss_death: boss_death,
+    extinguish: extinguish
 }
