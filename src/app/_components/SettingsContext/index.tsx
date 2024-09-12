@@ -5,6 +5,8 @@ import { createContext, useContext, useState } from "react"
 type SettingsState = {
     volume: number,
     setVolume: React.Dispatch<React.SetStateAction<number>>,
+    mute: boolean,
+    setMute: React.Dispatch<React.SetStateAction<boolean>>,
     damageNumbers: boolean,
     setDamageNumbers: React.Dispatch<React.SetStateAction<boolean>>,
     open: boolean,
@@ -15,6 +17,8 @@ const SettingsContext = createContext<SettingsState>(
     {
         volume: 100,
         setVolume: () => {},
+        mute: false,
+        setMute: () => {},
         damageNumbers: true,
         setDamageNumbers: () => {},
         open: false,
@@ -24,6 +28,7 @@ const SettingsContext = createContext<SettingsState>(
 
 export default function SettingsStateProvider({children}:{children: React.ReactNode}){
     const [volume, setVolume] = useState<number>(100)
+    const [mute, setMute] = useState<boolean>(false)
     const [damageNumbers, setDamageNumbers] = useState<boolean>(true)
     const [open,setOpen] = useState<boolean>(false)
 
@@ -35,7 +40,9 @@ export default function SettingsStateProvider({children}:{children: React.ReactN
                 volume,
                 setVolume,
                 damageNumbers,
-                setDamageNumbers
+                setDamageNumbers,
+                mute,
+                setMute
             }
         }>
             {children}

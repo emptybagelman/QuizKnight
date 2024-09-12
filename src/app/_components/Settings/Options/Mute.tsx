@@ -2,27 +2,26 @@ import useAudio from "@/app/_hooks/useVolume"
 import { useSettings } from "../../SettingsContext"
 import styles from "./styles.module.scss"
 
-export default function DamageNumberCheckbox(){
+export default function MuteCheckbox(){
 
-    const { damageNumbers, setDamageNumbers } = useSettings()
+    const { mute, setMute } = useSettings()
     const { playSelectSound } = useAudio()
 
-    function handleDamage(){
-        setDamageNumbers(prev => !prev)
+    function handleMute(){
+        setMute(prev => !prev)
         playSelectSound()
     }
 
     return (
         <div className={styles.widget_wrapper}>
-            <p>Rounded Numbers</p>
+            <p>Mute</p>
             <input 
                 type="checkbox"
                 className={styles.checkbox}
-                checked={damageNumbers}
-                onChange={handleDamage}
+                checked={mute}
+                onChange={handleMute}
+                content={mute ? "mute" : "unmute"}
             />
         </div>
     )
-
 }
-

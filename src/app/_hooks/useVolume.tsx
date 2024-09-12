@@ -6,29 +6,37 @@ import useSound from "use-sound"
 
 export default function useAudio() {
 
-    const { volume } = useSettings()
+    const { volume, mute } = useSettings()
 
-    const [playIntoTheWastes] = useSound(audio.into_the_wastes, {volume: 0.1 * (volume / 100)})
-    const [playSelectSound] = useSound(audio.select,{volume: 1 * (volume / 100)})
-    const [playHoverSound] = useSound(audio.hover,{volume: 0.6 * (volume / 100)})
-    const [playCorrectSound] = useSound(audio.correct,{volume: 1 * (volume / 100)})
-    const [playWrongSound] = useSound(audio.wrong,{volume: 1 * (volume / 100)})
-    const [playSwingSound] = useSound(audio.attack_sword,{volume: 2 * (volume / 100)})
-    const [playHitSound] = useSound(audio.impact_flesh,{volume: 2 * (volume / 100)})
-    const [playBlockSound] = useSound(audio.block,{volume: 3 * (volume / 100)})
-    const [playHealSound] = useSound(audio.heal,{volume: 3 * (volume / 100)})
-    const [playEvadeSound] = useSound(audio.evade,{volume:  1 * (volume / 100)})
-    const [playAgilitySound] = useSound(audio.agility,{volume:  1 * (volume / 100)})
-    const [playManaSound] = useSound(audio.power_move,{volume:  1 * (volume / 100)})
-    const [playPowerMoveSound] = useSound(audio.powermove,{volume:  1 * (volume / 100)})
-    const [playChargeSound] = useSound(audio.charge,{volume:  0.2 * (volume / 100)})
-    const [playFirebombSound] = useSound(audio.firebomb,{volume:  1 * (volume / 100)})
-    const [playHitImpactSound] = useSound(audio.hit_impact,{volume: 2 * (volume / 100)})
-    const [playPlayerHitSound] = useSound(audio.player_hit,{volume:  1 * (volume / 100)})
-    const [playGoblinHitSound] = useSound(audio.goblin_hit,{volume:  1 * (volume / 100)})
-    const [playMushroomHitSound] = useSound(audio.mushroom_hit,{volume:  1 * (volume / 100)})
-    const [playSkeletonHitSound] = useSound(audio.skeleton_hit,{volume:  1 * (volume / 100)})
-    const [playBossDeathSound] = useSound(audio.boss_death,{volume:  1 * (volume / 100)})
+    function extraProps(vol?: number){
+        return {
+            volume: (vol || 1)  * (volume / 100),
+            soundEnabled: !mute
+        }
+
+    }
+
+    const [playIntoTheWastes] = useSound(audio.into_the_wastes, extraProps(0.1))
+    const [playSelectSound] = useSound(audio.select,extraProps())
+    const [playHoverSound] = useSound(audio.hover,extraProps(0.6))
+    const [playCorrectSound] = useSound(audio.correct,extraProps())
+    const [playWrongSound] = useSound(audio.wrong,extraProps())
+    const [playSwingSound] = useSound(audio.attack_sword,extraProps())
+    const [playHitSound] = useSound(audio.impact_flesh,extraProps())
+    const [playBlockSound] = useSound(audio.block,extraProps(2))
+    const [playHealSound] = useSound(audio.heal,extraProps(2))
+    const [playEvadeSound] = useSound(audio.evade,extraProps())
+    const [playAgilitySound] = useSound(audio.agility,extraProps())
+    const [playManaSound] = useSound(audio.power_move,extraProps())
+    const [playPowerMoveSound] = useSound(audio.powermove,extraProps())
+    const [playChargeSound] = useSound(audio.charge,extraProps(0.2))
+    const [playFirebombSound] = useSound(audio.firebomb,extraProps())
+    const [playHitImpactSound] = useSound(audio.hit_impact,extraProps())
+    const [playPlayerHitSound] = useSound(audio.player_hit,extraProps())
+    const [playGoblinHitSound] = useSound(audio.goblin_hit,extraProps())
+    const [playMushroomHitSound] = useSound(audio.mushroom_hit,extraProps())
+    const [playSkeletonHitSound] = useSound(audio.skeleton_hit,extraProps())
+    const [playBossDeathSound] = useSound(audio.boss_death,extraProps())
 
     return {
         playIntoTheWastes,

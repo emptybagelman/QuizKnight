@@ -3,7 +3,7 @@ import styles from "./styles.module.scss"
 
 export default function VolumeSlider(){
 
-    const { volume, setVolume } = useSettings()
+    const { volume, setVolume, mute } = useSettings()
 
     function handleVolume(e: React.ChangeEvent<HTMLInputElement>){
         setVolume(Number(e.target.value))
@@ -14,7 +14,7 @@ export default function VolumeSlider(){
             <p>Volume</p>
             <input 
                 type="range" 
-                className={styles.volume_range} 
+                className={`${styles.volume_range} ${mute ? styles.disable : ""}`} 
                 min={0} 
                 max={100} 
                 defaultValue={volume} 

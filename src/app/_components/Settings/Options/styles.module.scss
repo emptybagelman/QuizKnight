@@ -13,8 +13,21 @@
         margin: $padding-m;
     }
 
+    .utility_bg_img {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: $orange;
+        background-size: 70%;
+        
+    }
+
+    .disable{
+        pointer-events: none;
+        filter: brightness(0.5);
+    }
+
     .checkbox {
-        $dim: 25px;
+        $dim: 30px;
         position: relative;
         width: $dim;
         height: $dim;
@@ -31,17 +44,26 @@
             color: red;
         }
 
-        &:hover{
+        &:not(.disable):hover{
             cursor: pointer;
-            background-color: $hover;
-            box-shadow: $inset-xs $hover-shadow;
             border: 1px solid $hover;
         }
 
         &:checked {
             background-color: $orange;
             box-shadow: $inset-xs $orange-shadow;
-            transform: scale(0.8);
+            transform: scale(1);
+        }
+
+        &[content="mute"]{
+            @extend .utility_bg_img; 
+            background-image: url("../../../assets/mute.png");    
+            box-shadow: none;        
+        }
+
+        &[content="unmute"]{
+            @extend .utility_bg_img; 
+            background-image: url("../../../assets/speaker.png");            
         }
     }
 
