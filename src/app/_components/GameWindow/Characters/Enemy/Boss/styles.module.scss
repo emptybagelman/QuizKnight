@@ -37,7 +37,7 @@ $offset: calc($width * $scale);
         height: $main-h;
 
         image-rendering: pixelated;
-        background-image: url("../../../../../assets/demonslime/demon_slime_idle.png");
+        background-image: url("../../../../../assets/sprites/demonslime/demon_slime_idle.png");
         background-size: $idle-w $main-h;
         background-repeat: no-repeat;
         background-position: 0 0;
@@ -59,7 +59,7 @@ $offset: calc($width * $scale);
 
     &::before{
         background-size: $attack-w $main-h !important;
-        background-image: url("../../../../../assets/demonslime/demon_slime_attack.png") !important;
+        background-image: url("../../../../../assets/sprites/demonslime/demon_slime_attack.png") !important;
         animation: bossAttack 1s steps(14) forwards !important;
     }
 }
@@ -69,7 +69,7 @@ $offset: calc($width * $scale);
 
     &::before{
         background-size: $hit-w $main-h !important; 
-        background-image: url("../../../../../assets/demonslime/demon_slime_hit.png") !important;
+        background-image: url("../../../../../assets/sprites/demonslime/demon_slime_hit.png") !important;
         animation: bossHit 1s steps(4) forwards !important;
     }
 }
@@ -79,7 +79,7 @@ $offset: calc($width * $scale);
 
     &::before{
         background-size: $death-w $main-h !important; 
-        background-image: url("../../../../../assets/demonslime/demon_slime_death.png") !important;
+        background-image: url("../../../../../assets/sprites/demonslime/demon_slime_death.png") !important;
         animation: bossDeath 3s steps(21) forwards !important;
     }
 }
@@ -89,7 +89,7 @@ $offset: calc($width * $scale);
 
     &::before{
         background-size: $walk-w $main-h !important; 
-        background-image: url("../../../../../assets/demonslime/demon_slime_walk.png") !important;
+        background-image: url("../../../../../assets/sprites/demonslime/demon_slime_walk.png") !important;
         animation: bossWalk 1.5s steps(11) infinite !important;
     }
 }
