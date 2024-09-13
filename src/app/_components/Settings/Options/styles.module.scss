@@ -57,13 +57,13 @@
 
         &[content="mute"]{
             @extend .utility_bg_img; 
-            background-image: url("../../../assets/mute.png");    
+            background-image: url("../../../assets/icons/mute.png");    
             box-shadow: none;        
         }
 
         &[content="unmute"]{
             @extend .utility_bg_img; 
-            background-image: url("../../../assets/speaker.png");            
+            background-image: url("../../../assets/icons/speaker.png");            
         }
     }
 

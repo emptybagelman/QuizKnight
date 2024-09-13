@@ -1,5 +1,6 @@
 "use client"
 
+import { CONSTANTS } from "@/app/_functions/CONSTANTS";
 import { useGame } from "../../GameContext";
 import styles from "./styles.module.scss";
 import { type Background } from "@/app/_types/types";
@@ -10,7 +11,7 @@ export default function CombatContainer({children, background}:{children: React.
 
     return (
         <div className={`${
-            gameState.loop <= 15
+            gameState.loop <= CONSTANTS.BOSS_ROUND
             ? styles.morning_forest
             : styles.dark_forest
         } ${

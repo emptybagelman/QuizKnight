@@ -7,6 +7,7 @@ import Hit from "../Hit"
 import { useCombat } from "@/app/_components/CombatContext"
 import { useGame } from "@/app/_components/GameContext"
 import Flame from "./Flame"
+import { CONSTANTS } from "@/app/_functions/CONSTANTS"
 
 export default function EnemySprite(
     {
@@ -23,7 +24,7 @@ export default function EnemySprite(
     return (
         <div
             key={id}
-            className={`${resolveAnimType(enemy, enemyData, enemyAttack, playerAttack)} ${gameState.loop > 15 ? "darken" : ""}`}
+            className={`${resolveAnimType(enemy, enemyData, enemyAttack, playerAttack)} ${gameState.loop > CONSTANTS.BOSS_ROUND ? "darken" : ""}`}
             >
             {
                 playerAttack && enemyData[0]?.id === enemy.id

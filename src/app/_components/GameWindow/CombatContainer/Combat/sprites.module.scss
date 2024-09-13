@@ -1,14 +1,8 @@
 @import "@/styles/scss_globals.scss";
-
-$sprite-y-offset: -5%;
-$playerSpriteW: 140px;
-$playerDim: calc($playerSpriteW * 2);
-$playerSpriteSheetW: calc(1540px * 3);
-$playerSpriteH: calc($playerSpriteW * 3);
+@import "@/styles/scss_consts.scss";
 
 #shield{
-    $dim: calc(48px * 1.5) ;
-    background-image: url("../../../../../app/assets/shield.png");
+    background-image: url("../../../../../app/assets/icons/shield.png");
     background-size: cover;
     width: $dim;
     height: $dim;
@@ -77,8 +71,8 @@ $playerSpriteH: calc($playerSpriteW * 3);
         bottom: 0;
         left: 0;
 
-        background-size: $playerSpriteSheetW $playerSpriteH;
-        background-image: url("../../../../assets/knight_idle.png");
+        background-size: $player-w-idle $playerSpriteH;
+        background-image: url("../../../../assets/sprites/player/knight_idle.png");
         image-rendering: pixelated;
         transform: translate(-35%, 10%);
         animation: idleAnim_player 1s steps(11) infinite;
@@ -88,24 +82,24 @@ $playerSpriteH: calc($playerSpriteW * 3);
 .playerAttackAnim{
     @extend .player;
     &::before{
-        background-size: calc(840px * 3) $playerSpriteH !important;
-        background-image: url("../../../../assets/knight_attack.png") !important;
+        background-size: $player-w-attack $playerSpriteH !important;
+        background-image: url("../../../../assets/sprites/player/knight_attack.png") !important;
         animation: attackAnim_player 0.2s steps(5) forwards !important;
     }
 }
 .playerHitAnim{
     @extend .player;
     &::before{
-        background-size: calc(560px * 3) $playerSpriteH !important;
-        background-image: url("../../../../assets/knight_hit.png") !important;
+        background-size: $player-w-hit $playerSpriteH !important;
+        background-image: url("../../../../assets/sprites/player/knight_hit.png") !important;
         animation: hitAnim_player 0.25s steps(4) forwards !important;
     }
 }
 .playerDeathAnim {
     @extend .player;
     &::before{
-        background-size: calc(1260px * 3) $playerSpriteH !important;
-        background-image: url("../../../../assets/knight_death.png") !important;
+        background-size: $player-w-death $playerSpriteH !important;
+        background-image: url("../../../../assets/sprites/player/knight_death.png") !important;
         animation: deathAnim_player 1s steps(8) forwards !important;
     }
 }
@@ -113,8 +107,8 @@ $playerSpriteH: calc($playerSpriteW * 3);
 .playerEvadeAnim {
     @extend .player;
     &::before{
-        background-size: calc(560px * 3) $playerSpriteH !important;
-        background-image: url("../../../../assets/knight_evade.png") !important;
+        background-size: $player-w-evade $playerSpriteH !important;
+        background-image: url("../../../../assets/sprites/player/knight_evade.png") !important;
         animation: evadeAnim_player 0.5s steps(4) forwards !important;
     }
 }
@@ -126,36 +120,33 @@ $playerSpriteH: calc($playerSpriteW * 3);
 
 @keyframes idleAnim_player {
     0% { background-position: 0 0; }
-    100% { background-position: calc(-1540px * 3) 0; }
+    100% { background-position: calc($player-w-idle * $minusone) 0; }
 }
 @keyframes attackAnim_player {
     0% { background-position: 0 0; }
-    100% { background-position: calc(-840px * 3 + 420px) 0; }
+    100% { background-position: calc($player-w-attack * $minusone + 420px) 0; }
 }
 @keyframes hitAnim_player {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc(-560px * 3) 0; }
+    100%{ background-position: calc($player-w-hit * $minusone) 0; }
 }
 @keyframes deathAnim_player {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc(-1260px * 3 + 420px) 0; }
+    100%{ background-position: calc($player-w-death * $minusone + 420px) 0; }
 }
 @keyframes evadeAnim_player {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc(-560px * 3) 0; }
+    100%{ background-position: calc($player-w-evade * $minusone) 0; }
 }
 
 
 
-$goblinSpriteW: 150px;
-$goblinDim: calc($goblinSpriteW * 2);
-$goblinSpriteSheetW: calc(600px * 3);
-$goblinSpriteH: calc($goblinSpriteW * 3);
+
 
 .goblin{
     @extend .player;
-    width: $goblinSpriteW;
-    height: $goblinSpriteW;
+    width: $enemySpriteW;
+    height: $enemySpriteW;
 
     &::after {
         // left: -10px;
@@ -164,10 +155,10 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
     }
 
     &::before{
-        width: $goblinDim;
-        height: $goblinDim;
-        background-size: $goblinSpriteSheetW $goblinSpriteH;
-        background-image: url("../../../../assets/goblin_idle.png");
+        width: $enemyDim;
+        height: $enemyDim;
+        background-size: $enemySpriteSheetW $enemySpriteH;
+        background-image: url("../../../../assets/sprites/goblin/goblin_idle.png");
 
         animation: idleAnim_enemy 1s steps(4) infinite;
         image-rendering: pixelated;
@@ -188,76 +179,72 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 .goblinAttackAnim{
     @extend .goblin;
     &::before{
-        background-size: calc(1200px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/goblin_attack.png") !important;
+        background-size: calc(1200px * 3) $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/goblin/goblin_attack.png") !important;
         animation: attackAnim_enemy 0.2s steps(8) forwards !important;
     }
 }
 .goblinHitAnim{
     @extend .goblin;
     &::before{
-        background-size: calc(600px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/goblin_hit.png") !important;
+        background-size: calc(600px * 3) $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/goblin/goblin_hit.png") !important;
         animation: hitAnim_enemy 0.25s steps(4) forwards !important;
     }
 }
 .goblinDeathAnim {
     @extend .goblin;
     &::before{
-        background-size: calc(600px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/goblin_death.png") !important;
+        background-size: calc($enemySpriteSheetW * $minusone * 3) $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/goblin/goblin_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
     }
 }
 @keyframes idleAnim_enemy {
     0% { background-position: 0 0; }
-    100% { background-position: calc(-600px * 3) 0; }
+    100% { background-position: calc($enemySpriteSheetW * $minusone * 3) 0; }
 }
 @keyframes attackAnim_enemy {
     0% { background-position: 0 0; }
-    100% { background-position: calc(-1200px * 3) 0; }
+    100% { background-position: calc($enemySpriteSheetWd * $minusone * 3) 0; }
 }
 @keyframes hitAnim_enemy {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc(-600px * 3) 0; }
+    100%{ background-position: calc($enemySpriteSheetW * $minusone * 3) 0; }
 }
 @keyframes deathAnim_enemy {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc(-600px * 3 + 450px) 0; }
+    100%{ background-position: calc($enemySpriteSheetW * $minusone + 450px) 0; }
 }
 
 .mushroom {
     @extend .goblin;
-    // &::after{
-    //     width: 50%;
-    //     left: 10px;
-    // }
     &::before {
-        background-image: url("../../../../assets/mushroom_idle.png") !important;
+        background-image: url("../../../../assets/sprites/mushroom/mushroom_idle.png") !important;
     }
 }
 .mushroomAttackAnim{
     @extend .goblin;
     &::before{
-        background-size: calc(1200px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/mushroom_attack.png") !important;
+        background-size: $enemySpriteSheetWd $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/mushroom/mushroom_attack.png") !important;
         animation: attackAnim_enemy 0.2s steps(8) forwards !important;
     }
 }
 .mushroomHitAnim{
     @extend .goblin;
     &::before{
-        background-size: calc(600px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/mushroom_hit.png") !important;
+        background-size: $enemySpriteSheetW $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/mushroom/mushroom_hit.png") !important;
         animation: hitAnim_enemy 0.25s steps(4) forwards !important;
     }
 }
 .mushroomDeathAnim {
     @extend .goblin;
     &::before{
-        background-size: calc(600px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/mushroom_death.png") !important;
+        background-size: $enemySpriteSheetW $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/mushroom/mushroom_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
     }
@@ -266,30 +253,30 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 .skeleton {
     @extend .goblin;
     &::before {
-        background-image: url("../../../../assets/skeleton_idle.png") !important;
+        background-image: url("../../../../assets/sprites/skeleton/skeleton_idle.png") !important;
     }
 }
 .skeletonAttackAnim{
     @extend .goblin;
     &::before{
-        background-size: calc(1200px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/skeleton_attack.png") !important;
+        background-size: $enemySpriteSheetWd $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/skeleton/skeleton_attack.png") !important;
         animation: attackAnim_enemy 0.2s steps(8) forwards !important;
     }
 }
 .skeletonHitAnim{
     @extend .goblin;
     &::before{
-        background-size: calc(600px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/skeleton_hit.png") !important;
+        background-size: $enemySpriteSheetW $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/skeleton/skeleton_hit.png") !important;
         animation: hitAnim_enemy 0.25s steps(4) forwards !important;
     }
 }
 .skeletonDeathAnim {
     @extend .goblin;
     &::before{
-        background-size: calc(600px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/skeleton_death.png") !important;
+        background-size: $enemySpriteSheetW $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/skeleton/skeleton_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
     }
@@ -298,31 +285,31 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 .eye {
     @extend .goblin;
     &::before {
-        background-size: calc(1200px * 3) $goblinSpriteH;
-        background-image: url("../../../../assets/eye_idle.png") !important;
+        background-size: $enemySpriteSheetWd $enemySpriteH;
+        background-image: url("../../../../assets/sprites/flyingeye/eye_idle.png") !important;
     }
 }
 .eyeAttackAnim{
     @extend .goblin;
     &::before{
-        background-size: calc(1200px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/eye_attack.png") !important;
+        background-size: $enemySpriteSheetWd $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/flyingeye/eye_attack.png") !important;
         animation: attackAnim_enemy 0.2s steps(8) forwards !important;
     }
 }
 .eyeHitAnim{
     @extend .goblin;
     &::before{
-        background-size: calc(600px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/eye_hit.png") !important;
+        background-size: $enemySpriteSheetW $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/flyingeye/eye_hit.png") !important;
         animation: hitAnim_enemy 0.25s steps(4) forwards !important;
     }
 }
 .eyeDeathAnim {
     @extend .goblin;
     &::before{
-        background-size: calc(600px * 3) $goblinSpriteH !important;
-        background-image: url("../../../../assets/eye_death.png") !important;
+        background-size: $enemySpriteSheetW $enemySpriteH !important;
+        background-image: url("../../../../assets/sprites/flyingeye/eye_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
     }
@@ -334,8 +321,8 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
         overflow: auto;
         width: 150px;
         height: 150px;
-        background-size: calc(320px * 3) calc(64px * 3) !important;
-        background-image: url("../../../../assets/toad_idle.png") !important;
+        background-size: calc(320px * $scale-l) calc(64px * $scale-l) !important;
+        background-image: url("../../../../assets/sprites/toad/toad_idle.png") !important;
         transform: translate(10px, 0) scaleX(-1) !important;
         animation: toad_idle 1s steps(4) infinite  !important;
         transition: filter 0.5s ease;
@@ -345,8 +332,8 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 .toadAttackAnim {
     @extend .toad;
     &::before{
-        background-size: calc(240px * 3) calc(64px * 3) !important;
-        background-image: url("../../../../assets/toad_attack.png") !important;
+        background-size: calc(240px * $scale-l) calc(64px * $scale-l) !important;
+        background-image: url("../../../../assets/sprites/toad/toad_attack.png") !important;
         transform: translate(10px, 0) scaleX(-1) !important;
 
         animation: toad_attackAnim 0.3s steps(3) infinite alternate !important;
@@ -356,14 +343,14 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 .toadHitAnim {
     @extend .toad;
     &::before{
-        background-image: url("../../../../assets/toad_hit.png") !important;
+        background-image: url("../../../../assets/sprites/toad/toad_hit.png") !important;
     }
 }
 
 .toadDeathAnim {
     @extend .toad;
     &::before{
-        background-image: url("../../../../assets/toad_hit.png") !important;
+        background-image: url("../../../../assets/sprites/toad/toad_hit.png") !important;
         animation: toad_idle 1s steps(4) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
     }
@@ -371,16 +358,75 @@ $goblinSpriteH: calc($goblinSpriteW * 3);
 
 @keyframes toad_idle {
     0% { background-position: -30px -50px; }
-    100% { background-position: calc(-320px  * 3 - 30px) -50px; }
+    100% { background-position: calc(-320px  * $scale-l - 30px) -50px; }
 }
 
 @keyframes toad_attackAnim {
     0% { background-position: -30px -50px; }
-    100% { background-position: calc(-240px  * 3 - 30px) -50px; }
+    100% { background-position: calc(-240px  * $scale-l - 30px) -50px; }
 }
 
 .consumable {
     width: 50px;
     height: 50px;
     background-color: $green;
+}
+
+.fireworm {
+    @extend .goblin;
+    &::before {
+        background-size: $fireworm-w-idle $fireworm-h;
+        background-image: url("../../../../assets/sprites/fireworm/fireworm_idle.png") !important;
+        animation: fireworm_idle 1s steps(9) infinite;
+        transform: translateX($fireworm-offset-x) scaleX(-1);
+        height: $fireworm-h;
+    }
+}
+
+.firewormAttackAnim{
+    @extend .fireworm;
+    &::before{
+        background-size: $fireworm-w-attack $fireworm-h !important;
+        background-image: url("../../../../assets/sprites/fireworm/fireworm_attack.png") !important;
+        animation: fireworm_attack 0.2s steps(4) forwards !important;
+
+    }
+}
+.firewormHitAnim{
+    @extend .fireworm;
+    &::before{
+        background-size: $fireworm-w-hit $fireworm-h !important;
+        background-image: url("../../../../assets/sprites/fireworm/fireworm_hit.png") !important;
+        animation: fireworm_hit 0.25s steps(3) forwards !important;
+    }
+}
+.firewormDeathAnim {
+    @extend .fireworm;
+    &::before{
+        background-size: $fireworm-w-death $fireworm-h !important;
+        background-image: url("../../../../assets/sprites/fireworm/fireworm_death.png") !important;
+        animation: fireworm_death 1s steps(7) forwards !important;
+        filter: saturate(0.5) brightness(0.6)  !important;
+        
+    }
+}
+
+@keyframes fireworm_idle{
+    0% {background-position: 0 $fireworm-offset-y;}
+    100% {background-position: calc($fireworm-w-idle * $minusone) $fireworm-offset-y;}
+}
+
+@keyframes fireworm_attack{
+    0% {background-position: 0 $fireworm-offset-y;}
+    100% {background-position: calc($fireworm-w-attack * $minusone) $fireworm-offset-y;}
+}
+
+@keyframes fireworm_hit{
+    0% {background-position: 0 $fireworm-offset-y;}
+    100% {background-position: calc($fireworm-w-hit * $minusone) $fireworm-offset-y;}
+}
+
+@keyframes fireworm_death{
+    0% {background-position: 0 $fireworm-offset-y;}
+    100% {background-position: calc($fireworm-w-death * $minusone + calc($fireworm-offset-y * $scale-l)) $fireworm-offset-y;}
 }

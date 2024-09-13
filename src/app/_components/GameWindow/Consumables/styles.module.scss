@@ -34,25 +34,25 @@ $length: 50px;
         }
 
         &[content="Health Potion"] {
-            background-image: url("../../../assets/health_potion.png");
+            background-image: url("../../../assets/items/health_potion.png");
             background-size: cover;
             image-rendering: pixelated;
         }
 
         &[content="Mana Potion"]{
-            background-image: url("../../../assets/mana_potion.png");
+            background-image: url("../../../assets/items/mana_potion.png");
             background-size: cover;
             image-rendering: pixelated;
         }
 
         &[content="Agility Crystal"]{
-            background-image: url("../../../assets/agility_crystal.png");
+            background-image: url("../../../assets/items/agility_crystal.png");
             background-size: cover;
             image-rendering: pixelated;
         }
 
         &[content="Firebomb"]{
-            background-image: url("../../../assets/firebomb.png");
+            background-image: url("../../../assets/items/firebomb.png");
             background-size: cover;
             image-rendering: pixelated;
         }
@@ -94,7 +94,7 @@ $length: 50px;
     flex-direction: row;
     justify-self: center;
     position: relative;
-    background-image: url("../../../assets/pouch.png");
+    background-image: url("../../../assets/items/pouch.png");
     background-size: cover;
     width: $length;
     height: $length;

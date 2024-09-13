@@ -3,11 +3,11 @@
 import styles from "./styles.module.scss"
 import { useCombat } from "@/app/_components/CombatContext"
 
-import goblin_head from "#/goblin_head.png"
-import mushroom_head from "#/mushroom_head.png"
-import skeleton_head from "#/skeleton_head.png"
-import flying_eye_head from "#/flying_eye_head.png"
-import toad_head from "#/toad_head.png"
+import goblin_head from "#/sprites/goblin/goblin_head.png"
+import mushroom_head from "#/sprites/mushroom/mushroom_head.png"
+import skeleton_head from "#/sprites/skeleton/skeleton_head.png"
+import flying_eye_head from "#/sprites/flyingeye/flying_eye_head.png"
+import toad_head from "#/sprites/toad/toad_head.png"
 import { handleHpBar } from "@/app/_functions/game_functions"
 import { CONSTANTS } from "@/app/_functions/CONSTANTS"
 

@@ -1,0 +1,31 @@
+$minusone: -1;
+$scale-s: 1.5;
+$scale-m: 2;
+$scale-l: 3;
+
+$dim: calc(48px * 1.5);
+
+$sprite-y-offset: -5%;
+$playerSpriteW: 140px;
+$playerDim: calc($playerSpriteW * $scale-m);
+$playerSpriteH: calc($playerSpriteW * 3);
+
+$player-w-idle: calc(1540px * $scale-l);
+$player-w-attack: calc(840px * $scale-l);
+$player-w-hit: calc(560px * $scale-l);
+$player-w-death: calc(1260px * $scale-l);
+$player-w-evade: calc(560px * $scale-l);
+
+$enemySpriteW: 150px;
+$enemyDim: calc($enemySpriteW * $scale-m);
+$enemySpriteSheetW: calc(600px * $scale-l);
+$enemySpriteSheetWd: calc(1200px * $scale-l);
+$enemySpriteH: calc($enemySpriteW * $scale-l);
+
+$fireworm-h: calc(90px * $scale-l);
+$fireworm-offset-x: -90px;
+$fireworm-offset-y: 90px;
+$fireworm-w-idle: calc(810px * $scale-l);
+$fireworm-w-attack: calc(1440px * $scale-l);
+$fireworm-w-hit: calc(270px * $scale-l);
+$fireworm-w-death: calc(720px * $scale-l);

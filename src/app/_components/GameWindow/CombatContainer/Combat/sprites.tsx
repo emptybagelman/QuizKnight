@@ -69,10 +69,24 @@ export const toadAnims = (toad: Enemy, arr: Enemy[], enemyBool: boolean, playerB
     return sprites.toad;
 }
 
+export const firewormAnims = (fireworm: Enemy, arr: Enemy[], enemyBool: boolean, playerBool: boolean) => {
+    const first = arr[0];
+    
+    if(!arr) return "";
+    if(!first) return "";
+
+    if(fireworm.hp <= 0) return sprites.firewormDeathAnim;
+    if(playerBool && fireworm.id === first.id) return sprites.firewormHitAnim;
+    if(enemyBool && fireworm.id === first.id) return sprites.firewormAttackAnim; 
+    return sprites.fireworm;
+}
+
 export const resolveAnimType = (enemy: Enemy, arr: Enemy[], enemyBool: boolean, playerBool: boolean) => {
     if(enemy.name === "Goblin") return goblinAnims(enemy, arr, enemyBool, playerBool)
     if(enemy.name === "Mushroom") return mushroomAnims(enemy, arr, enemyBool, playerBool)
     if(enemy.name === "Skeleton") return skeletonAnims(enemy, arr, enemyBool, playerBool)
     if(enemy.name === "Flying Eye") return eyeAnims(enemy, arr, enemyBool, playerBool)
     if(enemy.name === "Toad") return toadAnims(enemy, arr, enemyBool, playerBool)
+    if(enemy.name === "Fireworm") return firewormAnims(enemy, arr, enemyBool, playerBool)
+
 }

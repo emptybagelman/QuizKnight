@@ -36,6 +36,10 @@ export function enemyStats(name: string, loop:number) {
             dmg = 10
             armour = 0
             break;
+        case "Fireworm":
+            hp = randomInt((2 + Math.floor(loop * 0.55)), 1)
+            dmg = randomInt((2 + Math.floor(loop * 0.4)), 1)
+            armour = 0
         default:
             hp = randomInt((2 + Math.floor(loop * 1)), 1)
             dmg = randomInt((2 + Math.floor(loop * 1)), 1)
