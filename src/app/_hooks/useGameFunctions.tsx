@@ -71,6 +71,11 @@ export default function useGameFunctions(){
         }
     }
 
+    function getConsumable(name: ConsumableNames){
+        const item: Consumable = consumables.filter((x) => x.name == name)[0]!
+        return item
+    }
+
     function addConsumable(name: ConsumableNames){
         const item: Consumable = player.consumables.filter((x) => x.name === name)[0]!
         const consItem: Consumable = consumables.filter((x) => x.name == name)[0]!
@@ -167,6 +172,7 @@ export default function useGameFunctions(){
         addConsumable,
         removeConsumable,
         getHitSound,
-        getDeathSound
+        getDeathSound,
+        getConsumable
     }
 }

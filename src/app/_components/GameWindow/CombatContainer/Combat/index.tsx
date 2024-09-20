@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import CombatDialogue from "../CombatDialogue";
-import { type PlayerType, type Enemy, type GameStateProps, type Background, type ConsumableNames } from "@/app/_types/types"
+import { type PlayerType, type Enemy, type GameStateProps, type Background, type ConsumableNames, type Consumable } from "@/app/_types/types"
 import { useGame } from "../../../GameContext";
 import ScoreCounter from "../ScoreCounter";
 import { useRouter } from "next/navigation";
@@ -31,15 +31,16 @@ import AutoPlay from "../../AutoPlay";
 import useGameFunctions from "@/app/_hooks/useGameFunctions";
 import Eneminis from "../Eneminis";
 import { CONSTANTS } from "@/app/_functions/CONSTANTS"
+import DropScreen from "../DropScreen";
 
 export default function Combat(){
     
     // CONTEXTS AND HOOKS
     const { player, setPlayer, gameState, setGameState} = useGame()
-    const { addConsumable, getHitSound, getDeathSound } = useGameFunctions()
+    const { getConsumable, addConsumable, getHitSound, getDeathSound } = useGameFunctions()
     const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
     const { updateSkills, updateLootCharge } = usePlayer()
-    const { playHitImpactSound, playSwingSound, playHitSound, playBlockSound, playEvadeSound, playFirebombSound, playPlayerHitSound } = useAudio()
+    const { playHitImpactSound, playSwingSound, playHitSound, playBlockSound, playEvadeSound, playFirebombSound } = useAudio()
     const router = useRouter()
 
     // CONSTANTS & VARIABLES
@@ -70,7 +71,10 @@ export default function Combat(){
     const [background, setBackground] = useState<Background>("default")
     const [powerState, setPowerState] = useState<boolean>(false)
     const [inCombat, setInCombat] = useState<boolean>(false)
- 
+
+    const [ toggleOpen, setToggleOpen ] = useState<boolean>(false)
+    const [ newItems, setNewItems ] = useState<Consumable[]>([])
+    
 
     // FUNCTIONS
 
@@ -112,13 +116,25 @@ export default function Combat(){
                 const randItem: ConsumableNames = randomItem()
                 setExtraDialogue(randItem)
                 addConsumable(randItem)
-                // updateLoot(randItem, 1)
 
-                setCurrentDialogue({
-                    enemy: enemyData[0],
-                    active: true,
-                    index: 7
-                })
+                const consumable = getConsumable(randItem)
+                const newItemsArr = newItems
+                const isInItems = newItemsArr?.filter((item) => item.name === randItem)[0]  ? true : false
+                if(!isInItems){
+
+                    setToggleOpen(true)
+                    newItemsArr.push(consumable)
+                    console.log(newItemsArr);
+                    setNewItems(newItemsArr)
+                }
+                else{
+                    setCurrentDialogue({
+                        enemy: enemyData[0],
+                        active: true,
+                        index: 7
+                    })
+                }
+                
             }
             else{
                 // DEFAULT KILL DIALOGUE
@@ -509,6 +525,9 @@ export default function Combat(){
             <StartScreen />
             <ConsumableContainer buttonState={buttonState}/>
             <Eneminis />
+            {
+                toggleOpen && <DropScreen item={newItems.slice(-1).pop()} setToggleOpen={setToggleOpen}/>
+            }
             <SpriteContainer>
                 <Player>
                     {
