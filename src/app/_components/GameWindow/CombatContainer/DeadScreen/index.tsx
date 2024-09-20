@@ -15,7 +15,7 @@ export default function DeadScreen(){
     function handleSubmit(){
         router.push("/scoreboard")
         if(gameState.score > 0){
-            postScore({ name: input, highest_loop: gameState.loop, score: gameState.score })
+            void postScore({ name: input, highest_loop: gameState.loop, score: gameState.score })
         }
     }
 
