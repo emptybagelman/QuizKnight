@@ -1,0 +1,62 @@
+@import "@/styles/scss_globals.scss";
+
+.deathscreen_wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $bg;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    filter: opacity(0);
+    animation: fadeIn 2s forwards;
+
+    &>*{
+        animation: fadeIn 1s forwards;
+        animation-delay: 2s;
+        filter: opacity(0);
+    }
+
+    h1{
+        font-size: $h1-xl;
+    }
+
+    h2{
+        margin-bottom: $gap-l;
+    }
+
+    div{
+        display: flex;
+        flex-direction: column;
+        label{
+            font-size: $h1-m;
+            margin-bottom: $gap-s;
+        }
+    
+        input{
+            @include green;
+            border-radius: $border-m;
+            font-size: $p-l;
+            padding: 5px 15px;
+            font-family: inherit;
+            display: flex;
+            text-align: center;
+            margin-bottom: $gap-m;
+        }
+
+        a{
+            @include button-m;
+            @include orange;
+            align-self: flex-end;
+            font-size: $p-m;
+        }
+    }
+}
+
+@keyframes fadeIn{
+    to{filter: opacity(1);}
+}

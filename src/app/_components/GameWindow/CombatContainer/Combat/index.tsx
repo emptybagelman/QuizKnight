@@ -5,8 +5,6 @@ import CombatDialogue from "../CombatDialogue";
 import { type PlayerType, type Enemy, type GameStateProps, type Background, type ConsumableNames, type Consumable } from "@/app/_types/types"
 import { useGame } from "../../../GameContext";
 import ScoreCounter from "../ScoreCounter";
-import { useRouter } from "next/navigation";
-import { postScore } from "@/server/actions/categoryActions";
 import StartScreen from "../StartScreen";
 import AttackButton from "../../AttackButton";
 import EnemySprite from "../../Characters/Enemy";
@@ -32,6 +30,7 @@ import useGameFunctions from "@/app/_hooks/useGameFunctions";
 import Eneminis from "../Eneminis";
 import { CONSTANTS } from "@/app/_functions/CONSTANTS"
 import DropScreen from "../DropScreen";
+import DeadScreen from "../DeadScreen";
 
 export default function Combat(){
     
@@ -41,7 +40,6 @@ export default function Combat(){
     const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
     const { updateSkills, updateLootCharge } = usePlayer()
     const { playHitImpactSound, playSwingSound, playHitSound, playBlockSound, playEvadeSound, playFirebombSound } = useAudio()
-    const router = useRouter()
 
     // CONSTANTS & VARIABLES
     const isBoss = enemyData[0]?.name === "Demon Slime"
@@ -71,6 +69,7 @@ export default function Combat(){
     const [background, setBackground] = useState<Background>("default")
     const [powerState, setPowerState] = useState<boolean>(false)
     const [inCombat, setInCombat] = useState<boolean>(false)
+    const [deadState, setDeadState] = useState<boolean>(false)
 
     const [ toggleOpen, setToggleOpen ] = useState<boolean>(false)
     const [ newItems, setNewItems ] = useState<Consumable[]>([])
@@ -390,8 +389,7 @@ export default function Combat(){
             setTimeout(() => {
                 if(newHp <= 0){
                     setInCombat(false)
-                    router.push("/scoreboard")
-                    void postScore({ name: "balls", highest_loop: gameState.loop, score: gameState.score })
+                    setDeadState(true)
                 }else{
                     setInCombat(false)
                     setCurrentDialogue(emptyDialogue)
@@ -563,9 +561,10 @@ export default function Combat(){
             <PowerButton buttonState={buttonState} setPowerState={setPowerState} />
             <CombatDialogue data={currentDialogue} extra={extraDialogue}/>
             <ScoreCounter />
-
             <AutoPlay />
-
+            {
+                deadState && <DeadScreen />
+            }
 
             {
                 gameState.quizState || gameState.questionState 

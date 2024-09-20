@@ -12,15 +12,15 @@ type GameState = {
 
 const defaultPlayerState: PlayerType = {
     name: "Player",
-    hp: 20,
+    hp: 0,
     maxhp: 20,
-    dmg: 311,
+    dmg: 0,
     armour: 5,
     maxarmour: 5,
     resistance: 0,
     critical: 5,
     parry: 5,
-    looting: 500,
+    looting: 5,
     agility: 0,
     skills: [{
         id: 0,
@@ -48,7 +48,7 @@ const defaultPlayerState: PlayerType = {
 }
 
 const defaultGameState: GameStateProps = {
-    loop: 11,
+    loop: 0,
     score: 0,
     quizState: false,
     questionState: false,
