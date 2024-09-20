@@ -1,6 +1,7 @@
 import { getScoreboard } from "@/server/actions/categoryActions"
 import styles from "@/styles/root/scoreboard/styles.module.scss"
 import { type Score } from "../_types/types"
+import RedirectButton from "../_components/RedirectButton"
 
 export default async function ScoreBoardPage(){
 
@@ -8,7 +9,11 @@ export default async function ScoreBoardPage(){
 
     return (
         <>
-            <h1>scoreboard</h1>
+            <h1>Scoreboard</h1>
+            <div className={styles.redirect_wrapper}>
+                <RedirectButton route={"/"} text={"Home"} />
+                <RedirectButton route={"/play"} text={"Play"} />
+            </div>
             {
                 scoreboardData &&
                 <div className={styles.table_wrapper}>
