@@ -9,6 +9,7 @@ import LoopStateProvider from "./QuizLoopContext"
 import { useGame } from "../../GameContext"
 import Stats from "./Stats"
 import PowerGift from "./PowerGift"
+import { CONSTANTS } from "@/app/_functions/CONSTANTS"
 
 export default function Quiz(){
 
@@ -27,11 +28,11 @@ export default function Quiz(){
                     <QuizDisplay />
                 }
                 {
-                    (gameState.powerState && gameState.loop == 15) &&
+                    (gameState.powerState && gameState.loop == CONSTANTS.BOSS_ROUND) &&
                     <PowerGift />
                 }
                 {
-                    (gameState.quizState && !(gameState.loop == 15))  &&
+                    (gameState.quizState && !(gameState.loop == CONSTANTS.BOSS_ROUND))  &&
                     <Suspense fallback={ <Loading /> }>
                         <CardContainer />
                     </Suspense>

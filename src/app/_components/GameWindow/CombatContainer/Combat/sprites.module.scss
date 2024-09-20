@@ -374,7 +374,11 @@
 
 .fireworm {
     @extend .goblin;
+    content: "fireworm";
+
     &::before {
+        filter: contrast(1.1) brightness(1) !important;
+
         background-size: $fireworm-w-idle $fireworm-h;
         background-image: url("../../../../assets/sprites/fireworm/fireworm_idle.png") !important;
         animation: fireworm_idle 1s steps(9) infinite;
