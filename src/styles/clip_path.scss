@@ -1,0 +1,240 @@
+@import "@/styles/scss_globals.scss";
+
+
+.pixel-corners,
+.pixel-corners--wrapper {
+  clip-path: polygon(0px calc(100% - 8px),
+    2px calc(100% - 8px),
+    2px calc(100% - 4px),
+    4px calc(100% - 4px),
+    4px calc(100% - 2px),
+    8px calc(100% - 2px),
+    8px 100%,
+    calc(100% - 8px) 100%,
+    calc(100% - 8px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 8px),
+    100% calc(100% - 8px),
+    100% 8px,
+    calc(100% - 2px) 8px,
+    calc(100% - 2px) 4px,
+    calc(100% - 4px) 4px,
+    calc(100% - 4px) 2px,
+    calc(100% - 8px) 2px,
+    calc(100% - 8px) 0px,
+    8px 0px,
+    8px 2px,
+    4px 2px,
+    4px 4px,
+    2px 4px,
+    2px 8px,
+    0px 8px);
+  position: relative;
+}
+
+.pixel-corners--wrapper {
+  width: fit-content;
+  height: fit-content;
+}
+.pixel-corners--wrapper .pixel-corners {
+  display: block;
+  clip-path: polygon(4px 10px,
+    6px 10px,
+    6px 6px,
+    10px 6px,
+    10px 4px,
+    calc(100% - 10px) 4px,
+    calc(100% - 10px) 6px,
+    calc(100% - 6px) 6px,
+    calc(100% - 6px) 10px,
+    calc(100% - 4px) 10px,
+    calc(100% - 4px) calc(100% - 10px),
+    calc(100% - 6px) calc(100% - 10px),
+    calc(100% - 6px) calc(100% - 6px),
+    calc(100% - 10px) calc(100% - 6px),
+    calc(100% - 10px) calc(100% - 4px),
+    10px calc(100% - 4px),
+    10px calc(100% - 6px),
+    6px calc(100% - 6px),
+    6px calc(100% - 10px),
+    4px calc(100% - 10px));
+}
+
+.pixel-corners::after,
+.pixel-corners--wrapper::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(0px calc(100% - 8px),
+    2px calc(100% - 8px),
+    2px calc(100% - 4px),
+    4px calc(100% - 4px),
+    4px calc(100% - 2px),
+    8px calc(100% - 2px),
+    8px 100%,
+    calc(100% - 8px) 100%,
+    calc(100% - 8px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 8px),
+    100% calc(100% - 8px),
+    100% 8px,
+    calc(100% - 2px) 8px,
+    calc(100% - 2px) 4px,
+    calc(100% - 4px) 4px,
+    calc(100% - 4px) 2px,
+    calc(100% - 8px) 2px,
+    calc(100% - 8px) 0px,
+    8px 0px,
+    8px 2px,
+    4px 2px,
+    4px 4px,
+    2px 4px,
+    2px 8px,
+    0px 8px,
+    0px 50%,
+    4px 50%,
+    4px 10px,
+    6px 10px,
+    6px 6px,
+    10px 6px,
+    10px 4px,
+    calc(100% - 10px) 4px,
+    calc(100% - 10px) 6px,
+    calc(100% - 6px) 6px,
+    calc(100% - 6px) 10px,
+    calc(100% - 4px) 10px,
+    calc(100% - 4px) calc(100% - 10px),
+    calc(100% - 6px) calc(100% - 10px),
+    calc(100% - 6px) calc(100% - 6px),
+    calc(100% - 10px) calc(100% - 6px),
+    calc(100% - 10px) calc(100% - 4px),
+    10px calc(100% - 4px),
+    10px calc(100% - 6px),
+    6px calc(100% - 6px),
+    6px calc(100% - 10px),
+    4px calc(100% - 10px),
+    4px 50%,
+    0px 50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.pixel-corners::after {
+  margin: -4px;
+}
+
+.pixel-corners_none {
+  @extend .pixel-corners;
+  &::after{
+    clip-path: none;
+  }
+}
+
+.pixel-corners_bg {
+  @extend .pixel-corners;
+  &::after{
+    background: $bg;
+  }
+}
+
+.pixel-corners_healthbar,
+.pixel-corners_healthbar--wrapper {
+  clip-path: polygon(
+    0px 100%,
+    calc(100% - 8px) 100%,
+    calc(100% - 8px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 8px),
+    100% calc(100% - 8px),
+    100% 8px,
+    100% 0px,
+    8px 0px,
+    8px 2px,
+    4px 2px,
+    4px 4px,
+    2px 4px,
+    2px 8px,
+    0px 8px
+    );
+  position: relative;
+}
+
+.pixel-corners_healthbar::after {
+  margin: -4px;
+}
+
+.pixel-corners_healthbar::after,
+.pixel-corners_healthbar--wrapper::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(
+    0px calc(100% - 8px),
+    2px calc(100% - 8px),
+    2px calc(100% - 4px),
+    4px calc(100% - 4px),
+    4px calc(100% - 2px),
+    8px calc(100% - 2px),
+    8px 100%,
+    calc(100% - 8px) 100%,
+    calc(100% - 8px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 2px),
+    calc(100% - 4px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 4px),
+    calc(100% - 2px) calc(100% - 8px),
+    100% calc(100% - 8px),
+    100% 8px,
+    calc(100% - 2px) 8px,
+    calc(100% - 2px) 4px,
+    calc(100% - 4px) 4px,
+    calc(100% - 4px) 2px,
+    calc(100% - 8px) 2px,
+    calc(100% - 8px) 0px,
+    8px 0px,
+    8px 2px,
+    4px 2px,
+    4px 4px,
+    2px 4px,
+    2px 8px,
+    0px 8px,
+    0px 50%,
+    4px 50%,
+    4px 10px,
+    6px 10px,
+    6px 6px,
+    10px 6px,
+    10px 4px,
+    calc(100% - 10px) 4px,
+    calc(100% - 10px) 6px,
+    calc(100% - 6px) 6px,
+    calc(100% - 6px) 10px,
+    calc(100% - 4px) 10px,
+    calc(100% - 4px) calc(100% - 10px),
+    calc(100% - 6px) calc(100% - 10px),
+    calc(100% - 6px) calc(100% - 6px),
+    calc(100% - 10px) calc(100% - 6px),
+    calc(100% - 10px) calc(100% - 4px),
+    10px calc(100% - 4px),
+    10px calc(100% - 6px),
+    6px calc(100% - 6px),
+    6px calc(100% - 10px),
+    4px calc(100% - 10px),
+    4px 50%,
+    0px 50%
+    );
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  pointer-events: none;
+  background: $bg;
+}

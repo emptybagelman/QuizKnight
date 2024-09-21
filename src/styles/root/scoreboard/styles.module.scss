@@ -1,4 +1,5 @@
 @import "@/styles/scss_globals.scss";
+@import "@/styles/clip_path.scss";
 
 .table_wrapper{
     width: 100%;
@@ -63,6 +64,7 @@
         justify-content: center;
         gap: $gap-xxl;
         &>a{
+            @extend .pixel-corners;
             font-size: $p-l;
             text-align: center;
             max-width: 200px;

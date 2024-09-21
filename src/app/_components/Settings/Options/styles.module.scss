@@ -1,4 +1,5 @@
 @import "@/styles/scss_globals.scss";
+@import "@/styles/clip_path.scss";
 
 .widget_wrapper {
     display: flex;
@@ -27,12 +28,13 @@
     }
 
     .checkbox {
+        @extend .pixel-corners;
         $dim: 30px;
         position: relative;
         width: $dim;
         height: $dim;
         background-color: $bg-translucent;
-        border: 1px solid $orange-shadow;
+        // border: 1px solid $orange-shadow;
         appearance: none;
         -webkit-appearance: none;
         border-radius: $border-s;

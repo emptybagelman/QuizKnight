@@ -1,6 +1,8 @@
 @import "@/styles/scss_globals.scss";
+@import "@/styles/clip_path.scss";
 
 .healthbar_wrapper{
+    @extend .pixel-corners_healthbar;
     $hb_border_r: $border-s 0px;
     $pp: hsl(358, 100%, 35%);
     $hb_outline: solid 2px $bg;

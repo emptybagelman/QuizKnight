@@ -69,7 +69,7 @@ function StatTokens({token}:{token: number}){
 
     return (
         <div className={styles.token_wrapper}>
-            <p>Points</p>
+            <p>Points:</p>
             <p className={styles.tokens}>{token}</p>
         </div>
     )
@@ -121,11 +121,13 @@ function StatRow(
         <div className={styles.stat}>
             <p className={styles.name}>{stat.string}</p>
 
-            <a className={styles.inc} onClick={() => handleClick(1)}>+</a>
+            <div className={styles.stat_incdec_wrapper}>
+                <a className={styles.inc} onClick={() => handleClick(1)}>+</a>
 
-            <p className={styles.value}>{value}</p>
+                <p className={styles.value}>{value}</p>
 
-            <a className={styles.inc} onClick={() => handleClick(-1)}>-</a>
+                <a className={styles.dec} onClick={() => handleClick(-1)}>-</a>
+            </div>
         </div>
     )
 }

@@ -1,8 +1,10 @@
 @import "@/styles/scss_globals.scss";
+@import "@/styles/clip_path.scss";
 
 .attack_button{
     @include button_s;
     @include orange;
+    @extend .pixel-corners;
     z-index: 9;
     letter-spacing: 1.6px;
 

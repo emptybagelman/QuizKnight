@@ -12,7 +12,7 @@ import useAudio from "@/app/_hooks/useVolume"
 
 export default function PowerButton({buttonState, setPowerState}:{buttonState: boolean, setPowerState: React.Dispatch<React.SetStateAction<boolean>>}){
 
-    const { player } = useGame()
+    const { player, gameState } = useGame()
     const { enemyData, setEnemyData, setPlayerAttack } = useCombat()
     const { setCurrentDialogue } = useCombat()
     const { updateSkills } = usePlayer()
@@ -76,9 +76,12 @@ export default function PowerButton({buttonState, setPowerState}:{buttonState: b
         <>
         {
             player.skills[0].charge! >= 100 &&
-            <button id={styles.power_button} onClick={handleClick} disabled={buttonState}>
+            <a
+                id={styles.power_button}
+                onClick={handleClick}
+                style={ buttonState || gameState.autoPlay ? {pointerEvents:"none"} : {} }>
                 Power
-            </button>
+            </a>
         }
         </>
     )

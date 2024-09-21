@@ -1,4 +1,6 @@
 @import "@/styles/scss_globals.scss";
+@import "@/styles/clip_path.scss";
+
 $length: 50px;
 
 .consumable_wrapper{
@@ -58,6 +60,7 @@ $length: 50px;
         }
 
         .item_amount{
+            @extend .pixel-corners;
             position: absolute;
             bottom: -10px;
             right: -10px;

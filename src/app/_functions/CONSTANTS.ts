@@ -5,4 +5,6 @@ export const CONSTANTS = {
     ATTACK_TIMEOUT: 500,
     MAX_SET_ROUND: 15,
     HEADCOUNT: 3,
+    BASE_BOSS_HP: 15,
+    BASE_BOSS_DMG: 10,
 }

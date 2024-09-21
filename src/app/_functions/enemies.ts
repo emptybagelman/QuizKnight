@@ -1,3 +1,4 @@
+import { CONSTANTS } from "./CONSTANTS";
 import { randomInt } from "./game_functions";
 
 export function enemyStats(name: string, loop:number) {
@@ -32,8 +33,8 @@ export function enemyStats(name: string, loop:number) {
             armour = 0
             break;
         case "Demon Slime":
-            hp = 150
-            dmg = 10
+            hp = CONSTANTS.BASE_BOSS_HP * loop
+            dmg = CONSTANTS.BASE_BOSS_DMG * (loop / 10)
             armour = 0
             break;
         case "Fireworm":

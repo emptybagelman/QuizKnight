@@ -1,4 +1,5 @@
 @import "@/styles/scss_globals.scss";
+@import "@/styles/clip_path.scss";
 
 .stats_container_wrapper{
     position: absolute;
@@ -42,6 +43,7 @@
         .confirm{
             @include orange;
             @include button-s;
+            @extend .pixel-corners;
             align-self: flex-end;
             font-size: $p-m;
         }
@@ -54,27 +56,44 @@
             margin-bottom: 15px;
             font-size: $p-l;
 
+            .stat_incdec_wrapper{
+                @extend .pixel-corners;
+                grid-column: span 3;
+                display: grid;
+                width: 100%;
 
+                .inc, .value{
+                    @include blue;
+                    padding: $padding-s $padding-m;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: $fade-transition;
+                }
+    
+                .inc{
+                    grid-column: 1;
+                    &:hover{
+                        @include hover;
+                        cursor: pointer;
+                    }
+                }
+
+                .value{
+                    grid-column: 2;
+                }
+
+                .dec{
+                    @extend .inc;
+                    grid-column: 3;
+                }
+            }
         
             .name{
                 margin-right: 15px;
             }
 
-            .inc, .value{
-                @include blue;
-                padding: $padding-s $padding-m;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                transition: $fade-transition;
-            }
 
-            .inc{
-                &:hover{
-                    @include hover;
-                    cursor: pointer;
-                }
-            }
         }
     }
 }

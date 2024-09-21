@@ -547,7 +547,7 @@ export default function Combat(){
                     enemyData &&
                     enemyData.map((enemy, idx) => (
                         
-                            !(gameState.loop == CONSTANTS.BOSS_ROUND)
+                            gameState.loop % CONSTANTS.BOSS_ROUND != 0 || gameState.loop === 0
                             ? <EnemySprite key={idx} id={idx} enemy={enemy} />
                             : <Boss  key={idx} enemy={enemy}/>
                         

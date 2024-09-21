@@ -26,8 +26,8 @@ const defaultPlayerState: PlayerType = {
         id: 0,
         name: "Piercing Blade",
         type: "damage",
-        charge: 0,
-        active: false,
+        charge: 100,
+        active: true,
         description: "Hit multiple enemies at once."
     }],
     consumables: [
@@ -37,6 +37,7 @@ const defaultPlayerState: PlayerType = {
             value: 1,
             description: "Fills your HP to full."
         },
+
         // {
         //     id: 3,
         //     name: "Firebomb",

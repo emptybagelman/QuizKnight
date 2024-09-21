@@ -26,32 +26,49 @@ export default function generateEnemies(loop: number) {
     if(loop > CONSTANTS.MAX_SET_ROUND){
 
         const amount = adjustDifficulty(loop)
+        let enemyArray: Enemy[];
+        if(loop > 0 && loop % CONSTANTS.BOSS_ROUND === 0){
 
-        const enemyArray: Enemy[] = [...Array.from({length:randomInt(amount,4)}).map((x, index) => {
+            const bossStats = enemyStats("Demon Slime", loop)
 
-            let hp = randomInt((2 + Math.floor(loop*1.09)),2)
-            const dmg = randomInt((2 + Math.floor(loop*0.8)),1)
-            const armour = randomInt((1 + Math.floor(Math.floor((loop *0.4))*1.06)),1)
+            enemyArray = [{
+                id: 0,
+                name: "Demon Slime",
+                hp: bossStats.hp,
+                maxhp: bossStats.hp,
+                armour: bossStats.armour,
+                dmg: bossStats.dmg
+            }]
 
-            if(hp <= 0) {
-                hp = 1
-            }
+        }
+        else{
+            enemyArray = [...Array.from({length:randomInt(amount,4)}).map((x, index) => {
 
-            const enemies = ["Goblin","Mushroom","Skeleton","Flying Eye", "Toad", "Fireworm"]
-            const name = randomEnemy(enemies)
+                let hp = randomInt((2 + Math.floor(loop*1.09)),2)
+                const dmg = randomInt((2 + Math.floor(loop*0.8)),1)
+                const armour = randomInt((1 + Math.floor(Math.floor((loop *0.4))*1.06)),1)
 
-            const en = {
-                id: index,
-                name: name!,
-                hp: hp,
-                maxhp: hp,
-                armour: armour,
-                dmg: dmg,
-            }
+                if(hp <= 0) {
+                    hp = 1
+                }
 
-            return en;
-            })
-        ]
+                const enemies = ["Goblin","Mushroom","Skeleton","Flying Eye", "Toad", "Fireworm"]
+                const name = randomEnemy(enemies)
+
+                const en = {
+                    id: index,
+                    name: name!,
+                    hp: hp,
+                    maxhp: hp,
+                    armour: armour,
+                    dmg: dmg,
+                }
+
+                return en;
+                })
+            ]
+        }
+
 
         return enemyArray;
     }

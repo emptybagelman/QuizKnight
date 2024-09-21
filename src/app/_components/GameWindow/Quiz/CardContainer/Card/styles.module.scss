@@ -1,6 +1,8 @@
 @import "@/styles/scss_globals.scss";
+@import "@/styles/clip_path.scss";
 
 .card_wrapper{
+    @extend .pixel-corners;
     position: relative;
     min-width: 150px;
     width: 200px;

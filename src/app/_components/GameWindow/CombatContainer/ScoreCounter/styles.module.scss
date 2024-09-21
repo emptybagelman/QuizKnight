@@ -1,7 +1,9 @@
 @import "@/styles/scss_globals.scss";
+@import "@/styles/clip_path.scss";
+
 $gap: 10px;
 .score_counter{
-
+    @extend .pixel-corners;
     grid-area: score;
     
 

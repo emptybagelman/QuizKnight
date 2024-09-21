@@ -1,8 +1,8 @@
 @import "@/styles/scss_globals.scss";
-
-
+@import "@/styles/clip_path.scss";
 
 .dialogue_wrapper{
+    @extend .pixel-corners;
     width: 100%;
     min-width: 150px;
     max-width: 600px;
