@@ -26,7 +26,7 @@ const defaultPlayerState: PlayerType = {
         id: 0,
         name: "Piercing Blade",
         type: "damage",
-        charge: 100,
+        charge: 0,
         active: false,
         description: "Hit multiple enemies at once."
     }],
