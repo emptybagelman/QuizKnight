@@ -1,4 +1,5 @@
 export const CONSTANTS = {
+    ARMOUR_REDUCTION_PERCENT: 0.75,
     BOSS_ROUND: 10,
     BURN_DMG: 10,
     DELAY: 3500,

@@ -12,10 +12,10 @@ export default function DeadScreen(){
     const { gameState } = useGame()
     const [ input, setInput ] = useState<string>("")
 
-    function handleSubmit(){
+    async function handleSubmit(){
         router.push("/scoreboard")
         if(gameState.score > 0){
-            void postScore({ name: input, highest_loop: gameState.loop, score: gameState.score })
+            postScore({ name: input, highest_loop: gameState.loop, score: gameState.score })
         }
     }
 

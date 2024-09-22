@@ -90,14 +90,15 @@ export default function Combat(){
 
         let overflowDmg = 0;
         let enemyHp = firstEnemy.hp;
+        const playerDmgArmour =  Math.ceil(playerTotalDamage * (player.armour > 0 ? CONSTANTS.ARMOUR_REDUCTION_PERCENT : 1))
 
-        if(firstEnemy.armour < playerTotalDamage){
-            overflowDmg = Math.abs(firstEnemy.armour - playerTotalDamage)
+        if(firstEnemy.armour < playerDmgArmour){
+            overflowDmg = Math.abs(firstEnemy.armour - playerDmgArmour)
             enemyHp = firstEnemy.hp - overflowDmg
             firstEnemy.hp = enemyHp
             firstEnemy.armour = 0
         }else{
-            firstEnemy.armour = firstEnemy.armour - playerTotalDamage
+            firstEnemy.armour = firstEnemy.armour - playerDmgArmour
         }
 
         setEnemyData(
@@ -285,12 +286,14 @@ export default function Combat(){
         if(!enemyData[0]) throw new Error("Apparently the player is dead and is still being beaten into the ground...");
         
         const enemyDmg = enemyData[0].dmg
+        const enemyDmgArmour = Math.ceil(enemyDmg * (player.armour > 0 ? CONSTANTS.ARMOUR_REDUCTION_PERCENT : 1))
         const tempPlayer = player;
 
         let overflowDmg = 0;
 
         let newHp = player.hp;
         let newArmour = player.armour;
+
 
         if(isBoss) {
             setTimeout(() => {
@@ -306,13 +309,14 @@ export default function Combat(){
         setParry(parryChance)
 
         if(!(parryChance || player.agility == 1)){ // handles no parry
-            if(player.armour <= enemyDmg){
-                overflowDmg = Math.abs(player.armour - enemyDmg)
+            if(player.armour <= enemyDmgArmour){
+                overflowDmg = Math.abs(player.armour - enemyDmgArmour)
                 newHp -= overflowDmg
                 newArmour = 0
             }else{
-                newArmour -= enemyDmg
+                newArmour -= enemyDmgArmour
             }
+
 
             setTimeout(() => {
                 setPlayer((prev: PlayerType) => ({

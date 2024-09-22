@@ -19,6 +19,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
 
 ### Todos
 - [x] damage bar
+- [x] make armour give resistance!
 - [x] new logo
 - [x] make armour finite, only health can recharge per wave
 - [] style up the cards
@@ -38,7 +39,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [x] convert current powering system to stat point system
         - [x] quiz display overlays combat
         - [x] once completed, stat screen appears, player can allocate points to level up
-    - [] mini enemy icons
+    - [x] mini enemy icons
         - shows how many enemies in array & hp
     - [] consumables
         - [x] convert into single icon when holding multiple items
@@ -49,6 +50,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
         - [x] hp potion
         - [x] mana (power move) potion
         - [x] agility crystal - dodge next attack
+        - [x] firebomb - burns enemys per hit
         - [] single use shield ?? 
     - [x] enemy differences
         - [x] goblin
