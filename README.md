@@ -54,26 +54,21 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
         - [] single use shield ?? 
     - [x] enemy differences
         - [x] goblin
-            - low hp
-            - low dmg
-            - low armour
         - [x] mushroom
-            - good hp
-            - good armour
-            - low dmg
         - [x] skeleton
-            - low hp
-            - good dmg
-            - low armour
         - [x] flying eye
-            - mid hp
-            - mid dmg
-            - no armour
+        - [x] fireworm
+        - [x] slime
+        - [] Sprout
         - BOSS
             - [x] Demon Slime
                 - [x] all anims
                 - [x] activates ability
                 - [x] special sounds
+            - [] Skeleton Seeker
+                - [] all anims
+                - [] activates ability
+                - [] special sounds
     - [x] crit chance
     - [x] block chance
     - [] upgrades

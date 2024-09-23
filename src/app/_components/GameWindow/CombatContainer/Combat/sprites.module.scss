@@ -434,3 +434,82 @@
     0% {background-position: 0 $fireworm-offset-y;}
     100% {background-position: calc($fireworm-w-death * $minusone + calc($fireworm-offset-y * $scale-l)) $fireworm-offset-y;}
 }
+
+.slime{
+    @extend .goblin;
+    &::before {
+        filter: contrast(1.1) brightness(1) !important;
+
+        background-size: $slime-w-idle $slime-h;
+        background-image: url("../../../../assets/sprites/slime/slime_idle.png") !important;
+        animation: slime_idle 0.8s steps(4) infinite;
+        height: $slime-h;
+        width: $slime-w;
+        transform: translate(calc($slime-offset-x * $scale-l),$slime-offset-y)  scaleX(1);
+    }
+    &::after{
+        animation: none;
+    }
+}
+
+.slimeAttackAnim{
+    @extend .slime;
+    &::before{
+        background-image: url("../../../../assets/sprites/slime/slime_attack.png") !important;
+        animation: slime_attack 0.2s steps(6) infinite;
+    }
+}
+
+.slimeHitAnim{
+    @extend .slime;
+    &::before{
+        background-image: url("../../../../assets/sprites/slime/slime_hit.png") !important;
+        animation: slime_hit 0.4s steps(4) infinite;
+    }
+}
+
+.slimeDeathAnim{
+    @extend .slime;
+    &::before{
+        width: $death-w;
+        background-image: url("../../../../assets/sprites/slime/slime_death.png") !important;
+        animation: slime_death 0.5s steps(4) forwards;
+    }
+}
+
+@keyframes slime_idle {
+    from{
+        background-position: calc($slime-offset-x * $minusone) 0;
+    }
+    to{
+        background-position: calc(calc($slime-w-idle * $minusone) - $slime-offset-x) 0;
+    }
+}
+
+@keyframes slime_attack {
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: calc(calc($slime-w-attack * $minusone) + $slime-offset-x ) 0;
+    }
+}
+
+@keyframes slime_hit {
+    from{
+        background-position: calc($slime-offset-x * $minusone) 0;
+    }
+    to{
+        background-position: calc(calc($slime-w-hit * $minusone) - $slime-offset-x ) 0;
+    }
+}
+
+@keyframes slime_death {
+    from{
+        background-position: calc(0px + 97.5px) 0;
+    }
+    to{
+        background-position: calc($minusone * 390px + 97.5px) 0;
+    }
+}
+// calc(8px + calc(calc($slime-w-death * 0.75) * $minusone)) - $slime-offset-x + 97.5px

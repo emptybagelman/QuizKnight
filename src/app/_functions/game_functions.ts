@@ -52,7 +52,7 @@ export default function generateEnemies(loop: number) {
                     hp = 1
                 }
 
-                const enemies = ["Goblin","Mushroom","Skeleton","Flying Eye", "Toad", "Fireworm"]
+                const enemies = ["Goblin","Mushroom","Skeleton","Flying Eye", "Toad", "Fireworm", "Slime"]
                 const name = randomEnemy(enemies)
 
                 const en = {
@@ -95,16 +95,16 @@ export default function generateEnemies(loop: number) {
 
 function enemyLoopGen(loop: number) {
     const basicRounds: {[key:number]: string[]} = {
-        0: ["Goblin", "Goblin"],
-        1: ["Goblin","Goblin", "Goblin"],
-        2: ["Mushroom","Goblin"],
-        3: ["Mushroom","Goblin","Mushroom"],
-        4: ["Goblin","Mushroom","Mushroom"],
-        5: ["Mushroom","Goblin","Goblin"],
-        6: ["Toad","Mushroom","Goblin"],
-        7: ["Toad","Goblin","Mushroom","Toad","Goblin"],
-        8: ["Toad","Goblin","Goblin", "Goblin"],
-        9: ["Mushroom","Goblin","Toad","Mushroom","Goblin",],
+        0: ["Slime", "Slime"],
+        1: ["Slime","Goblin", "Slime"],
+        2: ["Slime","Slime","Goblin","Goblin"],
+        3: ["Mushroom","Slime","Slime","Mushroom","Goblin"],
+        4: ["Goblin","Slime","Mushroom","Mushroom"],
+        5: ["Mushroom","Goblin","Goblin","Slime","Goblin"],
+        6: ["Goblin","Goblin","Toad","Mushroom"],
+        7: ["Toad","Goblin","Slime","Slime","Mushroom","Toad","Goblin"],
+        8: ["Toad","Toad","Goblin","Mushroom", "Goblin"],
+        9: ["Slime","Slime","Mushroom","Goblin","Toad","Slime","Toad",],
         10: ["Demon Slime"],
         11: ["Flying Eye","Fireworm","Flying Eye", "Mushroom"],
         12: ["Flying Eye","Fireworm","Goblin","Fireworm"],

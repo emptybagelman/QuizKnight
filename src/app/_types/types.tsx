@@ -69,6 +69,20 @@ export type GameStateProps = {
     statToken: number,
 }
 
+export type GameState = {
+    player: PlayerType,
+    setPlayer: React.Dispatch<React.SetStateAction<PlayerType>>,
+    gameState: GameStateProps,
+    setGameState: React.Dispatch<React.SetStateAction<GameStateProps>>
+}
+
+export type DevMenuGameState = {
+    player: PlayerType,
+    setPlayer: () => void,
+    gameState: GameStateProps,
+    setGameState: () => void
+}
+
 export type Category = {
     id: number,
     category: string

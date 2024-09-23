@@ -36,7 +36,7 @@ const consumables: Consumable[] = [
 export default function useGameFunctions(){
 
     const { player, setPlayer } = useGame()
-    const { playPlayerHitSound, playGoblinHitSound, playMushroomHitSound, playSkeletonHitSound, playBossDeathSound } = useAudio()
+    const { playSlimeHitSound, playPlayerHitSound, playGoblinHitSound, playMushroomHitSound, playSkeletonHitSound, playBossDeathSound } = useAudio()
 
     function getHitSound(name: CharacterNames){
         switch(name){
@@ -52,6 +52,9 @@ export default function useGameFunctions(){
             case "Skeleton":
                 playSkeletonHitSound()
                 break;
+                case "Slime":
+                    playSlimeHitSound()
+                    break;
             default:
                 playMushroomHitSound()
                 break;

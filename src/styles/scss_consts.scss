@@ -29,3 +29,13 @@ $fireworm-w-idle: calc(810px * $scale-l);
 $fireworm-w-attack: calc(1440px * $scale-l);
 $fireworm-w-hit: calc(270px * $scale-l);
 $fireworm-w-death: calc(720px * $scale-l);
+
+$slime-h: calc(25px * $scale-l);
+$slime-w: calc(24px * $scale-l);
+$slime-offset-x: 14px;
+$slime-offset-y: -10%;
+$slime-w-idle: calc(128px * $scale-l);
+$slime-w-attack: calc(160px * $scale-l);
+$slime-w-hit: calc(128px * $scale-l);
+$slime-w-death: calc(128px * $scale-l);
+$death-w: calc($slime-w + 16px);

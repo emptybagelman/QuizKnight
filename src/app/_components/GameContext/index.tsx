@@ -1,16 +1,9 @@
 "use client"
 
-import {  type PlayerType, type GameStateProps } from "@/app/_types/types"
+import {  type PlayerType, type GameStateProps, type GameState } from "@/app/_types/types"
 import { createContext, useContext, useState } from "react"
 
-type GameState = {
-    player: PlayerType,
-    setPlayer: React.Dispatch<React.SetStateAction<PlayerType>>,
-    gameState: GameStateProps,
-    setGameState: React.Dispatch<React.SetStateAction<GameStateProps>>
-}
-
-const defaultPlayerState: PlayerType = {
+export const defaultPlayerState: PlayerType = {
     name: "Player",
     hp: 20,
     maxhp: 20,
@@ -48,8 +41,8 @@ const defaultPlayerState: PlayerType = {
     ]
 }
 
-const defaultGameState: GameStateProps = {
-    loop: 0,
+export const defaultGameState: GameStateProps = {
+    loop: 1,
     score: 0,
     quizState: false,
     questionState: false,

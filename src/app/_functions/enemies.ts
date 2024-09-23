@@ -41,6 +41,10 @@ export function enemyStats(name: string, loop:number) {
             hp = randomInt((2 + Math.floor(loop * 0.8)), 1)
             dmg = randomInt((2 + Math.floor(loop * 0.4)), 1)
             armour = 0
+        case "Slime":
+            hp = randomInt((2 + Math.floor(loop * 0.6)), 1)
+            dmg = randomInt((2 + Math.floor(loop * 0.5)), 1)
+            armour = 0
         default:
             hp = randomInt((2 + Math.floor(loop * 1)), 1)
             dmg = randomInt((2 + Math.floor(loop * 1)), 1)

@@ -38,6 +38,7 @@ export default function useAudio() {
     const [playSkeletonHitSound] = useSound(audio.skeleton_hit,extraProps())
     const [playBossDeathSound] = useSound(audio.boss_death,extraProps())
     const [playExtinguishSound] = useSound(audio.extinguish, extraProps())
+    const [playSlimeHitSound] = useSound(audio.slime_hit,extraProps(0.6))
 
     return {
         playIntoTheWastes,
@@ -61,6 +62,7 @@ export default function useAudio() {
         playMushroomHitSound,
         playSkeletonHitSound,
         playBossDeathSound,
-        playExtinguishSound
+        playExtinguishSound,
+        playSlimeHitSound
     }
 }

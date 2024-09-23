@@ -15,7 +15,12 @@ export default function DeadScreen(){
     async function handleSubmit(){
         router.push("/scoreboard")
         if(gameState.score > 0){
-            postScore({ name: input, highest_loop: gameState.loop, score: gameState.score })
+            postScore(
+                { name: input,
+                    highest_loop: gameState.loop,
+                    score: gameState.score })
+                        .then((res) => console.log(res))
+                        .catch((err) => console.error(err))
         }
     }
 
