@@ -8,13 +8,13 @@ export function enemyStats(name: string, loop:number) {
 
     switch (name){
         case "Goblin":
-            hp = randomInt((2 + Math.floor(loop * 0.8)), 1)
-            dmg = randomInt((2 + Math.floor(loop * 0.35)), 1)
+            hp = randomInt((2 + Math.floor(loop * 0.9)), 1)
+            dmg = randomInt((2 + Math.floor(loop * 0.5)), 1)
             armour = randomInt((0 + Math.floor(loop * 0.2)), 1)
             break;
         case "Mushroom":
-            hp = randomInt((3 + Math.floor(loop * 1.05)), 2)
-            dmg = randomInt((1 + Math.floor(loop * 0.5)), 1)
+            hp = randomInt((3 + Math.floor(loop * 1.1)), 2)
+            dmg = randomInt((1 + Math.floor(loop * 0.6)), 1)
             armour = 0
             break;
         case "Skeleton":
@@ -24,7 +24,7 @@ export function enemyStats(name: string, loop:number) {
             break;
         case "Flying Eye":
             hp = randomInt((3 + Math.floor(loop * 0.95)), 2)
-            dmg = randomInt((2 + Math.floor(loop * 0.45)), 1)
+            dmg = randomInt((2 + Math.floor(loop * 0.6)), 1)
             armour = 0
             break;
         case "Toad":
@@ -43,7 +43,7 @@ export function enemyStats(name: string, loop:number) {
             armour = 0
         case "Slime":
             hp = randomInt((2 + Math.floor(loop * 0.6)), 1)
-            dmg = randomInt((2 + Math.floor(loop * 0.5)), 1)
+            dmg = randomInt((2 + Math.floor(loop * 0.35)), 1)
             armour = 0
         default:
             hp = randomInt((2 + Math.floor(loop * 1)), 1)
