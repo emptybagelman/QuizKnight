@@ -7,7 +7,7 @@ const TypeWriterEffect: any = dynamic(
     {ssr: false}
 )
 
-export default function Typewriter({text}:{text:string | undefined}){
+export default function Typewriter({text,multiplier}:{text:string | undefined,multiplier: number}){
     if(typeof window !== undefined){
         return (
             <TypeWriterEffect 
@@ -18,7 +18,7 @@ export default function Typewriter({text}:{text:string | undefined}){
                 }}
                 startDelay={0}
                 text={text }
-                typeSpeed={50}
+                typeSpeed={50 * multiplier}
             />
         )
     }

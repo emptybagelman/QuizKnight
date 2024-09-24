@@ -1,4 +1,5 @@
 @import "@/styles/scss_globals.scss";
+@import "@/styles/scss_consts.scss";
 $scale: 3;
 $width: 288px;
 $height: 160px;
@@ -61,9 +62,7 @@ $offset: calc($width * $scale);
         background-size: $attack-w $main-h !important;
         background-image: url("../../../../../assets/sprites/demonslime/demon_slime_attack.png") !important;
         animation: bossAttack 1s steps(14) forwards !important;
-    }
-}
-
+    }}
 .slimeBossHit {
     @extend .slimeBoss;
 
@@ -71,9 +70,7 @@ $offset: calc($width * $scale);
         background-size: $hit-w $main-h !important; 
         background-image: url("../../../../../assets/sprites/demonslime/demon_slime_hit.png") !important;
         animation: bossHit 1s steps(4) forwards !important;
-    }
-}
-
+    }}
 .slimeBossDeath {
     @extend .slimeBoss;
 
@@ -81,9 +78,7 @@ $offset: calc($width * $scale);
         background-size: $death-w $main-h !important; 
         background-image: url("../../../../../assets/sprites/demonslime/demon_slime_death.png") !important;
         animation: bossDeath 3s steps(21) forwards !important;
-    }
-}
-
+    }}
 .slimeBossWalk {
     @extend .slimeBoss;
 
@@ -91,30 +86,104 @@ $offset: calc($width * $scale);
         background-size: $walk-w $main-h !important; 
         background-image: url("../../../../../assets/sprites/demonslime/demon_slime_walk.png") !important;
         animation: bossWalk 1.5s steps(11) infinite !important;
-    }
-}
+    }}
 
 @keyframes bossIdle {
     0%{background-position: 0 ;}
-    100%{background-position: calc($idle-w * $neg + $offset)  0;}
-}
-
+    100%{background-position: calc($idle-w * $neg + $offset)  0;}}
 @keyframes bossAttack {
     0%{background-position: 0 ;}
-    100%{background-position: calc($attack-w * $neg + $offset)  0;}
-}
-
+    100%{background-position: calc($attack-w * $neg + $offset)  0;}}
 @keyframes bossHit {
     0%{background-position: 0 ;}
-    100%{background-position: calc($hit-w * $neg + $offset)  0;}
-}
-
+    100%{background-position: calc($hit-w * $neg + $offset)  0;}}
 @keyframes bossDeath {
     0%{background-position: 0 ;}
-    100%{background-position: calc($death-w * $neg + $offset)  0;}
-}
-
+    100%{background-position: calc($death-w * $neg + $offset)  0;}}
 @keyframes bossWalk {
     0%{background-position: 0 ;}
-    100%{background-position: calc($walk-w * $neg + $offset)  0;}
-}
+    100%{background-position: calc($walk-w * $neg + $offset)  0;}}
+
+$gm-w: calc(120px * $scale-l);
+$gm-h: calc(120px * $scale-l);
+
+$gm-w-idle: calc(720px * $scale-l);
+$gm-w-attack: calc(1200px * $scale-l);
+$gm-w-hit: calc(480px * $scale-l);
+$gm-w-death: calc(600px * $scale-l);
+
+.gravenMass {
+    width: 120px;
+    height: $height;
+    position: relative;
+    grid-column: 4;
+
+    display: flex;
+
+    &::before{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: -50px;
+        width: $gm-w;
+        height: $gm-h;
+
+        image-rendering: pixelated;
+        background-image: url("../../../../../assets/sprites/graven_mass/seeker_idle.png");
+        background-size: $gm-w-idle $gm-w;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+
+        transform: scaleX(-1);
+        animation: gravenMassIdle 1.5s steps(6) infinite;
+    }}
+.gravenMassAttack {
+    @extend .gravenMass;
+    &::before{
+        background-image: url("../../../../../assets/sprites/graven_mass/seeker_attack.png");
+        background-size: $gm-w-attack $gm-w;
+        animation: gravenMassAttack 1s steps(9) forwards;
+    }}
+.gravenMassHit {
+    @extend .gravenMass;
+    &::before{
+        background-image: url("../../../../../assets/sprites/graven_mass/seeker_hit.png");
+        background-size: $gm-w-hit $gm-w;
+        animation: gravenMassHit 0.4s steps(3) forwards;
+    }}
+.gravenMassDeath {
+    @extend .gravenMass;
+    &::before{
+        background-image: url("../../../../../assets/sprites/graven_mass/seeker_death.png");
+        background-size: $gm-w-death $gm-w;
+        animation: gravenMassDeath 0.4s steps(4) forwards;
+    }}
+
+@keyframes gravenMassIdle {
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: calc($gm-w-idle * $minusone) 0;
+    }}
+@keyframes gravenMassAttack {
+    from{
+    background-position: 0 0;
+    }
+    to{
+    background-position: calc(calc($gm-w-attack - 360px) * $minusone) 0;
+    }}
+@keyframes gravenMassHit {
+    from{
+    background-position: 0 0;
+    }
+    to{
+    background-position: calc(calc($gm-w-hit - 360px) * $minusone) 0;
+    }}
+@keyframes gravenMassDeath {
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: calc(calc($gm-w-death - 360px) * $minusone) 0;
+    }}

@@ -11,6 +11,8 @@ type SettingsState = {
     setDamageNumbers: React.Dispatch<React.SetStateAction<boolean>>,
     open: boolean,
     setOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    gameSpeedMultiplier: number,
+    setGameSpeedMultiplier: React.Dispatch<React.SetStateAction<number>>,
 }
 
 const SettingsContext = createContext<SettingsState>(
@@ -22,7 +24,9 @@ const SettingsContext = createContext<SettingsState>(
         damageNumbers: true,
         setDamageNumbers: () => {},
         open: false,
-        setOpen: () => {}
+        setOpen: () => {},
+        gameSpeedMultiplier: 1,
+        setGameSpeedMultiplier: () => {}
     }
 )
 
@@ -31,6 +35,7 @@ export default function SettingsStateProvider({children}:{children: React.ReactN
     const [mute, setMute] = useState<boolean>(false)
     const [damageNumbers, setDamageNumbers] = useState<boolean>(true)
     const [open,setOpen] = useState<boolean>(false)
+    const [gameSpeedMultiplier,setGameSpeedMultiplier] = useState<number>(1)
 
     return (
         <SettingsContext.Provider value={
@@ -42,7 +47,9 @@ export default function SettingsStateProvider({children}:{children: React.ReactN
                 damageNumbers,
                 setDamageNumbers,
                 mute,
-                setMute
+                setMute,
+                gameSpeedMultiplier,
+                setGameSpeedMultiplier
             }
         }>
             {children}

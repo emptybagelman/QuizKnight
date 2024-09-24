@@ -8,6 +8,9 @@ import mushroom_head from "#/sprites/mushroom/mushroom_head.png"
 import skeleton_head from "#/sprites/skeleton/skeleton_head.png"
 import flying_eye_head from "#/sprites/flyingeye/flying_eye_head.png"
 import toad_head from "#/sprites/toad/toad_head.png"
+import fireworm_head from "#/sprites/fireworm/fireworm_head.png"
+import slime_head from "#/sprites/slime/slime_head.png"
+import sprout_head from "#/sprites/sprout/sprout_head.png"
 import { handleHpBar } from "@/app/_functions/game_functions"
 import { CONSTANTS } from "@/app/_functions/CONSTANTS"
 
@@ -26,8 +29,14 @@ export default function Eneminis(){
                 return flying_eye_head.src;
             case "Toad":
                 return toad_head.src;
+            case "Fireworm":
+                return fireworm_head.src;
+            case "Slime":
+                return slime_head.src;
+            case "Sprout":
+                return sprout_head.src;
             default:
-                return goblin_head.src
+                return goblin_head.src;
         }
     }
 

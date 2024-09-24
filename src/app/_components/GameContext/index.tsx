@@ -42,7 +42,7 @@ export const defaultPlayerState: PlayerType = {
 }
 
 export const defaultGameState: GameStateProps = {
-    loop: 1,
+    loop: 0,
     score: 0,
     quizState: false,
     questionState: false,

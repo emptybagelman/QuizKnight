@@ -17,9 +17,7 @@
 
     transform: rotateY(30deg);
 
-    animation: shield_hit 0.15s steps(3) alternate infinite;
-}
-
+    animation: shield_hit 0.15s steps(3) alternate infinite;}
 @keyframes shield_hit {
     from{
         transform: rotateY(-10deg)  rotateZ(5deg);
@@ -27,13 +25,16 @@
     to{
         transform: rotateY(30deg)  rotateZ(-5deg);
 
-    }
-}
+    }}
 
 @keyframes bobble {
     from{transform: translateY(0px);}
-    to{transform: translateY(6px);}
-}
+    to{transform: translateY(6px);}}
+
+.consumable {
+    width: 50px;
+    height: 50px;
+    background-color: $green;}
 
 .player{
     width: $playerSpriteW;
@@ -77,71 +78,54 @@
         transform: translate(-35%, 10%);
         animation: idleAnim_player 1s steps(11) infinite;
 
-    }
-}
+    }}
 .playerAttackAnim{
     @extend .player;
     &::before{
         background-size: $player-w-attack $playerSpriteH !important;
         background-image: url("../../../../assets/sprites/player/knight_attack.png") !important;
         animation: attackAnim_player 0.2s steps(5) forwards !important;
-    }
-}
+    }}
 .playerHitAnim{
     @extend .player;
     &::before{
         background-size: $player-w-hit $playerSpriteH !important;
         background-image: url("../../../../assets/sprites/player/knight_hit.png") !important;
         animation: hitAnim_player 0.25s steps(4) forwards !important;
-    }
-}
+    }}
 .playerDeathAnim {
     @extend .player;
     &::before{
         background-size: $player-w-death $playerSpriteH !important;
         background-image: url("../../../../assets/sprites/player/knight_death.png") !important;
         animation: deathAnim_player 1s steps(8) forwards !important;
-    }
-}
-
+    }}
 .playerEvadeAnim {
     @extend .player;
     &::before{
         background-size: $player-w-evade $playerSpriteH !important;
         background-image: url("../../../../assets/sprites/player/knight_evade.png") !important;
         animation: evadeAnim_player 0.5s steps(4) forwards !important;
-    }
-}
+    }}
 
 @keyframes shadow_bobble {
     from{transform: translateY(0px);}
-    to{transform: translateY(2px);}
-}
-
+    to{transform: translateY(2px);}}
 @keyframes idleAnim_player {
     0% { background-position: 0 0; }
-    100% { background-position: calc($player-w-idle * $minusone) 0; }
-}
+    100% { background-position: calc($player-w-idle * $minusone) 0; }}
 @keyframes attackAnim_player {
     0% { background-position: 0 0; }
-    100% { background-position: calc($player-w-attack * $minusone + 420px) 0; }
-}
+    100% { background-position: calc($player-w-attack * $minusone + 420px) 0; }}
 @keyframes hitAnim_player {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc($player-w-hit * $minusone) 0; }
-}
+    100%{ background-position: calc($player-w-hit * $minusone) 0; }}
 @keyframes deathAnim_player {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc($player-w-death * $minusone + 420px) 0; }
-}
+    100%{ background-position: calc($player-w-death * $minusone + 420px) 0; }}
 @keyframes evadeAnim_player {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc($player-w-evade * $minusone) 0; }
-}
-
-
-
-
+    100%{ background-position: calc($player-w-evade * $minusone) 0; }}
 
 .goblin{
     @extend .player;
@@ -174,24 +158,21 @@
 
     &:nth-child(n+5) {
         display: none;
-    }
-}
+    }}
 .goblinAttackAnim{
     @extend .goblin;
     &::before{
         background-size: calc(1200px * 3) $enemySpriteH !important;
         background-image: url("../../../../assets/sprites/goblin/goblin_attack.png") !important;
         animation: attackAnim_enemy 0.2s steps(8) forwards !important;
-    }
-}
+    }}
 .goblinHitAnim{
     @extend .goblin;
     &::before{
         background-size: calc(600px * 3) $enemySpriteH !important;
         background-image: url("../../../../assets/sprites/goblin/goblin_hit.png") !important;
         animation: hitAnim_enemy 0.25s steps(4) forwards !important;
-    }
-}
+    }}
 .goblinDeathAnim {
     @extend .goblin;
     &::before{
@@ -199,47 +180,39 @@
         background-image: url("../../../../assets/sprites/goblin/goblin_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
-    }
-}
+    }}
 @keyframes idleAnim_enemy {
     0% { background-position: 0 0; }
-    100% { background-position: calc($enemySpriteSheetW * $minusone * 3) 0; }
-}
+    100% { background-position: calc($enemySpriteSheetW * $minusone * 3) 0; }}
 @keyframes attackAnim_enemy {
     0% { background-position: 0 0; }
-    100% { background-position: calc($enemySpriteSheetWd * $minusone * 3) 0; }
-}
+    100% { background-position: calc($enemySpriteSheetWd * $minusone * 3) 0; }}
 @keyframes hitAnim_enemy {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc($enemySpriteSheetW * $minusone * 3) 0; }
-}
+    100%{ background-position: calc($enemySpriteSheetW * $minusone * 3) 0; }}
 @keyframes deathAnim_enemy {
     0%{ background-position: 0 0; }
-    100%{ background-position: calc($enemySpriteSheetW * $minusone + 450px) 0; }
-}
+    100%{ background-position: calc($enemySpriteSheetW * $minusone + 450px) 0; }}
 
 .mushroom {
     @extend .goblin;
     &::before {
         background-image: url("../../../../assets/sprites/mushroom/mushroom_idle.png") !important;
-    }
-}
+    }}
 .mushroomAttackAnim{
     @extend .goblin;
     &::before{
         background-size: $enemySpriteSheetWd $enemySpriteH !important;
         background-image: url("../../../../assets/sprites/mushroom/mushroom_attack.png") !important;
         animation: attackAnim_enemy 0.2s steps(8) forwards !important;
-    }
-}
+    }}
 .mushroomHitAnim{
     @extend .goblin;
     &::before{
         background-size: $enemySpriteSheetW $enemySpriteH !important;
         background-image: url("../../../../assets/sprites/mushroom/mushroom_hit.png") !important;
         animation: hitAnim_enemy 0.25s steps(4) forwards !important;
-    }
-}
+    }}
 .mushroomDeathAnim {
     @extend .goblin;
     &::before{
@@ -247,31 +220,27 @@
         background-image: url("../../../../assets/sprites/mushroom/mushroom_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
-    }
-}
+    }}
 
 .skeleton {
     @extend .goblin;
     &::before {
         background-image: url("../../../../assets/sprites/skeleton/skeleton_idle.png") !important;
-    }
-}
+    }}
 .skeletonAttackAnim{
     @extend .goblin;
     &::before{
         background-size: $enemySpriteSheetWd $enemySpriteH !important;
         background-image: url("../../../../assets/sprites/skeleton/skeleton_attack.png") !important;
         animation: attackAnim_enemy 0.2s steps(8) forwards !important;
-    }
-}
+    }}
 .skeletonHitAnim{
     @extend .goblin;
     &::before{
         background-size: $enemySpriteSheetW $enemySpriteH !important;
         background-image: url("../../../../assets/sprites/skeleton/skeleton_hit.png") !important;
         animation: hitAnim_enemy 0.25s steps(4) forwards !important;
-    }
-}
+    }}
 .skeletonDeathAnim {
     @extend .goblin;
     &::before{
@@ -279,32 +248,28 @@
         background-image: url("../../../../assets/sprites/skeleton/skeleton_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
-    }
-}
+    }}
 
 .eye {
     @extend .goblin;
     &::before {
         background-size: $enemySpriteSheetWd $enemySpriteH;
         background-image: url("../../../../assets/sprites/flyingeye/eye_idle.png") !important;
-    }
-}
+    }}
 .eyeAttackAnim{
     @extend .goblin;
     &::before{
         background-size: $enemySpriteSheetWd $enemySpriteH !important;
         background-image: url("../../../../assets/sprites/flyingeye/eye_attack.png") !important;
         animation: attackAnim_enemy 0.2s steps(8) forwards !important;
-    }
-}
+    }}
 .eyeHitAnim{
     @extend .goblin;
     &::before{
         background-size: $enemySpriteSheetW $enemySpriteH !important;
         background-image: url("../../../../assets/sprites/flyingeye/eye_hit.png") !important;
         animation: hitAnim_enemy 0.25s steps(4) forwards !important;
-    }
-}
+    }}
 .eyeDeathAnim {
     @extend .goblin;
     &::before{
@@ -312,8 +277,7 @@
         background-image: url("../../../../assets/sprites/flyingeye/eye_death.png") !important;
         animation: deathAnim_enemy 0.4s steps(3) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
-    }
-}
+    }}
 
 .toad {
     @extend .goblin;
@@ -326,9 +290,7 @@
         transform: translate(10px, 0) scaleX(-1) !important;
         animation: toad_idle 1s steps(4) infinite  !important;
         transition: filter 0.5s ease;
-    }
-}
-
+    }}
 .toadAttackAnim {
     @extend .toad;
     &::before{
@@ -337,40 +299,26 @@
         transform: translate(10px, 0) scaleX(-1) !important;
 
         animation: toad_attackAnim 0.3s steps(3) infinite alternate !important;
-    }
-}
-
+    }}
 .toadHitAnim {
     @extend .toad;
     &::before{
         background-image: url("../../../../assets/sprites/toad/toad_hit.png") !important;
-    }
-}
-
+    }}
 .toadDeathAnim {
     @extend .toad;
     &::before{
         background-image: url("../../../../assets/sprites/toad/toad_hit.png") !important;
         animation: toad_idle 1s steps(4) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
-    }
-}
+    }}
 
 @keyframes toad_idle {
     0% { background-position: -30px -50px; }
-    100% { background-position: calc(-320px  * $scale-l - 30px) -50px; }
-}
-
+    100% { background-position: calc(-320px  * $scale-l - 30px) -50px; }}
 @keyframes toad_attackAnim {
     0% { background-position: -30px -50px; }
-    100% { background-position: calc(-240px  * $scale-l - 30px) -50px; }
-}
-
-.consumable {
-    width: 50px;
-    height: 50px;
-    background-color: $green;
-}
+    100% { background-position: calc(-240px  * $scale-l - 30px) -50px; }}
 
 .fireworm {
     @extend .goblin;
@@ -384,9 +332,7 @@
         animation: fireworm_idle 1s steps(9) infinite;
         transform: translateX($fireworm-offset-x) scaleX(-1);
         height: $fireworm-h;
-    }
-}
-
+    }}
 .firewormAttackAnim{
     @extend .fireworm;
     &::before{
@@ -394,16 +340,14 @@
         background-image: url("../../../../assets/sprites/fireworm/fireworm_attack.png") !important;
         animation: fireworm_attack 0.2s steps(4) forwards !important;
 
-    }
-}
+    }}
 .firewormHitAnim{
     @extend .fireworm;
     &::before{
         background-size: $fireworm-w-hit $fireworm-h !important;
         background-image: url("../../../../assets/sprites/fireworm/fireworm_hit.png") !important;
         animation: fireworm_hit 0.25s steps(3) forwards !important;
-    }
-}
+    }}
 .firewormDeathAnim {
     @extend .fireworm;
     &::before{
@@ -412,28 +356,20 @@
         animation: fireworm_death 1s steps(7) forwards !important;
         filter: saturate(0.5) brightness(0.6)  !important;
         
-    }
-}
+    }}
 
 @keyframes fireworm_idle{
     0% {background-position: 0 $fireworm-offset-y;}
-    100% {background-position: calc($fireworm-w-idle * $minusone) $fireworm-offset-y;}
-}
-
+    100% {background-position: calc($fireworm-w-idle * $minusone) $fireworm-offset-y;}}
 @keyframes fireworm_attack{
     0% {background-position: 0 $fireworm-offset-y;}
-    100% {background-position: calc($fireworm-w-attack * $minusone) $fireworm-offset-y;}
-}
-
+    100% {background-position: calc($fireworm-w-attack * $minusone) $fireworm-offset-y;}}
 @keyframes fireworm_hit{
     0% {background-position: 0 $fireworm-offset-y;}
-    100% {background-position: calc($fireworm-w-hit * $minusone) $fireworm-offset-y;}
-}
-
+    100% {background-position: calc($fireworm-w-hit * $minusone) $fireworm-offset-y;}}
 @keyframes fireworm_death{
     0% {background-position: 0 $fireworm-offset-y;}
-    100% {background-position: calc($fireworm-w-death * $minusone + calc($fireworm-offset-y * $scale-l)) $fireworm-offset-y;}
-}
+    100% {background-position: calc($fireworm-w-death * $minusone + calc($fireworm-offset-y * $scale-l)) $fireworm-offset-y;}}
 
 .slime{
     @extend .goblin;
@@ -449,33 +385,26 @@
     }
     &::after{
         animation: none;
-    }
-}
-
+    }}
 .slimeAttackAnim{
     @extend .slime;
     &::before{
         background-image: url("../../../../assets/sprites/slime/slime_attack.png") !important;
         animation: slime_attack 0.2s steps(6) infinite;
-    }
-}
-
+    }}
 .slimeHitAnim{
     @extend .slime;
     &::before{
         background-image: url("../../../../assets/sprites/slime/slime_hit.png") !important;
         animation: slime_hit 0.4s steps(4) infinite;
-    }
-}
-
+    }}
 .slimeDeathAnim{
     @extend .slime;
     &::before{
         width: $death-w;
         background-image: url("../../../../assets/sprites/slime/slime_death.png") !important;
         animation: slime_death 0.5s steps(4) forwards;
-    }
-}
+    }}
 
 @keyframes slime_idle {
     from{
@@ -483,33 +412,84 @@
     }
     to{
         background-position: calc(calc($slime-w-idle * $minusone) - $slime-offset-x) 0;
-    }
-}
-
+    }}
 @keyframes slime_attack {
     from{
         background-position: 0 0;
     }
     to{
         background-position: calc(calc($slime-w-attack * $minusone) + $slime-offset-x ) 0;
-    }
-}
-
+    }}
 @keyframes slime_hit {
     from{
         background-position: calc($slime-offset-x * $minusone) 0;
     }
     to{
         background-position: calc(calc($slime-w-hit * $minusone) - $slime-offset-x ) 0;
-    }
-}
-
+    }}
 @keyframes slime_death {
     from{
         background-position: calc(0px + 97.5px) 0;
     }
     to{
         background-position: calc($minusone * 390px + 97.5px) 0;
+    }}
+
+.sprout{
+    @extend .goblin;
+    &::before{
+        background-image: url("../../../../assets/sprites/sprout/sprout_idle.png");
+        background-size: $sprout-w-idle $sprout-h;
+        transform: scaleX(-1) translateX($sprout-offset-x);
+        animation: sproutIdleAnim 1s steps(4) infinite;
+    }}
+.sproutAttackAnim {
+    @extend .sprout;
+    &::before{
+        background-image: url("../../../../assets/sprites/sprout/sprout_attack.png");
+        background-size: $sprout-w-attack $sprout-h;
+        animation: sproutAttackAnim 0.5s steps(6) forwards;
+    }}
+.sproutHitAnim {
+    @extend .sprout;
+    &::before{
+        background-image: url("../../../../assets/sprites/sprout/sprout_hit.png");
+        background-size: $sprout-w-hit $sprout-h;
+        animation: sproutHitAnim 0.4s steps(5) forwards;
+    }}
+.sproutDeathAnim {
+    @extend .sprout;
+    &::before{
+        background-image: url("../../../../assets/sprites/sprout/sprout_death.png");
+        background-size: $sprout-w-death $sprout-h;
+        animation: sproutDeathAnim 0.6s steps(7) forwards;
+    }}
+
+@keyframes sproutIdleAnim{
+    from{
+        background-position: 0 0;
     }
-}
-// calc(8px + calc(calc($slime-w-death * 0.75) * $minusone)) - $slime-offset-x + 97.5px
+    to{
+        background-position: calc($sprout-w-idle * $minusone) 0;
+    }}
+@keyframes sproutAttackAnim{
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: calc($sprout-w-attack * $minusone) 0;
+    }}
+@keyframes sproutHitAnim{
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: calc($sprout-w-hit * $minusone) 0;
+    }}
+@keyframes sproutDeathAnim{
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: calc(calc($sprout-w-death - $sprout-h) * $minusone) 0;
+    }}

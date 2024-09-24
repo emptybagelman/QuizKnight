@@ -3,6 +3,7 @@
 import { type Consumable, type ConsumableNames, type PlayerType, type Enemy } from "../_types/types"
 import { enemyStats } from "./enemies";
 import { CONSTANTS } from "./CONSTANTS";
+import { stat } from "fs";
 
 function randomEnemy(enemies: string[]) {
         
@@ -29,17 +30,25 @@ export default function generateEnemies(loop: number) {
         let enemyArray: Enemy[];
         if(loop > 0 && loop % CONSTANTS.BOSS_ROUND === 0){
 
-            const bossStats = enemyStats("Demon Slime", loop)
+            let bossStats;
+            let bossName;
+
+            if(loop == 20){
+                bossStats = enemyStats("Graven Mass", loop)
+                bossName = "Graven Mass"
+            }else{
+                bossStats = enemyStats("Demon Slime", loop)
+                bossName = "Demon Slime"
+            }
 
             enemyArray = [{
                 id: 0,
-                name: "Demon Slime",
+                name: bossName,
                 hp: bossStats.hp,
                 maxhp: bossStats.hp,
                 armour: bossStats.armour,
                 dmg: bossStats.dmg
             }]
-
         }
         else{
             enemyArray = [...Array.from({length:randomInt(amount,4)}).map((x, index) => {
@@ -76,7 +85,6 @@ export default function generateEnemies(loop: number) {
         const enemyGroup = enemyLoopGen(loop)!
         const enemyArray: Enemy[] = enemyGroup.map((enemy,index) => {
             const stats = enemyStats(enemy, loop)
-
             const en = {
                 id: index,
                 name: enemy,
@@ -88,7 +96,6 @@ export default function generateEnemies(loop: number) {
 
             return en;
         })
-
         return enemyArray;
     }
 }
@@ -104,13 +111,19 @@ function enemyLoopGen(loop: number) {
         6: ["Goblin","Goblin","Toad","Mushroom"],
         7: ["Toad","Goblin","Slime","Slime","Mushroom","Toad","Goblin"],
         8: ["Toad","Toad","Goblin","Mushroom", "Goblin"],
-        9: ["Slime","Slime","Mushroom","Goblin","Toad","Slime","Toad",],
+        // 9: ["Slime","Slime","Mushroom","Goblin","Toad","Slime","Toad",],
+        9: ["Slime"],
         10: ["Demon Slime"],
-        11: ["Flying Eye","Fireworm","Flying Eye", "Mushroom"],
-        12: ["Flying Eye","Fireworm","Goblin","Fireworm"],
-        13: ["Flying Eye","Mushroom","Fireworm","Toad"],
-        14: ["Toad", "Skeleton", "Mushroom", "Goblin"],
-        15: ["Fireworm", "Fireworm", "Mushroom", "Toad"],
+        11: ["Fireworm","Sprout","Sprout", "Sprout", "Flying Eye"],
+        12: ["Flying Eye","Fireworm","Sprout","Fireworm"],
+        13: ["Sprout","Sprout","Toad","Sprout"],
+        14: ["Toad", "Skeleton", "Sprout", "Flying Eye"],
+        15: ["Fireworm", "Fireworm", "Sprout", "Toad"],
+        16: ["Skeleton", "Skeleton", "Sprout", "Sprout", "Flying Eye"],
+        17: ["Toad", "Fireworm", "Fireworm", "Sprout", "Mushroom", "Sprout"],
+        18: ["Mushroom", "Skeleton", "Skeleton", "Flying Eye", "Mushroom", "Sprout", "Flying Eye"],
+        19: ["Flying Eye", "Toad", "Toad", "Flying Eye", "Sprout", "Slime", "Skeleton", "Skeleton", "Skeleton"],
+        20: ["Graven Mass"]
     }
 
     return basicRounds[loop]

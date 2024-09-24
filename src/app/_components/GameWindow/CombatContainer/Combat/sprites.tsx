@@ -93,12 +93,25 @@ export const slimeAnims = (slime: Enemy, arr: Enemy[], enemyBool: boolean, playe
     return sprites.slime;
 }
 
+export const sproutAnims = (sprout: Enemy, arr: Enemy[], enemyBool: boolean, playerBool: boolean) => {
+    const first = arr[0];
+    
+    if(!arr) return "";
+    if(!first) return "";
+
+    if(sprout.hp <= 0) return sprites.sproutDeathAnim;
+    if(playerBool && sprout.id === first.id) return sprites.sproutHitAnim;
+    if(enemyBool && sprout.id === first.id) return sprites.sproutAttackAnim; 
+    return sprites.sprout;
+}
+
 export const resolveAnimType = (enemy: Enemy, arr: Enemy[], enemyBool: boolean, playerBool: boolean) => {
-    if(enemy.name === "Goblin") return goblinAnims(enemy, arr, enemyBool, playerBool)
-    if(enemy.name === "Mushroom") return mushroomAnims(enemy, arr, enemyBool, playerBool)
-    if(enemy.name === "Skeleton") return skeletonAnims(enemy, arr, enemyBool, playerBool)
-    if(enemy.name === "Flying Eye") return eyeAnims(enemy, arr, enemyBool, playerBool)
-    if(enemy.name === "Toad") return toadAnims(enemy, arr, enemyBool, playerBool)
-    if(enemy.name === "Fireworm") return firewormAnims(enemy, arr, enemyBool, playerBool)
-    if(enemy.name === "Slime") return slimeAnims(enemy, arr, enemyBool, playerBool)
+    if(enemy.name === "Goblin") return goblinAnims(enemy, arr, enemyBool, playerBool);
+    if(enemy.name === "Mushroom") return mushroomAnims(enemy, arr, enemyBool, playerBool);
+    if(enemy.name === "Skeleton") return skeletonAnims(enemy, arr, enemyBool, playerBool);
+    if(enemy.name === "Flying Eye") return eyeAnims(enemy, arr, enemyBool, playerBool);
+    if(enemy.name === "Toad") return toadAnims(enemy, arr, enemyBool, playerBool);
+    if(enemy.name === "Fireworm") return firewormAnims(enemy, arr, enemyBool, playerBool);
+    if(enemy.name === "Slime") return slimeAnims(enemy, arr, enemyBool, playerBool);
+    if(enemy.name === "Sprout") return sproutAnims(enemy, arr, enemyBool, playerBool);
 }

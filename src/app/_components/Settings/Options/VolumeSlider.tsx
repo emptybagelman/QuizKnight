@@ -14,7 +14,7 @@ export default function VolumeSlider(){
             <p>Volume</p>
             <input 
                 type="range" 
-                className={`${styles.volume_range} ${mute ? styles.disable : ""}`} 
+                className={`${styles.range} ${mute ? styles.disable : ""}`} 
                 min={0} 
                 max={100} 
                 defaultValue={volume} 

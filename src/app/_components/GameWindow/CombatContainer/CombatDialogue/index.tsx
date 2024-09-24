@@ -3,6 +3,7 @@
 import styles from "./styles.module.scss"
 import { type DialogueProps } from "@/app/_types/types";
 import Typewriter from "./typewriter";
+import { useSettings } from "@/app/_components/SettingsContext";
 
 export default function CombatDialogue(
     
@@ -10,6 +11,8 @@ export default function CombatDialogue(
     :
         {data: DialogueProps | undefined, extra: string | undefined}
     ){
+
+        const { gameSpeedMultiplier } = useSettings()
 
     if(!data || !data.enemy) return;
     const TEXT = [
@@ -37,7 +40,7 @@ export default function CombatDialogue(
             {
                 data.index != -1
                 ?   
-                <Typewriter text={TEXT[data.index]}/>
+                <Typewriter text={TEXT[data.index]} multiplier={gameSpeedMultiplier}/>
 
                 : <p></p>
             }

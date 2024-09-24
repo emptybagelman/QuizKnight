@@ -1,14 +1,16 @@
 import styles from "./styles.module.scss"
 import { useGame } from "../../../GameContext"
+import { useSettings } from "@/app/_components/SettingsContext"
 
 export default function StartScreen(){
 
     const { gameState } = useGame()
+    const { gameSpeedMultiplier } = useSettings()
 
     return (
         <>
         { gameState.loop === 0 &&
-            <div className={styles.start_screen_wrapper}>
+            <div className={styles.start_screen_wrapper} style={{animationDuration: `${2  * gameSpeedMultiplier}s`, animationDelay: `${4  * gameSpeedMultiplier}s`}}>
                 <div className={styles.screen_container}>
 
                     {/* <h3>Prepare</h3> */}

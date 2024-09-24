@@ -12,12 +12,12 @@ export default function Boss({
     enemy: Enemy,
 }){
 
-    const { player } = useGame()
+    const { player, gameState } = useGame()
     const { enemyData, playerAttack, enemyAttack } = useCombat()
 
     return (
         <div
-            className={slimeBossAnims(enemy, enemyData, enemyAttack, playerAttack)}>
+            className={gameState.loop == 20 ? gravenMassBossAnims(enemy, enemyData, enemyAttack, playerAttack) : slimeBossAnims(enemy, enemyData, enemyAttack, playerAttack)}>
             {
                 playerAttack && enemyData[0]?.id === enemy.id
                 ? <Hit dmg={player.dmg} />
@@ -37,4 +37,16 @@ const slimeBossAnims = (slimeBoss: Enemy, arr: Enemy[], enemyBool: boolean, play
     if(playerBool && slimeBoss.id === first.id) return styles.slimeBossHit;
     if(enemyBool && slimeBoss.id === first.id) return styles.slimeBossAttack; 
     return styles.slimeBoss;
+}
+
+const gravenMassBossAnims = (gravenMass: Enemy, arr: Enemy[], enemyBool: boolean, playerBool: boolean) => {
+    const first = arr[0];
+    
+    if(!arr) return "";
+    if(!first) return "";
+
+    if(gravenMass.hp <= 0) return styles.gravenMassDeath;
+    if(playerBool && gravenMass.id === first.id) return styles.gravenMassHit;
+    if(enemyBool && gravenMass.id === first.id) return styles.gravenMassAttack; 
+    return styles.gravenMass;
 }

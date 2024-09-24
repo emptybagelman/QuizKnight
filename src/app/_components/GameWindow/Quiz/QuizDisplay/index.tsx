@@ -6,12 +6,11 @@ import { useState } from "react"
 import { type GameStateProps } from "@/app/_types/types"
 import { useLoop } from "../QuizLoopContext"
 import useAudio from "@/app/_hooks/useVolume"
-import usePlayer from "@/app/_hooks/usePlayer"
+import { useSettings } from "@/app/_components/SettingsContext"
 
 export default function QuizDisplay(){
 
     const {
-        player,
         gameState,
         setGameState,
         } = useGame()
@@ -23,7 +22,7 @@ export default function QuizDisplay(){
     const [ corrState, setCorrState ] = useState<boolean | null>(null)
 
     const { playCorrectSound, playHoverSound, playWrongSound } = useAudio()
-
+    const { gameSpeedMultiplier } = useSettings()
 
     function handleAnswer(ans: string){
         if(!gameState.currentCard || !gameState.currentUpgrade) return new Error ("No card or upgrade provided.")
@@ -68,7 +67,7 @@ export default function QuizDisplay(){
                 questionState: false,
             }))
             
-        }, 1000);
+        }, 1000 * gameSpeedMultiplier);
     }
 
     if(gameState.questionState)

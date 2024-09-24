@@ -5,7 +5,9 @@ import styles from "./styles.module.scss"
 
 export function BossHealthBar({boss}:{boss: Enemy}) {
 
+
     function handleHpBar(){
+        if(!boss) return;
         if((boss.hp / boss.maxhp) <= 0) {
             return {
                 "width":"0%",

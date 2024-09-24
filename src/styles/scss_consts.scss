@@ -39,3 +39,11 @@ $slime-w-attack: calc(160px * $scale-l);
 $slime-w-hit: calc(128px * $scale-l);
 $slime-w-death: calc(128px * $scale-l);
 $death-w: calc($slime-w + 16px);
+
+$sprout-h: calc(96px * $scale-l);
+$sprout-w: calc(96px * $scale-l);
+$sprout-offset-x: 75px;
+$sprout-w-idle: calc(384px * $scale-l);
+$sprout-w-attack: calc(576px * $scale-l);
+$sprout-w-hit: calc(480px * $scale-l);
+$sprout-w-death: calc(768px * $scale-l);

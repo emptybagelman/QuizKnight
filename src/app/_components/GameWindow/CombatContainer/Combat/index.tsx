@@ -31,6 +31,7 @@ import Eneminis from "../Eneminis";
 import { CONSTANTS } from "@/app/_functions/CONSTANTS"
 import DropScreen from "../DropScreen";
 import DeadScreen from "../DeadScreen";
+import { useSettings } from "@/app/_components/SettingsContext";
 
 export default function Combat(){
     
@@ -40,9 +41,10 @@ export default function Combat(){
     const { setPlayerAttack, playerAttack, enemyAttack, setEnemyAttack, enemyData, setEnemyData, currentDialogue, setCurrentDialogue, buttonState, setButtonState} = useCombat()
     const { updateSkills, updateLootCharge } = usePlayer()
     const { playHitImpactSound, playSwingSound, playHitSound, playBlockSound, playEvadeSound, playFirebombSound } = useAudio()
+    const { gameSpeedMultiplier } = useSettings()
 
     // CONSTANTS & VARIABLES
-    const isBoss = enemyData[0]?.name === "Demon Slime"
+    const isBoss = gameState.loop % CONSTANTS.BOSS_ROUND === 0 && gameState.loop != 0
 
 
     const emptyDialogue = {
@@ -229,9 +231,9 @@ export default function Combat(){
                             setCurrentDialogue(activeEmptyDialogue)
                             handleEnemyKill(firstEnemy)
                             moveToQuiz(enemyHp)
-                        }, CONSTANTS.DELAY);
+                        }, CONSTANTS.DELAY * gameSpeedMultiplier);
 
-                    }, CONSTANTS.ATTACK_TIMEOUT);
+                    }, CONSTANTS.ATTACK_TIMEOUT * gameSpeedMultiplier);
                 }else{
                     // CHECK IF ENEMY DEAD
 
@@ -245,9 +247,9 @@ export default function Combat(){
                     moveToQuiz(enemyHp)
                 }
                 
-            },CONSTANTS.DELAY)
+            },CONSTANTS.DELAY * gameSpeedMultiplier)
 
-        },CONSTANTS.ATTACK_TIMEOUT)
+        },CONSTANTS.ATTACK_TIMEOUT * gameSpeedMultiplier)
     }
 
     function moveToQuiz(enemyHp: number){
@@ -299,7 +301,7 @@ export default function Combat(){
             setTimeout(() => {
                 setBackground("power_shake")
                 
-            }, CONSTANTS.ATTACK_TIMEOUT * 1.4);
+            }, CONSTANTS.ATTACK_TIMEOUT * 1.4 * gameSpeedMultiplier);
         }
         else{
             setBackground("shake")
@@ -342,7 +344,7 @@ export default function Combat(){
                     })
                 }
 
-            }, isBoss ? CONSTANTS.ATTACK_TIMEOUT * 1.4 : 0);
+            }, isBoss ? CONSTANTS.ATTACK_TIMEOUT * 1.4 * gameSpeedMultiplier : 0 * gameSpeedMultiplier);
         }
 
         else if(tempPlayer.agility == 1){
@@ -376,7 +378,7 @@ export default function Combat(){
         setTimeout(() => {
             playSwingSound()
             getHitSound("Player")
-        }, isBoss ? CONSTANTS.ATTACK_TIMEOUT * 1.2 : 0);
+        }, isBoss ? CONSTANTS.ATTACK_TIMEOUT * 1.2 * gameSpeedMultiplier : 0);
             
         setTimeout(() => {
             setEnemyAttack(false)       
@@ -399,8 +401,8 @@ export default function Combat(){
                     setCurrentDialogue(emptyDialogue)
                     setButtonState(false) // ENABLE BUTTON
                 }
-            }, CONSTANTS.DELAY)
-        }, isBoss ? CONSTANTS.ATTACK_TIMEOUT * 3 : CONSTANTS.ATTACK_TIMEOUT)
+            }, CONSTANTS.DELAY * gameSpeedMultiplier)
+        }, isBoss ? CONSTANTS.ATTACK_TIMEOUT * 3 * gameSpeedMultiplier : CONSTANTS.ATTACK_TIMEOUT * gameSpeedMultiplier)
     }
 
     function handleClick(){
@@ -447,7 +449,7 @@ export default function Combat(){
                     })
 
                     setCurrentDialogue(emptyDialogue)
-                }, CONSTANTS.DELAY);
+                }, CONSTANTS.DELAY * gameSpeedMultiplier);
             }
         }
 
@@ -478,7 +480,7 @@ export default function Combat(){
                 setBackground("default")
 
                 setEnemyData(newEnemyArray)
-            }, CONSTANTS.DELAY);
+            }, CONSTANTS.DELAY * gameSpeedMultiplier);
         }
         
     },[ powerState ])
@@ -513,7 +515,7 @@ export default function Combat(){
         if(gameState.autoPlay == true && !inCombat ){
             setTimeout(() => {
                 handleClick()
-            }, 500);
+            }, 500 * gameSpeedMultiplier);
         }
     },[gameState.autoPlay, inCombat, enemyData])
 
@@ -522,11 +524,13 @@ export default function Combat(){
         <CombatContainer background={background}>
             <SettingsWidget />
             {
-                isBoss && <BossHealthBar boss={enemyData[0]!} />
+                isBoss && enemyData[0] && <BossHealthBar boss={enemyData[0]} />
             }
             <StartScreen />
             <ConsumableContainer buttonState={buttonState}/>
-            <Eneminis />
+            {
+                !isBoss && <Eneminis />
+            }
             {
                 toggleOpen && <DropScreen item={newItems.slice(-1).pop()} setToggleOpen={setToggleOpen}/>
             }

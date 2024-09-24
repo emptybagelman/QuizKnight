@@ -1,6 +1,7 @@
 import { useSettings } from "../SettingsContext"
 import CloseButton from "./CloseButton"
 import DamageNumberCheckbox from "./Options/DamageNumbers"
+import GameSpeed from "./Options/GameSpeed"
 import MuteCheckbox from "./Options/Mute"
 import VolumeSlider from "./Options/VolumeSlider"
 import styles from "./styles.module.scss"
@@ -26,6 +27,7 @@ export default function MainMenuSettings() {
                 <VolumeSlider />
                 <MuteCheckbox />
                 <DamageNumberCheckbox />
+                <GameSpeed />
             {/* </div> */}
         </div>
     )

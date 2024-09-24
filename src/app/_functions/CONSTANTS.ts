@@ -4,7 +4,7 @@ export const CONSTANTS = {
     BURN_DMG: 10,
     DELAY: 3500,
     ATTACK_TIMEOUT: 500,
-    MAX_SET_ROUND: 15,
+    MAX_SET_ROUND: 20,
     HEADCOUNT: 3,
     BASE_BOSS_HP: 15,
     BASE_BOSS_DMG: 10,
