@@ -122,13 +122,9 @@ function StatRow(
             <p className={styles.name}>{stat.string}</p>
 
             <div className={styles.stat_incdec_wrapper}>
-
-                <a className={styles.dec} onClick={() => handleClick(-1)}>-</a>
-
-                <p className={styles.value}>{value}</p>
-
                 <a className={styles.inc} onClick={() => handleClick(1)}>+</a>
-
+                <p className={styles.value}>{value}</p>
+                <a className={styles.dec} onClick={() => handleClick(-1)}>-</a>
             </div>
         </div>
     )

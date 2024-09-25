@@ -73,7 +73,7 @@
                 }
     
                 .inc{
-                    grid-column: 3;
+                    grid-column: 1;
                     &:hover{
                         @include hover;
                         cursor: pointer;
@@ -86,7 +86,7 @@
 
                 .dec{
                     @extend .inc;
-                    grid-column: 1;
+                    grid-column: 3;
                 }
             }
         
