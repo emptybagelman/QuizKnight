@@ -3,7 +3,6 @@
 import { type Consumable, type ConsumableNames, type PlayerType, type Enemy } from "../_types/types"
 import { enemyStats } from "./enemies";
 import { CONSTANTS } from "./CONSTANTS";
-import { stat } from "fs";
 
 function randomEnemy(enemies: string[]) {
         
@@ -134,6 +133,7 @@ export function randomItem(){
         "Mana Potion",
         "Agility Crystal",
         "Firebomb",
+        "Armour Plating",
         // "Bomb",
     ]
     const item = items[Math.floor(Math.random() * items.length)]

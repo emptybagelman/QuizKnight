@@ -126,7 +126,6 @@ export default function Combat(){
 
                     setToggleOpen(true)
                     newItemsArr.push(consumable)
-                    console.log(newItemsArr);
                     setNewItems(newItemsArr)
                 }
                 else{

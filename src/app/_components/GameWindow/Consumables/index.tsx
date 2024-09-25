@@ -21,6 +21,7 @@ export default function ConsumableContainer({buttonState}:{buttonState: boolean}
         if(player.consumables.length >= BAG_MINIMUM){
         setBagOpen(prev => !prev)
     }}
+    
 
     return (
         <a
@@ -55,7 +56,7 @@ function ConsumableItem(
     }) {
 
         const { player, setPlayer } = useGame()
-        const { playWrongSound, playHealSound, playManaSound, playAgilitySound, playFirebombSound } = useAudio()
+        const { playBlockSound, playWrongSound, playHealSound, playManaSound, playAgilitySound, playFirebombSound } = useAudio()
         const { updateLootCharge } = usePlayer()
         const { removeConsumable } = useGameFunctions()
 
@@ -138,6 +139,13 @@ function ConsumableItem(
                 else{
                     playWrongSound()
                 }
+            }
+            if(item.name === "Armour Plating"){
+                playBlockSound()
+                setPlayer((prev) => ({
+                    ...prev,
+                    armour: prev.armour + 3
+                }))
             }
             setBagOpen(false)
             // updateLoot(item.name,-1)

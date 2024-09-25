@@ -48,7 +48,12 @@ export type StatType = {
 
 export type CharacterNames = string
 
-export type ConsumableNames = "Health Potion" | "Mana Potion" | "Agility Crystal" | "Firebomb"
+export type ConsumableNames =
+    "Health Potion"
+    | "Mana Potion"
+    | "Agility Crystal"
+    | "Firebomb"
+    | "Armour Plating"
 
 
 export type TimeoutFunctionProps = {

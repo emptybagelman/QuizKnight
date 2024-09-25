@@ -30,6 +30,12 @@ const consumables: Consumable[] = [
         value: 1,
         description: "Burns enemies over time.",
         charge: 0,
+    },
+    {
+        id: 4,
+        name: "Armour Plating",
+        value: 1,
+        description: "Adds padding to your metal t-shirt.",
     }
 ]
 
@@ -52,9 +58,9 @@ export default function useGameFunctions(){
             case "Skeleton":
                 playSkeletonHitSound()
                 break;
-                case "Slime":
-                    playSlimeHitSound()
-                    break;
+            case "Slime":
+                playSlimeHitSound()
+                break;
             default:
                 playMushroomHitSound()
                 break;
@@ -81,7 +87,9 @@ export default function useGameFunctions(){
 
     function addConsumable(name: ConsumableNames){
         const item: Consumable = player.consumables.filter((x) => x.name === name)[0]!
-        const consItem: Consumable = consumables.filter((x) => x.name == name)[0]!
+        const consItem: Consumable = consumables.filter((x) => x.name === name)[0]!
+
+        console.log(name);
 
         if(!item){
 

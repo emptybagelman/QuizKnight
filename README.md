@@ -35,6 +35,7 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
     - [x] damage number rounded toggle
     - [] animation toggle
     - [] difficulty mode
+    - [x] game speed multiplier
 - [] gameplay!
     - [x] convert current powering system to stat point system
         - [x] quiz display overlays combat
@@ -59,14 +60,14 @@ I made this as a remake to my **first** JavaScript project I co-created in 2023.
         - [x] flying eye
         - [x] fireworm
         - [x] slime
-        - [] Sprout
+        - [x] sprout
         - BOSS
             - [x] Demon Slime
                 - [x] all anims
                 - [x] activates ability
                 - [x] special sounds
-            - [] Skeleton Seeker
-                - [] all anims
+            - [x] Skeleton Seeker
+                - [x] all anims
                 - [] activates ability
                 - [] special sounds
     - [x] crit chance

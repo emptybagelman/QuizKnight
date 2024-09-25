@@ -27,8 +27,9 @@ $length: 50px;
         align-items: center;
         position: relative;
         transition: 0.2s ease;
-        opacity: 0.75;
-
+        opacity: 0.8;
+        background-size: cover;
+        image-rendering: pixelated;
         &:hover{
             cursor: pointer;
             outline: solid 2px white;
@@ -37,26 +38,22 @@ $length: 50px;
 
         &[content="Health Potion"] {
             background-image: url("../../../assets/items/health_potion.png");
-            background-size: cover;
-            image-rendering: pixelated;
         }
 
         &[content="Mana Potion"]{
             background-image: url("../../../assets/items/mana_potion.png");
-            background-size: cover;
-            image-rendering: pixelated;
         }
 
         &[content="Agility Crystal"]{
             background-image: url("../../../assets/items/agility_crystal.png");
-            background-size: cover;
-            image-rendering: pixelated;
         }
 
         &[content="Firebomb"]{
             background-image: url("../../../assets/items/firebomb.png");
-            background-size: cover;
-            image-rendering: pixelated;
+        }
+
+        &[content="Armour Plating"]{
+            background-image: url("../../../assets/items/armour_plating.png");
         }
 
         .item_amount{

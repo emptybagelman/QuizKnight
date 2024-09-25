@@ -7,6 +7,7 @@ import health_potion from "#/items/health_potion.png"
 import mana_potion from "#/items/mana_potion.png"
 import firebomb from "#/items/firebomb.png"
 import agility_crystal from "#/items/agility_crystal.png"
+import armour_plating from "#/items/armour_plating.png"
 
 export default function DropScreen({item, setToggleOpen}:{item: Consumable | undefined, setToggleOpen: React.Dispatch<React.SetStateAction<boolean>>}){
 
@@ -20,17 +21,15 @@ export default function DropScreen({item, setToggleOpen}:{item: Consumable | und
     function getImage(){
         switch(item?.name){
             case "Health Potion":
-                console.log("hppot");
                 return health_potion
             case "Mana Potion":
-                console.log("hppot");
                 return mana_potion
             case "Agility Crystal":
-                console.log("hppot");
                 return agility_crystal
             case "Firebomb":
-                console.log("hppot");
                 return firebomb
+            case "Armour Plating":
+                return armour_plating
             default:
                 return health_potion
         }

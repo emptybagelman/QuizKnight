@@ -1,5 +1,4 @@
 import { CONSTANTS } from "./CONSTANTS";
-import { randomInt } from "./game_functions";
 
 export function enemyStats(name: string, loop:number) {
     let hp: number;
